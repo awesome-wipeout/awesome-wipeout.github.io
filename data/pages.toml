@@ -1,0 +1,131 @@
+# Site page registry (build = code, data = data).
+#
+# Order here = order in the thin sticky nav. build.py reads this to build the
+# shared nav and to pick each page's generator via `kind`:
+#   marks  — the vector-mark tear sheet (index.html; must be exactly one)
+#   fonts  — the font specimen page
+#   prose  — a simple intro/links page rendered from the fields below
+#
+# `slug` "index" → index.html (the site entry point); any other slug → <slug>.html.
+# prose pages author all their copy here: `intro` (lead paragraph), `paragraphs`
+# (array of body paragraphs) and `links` (array of {label, url, note?}).
+#
+# To add a page: add a [[page]] block (+ a generator if it needs a new `kind`).
+
+[[page]]
+slug = "index"
+nav = "Marks"
+title = "Marks"
+kind = "marks"
+
+[[page]]
+slug = "fonts"
+nav = "Fonts"
+title = "Fonts"
+kind = "fonts"
+
+[[page]]
+slug = "reference"
+nav = "In-game reference"
+title = "In-game reference"
+kind = "reference"
+intro = "Screenshot reference of the ships in-game, grouped by team. Each team is headed by its emblem from the marks collection; click any shot to view it full-screen. Content authored in data/reference.toml."
+
+[[page]]
+slug = "links"
+nav = "Links"
+title = "Awesome WipEout"
+kind = "prose"
+intro = "A curated list of other WipEout assets, art, builds and communities — an awesome-list for the anti-gravity faithful. Vectors and fonts live on the Marks and Fonts pages; this is everything else."
+
+[[page.section]]
+title = "Fan sites & communities"
+links = [
+  { label = "WipEout Fandom Wiki", url = "https://wipeout.fandom.com/", note = "Tracks, teams, ships and lore" },
+  { label = "r/WipEout", url = "https://www.reddit.com/r/WipEout/", note = "The subreddit — community discussion & fan work" },
+  { label = "WipeoutZone", url = "https://www.wipeoutzone.com/", note = "The long-running WipEout fan forum" },
+  { label = "WipEout 3 team-select tribute", url = "https://omamoka.com/wipeout3/", note = "Interactive fan recreation of the WipEout 3 team screen" },
+]
+
+[[page.section]]
+title = "Art, posters & branding"
+blurb = "Original artwork, brand identity breakdowns and high-res scans — the Designers Republic look and the ships up close."
+links = [
+  { label = "The Designers Republic — WipEout", url = "https://www.thedesignersrepublic.com/project/wipeout", note = "The studio that defined the WipEout look — straight from the source" },
+  { label = "WipEout Futurism: The Graphic Archives", url = "https://draw-down.com/products/wipeout-futurism-the-graphic-archives", note = "The official graphic-archive book — concept art, promo & in-game design" },
+  { label = "WipEout HD branding for PlayStation — Behance", url = "https://www.behance.net/gallery/7162711/Wipeout-HD-for-PlayStation3", note = "The official HD brand-identity showcase" },
+  { label = "AG Systems (WipEout HD) — nocomplys", url = "https://www.deviantart.com/nocomplys/art/AGSystems-WipEout-HD-PS3-154483368", note = "High-res AG-Systems livery art" },
+  { label = "Dean Ashley — WipEout HD ship art", url = "https://deanashley.co.uk/projects/2bgGB", note = "The ship artist's in-game models & liveries — AG-Systems, Feisar, Goteki, Qirex and Icaras" },
+  { label = "Clever Beans — designing the Tigron K-VSR", url = "https://www.cleverbeans.co.uk/tigron-design/", note = "Shaun Mooney on the design process behind the Omega Collection's Tigron ship" },
+  { label = "Shaun Mooney — creating a Feisar ship (80.lv)", url = "https://80.lv/articles/creating-tigron-ship-from-wipeout", note = "The full workflow behind his WipEout Feisar fan art" },
+  { label = "Dan Cook — WipEout Omega Collection", url = "http://www.dancookart.com/wipeout-omega-collection.html", note = "Concept work — a collaborating designer on the Tigron K-VSR" },
+  { label = "ecas — 3D model of Shaun Mooney's concept", url = "https://ecas.artstation.com/projects/zAdlRq", note = "A 3D render built from Shaun Mooney's WipEout ship concept" },
+  { label = "Jon Machin — WipEout Pure & Pulse (Behance)", url = "https://www.behance.net/jonmachin", note = "Creative-direction slides & logos for Pure and Pulse" },
+  { label = "Edd Wainwright — WipEout motion & UI (Vimeo)", url = "https://vimeo.com/user3188462", note = "UI/motion designer on the series — promos, intro sequences and HUD work" },
+  { label = "Recreating the artwork of Wip3out", url = "https://imgur.com/gallery/recreating-artwork-of-wip3out-28tMn", note = "A fan restoration of the Wip3out cover art" },
+  { label = "Vectorised WipEout PS1 cover art", url = "https://www.reddit.com/r/WipeOut/comments/150fol4/i_finished_vectorising_the_ps1_cover_artwork/", note = "A fan's full vector recreation of the original PS1 box art" },
+  { label = "WipEout timeline poster", url = "https://www.reddit.com/r/WipeOut/comments/6pn3qc/wipeout_timeline_i_made_enjoy/", note = "A fan-made timeline of the series' games" },
+  { label = "WipEout team logos timeline poster", url = "https://i.imgur.com/MDBHwuB.jpg", note = "Each team's logo traced across the series" },
+  { label = "Racing-league logo wallpapers", url = "https://www.reddit.com/r/WipeOut/comments/iogr6m/i_took_the_logos_for_each_racing_leauge_and_gave/", note = "Each league logo set on a wallpaper background" },
+]
+
+[[page.section]]
+title = "Articles & history"
+blurb = "Writing on the design and legacy of the series."
+links = [
+  { label = "The Making of the WipEout Logo — imjustcreative", url = "https://imjustcreative.com/wipeout-logo-history/2023/01/18", note = "How the wordmark was cut from a single Eurostile ‘8’ — a great deep dive" },
+  { label = "WipEout Had Some of Gaming's Coolest Branding — Kotaku", url = "https://kotaku.com/wipeout-had-some-of-gamings-coolest-branding-1783707474", note = "On the fictional-brand world of teams and trackside ads" },
+  { label = "An oral history of Wipeout — Creative Review", url = "https://www.creativereview.co.uk/an-oral-history-of-wipeout/", note = "The people who made it, in their own words" },
+  { label = "The Grey Box Era — genology", url = "https://www.genology.co.uk/the-grey-box-era-how-wipeout-the-designers-republic-remade-gaming/", note = "How Wipeout & The Designers Republic remade gaming's look" },
+]
+
+[[page.section]]
+title = "LEGO"
+blurb = "LEGO WipEout anti-gravity ship builds from the community."
+links = [
+  { label = "djdrey909's LEGO WipEout builds", url = "https://andre.lackmann.net/tags/lego/", note = "The full series — build logs, ships, custom stickers, wallpapers and instructions" },
+  { label = "LEGO Ideas — Wipeout 30th Anniversary (FEISAR)", url = "https://ideas.lego.com/product-ideas/2c05ab63-d393-4676-bdda-dbcbc394d638", note = "A fan submission for an official set — a 1905-piece FEISAR FX400. Support it with a vote" },
+  { label = "Marco666 — WipEout ships on Rebrickable", url = "https://rebrickable.com/users/Marco666/mocs/", note = "A prolific series: classic Qirex RD plus HD minis (Auricom, Assegai…)" },
+  { label = "Marius Herrmann — WipEout ships", url = "https://steponabrick.com/wipeout", note = "Brick-artist anti-gravity ships, including a reimagined Feisar" },
+  { label = "knokelmaat — WipEout Omega Collection diorama", url = "https://rebrickable.com/mocs/MOC-176660/knokelmaat/wipeout-omega-collection-diorama/", note = "The three cover ships as a diorama" },
+  { label = "BryanEW710 — WipEout-inspired racer", url = "https://rebrickable.com/mocs/MOC-110553/BryanEW710/wipeout-inspired-anti-grav-racer/", note = "A MOC on Rebrickable" },
+  { label = "Aliencat — Feisar FX250-300", url = "https://www.flickr.com/photos/aliencat/53977089163/", note = "A Feisar build on Flickr" },
+]
+
+[[page.section]]
+title = "Games, tools & code"
+links = [
+  { label = "wipeout-rewrite (phoboslab)", url = "https://github.com/phoboslab/wipeout-rewrite", note = "An open-source re-implementation of the original engine — plays in the browser" },
+  { label = "WipEout Phantom Edition", url = "https://github.com/wipeout-phantom-edition/wipeout-phantom-edition", note = "An enhanced PC source port with multiple collision modes" },
+  { label = "WipEout-Mods (NR74W)", url = "https://github.com/NR74W/WipEout-Mods", note = "Mods for WipEout Pure and Pulse" },
+  { label = "GitHub: the ‘wipeout’ topic", url = "https://github.com/topics/wipeout", note = "A living index of WipEout fan projects & tools" },
+]
+
+[[page]]
+slug = "about"
+nav = "About"
+title = "About"
+kind = "prose"
+body = """
+**awesome-wipeout** is a community-maintained, normalised library of WipEout-universe art and design — and a growing hub of related references and links.
+
+As a WipEout fan and Designer's Republic tragic for many years, I've long admired the collision of art and gameplay that WipEout has always been.
+
+More recently, having a bit of time on my hands between jobs, I started building Lego versions of WipEout ships (I've now done a bunch — AG-Systems, Feisar, Van-Über, Tigron and more coming. Shameless plug: you can grab the [build instructions on Gumroad](https://djdrey909.gumroad.com/), or [kits & instructions from BuildAMOC](https://buildamoc.com/collections/vendors?q=Andre%20Lackmann)!). While doing this I needed reference shots and game art from WipEout for the ship designs and then accurate sticker livery.
+
+So down the WipEout rabbit hole I went.
+
+After spending more time than any reasonable middle-aged man should on Reddit and deep into page 10+ of Google results, I was able to collate quite a collection of game references, art, recreations, fonts, vectors and more. All this is out there, but it's not necessarily easy to find.
+
+So at the risk of being sued into oblivion by Sony (please don't!) with the help of my friend Claude Code, I've created _awesome-wipeout_, a public non-commercial collection of logos, emblems, marks, fonts, graphics, screenshots and links from across the WipEout anti-gravity racing universe. It's not intended to be Google, but it should provide a canonical source and/or links for all the major design & art WipEout references from across the web in 2025/26 for anyone still into this aging franchise to enjoy :) You now know everything I do about WipEout!
+
+I've attempted to respect everyone's published licenses, if you have concerns, check out the [Licensing page](licensing.html). If you plan to use any of these assets, please ensure you stay within the artist or provider's published intention. If you work at Sony, look the other way won't you? If you have something to add or contribute, you can open an issue in the [GitHub repo](https://github.com/awesome-wipeout/awesome-wipeout.github.io/issues) and if you're able, just raise a PR.
+
+And importantly, let it be known this is a non-commercial, fan-made archive not officially associated with Sony or anyone involved in the WipEout game series. WipEout and all related names, logos and marks are trademarks of Sony Interactive Entertainment / Studio Liverpool (formerly Psygnosis). All original creators retain credit for their work; each asset links to its contributor and licence.
+"""
+sign_off = "Keep on racing!\nAndre"
+social = [
+  { label = "Blog", url = "https://andre.lackmann.net", icon = "globe" },
+  { label = "Instagram", url = "https://www.instagram.com/djdrey/", icon = "instagram" },
+]
+# Contributing / Licensing / Credits are reached via the About dropdown in the nav.

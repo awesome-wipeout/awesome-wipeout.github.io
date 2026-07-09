@@ -1,0 +1,1058 @@
+# The 'marks' collection — WipEout logos, emblems, wordmarks & symbols.
+# A collection = this file + the marks/ folder. Contributors are shared (contributors.toml).
+#
+# [[section]]  display groupings, in order (folder, title, blurb).
+# [[asset]]    exactly ONE per file in marks/ (1:1). `file` is the path under marks/ —
+#              its folder = the section, its extension = hosted (.svg) or reference-only
+#              (.png, vector not redistributed). `credit` = contributor id ("" = uncredited).
+#              `name` optional (else the slug, title-cased). `source` = get-the-vector URL
+#              for reference-only marks. The build warns on any file<->entry drift.
+
+[[section]]
+folder = "titles"
+title = "Game Titles"
+blurb = "Series & game wordmark logos, WipEout (1995) through the Omega Collection."
+
+[[section]]
+folder = "teams/wo1"
+title = "Teams — WipEout"
+blurb = "Racing team logos in their original WipEout (1995) styling."
+
+[[section]]
+folder = "teams/2097"
+title = "Teams — WipEout 2097"
+blurb = "Racing team logos in their WipEout 2097 / XL styling."
+
+[[section]]
+folder = "teams/wip3out"
+title = "Teams — Wip3out"
+blurb = "Racing team logos in their Wip3out styling."
+
+[[section]]
+folder = "teams/pure"
+title = "Teams — WipEout Pure"
+blurb = "Racing team logos in their WipEout Pure styling."
+
+[[section]]
+folder = "teams/hd"
+title = "Teams — WipEout HD / 2048"
+blurb = "Racing team logos & symbol marks from the WipEout HD / 2048 era."
+
+[[section]]
+folder = "teams/hd-text"
+title = "WipEout HD — Wordmarks & Taglines"
+blurb = "Team name wordmarks and slogan / tagline marks from WipEout HD."
+
+[[section]]
+folder = "pilots"
+title = "Pilots"
+blurb = "Pilot emblems from the original WipEout."
+
+[[section]]
+folder = "classes"
+title = "Speed Classes"
+blurb = "Speed-class badges from WipEout HD / Fury."
+
+[[section]]
+folder = "game-modes"
+title = "Game Modes"
+blurb = "Game-mode emblems from WipEout HD / Fury."
+
+[[section]]
+folder = "weapons"
+title = "Weapons"
+blurb = "Weapon pickup glyphs."
+
+[[section]]
+folder = "sponsors"
+title = "Sponsors"
+blurb = "In-universe sponsor and brand logos from WipEout HD / Fury."
+
+[[section]]
+folder = "tracks"
+title = "Tracks & Venues"
+blurb = "Circuit / venue logos from WipEout HD / Fury."
+
+[[section]]
+folder = "leagues"
+title = "Leagues"
+blurb = "Anti-gravity racing league logos (F3600, F7200)."
+
+[[section]]
+folder = "misc"
+title = "Miscellaneous"
+blurb = "Ship silhouettes and other marks."
+
+[[section]]
+folder = "review"
+title = "Found — for review"
+blurb = "Extra glyphs discovered inside the source files during an audit. Optional additions, pending review."
+
+# --- titles ---
+[[asset]]
+file = "titles/wip3out.svg"
+name = "Wip3out"
+credit = "ollite20"
+
+[[asset]]
+file = "titles/wipeout-2048.svg"
+name = "WipEout 2048"
+credit = "ollite20"
+
+[[asset]]
+file = "titles/wipeout-2097.svg"
+name = "WipEout 2097"
+credit = "ollite20"
+
+[[asset]]
+file = "titles/wipeout-3-special-edition.svg"
+name = "WipEout 3 Special Edition"
+credit = "ollite20"
+
+[[asset]]
+file = "titles/wipeout-fusion.svg"
+name = "WipEout Fusion"
+credit = "ollite20"
+
+[[asset]]
+file = "titles/wipeout-hd-fury.svg"
+name = "WipEout HD Fury"
+credit = "ollite20"
+
+[[asset]]
+file = "titles/wipeout-omega-collection.svg"
+name = "WipEout Omega Collection"
+credit = "ollite20"
+
+[[asset]]
+file = "titles/wipeout-pulse.svg"
+name = "WipEout Pulse"
+credit = "ollite20"
+
+[[asset]]
+file = "titles/wipeout-pure.svg"
+name = "WipEout Pure"
+credit = "ollite20"
+
+[[asset]]
+file = "titles/wipeout.svg"
+name = "WipEout"
+credit = "ollite20"
+
+# --- teams/wo1 ---
+[[asset]]
+file = "teams/wo1/ag-systems.svg"
+name = "AG Systems"
+credit = "toolboxio"
+
+[[asset]]
+file = "teams/wo1/auricom.svg"
+name = "Auricom"
+credit = "toolboxio"
+
+[[asset]]
+file = "teams/wo1/feisar.svg"
+name = "FEISAR"
+credit = "toolboxio"
+
+[[asset]]
+file = "teams/wo1/qirex.svg"
+name = "Qirex"
+credit = "toolboxio"
+
+# --- teams/2097 ---
+[[asset]]
+file = "teams/2097/ag-systems.svg"
+name = "AG Systems"
+credit = "toolboxio"
+
+[[asset]]
+file = "teams/2097/auricom.svg"
+name = "Auricom"
+credit = "toolboxio"
+
+[[asset]]
+file = "teams/2097/feisar.svg"
+name = "FEISAR"
+credit = "toolboxio"
+
+[[asset]]
+file = "teams/2097/piranha.svg"
+name = "Piranha"
+credit = "toolboxio"
+
+[[asset]]
+file = "teams/2097/qirex.svg"
+name = "Qirex"
+credit = "toolboxio"
+
+# --- teams/wip3out ---
+[[asset]]
+file = "teams/wip3out/ag-systems.svg"
+name = "AG Systems"
+credit = "toolboxio"
+
+[[asset]]
+file = "teams/wip3out/assegai.svg"
+name = "Assegai"
+credit = "toolboxio"
+
+[[asset]]
+file = "teams/wip3out/auricom.svg"
+name = "Auricom"
+credit = "toolboxio"
+
+[[asset]]
+file = "teams/wip3out/feisar.svg"
+name = "FEISAR"
+credit = "toolboxio"
+
+[[asset]]
+file = "teams/wip3out/goteki-45.svg"
+name = "Goteki 45"
+credit = "toolboxio"
+
+[[asset]]
+file = "teams/wip3out/icaras.svg"
+name = "Icaras"
+credit = "toolboxio"
+
+[[asset]]
+file = "teams/wip3out/piranha.svg"
+name = "Piranha"
+credit = "toolboxio"
+
+[[asset]]
+file = "teams/wip3out/qirex.svg"
+name = "Qirex"
+credit = "toolboxio"
+
+# --- teams/pure ---
+[[asset]]
+file = "teams/pure/ag-systems.svg"
+name = "AG Systems"
+credit = "x-0rm"
+
+[[asset]]
+file = "teams/pure/assegai.svg"
+name = "Assegai"
+credit = "x-0rm"
+
+[[asset]]
+file = "teams/pure/auricom.svg"
+name = "Auricom"
+credit = "x-0rm"
+
+[[asset]]
+file = "teams/pure/feisar.svg"
+name = "FEISAR"
+credit = "x-0rm"
+
+[[asset]]
+file = "teams/pure/goteki-45.svg"
+name = "Goteki 45"
+credit = "x-0rm"
+
+[[asset]]
+file = "teams/pure/harimau.svg"
+name = "Harimau"
+credit = "x-0rm"
+
+[[asset]]
+file = "teams/pure/icaras.svg"
+name = "Icaras"
+credit = "x-0rm"
+
+[[asset]]
+file = "teams/pure/piranha.svg"
+name = "Piranha"
+credit = "x-0rm"
+
+[[asset]]
+file = "teams/pure/qirex.svg"
+name = "Qirex"
+credit = "x-0rm"
+
+[[asset]]
+file = "teams/pure/triakis.svg"
+name = "Triakis"
+credit = "x-0rm"
+
+# --- teams/hd ---
+[[asset]]
+file = "teams/hd/ag-sys-logo.svg"
+name = "AG-Sys Logo"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/ag-systems.svg"
+name = "AG Systems"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/assegai-logo.svg"
+name = "Assegai Logo"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/auricom-bigstar.svg"
+name = "Auricom Big Star"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/auricom-redstar.svg"
+name = "Auricom Red Star"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/auricom.svg"
+name = "Auricom"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/eg-x-logo.svg"
+name = "EG.X Logo"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/eg-x.svg"
+name = "EG.X"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/feisar-logo.svg"
+name = "FEISAR Logo"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/feisar-smiley.svg"
+name = "FEISAR Smiley"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/feisar.svg"
+name = "FEISAR"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/goteki-logo.svg"
+name = "Goteki Logo"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/harimau-logo.svg"
+name = "Harimau Logo"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/icaras-hdship.svg"
+name = "Icaras HD Ship"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/mirage-logo.svg"
+name = "Mirage Logo"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/mirage-panda.svg"
+name = "Mirage Panda"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/piranha-logo.svg"
+name = "Piranha Logo"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/piranha.svg"
+name = "Piranha"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/qirex-logo-2.svg"
+name = "Qirex Logo (alt)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/qirex-logo.svg"
+name = "Qirex-RD Logo"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/qirex.svg"
+name = "Qirex"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/tigron.svg"
+name = "Tigron Enterprises"
+credit = "djdrey909"
+
+[[asset]]
+file = "teams/hd/triakis-hdship.svg"
+name = "Triakis HD Ship"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/triakis-logo.svg"
+name = "Triakis Logo"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/van-uber.svg"
+name = "Van Über"
+credit = "djdrey909"
+
+# --- teams/hd-text ---
+[[asset]]
+file = "teams/hd-text/ag-sys-fast.svg"
+name = "AG-Sys (Fast Friends)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd-text/ag-sys-speed.svg"
+name = "AG-Sys (A Friend in Speed)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd-text/ag-sys-text.svg"
+name = "AG-Sys Text"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd-text/assegai-2113.svg"
+name = "Assegai 2113"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd-text/assegai-text.svg"
+name = "Assegai Text"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd-text/auricom-text.svg"
+name = "Auricom Text"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd-text/eg-x-linked.svg"
+name = "EG.X (Linked Technology)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd-text/feisar-text.svg"
+name = "FEISAR Text"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd-text/feisar-unity.svg"
+name = "FEISAR (Race for E-Unity)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd-text/goteki-future.svg"
+name = "Goteki (Future Proof)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd-text/goteki-text.svg"
+name = "Goteki 45 Text"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd-text/harimau-text.svg"
+name = "Harimau Text"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd-text/icaras-flying.svg"
+name = "Icaras (Flying High)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd-text/icaras-logotext.svg"
+name = "Icaras Logotext"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd-text/mirage-mantis.svg"
+name = "Mirage (Mantis)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd-text/mirage-seeing.svg"
+name = "Mirage (Seeing is Believing)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd-text/mirage-text.svg"
+name = "Mirage Text"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd-text/piranha-bite.svg"
+name = "Piranha (With Added Bite)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd-text/piranha-text.svg"
+name = "Piranha Text"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd-text/qirex-revolution.svg"
+name = "Qirex (High-Speed Revolution)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd-text/triakis-power.svg"
+name = "Triakis (Three Times More Power)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd-text/triakis-text.svg"
+name = "Triakis Text"
+credit = "ollite20"
+
+# --- pilots ---
+[[asset]]
+file = "pilots/anastasia.svg"
+name = "Anastasia"
+credit = "toolboxio"
+
+[[asset]]
+file = "pilots/arial.svg"
+name = "Arial"
+credit = "toolboxio"
+
+[[asset]]
+file = "pilots/arian.svg"
+name = "Arian"
+credit = "toolboxio"
+
+[[asset]]
+file = "pilots/chang.svg"
+name = "Chang"
+credit = "toolboxio"
+
+[[asset]]
+file = "pilots/dekka.svg"
+name = "Dekka"
+credit = "toolboxio"
+
+[[asset]]
+file = "pilots/kelsolaar.svg"
+name = "Kelsolaar"
+credit = "toolboxio"
+
+[[asset]]
+file = "pilots/pauljackson.svg"
+name = "Paul Jackson"
+credit = "toolboxio"
+
+[[asset]]
+file = "pilots/sophia.svg"
+name = "Sophia"
+credit = "toolboxio"
+
+# --- classes ---
+[[asset]]
+file = "classes/flash.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "classes/phantom.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "classes/rapier.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "classes/venom.png"
+credit = "liger-inuzuka"
+
+# --- game-modes ---
+[[asset]]
+file = "game-modes/detonator.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "game-modes/eliminator.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "game-modes/single-race.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "game-modes/speed-lap-alt.png"
+name = "Speed Lap (alt)"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "game-modes/speed-lap.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "game-modes/time-trial.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "game-modes/tournament.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "game-modes/zone-battle.png"
+credit = "liger-inuzuka"
+
+# --- weapons ---
+[[asset]]
+file = "weapons/autopilot.svg"
+credit = "djdrey909"
+
+[[asset]]
+file = "weapons/bomb.svg"
+credit = "djdrey909"
+
+[[asset]]
+file = "weapons/mines.svg"
+credit = "djdrey909"
+
+[[asset]]
+file = "weapons/missile.svg"
+credit = "djdrey909"
+
+[[asset]]
+file = "weapons/plasma.svg"
+credit = "djdrey909"
+
+[[asset]]
+file = "weapons/quake.svg"
+credit = "djdrey909"
+
+[[asset]]
+file = "weapons/rockets.svg"
+credit = "djdrey909"
+
+[[asset]]
+file = "weapons/shield.svg"
+credit = "djdrey909"
+
+[[asset]]
+file = "weapons/turbo.svg"
+credit = "djdrey909"
+
+# --- sponsors ---
+[[asset]]
+file = "sponsors/2nd-skin-full.png"
+name = "2nd Skin (full)"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/2nd-skin-text.png"
+name = "2nd Skin (text)"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/45.svg"
+name = "45"
+credit = "djdrey909"
+
+[[asset]]
+file = "sponsors/ad-glyph.svg"
+name = "AD Glyph"
+credit = "djdrey909"
+
+[[asset]]
+file = "sponsors/aerial-i.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/aerial-ii.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/aerial-iii-b.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/aerial-iii.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/aerial-iv.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/aerial-mini.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/aerial-v.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/ag-sys-symbols.svg"
+name = "AG-Sys Symbols"
+credit = "ollite20"
+
+[[asset]]
+file = "sponsors/agd-logo.svg"
+name = "AGD Logo"
+credit = "ollite20"
+
+[[asset]]
+file = "sponsors/ai-corp-text.png"
+name = "AI Corp (text)"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/aimi-corp.png"
+name = "Aimi Corp"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/aimi.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/air.svg"
+name = "AIR"
+credit = "djdrey909"
+
+[[asset]]
+file = "sponsors/arrow-star.svg"
+name = "Arrow Star"
+credit = "ollite20"
+
+[[asset]]
+file = "sponsors/asap.svg"
+name = "ASAP"
+credit = "djdrey909"
+
+[[asset]]
+file = "sponsors/assegai-symbol.svg"
+name = "Assegai Symbol"
+credit = "ollite20"
+
+[[asset]]
+file = "sponsors/auricom-logo.svg"
+name = "Auricom Logo"
+credit = "ollite20"
+
+[[asset]]
+file = "sponsors/auricom-symbols.svg"
+name = "Auricom Symbols"
+credit = "ollite20"
+
+[[asset]]
+file = "sponsors/barcode.svg"
+name = "Barcode"
+credit = "ollite20"
+
+[[asset]]
+file = "sponsors/blimp-full.png"
+name = "Blimp (full)"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/blimp.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/era-trek-full.png"
+name = "Era Trek (full)"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/era-trek-skewed.png"
+name = "Era Trek (skewed)"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/icom-communications-company.png"
+name = "Icom Communications"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/icom-mini.png"
+name = "Icom (mini)"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/ignition-energy-drink.png"
+name = "Ignition Energy Drink"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/ignition-name.png"
+name = "Ignition (name)"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/ignition.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/iota.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/ip-lunar-parcs.png"
+name = "IP Lunar Parcs"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/joy-noodle-bar-full.png"
+name = "Joy Noodle Bar"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/luna-parcs-syonara.png"
+name = "Luna Parcs Syonara"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/lunar-parcs-typographical.png"
+name = "Lunar Parcs (type)"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/lunar-parcs.png"
+name = "Lunar Parcs"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/mag-lock-full.png"
+name = "Mag-Lock"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/magec-full.png"
+name = "Magec (full)"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/magec.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/mav.svg"
+name = "MAV"
+credit = "djdrey909"
+
+[[asset]]
+file = "sponsors/mindcorp.png"
+name = "MindCorp"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/mr-somo.png"
+name = "Mr Somo"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/nekita-horizontal.png"
+name = "Nekita (horizontal)"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/nekita.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/oceania-horizontal.svg"
+name = "Oceania"
+credit = "djdrey909"
+
+[[asset]]
+file = "sponsors/plus-01-corp-united.png"
+name = "+01 Corp United"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/plus-01-corp.png"
+name = "+01 Corp"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/ricochet-alt.png"
+name = "Ricochet (alt)"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/ricochet-full.png"
+name = "Ricochet (full)"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/ricochet-vertical.png"
+name = "Ricochet (vertical)"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/ricochet.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/shape-1157.png"
+name = "Unnamed Mark (1157)"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/stay-on-track.png"
+name = "Stay On Track"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/sylver.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/synchro-logistics.png"
+name = "Synchro Logistics"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/syncro-logistics.png"
+name = "Syncro Logistics"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "sponsors/tech-de-ra.svg"
+name = "Tech De Ra"
+credit = "djdrey909"
+
+# --- tracks ---
+[[asset]]
+file = "tracks/anulpha-pass.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "tracks/chengou-project.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "tracks/corridon-12.png"
+name = "Corridon 12"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "tracks/mallavol.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "tracks/medesto-heights.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "tracks/metropia.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "tracks/moa-therma.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "tracks/pro-tozo.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "tracks/sebenco-climb.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "tracks/sol-2.png"
+name = "Sol 2"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "tracks/syncopia.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "tracks/talons-junction.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "tracks/tech-de-ra.png"
+name = "Tech De Ra"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "tracks/the-amphiseum.png"
+name = "The Amphiseum"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "tracks/ubermall.png"
+credit = "liger-inuzuka"
+
+[[asset]]
+file = "tracks/vineta-k.png"
+name = "Vineta K"
+credit = "liger-inuzuka"
+
+# --- leagues ---
+[[asset]]
+file = "leagues/2048.svg"
+name = "2048 League"
+credit = "djdrey909"
+
+[[asset]]
+file = "leagues/f3600.svg"
+name = "F3600 League"
+credit = "toolboxio"
+
+[[asset]]
+file = "leagues/f5000.svg"
+name = "F5000 League"
+credit = ""
+
+[[asset]]
+file = "leagues/f7200.svg"
+name = "F7200 League"
+credit = "toolboxio"
+
+[[asset]]
+file = "leagues/f9000-emblem.svg"
+name = "F9000 (emblem)"
+credit = "djdrey909"
+
+[[asset]]
+file = "leagues/f9000-wordmark.svg"
+name = "F9000 (wordmark)"
+credit = "djdrey909"
+
+[[asset]]
+file = "leagues/f9000.svg"
+name = "F9000 League"
+credit = "djdrey909"
+
+[[asset]]
+file = "leagues/fx350.svg"
+name = "FX350 League"
+credit = "x-0rm"
+
+[[asset]]
+file = "leagues/fx400.svg"
+name = "FX400 League"
+credit = "djdrey909"
+
+# --- misc ---
+[[asset]]
+file = "misc/glyph.svg"
+name = "Glyph"
+credit = "djdrey909"
+
+[[asset]]
+file = "misc/ship-silhouette.svg"
+name = "Ship Silhouette"
+credit = "toolboxio"
+
+[[asset]]
+file = "misc/tigron-glyph.svg"
+name = "Tigron (glyph)"
+credit = "djdrey909"

@@ -1,0 +1,105 @@
+# Contributors — every creator credited in the library (logo sources today; font
+# designers will join here too). `id` is the stable slug used to credit assets.
+# `license` is this creator's default licence (a per-asset licence can override it);
+# omit license.url / license.note when there isn't one. `links` are their source pages.
+#
+# This is authored data. tools/build.py reads it; logos/manifest.json is generated.
+
+[[contributor]]
+id = "ollite20"
+name = "ollite20"
+blurb = "Series & game title logos; WipEout HD team logos, texts & symbols"
+license = { name = "CC BY-NC 3.0", url = "https://creativecommons.org/licenses/by-nc/3.0/", note = "Adaptations permitted (non-commercial, with attribution); artist asks for a link back." }
+links = [
+  { label = "WipEout logos and texts", url = "https://www.deviantart.com/ollite20/art/WipEout-logos-and-texts-161266694" },
+]
+
+[[contributor]]
+id = "x-0rm"
+name = "Curtis Agnew (X_0rm)"
+blurb = "WipEout Pure team logos"
+license = { name = "No formal licence (© X_0rm)", note = "No CC licence stated; used with attribution at the artist's request (link-back requested)." }
+links = [
+  { label = "WipEout Pure — All Logo's Vector", url = "https://www.deviantart.com/x-0rm/art/WipEout-Pure-All-Logo-s-Vector-324648442" },
+]
+
+[[contributor]]
+id = "liger-inuzuka"
+name = "Liger-Inuzuka"
+blurb = "Sponsors, tracks, speed classes & game modes"
+license = { name = "CC BY-NC-ND 3.0", url = "https://creativecommons.org/licenses/by-nc-nd/3.0/", note = "NoDerivatives; artist states \"Do not redistribute.\" Splitting/adapting is not permitted — see LICENSING.md." }
+links = [
+  { label = "Wipeout HD Fury Shapes Mega Pack / Resources", url = "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" },
+]
+
+[[contributor]]
+id = "toolboxio"
+name = "toolboxio"
+blurb = "WipEout / 2097 / Wip3out team logos & pilots"
+license = { name = "No formal licence (© toolboxio)", note = "No CC licence, but the uploader released them publicly (\"enjoy, internet!\"). Re-vectored from low-res game images." }
+links = [
+  { label = "WipEout 1 logo pack", url = "https://www.deviantart.com/toolboxio/art/wipeout-1-logo-pack-194855659" },
+  { label = "WipEout 1 pilot pack", url = "https://www.deviantart.com/toolboxio/art/wipeout-1-pilot-pack-194857413" },
+  { label = "WipEout 2097 logo pack", url = "https://www.deviantart.com/toolboxio/art/wipeout-2097-logo-pack-194856576" },
+  { label = "w1p3out logo pack", url = "https://www.deviantart.com/toolboxio/art/w1p3out-logo-pack-194858778" },
+]
+
+[[contributor]]
+id = "djdrey909"
+name = "djdrey909 (Andre Lackmann)"
+blurb = "Original custom WipEout team & sponsor marks and weapon glyphs"
+license = { name = "CC BY-NC-SA 4.0", url = "https://creativecommons.org/licenses/by-nc-sa/4.0/", note = "Original work by the author, released for the community." }
+links = [
+  { label = "andre.lackmann.net", url = "https://andre.lackmann.net" },
+]
+
+# --- Font designers (referenced by data/fonts.toml). Fonts carry their own per-font
+# --- licence, so these entries usually have no `license`; `links[0]` is the primary
+# --- source, any further links show as extra credit links on the font card.
+
+[[contributor]]
+id = "nr74w"
+name = "NR74W"
+links = [ { label = "github.com/NR74W/WipEout-Fonts", url = "https://github.com/NR74W/WipEout-Fonts" } ]
+
+[[contributor]]
+id = "nathan-caldecott"
+name = "Nathan Caldecott"
+links = [
+  { label = "fontriver.com", url = "https://www.fontriver.com/foundry/nathan_caldecott/" },
+  { label = "nathancaldecott.com", url = "https://www.nathancaldecott.com/" },
+]
+
+[[contributor]]
+id = "yuji-oshimoto"
+name = "Yuji Oshimoto"
+links = [ { label = "04.jp.org", url = "https://www.04.jp.org/" } ]
+
+[[contributor]]
+id = "sebastian-lester"
+name = "Sebastian Lester"
+links = [ { label = "myfonts.com", url = "https://www.myfonts.com/collections/neo-sans-font-monotype-imaging" } ]
+
+[[contributor]]
+id = "adrian-frutiger"
+name = "Adrian Frutiger"
+links = []
+
+[[contributor]]
+id = "apostrophic-labs"
+name = "Apostrophic Labs"
+links = []
+
+[[contributor]]
+id = "paul-willocks"
+name = "Paul Willocks"
+links = [ { label = "deviantart.com", url = "https://www.deviantart.com/paulw/art/Wipeout-Typeface-162587903" } ]
+
+[[contributor]]
+id = "roger-s-nelsson"
+name = "Roger S. Nelsson"
+links = [
+  { label = "myfonts.com", url = "https://www.myfonts.com/collections/roger-s-nelsson?sort_by=price-ascending&pageType=authorPage" },
+  { label = "Levente Halmos", url = "https://www.myfonts.com/collections/levente-halmos?sort_by=price-ascending&pageType=authorPage" },
+  { label = "CheapProFonts (publisher)", url = "https://www.myfonts.com/collections/cheapprofonts-foundry?sort_by=price-ascending&pageType=foundryPage" },
+]

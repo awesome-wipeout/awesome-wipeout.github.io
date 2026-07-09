@@ -1,0 +1,1992 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Marks · awesome-wipeout</title>
+<style>
+:root{--bg:#f7f8fa;--card:#fff;--ink:#12151a;--muted:#6b7280;--line:#e5e7eb;
+--accent:#0b7fd4;--check:#d5dbe2}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+color:var(--ink);background:var(--bg)}
+header{padding:48px 32px 24px;max-width:1600px;margin:0 auto}
+h1{margin:0 0 8px;font-size:30px;letter-spacing:-.02em}
+.lead{color:var(--muted);max-width:70ch;margin:0 0 12px}
+.stat{display:inline-block;margin-right:18px;color:var(--muted);font-size:13px}
+.wrap{max-width:1600px;margin:0 auto;padding:0 32px 64px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 8px}
+.toc a{font-size:12.5px;text-decoration:none;color:var(--accent);border:1px solid var(--line);
+background:var(--card);padding:4px 10px;border-radius:999px}
+.pdflink{font-weight:600;color:var(--accent);text-decoration:none;border:1px solid var(--accent);
+padding:6px 12px;border-radius:8px;display:inline-block}
+.pdflink:hover{background:var(--accent);color:#fff}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px 28px;flex-wrap:wrap}
+.hero-top h1{margin:0}
+.pdfcta{display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:6px}
+.pdfcta-note{font-size:12.5px;color:var(--muted);max-width:34ch}
+@media(max-width:640px){.pdfcta{align-items:flex-start;text-align:left}}
+section{margin-top:40px}
+.sh{border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:20px}
+.sh h2{margin:0;font-size:19px}
+.sh p{margin:4px 0 0;color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;
+display:flex;flex-direction:column}
+.thumb{height:220px;display:flex;align-items:center;justify-content:center;padding:28px;cursor:zoom-in;position:relative;
+background:
+ linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 0 0/22px 22px,
+ linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 11px 11px/22px 22px,
+ #fff}
+.thumb img{width:100%;height:164px;object-fit:contain;display:block}
+.meta{padding:10px 12px;border-top:1px solid var(--line)}
+.name{font-weight:600;font-size:13.5px;margin-bottom:6px;word-break:break-word}
+.dl{display:flex;gap:6px}
+.dl a{font-size:11px;text-decoration:none;color:var(--muted);border:1px solid var(--line);
+padding:2px 8px;border-radius:6px}
+.dl a:hover{color:var(--accent);border-color:var(--accent)}
+.dl a.get{color:var(--accent);border-color:var(--accent);font-weight:600}
+.dl a.get:hover{background:var(--accent);color:#fff}
+.dl a.locked{cursor:pointer}
+/* restricted-vector overlay: shown when the SVG button of a non-redistributable mark is clicked */
+.vbox{position:fixed;inset:0;z-index:1200;display:none;align-items:center;justify-content:center;
+padding:20px;background:rgba(12,15,20,.62)}
+.vbox.open{display:flex}
+.vbox-panel{position:relative;background:var(--card);color:var(--ink);max-width:360px;width:100%;
+border:1px solid var(--line);border-radius:12px;padding:24px;box-shadow:0 24px 64px rgba(0,0,0,.4);text-align:center}
+.vbox-panel h3{margin:0 0 10px;font-size:16px}
+.vbox-panel p{margin:0 0 18px;font-size:13px;line-height:1.55;color:var(--muted)}
+.vbox-go{display:inline-block;text-decoration:none;background:var(--accent);color:#fff;font-weight:600;
+font-size:13px;padding:9px 18px;border-radius:8px}
+.vbox-go:hover{filter:brightness(1.08)}
+.vbox-x{position:absolute;top:8px;right:10px;background:none;border:0;font-size:22px;line-height:1;
+color:var(--muted);cursor:pointer}
+.vbox-x:hover{color:var(--ink)}
+.src{display:block;margin-top:8px;font-size:11px;color:var(--muted);text-decoration:none}
+.src:hover{color:var(--accent);text-decoration:underline}
+.src-none{color:#aab2bd;font-style:italic}
+.credit:target{border-color:var(--accent);box-shadow:0 0 0 2px rgba(11,127,212,.15)}
+.fonts{margin-top:56px;border-top:1px solid var(--line);padding-top:28px}
+.fonts h2{font-size:19px;margin:0 0 6px}
+.fonts>p{color:var(--muted);font-size:13px;margin:0 0 6px;max-width:82ch}
+.fonts h3{font-size:14px;margin:24px 0 12px;color:var(--ink)}
+.font-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.font-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;cursor:zoom-in}
+.font-card:hover{border-color:var(--accent)}
+.font-shot{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px 16px;height:150px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.font-shot img{width:100%;height:100%;object-fit:contain;display:block}
+.font-shot-missing{flex-direction:column;align-items:flex-start;justify-content:center;border-style:dashed;gap:4px;color:#9aa3af}
+.font-shot-missing b{font-weight:600;font-size:19px;color:#8a929c}
+.font-shot-missing small{font-size:11px}
+.font-meta{margin-top:12px;display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12px;text-align:left}
+.font-info{min-width:0}
+.font-name{font-weight:600;font-size:13.5px;color:var(--ink)}
+.font-use{color:var(--muted);font-size:11.5px;margin-top:3px}
+.font-cred{color:var(--muted);font-size:11.5px;margin-top:2px;min-height:1.25em}
+.font-cred a{color:var(--muted);text-decoration:none;border-bottom:1px dotted var(--line)}
+.font-cred a:hover{color:var(--accent)}
+.font-refer{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-wrap:wrap;gap:8px 22px;font-size:13px}
+.font-refer li{color:var(--muted)}
+.font-refer .font-name{color:var(--ink);font-size:13px}
+.font-get{flex:none;align-self:center;color:var(--accent);text-decoration:none;border:1px solid var(--line);padding:4px 11px;border-radius:6px;white-space:nowrap}
+.font-get:hover{border-color:var(--accent)}
+.fbox{position:fixed;inset:0;z-index:1000;display:none;background:#fff}
+.fbox.open{display:flex;flex-direction:column}
+.fbox-top{height:60px;display:flex;align-items:center;gap:14px;padding:0 22px;border-bottom:1px solid var(--line)}
+.fbox-name{font-weight:600;font-size:16px}
+.fbox-era{color:var(--muted);font-size:13px}
+.fbox-spacer{flex:1}
+.fbox-get{font-size:13px;text-decoration:none;color:var(--accent);border:1px solid var(--line);padding:5px 11px;border-radius:7px}
+.fbox-get:hover{border-color:var(--accent)}
+.fbox-x{background:transparent;border:0;font-size:28px;line-height:1;cursor:pointer;color:var(--ink);padding:0 4px}
+.fbox-body{flex:1;overflow:hidden;padding:24px 84px;display:flex;flex-direction:column;gap:18px;align-items:center;justify-content:center}
+.fbox-body img{width:100%;height:100%;object-fit:contain}
+.fbox-note{color:#9a3b3b;font-size:14px;max-width:60ch;text-align:center}
+.fbox-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;background:var(--card);
+border:1px solid var(--line);color:var(--ink);width:48px;height:60px;font-size:28px;cursor:pointer;border-radius:8px}
+.fbox-nav:hover{border-color:var(--accent);color:var(--accent)}
+.fbox-prev{left:16px}.fbox-next{right:16px}
+@media(max-width:640px){.fbox-body{padding:24px 16px}.fbox-nav{width:38px;height:50px;font-size:22px}}
+.credits{margin-top:56px;border-top:1px solid var(--line);padding-top:28px}
+.credits h2{font-size:19px;margin:0 0 6px}
+.credits>p{color:var(--muted);font-size:13px;margin:0 0 18px;max-width:80ch}
+.credits-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.credit{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.credit .who{font-weight:600;font-size:14px}
+.credit .what{color:var(--muted);font-size:12.5px;margin:4px 0 8px}
+.credit .lic{color:var(--muted);font-size:12px;margin:0 0 8px;line-height:1.4}
+.credit .lic span{font-weight:600;color:var(--ink)}
+.credit .lic a{display:inline;color:var(--accent)}
+.credit a{color:var(--accent);text-decoration:none;font-size:12.5px;display:block;word-break:break-word}
+.credit a:hover{text-decoration:underline}
+footer{max-width:1600px;margin:0 auto;padding:24px 32px 60px;color:var(--muted);font-size:12.5px;
+border-top:1px solid var(--line)}
+footer a{color:var(--accent)}
+.thumb::after{content:"⤢";position:absolute;top:8px;right:10px;font-size:14px;color:var(--muted);
+opacity:0;transition:opacity .15s}
+.thumb:hover::after{opacity:.7}
+/* full-screen lightbox */
+.lightbox{position:fixed;inset:0;z-index:1000;display:none}
+.lightbox.open{display:block}
+.lb-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:88px 72px}
+.lb-stage img{width:100%;height:100%;object-fit:contain}
+.lb-stage.bg-transparent{background:
+ linear-gradient(45deg,#d5dbe2 25%,#fff 25%,#fff 75%,#d5dbe2 75%) 0 0/30px 30px,
+ linear-gradient(45deg,#d5dbe2 25%,#fff 25%,#fff 75%,#d5dbe2 75%) 15px 15px/30px 30px,#fff}
+.lb-stage.bg-white{background:#fff}
+.lb-stage.bg-dark{background:#0d0f12}
+.lb-topbar{position:absolute;top:0;left:0;right:0;height:60px;display:flex;align-items:center;
+gap:16px;padding:0 20px;background:rgba(20,24,30,.82);color:#fff;z-index:2;backdrop-filter:blur(6px)}
+.lb-name{font-weight:600;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lb-spacer{flex:1}
+.lb-toggle{display:flex;align-items:center;gap:6px;font-size:12px;color:#c5ccd6}
+.lb-toggle button{font:inherit;font-size:12px;color:#c5ccd6;background:transparent;
+border:1px solid rgba(255,255,255,.25);padding:4px 10px;border-radius:999px;cursor:pointer}
+.lb-toggle button.on{background:#fff;color:#12151a;border-color:#fff}
+.lb-dl{display:flex;gap:6px}
+.lb-dl a{font-size:12px;text-decoration:none;color:#c5ccd6;border:1px solid rgba(255,255,255,.25);
+padding:4px 10px;border-radius:6px}
+.lb-dl a:hover{color:#fff;border-color:#fff}
+.lb-x{background:transparent;border:0;color:#fff;font-size:26px;line-height:1;cursor:pointer;padding:0 4px}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;background:rgba(20,24,30,.55);
+color:#fff;border:0;width:52px;height:64px;font-size:30px;cursor:pointer;border-radius:8px}
+.lb-nav:hover{background:rgba(20,24,30,.85)}
+.lb-prev{left:14px}.lb-next{right:14px}
+@media(max-width:640px){.lb-stage{padding:70px 16px}.lb-dl{display:none}}
+/* thin sticky top nav (shared across every page) */
+.topnav{position:sticky;top:0;z-index:900;background:rgba(247,248,250,.86);
+backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topnav-inner{max-width:1600px;margin:0 auto;padding:0 32px;min-height:52px;
+display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.brand{font-weight:700;font-size:16px;letter-spacing:-.01em;color:var(--ink);
+text-decoration:none;white-space:nowrap}
+.brand b{color:var(--accent);font-weight:700}
+.navlinks{display:flex;flex-wrap:wrap;gap:2px}
+.navlinks a{font-size:13px;text-decoration:none;color:var(--muted);padding:6px 11px;
+border-radius:7px;white-space:nowrap}
+.navlinks a:hover{color:var(--ink);background:rgba(0,0,0,.05)}
+.navlinks a.active{color:var(--accent);font-weight:600}
+/* nav dropdown (About → Contributing / Licensing / Credits) */
+.navitem{position:relative;display:inline-flex}
+.submenu{position:absolute;top:100%;left:0;min-width:160px;background:var(--card);
+border:1px solid var(--line);border-radius:9px;box-shadow:0 12px 30px rgba(0,0,0,.14);
+padding:5px;display:none;z-index:30}
+.navitem:hover .submenu,.navitem:focus-within .submenu{display:block}
+.navlinks .submenu a{display:block;font-size:13px;padding:7px 12px;border-radius:6px}
+@media(max-width:640px){.topnav-inner{padding:8px 16px;gap:6px 14px}
+.wrap{padding:0 16px 48px}header{padding:28px 16px 16px}
+/* no hover on touch — show the sub-links inline instead of as a dropdown */
+.navitem{display:contents}
+.submenu{position:static;display:flex;flex-wrap:wrap;background:none;border:0;box-shadow:none;
+padding:0;min-width:0}
+.navlinks .submenu a{padding:6px 11px}}
+/* simple prose pages (about / links / reference placeholders) */
+.prose{max-width:80ch;margin:8px 0}
+.prose h1{font-size:30px;letter-spacing:-.02em;margin:0 0 12px}
+.prose p{color:var(--ink);margin:0 0 14px}
+.prose .lead{color:var(--muted);font-size:16px}
+.prose a{color:var(--accent);text-decoration:none}
+.prose a:hover{text-decoration:underline}
+.signoff{margin:22px 0 0;font-style:italic;color:var(--ink);line-height:1.5}
+.social{display:flex;flex-wrap:wrap;gap:16px;margin:14px 0 0}
+.social a{display:inline-flex;align-items:center;gap:7px;color:var(--muted);text-decoration:none;
+font-size:13px;font-weight:600}
+.social a:hover{color:var(--accent)}
+.social svg{width:19px;height:19px;flex:none}
+.linklist{list-style:none;padding:0;margin:14px 0}
+.linklist li{padding:9px 0;border-bottom:1px solid var(--line)}
+.linklist a{color:var(--accent);text-decoration:none;font-weight:600}
+.linklist a:hover{text-decoration:underline}
+.linkcat{font-size:19px;margin:34px 0 2px;padding-bottom:6px;border-bottom:2px solid var(--ink)}
+.linkcat-blurb{color:var(--muted);font-size:14px;margin:6px 0 0}
+/* rendered Markdown doc pages (contributing / licensing / credits) */
+.prose.doc h2{font-size:21px;margin:30px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.prose.doc h3{font-size:16px;margin:22px 0 6px}
+.prose.doc h4{font-size:14px;margin:18px 0 4px}
+.prose.doc ul,.prose.doc ol{padding-left:22px;margin:0 0 14px}
+.prose.doc li{margin:4px 0}
+.prose.doc a{color:var(--accent);text-decoration:none}
+.prose.doc a:hover{text-decoration:underline}
+.prose.doc code{background:rgba(0,0,0,.05);border:1px solid var(--line);border-radius:4px;
+padding:1px 5px;font-size:.9em}
+.prose.doc pre{background:#12151a;color:#e6e8ec;padding:14px 16px;border-radius:8px;overflow-x:auto}
+.prose.doc pre code{background:none;border:0;padding:0;color:inherit;font-size:12.5px}
+.prose.doc blockquote{margin:0 0 14px;padding:2px 14px;border-left:3px solid var(--accent);
+color:var(--muted)}
+.prose.doc table{border-collapse:collapse;width:100%;margin:0 0 16px;font-size:13.5px;display:block;overflow-x:auto}
+.prose.doc th,.prose.doc td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+.prose.doc th{background:rgba(0,0,0,.03);font-weight:600}
+.prose.doc hr{border:0;border-top:1px solid var(--line);margin:24px 0}
+/* in-game reference gallery */
+.rgame{margin-top:40px}
+.rgame>.sh h2{font-size:19px}
+.rteam{display:flex;align-items:center;gap:14px;margin:30px 0 14px;padding-bottom:10px;
+border-bottom:1px solid var(--line)}
+.rteam-logo{height:44px;width:auto;max-width:150px;object-fit:contain;display:block}
+.rteam h3{margin:0;font-size:16px}
+.rteam .rcount{font-size:11px;color:var(--muted);font-weight:400;border:1px solid var(--line);
+border-radius:999px;padding:1px 9px;margin-left:2px}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.rcard{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:zoom-in}
+.rcard:hover{border-color:var(--accent)}
+.rthumb{aspect-ratio:16/9;background:#0d0f12;overflow:hidden}
+.rthumb img{width:100%;height:100%;object-fit:cover;display:block}
+.rmeta{padding:8px 12px;font-size:12.5px;color:var(--ink);border-top:1px solid var(--line)}
+.rcredit{color:var(--muted);font-size:12px;margin:14px 0 0}
+/* full-screen photo lightbox (screenshots) */
+.plightbox{position:fixed;inset:0;z-index:1000;display:none;background:#0d0f12}
+.plightbox.open{display:block}
+.pl-topbar{position:absolute;top:0;left:0;right:0;height:56px;display:flex;align-items:center;
+gap:14px;padding:0 20px;background:rgba(13,15,18,.72);color:#fff;z-index:2;backdrop-filter:blur(6px)}
+.pl-logo{height:26px;width:auto;max-width:90px;object-fit:contain;filter:invert(1);flex:none}
+.pl-name{font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pl-spacer{flex:1}
+.pl-x{background:transparent;border:0;color:#fff;font-size:26px;line-height:1;cursor:pointer;padding:0 4px}
+.pl-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:76px 72px}
+.pl-stage img{max-width:100%;max-height:100%;object-fit:contain}
+.pl-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;background:rgba(255,255,255,.12);
+color:#fff;border:0;width:52px;height:64px;font-size:30px;cursor:pointer;border-radius:8px}
+.pl-nav:hover{background:rgba(255,255,255,.28)}
+.pl-prev{left:14px}.pl-next{right:14px}
+@media(max-width:640px){.pl-stage{padding:64px 12px}.pl-nav{width:40px;height:52px;font-size:24px}}
+</style></head>
+<body>
+<nav class="topnav"><div class="topnav-inner"><a class="brand" href="index.html">awesome&#8209;<b>wipeout</b></a><div class="navlinks"><a href="index.html" class="active">Marks</a><a href="fonts.html">Fonts</a><a href="reference.html">In-game reference</a><a href="links.html">Links</a><div class="navitem"><a href="about.html">About ▾</a><div class="submenu"><a href="contributing.html">Contributing</a><a href="licensing.html">Licensing</a><a href="credits.html">Credits</a></div></div></div></div></nav>
+<header>
+  <div class="hero-top">
+    <h1>Marks</h1>
+    <div class="pdfcta">
+      <a href="tearsheet.pdf" class="pdflink">⬇&nbsp;Tear sheet PDF</a>
+      <span class="pdfcta-note">Every logo is copy-paste-ready in Illustrator, Affinity or Acrobat.</span>
+    </div>
+  </div>
+  <p class="lead">A community-maintained, normalised set of WipEout-universe logos, emblems and
+  marks &mdash; teams, sponsors, tracks, speed classes, game modes and series titles &mdash;
+  every asset available as SVG and PNG.</p>
+  <span class="stat">200 assets</span>
+  <span class="stat">15 categories</span>
+  <span class="stat">Updated 2026-07-09</span>
+  <div class="toc"><a href="#titles">Game Titles (10)</a><a href="#teams-wo1">Teams — WipEout (4)</a><a href="#teams-2097">Teams — WipEout 2097 (5)</a><a href="#teams-wip3out">Teams — Wip3out (8)</a><a href="#teams-pure">Teams — WipEout Pure (10)</a><a href="#teams-hd">Teams — WipEout HD / 2048 (25)</a><a href="#teams-hd-text">WipEout HD — Wordmarks &amp; Taglines (22)</a><a href="#pilots">Pilots (8)</a><a href="#classes">Speed Classes (4)</a><a href="#game-modes">Game Modes (8)</a><a href="#weapons">Weapons (9)</a><a href="#sponsors">Sponsors (59)</a><a href="#tracks">Tracks &amp; Venues (16)</a><a href="#leagues">Leagues (9)</a><a href="#misc">Miscellaneous (3)</a><a href="#credits">Credits</a></div>
+</header>
+<div class="wrap">
+  <section id="titles">
+    <div class="sh"><h2>Game Titles</h2><p>Series &amp; game wordmark logos, WipEout (1995) through the Omega Collection.</p></div>
+    <div class="grid">
+      <div class="card">
+        <div class="thumb" data-idx="0"><img src="marks/titles/wip3out.svg" alt="Wip3out" loading="lazy"></div>
+        <div class="meta"><div class="name">Wip3out</div>
+          <div class="dl"><a href="marks/titles/wip3out.svg" download>SVG</a>
+          <a href="marks/titles/wip3out.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="1"><img src="marks/titles/wipeout-2048.svg" alt="WipEout 2048" loading="lazy"></div>
+        <div class="meta"><div class="name">WipEout 2048</div>
+          <div class="dl"><a href="marks/titles/wipeout-2048.svg" download>SVG</a>
+          <a href="marks/titles/wipeout-2048.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="2"><img src="marks/titles/wipeout-2097.svg" alt="WipEout 2097" loading="lazy"></div>
+        <div class="meta"><div class="name">WipEout 2097</div>
+          <div class="dl"><a href="marks/titles/wipeout-2097.svg" download>SVG</a>
+          <a href="marks/titles/wipeout-2097.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="3"><img src="marks/titles/wipeout-3-special-edition.svg" alt="WipEout 3 Special Edition" loading="lazy"></div>
+        <div class="meta"><div class="name">WipEout 3 Special Edition</div>
+          <div class="dl"><a href="marks/titles/wipeout-3-special-edition.svg" download>SVG</a>
+          <a href="marks/titles/wipeout-3-special-edition.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="4"><img src="marks/titles/wipeout-fusion.svg" alt="WipEout Fusion" loading="lazy"></div>
+        <div class="meta"><div class="name">WipEout Fusion</div>
+          <div class="dl"><a href="marks/titles/wipeout-fusion.svg" download>SVG</a>
+          <a href="marks/titles/wipeout-fusion.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="5"><img src="marks/titles/wipeout-hd-fury.svg" alt="WipEout HD Fury" loading="lazy"></div>
+        <div class="meta"><div class="name">WipEout HD Fury</div>
+          <div class="dl"><a href="marks/titles/wipeout-hd-fury.svg" download>SVG</a>
+          <a href="marks/titles/wipeout-hd-fury.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="6"><img src="marks/titles/wipeout-omega-collection.svg" alt="WipEout Omega Collection" loading="lazy"></div>
+        <div class="meta"><div class="name">WipEout Omega Collection</div>
+          <div class="dl"><a href="marks/titles/wipeout-omega-collection.svg" download>SVG</a>
+          <a href="marks/titles/wipeout-omega-collection.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="7"><img src="marks/titles/wipeout-pulse.svg" alt="WipEout Pulse" loading="lazy"></div>
+        <div class="meta"><div class="name">WipEout Pulse</div>
+          <div class="dl"><a href="marks/titles/wipeout-pulse.svg" download>SVG</a>
+          <a href="marks/titles/wipeout-pulse.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="8"><img src="marks/titles/wipeout-pure.svg" alt="WipEout Pure" loading="lazy"></div>
+        <div class="meta"><div class="name">WipEout Pure</div>
+          <div class="dl"><a href="marks/titles/wipeout-pure.svg" download>SVG</a>
+          <a href="marks/titles/wipeout-pure.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="9"><img src="marks/titles/wipeout.svg" alt="WipEout" loading="lazy"></div>
+        <div class="meta"><div class="name">WipEout</div>
+          <div class="dl"><a href="marks/titles/wipeout.svg" download>SVG</a>
+          <a href="marks/titles/wipeout.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="teams-wo1">
+    <div class="sh"><h2>Teams — WipEout</h2><p>Racing team logos in their original WipEout (1995) styling.</p></div>
+    <div class="grid">
+      <div class="card">
+        <div class="thumb" data-idx="10"><img src="marks/teams/wo1/ag-systems.svg" alt="AG Systems" loading="lazy"></div>
+        <div class="meta"><div class="name">AG Systems</div>
+          <div class="dl"><a href="marks/teams/wo1/ag-systems.svg" download>SVG</a>
+          <a href="marks/teams/wo1/ag-systems.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="11"><img src="marks/teams/wo1/auricom.svg" alt="Auricom" loading="lazy"></div>
+        <div class="meta"><div class="name">Auricom</div>
+          <div class="dl"><a href="marks/teams/wo1/auricom.svg" download>SVG</a>
+          <a href="marks/teams/wo1/auricom.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="12"><img src="marks/teams/wo1/feisar.svg" alt="FEISAR" loading="lazy"></div>
+        <div class="meta"><div class="name">FEISAR</div>
+          <div class="dl"><a href="marks/teams/wo1/feisar.svg" download>SVG</a>
+          <a href="marks/teams/wo1/feisar.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="13"><img src="marks/teams/wo1/qirex.svg" alt="Qirex" loading="lazy"></div>
+        <div class="meta"><div class="name">Qirex</div>
+          <div class="dl"><a href="marks/teams/wo1/qirex.svg" download>SVG</a>
+          <a href="marks/teams/wo1/qirex.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="teams-2097">
+    <div class="sh"><h2>Teams — WipEout 2097</h2><p>Racing team logos in their WipEout 2097 / XL styling.</p></div>
+    <div class="grid">
+      <div class="card">
+        <div class="thumb" data-idx="14"><img src="marks/teams/2097/ag-systems.svg" alt="AG Systems" loading="lazy"></div>
+        <div class="meta"><div class="name">AG Systems</div>
+          <div class="dl"><a href="marks/teams/2097/ag-systems.svg" download>SVG</a>
+          <a href="marks/teams/2097/ag-systems.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="15"><img src="marks/teams/2097/auricom.svg" alt="Auricom" loading="lazy"></div>
+        <div class="meta"><div class="name">Auricom</div>
+          <div class="dl"><a href="marks/teams/2097/auricom.svg" download>SVG</a>
+          <a href="marks/teams/2097/auricom.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="16"><img src="marks/teams/2097/feisar.svg" alt="FEISAR" loading="lazy"></div>
+        <div class="meta"><div class="name">FEISAR</div>
+          <div class="dl"><a href="marks/teams/2097/feisar.svg" download>SVG</a>
+          <a href="marks/teams/2097/feisar.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="17"><img src="marks/teams/2097/piranha.svg" alt="Piranha" loading="lazy"></div>
+        <div class="meta"><div class="name">Piranha</div>
+          <div class="dl"><a href="marks/teams/2097/piranha.svg" download>SVG</a>
+          <a href="marks/teams/2097/piranha.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="18"><img src="marks/teams/2097/qirex.svg" alt="Qirex" loading="lazy"></div>
+        <div class="meta"><div class="name">Qirex</div>
+          <div class="dl"><a href="marks/teams/2097/qirex.svg" download>SVG</a>
+          <a href="marks/teams/2097/qirex.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="teams-wip3out">
+    <div class="sh"><h2>Teams — Wip3out</h2><p>Racing team logos in their Wip3out styling.</p></div>
+    <div class="grid">
+      <div class="card">
+        <div class="thumb" data-idx="19"><img src="marks/teams/wip3out/ag-systems.svg" alt="AG Systems" loading="lazy"></div>
+        <div class="meta"><div class="name">AG Systems</div>
+          <div class="dl"><a href="marks/teams/wip3out/ag-systems.svg" download>SVG</a>
+          <a href="marks/teams/wip3out/ag-systems.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="20"><img src="marks/teams/wip3out/assegai.svg" alt="Assegai" loading="lazy"></div>
+        <div class="meta"><div class="name">Assegai</div>
+          <div class="dl"><a href="marks/teams/wip3out/assegai.svg" download>SVG</a>
+          <a href="marks/teams/wip3out/assegai.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="21"><img src="marks/teams/wip3out/auricom.svg" alt="Auricom" loading="lazy"></div>
+        <div class="meta"><div class="name">Auricom</div>
+          <div class="dl"><a href="marks/teams/wip3out/auricom.svg" download>SVG</a>
+          <a href="marks/teams/wip3out/auricom.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="22"><img src="marks/teams/wip3out/feisar.svg" alt="FEISAR" loading="lazy"></div>
+        <div class="meta"><div class="name">FEISAR</div>
+          <div class="dl"><a href="marks/teams/wip3out/feisar.svg" download>SVG</a>
+          <a href="marks/teams/wip3out/feisar.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="23"><img src="marks/teams/wip3out/goteki-45.svg" alt="Goteki 45" loading="lazy"></div>
+        <div class="meta"><div class="name">Goteki 45</div>
+          <div class="dl"><a href="marks/teams/wip3out/goteki-45.svg" download>SVG</a>
+          <a href="marks/teams/wip3out/goteki-45.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="24"><img src="marks/teams/wip3out/icaras.svg" alt="Icaras" loading="lazy"></div>
+        <div class="meta"><div class="name">Icaras</div>
+          <div class="dl"><a href="marks/teams/wip3out/icaras.svg" download>SVG</a>
+          <a href="marks/teams/wip3out/icaras.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="25"><img src="marks/teams/wip3out/piranha.svg" alt="Piranha" loading="lazy"></div>
+        <div class="meta"><div class="name">Piranha</div>
+          <div class="dl"><a href="marks/teams/wip3out/piranha.svg" download>SVG</a>
+          <a href="marks/teams/wip3out/piranha.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="26"><img src="marks/teams/wip3out/qirex.svg" alt="Qirex" loading="lazy"></div>
+        <div class="meta"><div class="name">Qirex</div>
+          <div class="dl"><a href="marks/teams/wip3out/qirex.svg" download>SVG</a>
+          <a href="marks/teams/wip3out/qirex.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="teams-pure">
+    <div class="sh"><h2>Teams — WipEout Pure</h2><p>Racing team logos in their WipEout Pure styling.</p></div>
+    <div class="grid">
+      <div class="card">
+        <div class="thumb" data-idx="27"><img src="marks/teams/pure/ag-systems.svg" alt="AG Systems" loading="lazy"></div>
+        <div class="meta"><div class="name">AG Systems</div>
+          <div class="dl"><a href="marks/teams/pure/ag-systems.svg" download>SVG</a>
+          <a href="marks/teams/pure/ag-systems.png" download>PNG</a></div>
+          <a class="src" href="#credit-x-0rm" title="Source — jump to credits">source: Curtis Agnew (X_0rm)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="28"><img src="marks/teams/pure/assegai.svg" alt="Assegai" loading="lazy"></div>
+        <div class="meta"><div class="name">Assegai</div>
+          <div class="dl"><a href="marks/teams/pure/assegai.svg" download>SVG</a>
+          <a href="marks/teams/pure/assegai.png" download>PNG</a></div>
+          <a class="src" href="#credit-x-0rm" title="Source — jump to credits">source: Curtis Agnew (X_0rm)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="29"><img src="marks/teams/pure/auricom.svg" alt="Auricom" loading="lazy"></div>
+        <div class="meta"><div class="name">Auricom</div>
+          <div class="dl"><a href="marks/teams/pure/auricom.svg" download>SVG</a>
+          <a href="marks/teams/pure/auricom.png" download>PNG</a></div>
+          <a class="src" href="#credit-x-0rm" title="Source — jump to credits">source: Curtis Agnew (X_0rm)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="30"><img src="marks/teams/pure/feisar.svg" alt="FEISAR" loading="lazy"></div>
+        <div class="meta"><div class="name">FEISAR</div>
+          <div class="dl"><a href="marks/teams/pure/feisar.svg" download>SVG</a>
+          <a href="marks/teams/pure/feisar.png" download>PNG</a></div>
+          <a class="src" href="#credit-x-0rm" title="Source — jump to credits">source: Curtis Agnew (X_0rm)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="31"><img src="marks/teams/pure/goteki-45.svg" alt="Goteki 45" loading="lazy"></div>
+        <div class="meta"><div class="name">Goteki 45</div>
+          <div class="dl"><a href="marks/teams/pure/goteki-45.svg" download>SVG</a>
+          <a href="marks/teams/pure/goteki-45.png" download>PNG</a></div>
+          <a class="src" href="#credit-x-0rm" title="Source — jump to credits">source: Curtis Agnew (X_0rm)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="32"><img src="marks/teams/pure/harimau.svg" alt="Harimau" loading="lazy"></div>
+        <div class="meta"><div class="name">Harimau</div>
+          <div class="dl"><a href="marks/teams/pure/harimau.svg" download>SVG</a>
+          <a href="marks/teams/pure/harimau.png" download>PNG</a></div>
+          <a class="src" href="#credit-x-0rm" title="Source — jump to credits">source: Curtis Agnew (X_0rm)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="33"><img src="marks/teams/pure/icaras.svg" alt="Icaras" loading="lazy"></div>
+        <div class="meta"><div class="name">Icaras</div>
+          <div class="dl"><a href="marks/teams/pure/icaras.svg" download>SVG</a>
+          <a href="marks/teams/pure/icaras.png" download>PNG</a></div>
+          <a class="src" href="#credit-x-0rm" title="Source — jump to credits">source: Curtis Agnew (X_0rm)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="34"><img src="marks/teams/pure/piranha.svg" alt="Piranha" loading="lazy"></div>
+        <div class="meta"><div class="name">Piranha</div>
+          <div class="dl"><a href="marks/teams/pure/piranha.svg" download>SVG</a>
+          <a href="marks/teams/pure/piranha.png" download>PNG</a></div>
+          <a class="src" href="#credit-x-0rm" title="Source — jump to credits">source: Curtis Agnew (X_0rm)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="35"><img src="marks/teams/pure/qirex.svg" alt="Qirex" loading="lazy"></div>
+        <div class="meta"><div class="name">Qirex</div>
+          <div class="dl"><a href="marks/teams/pure/qirex.svg" download>SVG</a>
+          <a href="marks/teams/pure/qirex.png" download>PNG</a></div>
+          <a class="src" href="#credit-x-0rm" title="Source — jump to credits">source: Curtis Agnew (X_0rm)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="36"><img src="marks/teams/pure/triakis.svg" alt="Triakis" loading="lazy"></div>
+        <div class="meta"><div class="name">Triakis</div>
+          <div class="dl"><a href="marks/teams/pure/triakis.svg" download>SVG</a>
+          <a href="marks/teams/pure/triakis.png" download>PNG</a></div>
+          <a class="src" href="#credit-x-0rm" title="Source — jump to credits">source: Curtis Agnew (X_0rm)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="teams-hd">
+    <div class="sh"><h2>Teams — WipEout HD / 2048</h2><p>Racing team logos &amp; symbol marks from the WipEout HD / 2048 era.</p></div>
+    <div class="grid">
+      <div class="card">
+        <div class="thumb" data-idx="37"><img src="marks/teams/hd/ag-sys-logo.svg" alt="AG-Sys Logo" loading="lazy"></div>
+        <div class="meta"><div class="name">AG-Sys Logo</div>
+          <div class="dl"><a href="marks/teams/hd/ag-sys-logo.svg" download>SVG</a>
+          <a href="marks/teams/hd/ag-sys-logo.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="38"><img src="marks/teams/hd/ag-systems.svg" alt="AG Systems" loading="lazy"></div>
+        <div class="meta"><div class="name">AG Systems</div>
+          <div class="dl"><a href="marks/teams/hd/ag-systems.svg" download>SVG</a>
+          <a href="marks/teams/hd/ag-systems.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="39"><img src="marks/teams/hd/assegai-logo.svg" alt="Assegai Logo" loading="lazy"></div>
+        <div class="meta"><div class="name">Assegai Logo</div>
+          <div class="dl"><a href="marks/teams/hd/assegai-logo.svg" download>SVG</a>
+          <a href="marks/teams/hd/assegai-logo.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="40"><img src="marks/teams/hd/auricom-bigstar.svg" alt="Auricom Big Star" loading="lazy"></div>
+        <div class="meta"><div class="name">Auricom Big Star</div>
+          <div class="dl"><a href="marks/teams/hd/auricom-bigstar.svg" download>SVG</a>
+          <a href="marks/teams/hd/auricom-bigstar.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="41"><img src="marks/teams/hd/auricom-redstar.svg" alt="Auricom Red Star" loading="lazy"></div>
+        <div class="meta"><div class="name">Auricom Red Star</div>
+          <div class="dl"><a href="marks/teams/hd/auricom-redstar.svg" download>SVG</a>
+          <a href="marks/teams/hd/auricom-redstar.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="42"><img src="marks/teams/hd/auricom.svg" alt="Auricom" loading="lazy"></div>
+        <div class="meta"><div class="name">Auricom</div>
+          <div class="dl"><a href="marks/teams/hd/auricom.svg" download>SVG</a>
+          <a href="marks/teams/hd/auricom.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="43"><img src="marks/teams/hd/eg-x-logo.svg" alt="EG.X Logo" loading="lazy"></div>
+        <div class="meta"><div class="name">EG.X Logo</div>
+          <div class="dl"><a href="marks/teams/hd/eg-x-logo.svg" download>SVG</a>
+          <a href="marks/teams/hd/eg-x-logo.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="44"><img src="marks/teams/hd/eg-x.svg" alt="EG.X" loading="lazy"></div>
+        <div class="meta"><div class="name">EG.X</div>
+          <div class="dl"><a href="marks/teams/hd/eg-x.svg" download>SVG</a>
+          <a href="marks/teams/hd/eg-x.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="45"><img src="marks/teams/hd/feisar-logo.svg" alt="FEISAR Logo" loading="lazy"></div>
+        <div class="meta"><div class="name">FEISAR Logo</div>
+          <div class="dl"><a href="marks/teams/hd/feisar-logo.svg" download>SVG</a>
+          <a href="marks/teams/hd/feisar-logo.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="46"><img src="marks/teams/hd/feisar-smiley.svg" alt="FEISAR Smiley" loading="lazy"></div>
+        <div class="meta"><div class="name">FEISAR Smiley</div>
+          <div class="dl"><a href="marks/teams/hd/feisar-smiley.svg" download>SVG</a>
+          <a href="marks/teams/hd/feisar-smiley.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="47"><img src="marks/teams/hd/feisar.svg" alt="FEISAR" loading="lazy"></div>
+        <div class="meta"><div class="name">FEISAR</div>
+          <div class="dl"><a href="marks/teams/hd/feisar.svg" download>SVG</a>
+          <a href="marks/teams/hd/feisar.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="48"><img src="marks/teams/hd/goteki-logo.svg" alt="Goteki Logo" loading="lazy"></div>
+        <div class="meta"><div class="name">Goteki Logo</div>
+          <div class="dl"><a href="marks/teams/hd/goteki-logo.svg" download>SVG</a>
+          <a href="marks/teams/hd/goteki-logo.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="49"><img src="marks/teams/hd/harimau-logo.svg" alt="Harimau Logo" loading="lazy"></div>
+        <div class="meta"><div class="name">Harimau Logo</div>
+          <div class="dl"><a href="marks/teams/hd/harimau-logo.svg" download>SVG</a>
+          <a href="marks/teams/hd/harimau-logo.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="50"><img src="marks/teams/hd/icaras-hdship.svg" alt="Icaras HD Ship" loading="lazy"></div>
+        <div class="meta"><div class="name">Icaras HD Ship</div>
+          <div class="dl"><a href="marks/teams/hd/icaras-hdship.svg" download>SVG</a>
+          <a href="marks/teams/hd/icaras-hdship.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="51"><img src="marks/teams/hd/mirage-logo.svg" alt="Mirage Logo" loading="lazy"></div>
+        <div class="meta"><div class="name">Mirage Logo</div>
+          <div class="dl"><a href="marks/teams/hd/mirage-logo.svg" download>SVG</a>
+          <a href="marks/teams/hd/mirage-logo.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="52"><img src="marks/teams/hd/mirage-panda.svg" alt="Mirage Panda" loading="lazy"></div>
+        <div class="meta"><div class="name">Mirage Panda</div>
+          <div class="dl"><a href="marks/teams/hd/mirage-panda.svg" download>SVG</a>
+          <a href="marks/teams/hd/mirage-panda.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="53"><img src="marks/teams/hd/piranha-logo.svg" alt="Piranha Logo" loading="lazy"></div>
+        <div class="meta"><div class="name">Piranha Logo</div>
+          <div class="dl"><a href="marks/teams/hd/piranha-logo.svg" download>SVG</a>
+          <a href="marks/teams/hd/piranha-logo.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="54"><img src="marks/teams/hd/piranha.svg" alt="Piranha" loading="lazy"></div>
+        <div class="meta"><div class="name">Piranha</div>
+          <div class="dl"><a href="marks/teams/hd/piranha.svg" download>SVG</a>
+          <a href="marks/teams/hd/piranha.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="55"><img src="marks/teams/hd/qirex-logo-2.svg" alt="Qirex Logo (alt)" loading="lazy"></div>
+        <div class="meta"><div class="name">Qirex Logo (alt)</div>
+          <div class="dl"><a href="marks/teams/hd/qirex-logo-2.svg" download>SVG</a>
+          <a href="marks/teams/hd/qirex-logo-2.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="56"><img src="marks/teams/hd/qirex-logo.svg" alt="Qirex-RD Logo" loading="lazy"></div>
+        <div class="meta"><div class="name">Qirex-RD Logo</div>
+          <div class="dl"><a href="marks/teams/hd/qirex-logo.svg" download>SVG</a>
+          <a href="marks/teams/hd/qirex-logo.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="57"><img src="marks/teams/hd/qirex.svg" alt="Qirex" loading="lazy"></div>
+        <div class="meta"><div class="name">Qirex</div>
+          <div class="dl"><a href="marks/teams/hd/qirex.svg" download>SVG</a>
+          <a href="marks/teams/hd/qirex.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="58"><img src="marks/teams/hd/tigron.svg" alt="Tigron Enterprises" loading="lazy"></div>
+        <div class="meta"><div class="name">Tigron Enterprises</div>
+          <div class="dl"><a href="marks/teams/hd/tigron.svg" download>SVG</a>
+          <a href="marks/teams/hd/tigron.png" download>PNG</a></div>
+          <a class="src" href="#credit-djdrey909" title="Source — jump to credits">source: djdrey909 (Andre Lackmann)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="59"><img src="marks/teams/hd/triakis-hdship.svg" alt="Triakis HD Ship" loading="lazy"></div>
+        <div class="meta"><div class="name">Triakis HD Ship</div>
+          <div class="dl"><a href="marks/teams/hd/triakis-hdship.svg" download>SVG</a>
+          <a href="marks/teams/hd/triakis-hdship.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="60"><img src="marks/teams/hd/triakis-logo.svg" alt="Triakis Logo" loading="lazy"></div>
+        <div class="meta"><div class="name">Triakis Logo</div>
+          <div class="dl"><a href="marks/teams/hd/triakis-logo.svg" download>SVG</a>
+          <a href="marks/teams/hd/triakis-logo.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="61"><img src="marks/teams/hd/van-uber.svg" alt="Van Über" loading="lazy"></div>
+        <div class="meta"><div class="name">Van Über</div>
+          <div class="dl"><a href="marks/teams/hd/van-uber.svg" download>SVG</a>
+          <a href="marks/teams/hd/van-uber.png" download>PNG</a></div>
+          <a class="src" href="#credit-djdrey909" title="Source — jump to credits">source: djdrey909 (Andre Lackmann)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="teams-hd-text">
+    <div class="sh"><h2>WipEout HD — Wordmarks &amp; Taglines</h2><p>Team name wordmarks and slogan / tagline marks from WipEout HD.</p></div>
+    <div class="grid">
+      <div class="card">
+        <div class="thumb" data-idx="62"><img src="marks/teams/hd-text/ag-sys-fast.svg" alt="AG-Sys (Fast Friends)" loading="lazy"></div>
+        <div class="meta"><div class="name">AG-Sys (Fast Friends)</div>
+          <div class="dl"><a href="marks/teams/hd-text/ag-sys-fast.svg" download>SVG</a>
+          <a href="marks/teams/hd-text/ag-sys-fast.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="63"><img src="marks/teams/hd-text/ag-sys-speed.svg" alt="AG-Sys (A Friend in Speed)" loading="lazy"></div>
+        <div class="meta"><div class="name">AG-Sys (A Friend in Speed)</div>
+          <div class="dl"><a href="marks/teams/hd-text/ag-sys-speed.svg" download>SVG</a>
+          <a href="marks/teams/hd-text/ag-sys-speed.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="64"><img src="marks/teams/hd-text/ag-sys-text.svg" alt="AG-Sys Text" loading="lazy"></div>
+        <div class="meta"><div class="name">AG-Sys Text</div>
+          <div class="dl"><a href="marks/teams/hd-text/ag-sys-text.svg" download>SVG</a>
+          <a href="marks/teams/hd-text/ag-sys-text.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="65"><img src="marks/teams/hd-text/assegai-2113.svg" alt="Assegai 2113" loading="lazy"></div>
+        <div class="meta"><div class="name">Assegai 2113</div>
+          <div class="dl"><a href="marks/teams/hd-text/assegai-2113.svg" download>SVG</a>
+          <a href="marks/teams/hd-text/assegai-2113.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="66"><img src="marks/teams/hd-text/assegai-text.svg" alt="Assegai Text" loading="lazy"></div>
+        <div class="meta"><div class="name">Assegai Text</div>
+          <div class="dl"><a href="marks/teams/hd-text/assegai-text.svg" download>SVG</a>
+          <a href="marks/teams/hd-text/assegai-text.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="67"><img src="marks/teams/hd-text/auricom-text.svg" alt="Auricom Text" loading="lazy"></div>
+        <div class="meta"><div class="name">Auricom Text</div>
+          <div class="dl"><a href="marks/teams/hd-text/auricom-text.svg" download>SVG</a>
+          <a href="marks/teams/hd-text/auricom-text.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="68"><img src="marks/teams/hd-text/eg-x-linked.svg" alt="EG.X (Linked Technology)" loading="lazy"></div>
+        <div class="meta"><div class="name">EG.X (Linked Technology)</div>
+          <div class="dl"><a href="marks/teams/hd-text/eg-x-linked.svg" download>SVG</a>
+          <a href="marks/teams/hd-text/eg-x-linked.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="69"><img src="marks/teams/hd-text/feisar-text.svg" alt="FEISAR Text" loading="lazy"></div>
+        <div class="meta"><div class="name">FEISAR Text</div>
+          <div class="dl"><a href="marks/teams/hd-text/feisar-text.svg" download>SVG</a>
+          <a href="marks/teams/hd-text/feisar-text.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="70"><img src="marks/teams/hd-text/feisar-unity.svg" alt="FEISAR (Race for E-Unity)" loading="lazy"></div>
+        <div class="meta"><div class="name">FEISAR (Race for E-Unity)</div>
+          <div class="dl"><a href="marks/teams/hd-text/feisar-unity.svg" download>SVG</a>
+          <a href="marks/teams/hd-text/feisar-unity.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="71"><img src="marks/teams/hd-text/goteki-future.svg" alt="Goteki (Future Proof)" loading="lazy"></div>
+        <div class="meta"><div class="name">Goteki (Future Proof)</div>
+          <div class="dl"><a href="marks/teams/hd-text/goteki-future.svg" download>SVG</a>
+          <a href="marks/teams/hd-text/goteki-future.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="72"><img src="marks/teams/hd-text/goteki-text.svg" alt="Goteki 45 Text" loading="lazy"></div>
+        <div class="meta"><div class="name">Goteki 45 Text</div>
+          <div class="dl"><a href="marks/teams/hd-text/goteki-text.svg" download>SVG</a>
+          <a href="marks/teams/hd-text/goteki-text.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="73"><img src="marks/teams/hd-text/harimau-text.svg" alt="Harimau Text" loading="lazy"></div>
+        <div class="meta"><div class="name">Harimau Text</div>
+          <div class="dl"><a href="marks/teams/hd-text/harimau-text.svg" download>SVG</a>
+          <a href="marks/teams/hd-text/harimau-text.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="74"><img src="marks/teams/hd-text/icaras-flying.svg" alt="Icaras (Flying High)" loading="lazy"></div>
+        <div class="meta"><div class="name">Icaras (Flying High)</div>
+          <div class="dl"><a href="marks/teams/hd-text/icaras-flying.svg" download>SVG</a>
+          <a href="marks/teams/hd-text/icaras-flying.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="75"><img src="marks/teams/hd-text/icaras-logotext.svg" alt="Icaras Logotext" loading="lazy"></div>
+        <div class="meta"><div class="name">Icaras Logotext</div>
+          <div class="dl"><a href="marks/teams/hd-text/icaras-logotext.svg" download>SVG</a>
+          <a href="marks/teams/hd-text/icaras-logotext.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="76"><img src="marks/teams/hd-text/mirage-mantis.svg" alt="Mirage (Mantis)" loading="lazy"></div>
+        <div class="meta"><div class="name">Mirage (Mantis)</div>
+          <div class="dl"><a href="marks/teams/hd-text/mirage-mantis.svg" download>SVG</a>
+          <a href="marks/teams/hd-text/mirage-mantis.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="77"><img src="marks/teams/hd-text/mirage-seeing.svg" alt="Mirage (Seeing is Believing)" loading="lazy"></div>
+        <div class="meta"><div class="name">Mirage (Seeing is Believing)</div>
+          <div class="dl"><a href="marks/teams/hd-text/mirage-seeing.svg" download>SVG</a>
+          <a href="marks/teams/hd-text/mirage-seeing.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="78"><img src="marks/teams/hd-text/mirage-text.svg" alt="Mirage Text" loading="lazy"></div>
+        <div class="meta"><div class="name">Mirage Text</div>
+          <div class="dl"><a href="marks/teams/hd-text/mirage-text.svg" download>SVG</a>
+          <a href="marks/teams/hd-text/mirage-text.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="79"><img src="marks/teams/hd-text/piranha-bite.svg" alt="Piranha (With Added Bite)" loading="lazy"></div>
+        <div class="meta"><div class="name">Piranha (With Added Bite)</div>
+          <div class="dl"><a href="marks/teams/hd-text/piranha-bite.svg" download>SVG</a>
+          <a href="marks/teams/hd-text/piranha-bite.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="80"><img src="marks/teams/hd-text/piranha-text.svg" alt="Piranha Text" loading="lazy"></div>
+        <div class="meta"><div class="name">Piranha Text</div>
+          <div class="dl"><a href="marks/teams/hd-text/piranha-text.svg" download>SVG</a>
+          <a href="marks/teams/hd-text/piranha-text.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="81"><img src="marks/teams/hd-text/qirex-revolution.svg" alt="Qirex (High-Speed Revolution)" loading="lazy"></div>
+        <div class="meta"><div class="name">Qirex (High-Speed Revolution)</div>
+          <div class="dl"><a href="marks/teams/hd-text/qirex-revolution.svg" download>SVG</a>
+          <a href="marks/teams/hd-text/qirex-revolution.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="82"><img src="marks/teams/hd-text/triakis-power.svg" alt="Triakis (Three Times More Power)" loading="lazy"></div>
+        <div class="meta"><div class="name">Triakis (Three Times More Power)</div>
+          <div class="dl"><a href="marks/teams/hd-text/triakis-power.svg" download>SVG</a>
+          <a href="marks/teams/hd-text/triakis-power.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="83"><img src="marks/teams/hd-text/triakis-text.svg" alt="Triakis Text" loading="lazy"></div>
+        <div class="meta"><div class="name">Triakis Text</div>
+          <div class="dl"><a href="marks/teams/hd-text/triakis-text.svg" download>SVG</a>
+          <a href="marks/teams/hd-text/triakis-text.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="pilots">
+    <div class="sh"><h2>Pilots</h2><p>Pilot emblems from the original WipEout.</p></div>
+    <div class="grid">
+      <div class="card">
+        <div class="thumb" data-idx="84"><img src="marks/pilots/anastasia.svg" alt="Anastasia" loading="lazy"></div>
+        <div class="meta"><div class="name">Anastasia</div>
+          <div class="dl"><a href="marks/pilots/anastasia.svg" download>SVG</a>
+          <a href="marks/pilots/anastasia.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="85"><img src="marks/pilots/arial.svg" alt="Arial" loading="lazy"></div>
+        <div class="meta"><div class="name">Arial</div>
+          <div class="dl"><a href="marks/pilots/arial.svg" download>SVG</a>
+          <a href="marks/pilots/arial.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="86"><img src="marks/pilots/arian.svg" alt="Arian" loading="lazy"></div>
+        <div class="meta"><div class="name">Arian</div>
+          <div class="dl"><a href="marks/pilots/arian.svg" download>SVG</a>
+          <a href="marks/pilots/arian.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="87"><img src="marks/pilots/chang.svg" alt="Chang" loading="lazy"></div>
+        <div class="meta"><div class="name">Chang</div>
+          <div class="dl"><a href="marks/pilots/chang.svg" download>SVG</a>
+          <a href="marks/pilots/chang.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="88"><img src="marks/pilots/dekka.svg" alt="Dekka" loading="lazy"></div>
+        <div class="meta"><div class="name">Dekka</div>
+          <div class="dl"><a href="marks/pilots/dekka.svg" download>SVG</a>
+          <a href="marks/pilots/dekka.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="89"><img src="marks/pilots/kelsolaar.svg" alt="Kelsolaar" loading="lazy"></div>
+        <div class="meta"><div class="name">Kelsolaar</div>
+          <div class="dl"><a href="marks/pilots/kelsolaar.svg" download>SVG</a>
+          <a href="marks/pilots/kelsolaar.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="90"><img src="marks/pilots/pauljackson.svg" alt="Paul Jackson" loading="lazy"></div>
+        <div class="meta"><div class="name">Paul Jackson</div>
+          <div class="dl"><a href="marks/pilots/pauljackson.svg" download>SVG</a>
+          <a href="marks/pilots/pauljackson.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="91"><img src="marks/pilots/sophia.svg" alt="Sophia" loading="lazy"></div>
+        <div class="meta"><div class="name">Sophia</div>
+          <div class="dl"><a href="marks/pilots/sophia.svg" download>SVG</a>
+          <a href="marks/pilots/sophia.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="classes">
+    <div class="sh"><h2>Speed Classes</h2><p>Speed-class badges from WipEout HD / Fury.</p></div>
+    <div class="grid">
+      <div class="card">
+        <div class="thumb" data-idx="92"><img src="marks/classes/flash.png" alt="Flash" loading="lazy"></div>
+        <div class="meta"><div class="name">Flash</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/classes/flash.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="93"><img src="marks/classes/phantom.png" alt="Phantom" loading="lazy"></div>
+        <div class="meta"><div class="name">Phantom</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/classes/phantom.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="94"><img src="marks/classes/rapier.png" alt="Rapier" loading="lazy"></div>
+        <div class="meta"><div class="name">Rapier</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/classes/rapier.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="95"><img src="marks/classes/venom.png" alt="Venom" loading="lazy"></div>
+        <div class="meta"><div class="name">Venom</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/classes/venom.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="game-modes">
+    <div class="sh"><h2>Game Modes</h2><p>Game-mode emblems from WipEout HD / Fury.</p></div>
+    <div class="grid">
+      <div class="card">
+        <div class="thumb" data-idx="96"><img src="marks/game-modes/detonator.png" alt="Detonator" loading="lazy"></div>
+        <div class="meta"><div class="name">Detonator</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/game-modes/detonator.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="97"><img src="marks/game-modes/eliminator.png" alt="Eliminator" loading="lazy"></div>
+        <div class="meta"><div class="name">Eliminator</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/game-modes/eliminator.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="98"><img src="marks/game-modes/single-race.png" alt="Single Race" loading="lazy"></div>
+        <div class="meta"><div class="name">Single Race</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/game-modes/single-race.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="99"><img src="marks/game-modes/speed-lap-alt.png" alt="Speed Lap (alt)" loading="lazy"></div>
+        <div class="meta"><div class="name">Speed Lap (alt)</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/game-modes/speed-lap-alt.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="100"><img src="marks/game-modes/speed-lap.png" alt="Speed Lap" loading="lazy"></div>
+        <div class="meta"><div class="name">Speed Lap</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/game-modes/speed-lap.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="101"><img src="marks/game-modes/time-trial.png" alt="Time Trial" loading="lazy"></div>
+        <div class="meta"><div class="name">Time Trial</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/game-modes/time-trial.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="102"><img src="marks/game-modes/tournament.png" alt="Tournament" loading="lazy"></div>
+        <div class="meta"><div class="name">Tournament</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/game-modes/tournament.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="103"><img src="marks/game-modes/zone-battle.png" alt="Zone Battle" loading="lazy"></div>
+        <div class="meta"><div class="name">Zone Battle</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/game-modes/zone-battle.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="weapons">
+    <div class="sh"><h2>Weapons</h2><p>Weapon pickup glyphs.</p></div>
+    <div class="grid">
+      <div class="card">
+        <div class="thumb" data-idx="104"><img src="marks/weapons/autopilot.svg" alt="Autopilot" loading="lazy"></div>
+        <div class="meta"><div class="name">Autopilot</div>
+          <div class="dl"><a href="marks/weapons/autopilot.svg" download>SVG</a>
+          <a href="marks/weapons/autopilot.png" download>PNG</a></div>
+          <a class="src" href="#credit-djdrey909" title="Source — jump to credits">source: djdrey909 (Andre Lackmann)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="105"><img src="marks/weapons/bomb.svg" alt="Bomb" loading="lazy"></div>
+        <div class="meta"><div class="name">Bomb</div>
+          <div class="dl"><a href="marks/weapons/bomb.svg" download>SVG</a>
+          <a href="marks/weapons/bomb.png" download>PNG</a></div>
+          <a class="src" href="#credit-djdrey909" title="Source — jump to credits">source: djdrey909 (Andre Lackmann)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="106"><img src="marks/weapons/mines.svg" alt="Mines" loading="lazy"></div>
+        <div class="meta"><div class="name">Mines</div>
+          <div class="dl"><a href="marks/weapons/mines.svg" download>SVG</a>
+          <a href="marks/weapons/mines.png" download>PNG</a></div>
+          <a class="src" href="#credit-djdrey909" title="Source — jump to credits">source: djdrey909 (Andre Lackmann)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="107"><img src="marks/weapons/missile.svg" alt="Missile" loading="lazy"></div>
+        <div class="meta"><div class="name">Missile</div>
+          <div class="dl"><a href="marks/weapons/missile.svg" download>SVG</a>
+          <a href="marks/weapons/missile.png" download>PNG</a></div>
+          <a class="src" href="#credit-djdrey909" title="Source — jump to credits">source: djdrey909 (Andre Lackmann)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="108"><img src="marks/weapons/plasma.svg" alt="Plasma" loading="lazy"></div>
+        <div class="meta"><div class="name">Plasma</div>
+          <div class="dl"><a href="marks/weapons/plasma.svg" download>SVG</a>
+          <a href="marks/weapons/plasma.png" download>PNG</a></div>
+          <a class="src" href="#credit-djdrey909" title="Source — jump to credits">source: djdrey909 (Andre Lackmann)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="109"><img src="marks/weapons/quake.svg" alt="Quake" loading="lazy"></div>
+        <div class="meta"><div class="name">Quake</div>
+          <div class="dl"><a href="marks/weapons/quake.svg" download>SVG</a>
+          <a href="marks/weapons/quake.png" download>PNG</a></div>
+          <a class="src" href="#credit-djdrey909" title="Source — jump to credits">source: djdrey909 (Andre Lackmann)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="110"><img src="marks/weapons/rockets.svg" alt="Rockets" loading="lazy"></div>
+        <div class="meta"><div class="name">Rockets</div>
+          <div class="dl"><a href="marks/weapons/rockets.svg" download>SVG</a>
+          <a href="marks/weapons/rockets.png" download>PNG</a></div>
+          <a class="src" href="#credit-djdrey909" title="Source — jump to credits">source: djdrey909 (Andre Lackmann)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="111"><img src="marks/weapons/shield.svg" alt="Shield" loading="lazy"></div>
+        <div class="meta"><div class="name">Shield</div>
+          <div class="dl"><a href="marks/weapons/shield.svg" download>SVG</a>
+          <a href="marks/weapons/shield.png" download>PNG</a></div>
+          <a class="src" href="#credit-djdrey909" title="Source — jump to credits">source: djdrey909 (Andre Lackmann)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="112"><img src="marks/weapons/turbo.svg" alt="Turbo" loading="lazy"></div>
+        <div class="meta"><div class="name">Turbo</div>
+          <div class="dl"><a href="marks/weapons/turbo.svg" download>SVG</a>
+          <a href="marks/weapons/turbo.png" download>PNG</a></div>
+          <a class="src" href="#credit-djdrey909" title="Source — jump to credits">source: djdrey909 (Andre Lackmann)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="sponsors">
+    <div class="sh"><h2>Sponsors</h2><p>In-universe sponsor and brand logos from WipEout HD / Fury.</p></div>
+    <div class="grid">
+      <div class="card">
+        <div class="thumb" data-idx="113"><img src="marks/sponsors/2nd-skin-full.png" alt="2nd Skin (full)" loading="lazy"></div>
+        <div class="meta"><div class="name">2nd Skin (full)</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/2nd-skin-full.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="114"><img src="marks/sponsors/2nd-skin-text.png" alt="2nd Skin (text)" loading="lazy"></div>
+        <div class="meta"><div class="name">2nd Skin (text)</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/2nd-skin-text.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="115"><img src="marks/sponsors/45.svg" alt="45" loading="lazy"></div>
+        <div class="meta"><div class="name">45</div>
+          <div class="dl"><a href="marks/sponsors/45.svg" download>SVG</a>
+          <a href="marks/sponsors/45.png" download>PNG</a></div>
+          <a class="src" href="#credit-djdrey909" title="Source — jump to credits">source: djdrey909 (Andre Lackmann)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="116"><img src="marks/sponsors/ad-glyph.svg" alt="AD Glyph" loading="lazy"></div>
+        <div class="meta"><div class="name">AD Glyph</div>
+          <div class="dl"><a href="marks/sponsors/ad-glyph.svg" download>SVG</a>
+          <a href="marks/sponsors/ad-glyph.png" download>PNG</a></div>
+          <a class="src" href="#credit-djdrey909" title="Source — jump to credits">source: djdrey909 (Andre Lackmann)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="117"><img src="marks/sponsors/aerial-i.png" alt="Aerial I" loading="lazy"></div>
+        <div class="meta"><div class="name">Aerial I</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/aerial-i.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="118"><img src="marks/sponsors/aerial-ii.png" alt="Aerial II" loading="lazy"></div>
+        <div class="meta"><div class="name">Aerial II</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/aerial-ii.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="119"><img src="marks/sponsors/aerial-iii-b.png" alt="Aerial III B" loading="lazy"></div>
+        <div class="meta"><div class="name">Aerial III B</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/aerial-iii-b.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="120"><img src="marks/sponsors/aerial-iii.png" alt="Aerial III" loading="lazy"></div>
+        <div class="meta"><div class="name">Aerial III</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/aerial-iii.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="121"><img src="marks/sponsors/aerial-iv.png" alt="Aerial IV" loading="lazy"></div>
+        <div class="meta"><div class="name">Aerial IV</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/aerial-iv.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="122"><img src="marks/sponsors/aerial-mini.png" alt="Aerial Mini" loading="lazy"></div>
+        <div class="meta"><div class="name">Aerial Mini</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/aerial-mini.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="123"><img src="marks/sponsors/aerial-v.png" alt="Aerial V" loading="lazy"></div>
+        <div class="meta"><div class="name">Aerial V</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/aerial-v.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="124"><img src="marks/sponsors/ag-sys-symbols.svg" alt="AG-Sys Symbols" loading="lazy"></div>
+        <div class="meta"><div class="name">AG-Sys Symbols</div>
+          <div class="dl"><a href="marks/sponsors/ag-sys-symbols.svg" download>SVG</a>
+          <a href="marks/sponsors/ag-sys-symbols.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="125"><img src="marks/sponsors/agd-logo.svg" alt="AGD Logo" loading="lazy"></div>
+        <div class="meta"><div class="name">AGD Logo</div>
+          <div class="dl"><a href="marks/sponsors/agd-logo.svg" download>SVG</a>
+          <a href="marks/sponsors/agd-logo.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="126"><img src="marks/sponsors/ai-corp-text.png" alt="AI Corp (text)" loading="lazy"></div>
+        <div class="meta"><div class="name">AI Corp (text)</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/ai-corp-text.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="127"><img src="marks/sponsors/aimi-corp.png" alt="Aimi Corp" loading="lazy"></div>
+        <div class="meta"><div class="name">Aimi Corp</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/aimi-corp.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="128"><img src="marks/sponsors/aimi.png" alt="Aimi" loading="lazy"></div>
+        <div class="meta"><div class="name">Aimi</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/aimi.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="129"><img src="marks/sponsors/air.svg" alt="AIR" loading="lazy"></div>
+        <div class="meta"><div class="name">AIR</div>
+          <div class="dl"><a href="marks/sponsors/air.svg" download>SVG</a>
+          <a href="marks/sponsors/air.png" download>PNG</a></div>
+          <a class="src" href="#credit-djdrey909" title="Source — jump to credits">source: djdrey909 (Andre Lackmann)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="130"><img src="marks/sponsors/arrow-star.svg" alt="Arrow Star" loading="lazy"></div>
+        <div class="meta"><div class="name">Arrow Star</div>
+          <div class="dl"><a href="marks/sponsors/arrow-star.svg" download>SVG</a>
+          <a href="marks/sponsors/arrow-star.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="131"><img src="marks/sponsors/asap.svg" alt="ASAP" loading="lazy"></div>
+        <div class="meta"><div class="name">ASAP</div>
+          <div class="dl"><a href="marks/sponsors/asap.svg" download>SVG</a>
+          <a href="marks/sponsors/asap.png" download>PNG</a></div>
+          <a class="src" href="#credit-djdrey909" title="Source — jump to credits">source: djdrey909 (Andre Lackmann)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="132"><img src="marks/sponsors/assegai-symbol.svg" alt="Assegai Symbol" loading="lazy"></div>
+        <div class="meta"><div class="name">Assegai Symbol</div>
+          <div class="dl"><a href="marks/sponsors/assegai-symbol.svg" download>SVG</a>
+          <a href="marks/sponsors/assegai-symbol.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="133"><img src="marks/sponsors/auricom-logo.svg" alt="Auricom Logo" loading="lazy"></div>
+        <div class="meta"><div class="name">Auricom Logo</div>
+          <div class="dl"><a href="marks/sponsors/auricom-logo.svg" download>SVG</a>
+          <a href="marks/sponsors/auricom-logo.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="134"><img src="marks/sponsors/auricom-symbols.svg" alt="Auricom Symbols" loading="lazy"></div>
+        <div class="meta"><div class="name">Auricom Symbols</div>
+          <div class="dl"><a href="marks/sponsors/auricom-symbols.svg" download>SVG</a>
+          <a href="marks/sponsors/auricom-symbols.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="135"><img src="marks/sponsors/barcode.svg" alt="Barcode" loading="lazy"></div>
+        <div class="meta"><div class="name">Barcode</div>
+          <div class="dl"><a href="marks/sponsors/barcode.svg" download>SVG</a>
+          <a href="marks/sponsors/barcode.png" download>PNG</a></div>
+          <a class="src" href="#credit-ollite20" title="Source — jump to credits">source: ollite20</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="136"><img src="marks/sponsors/blimp-full.png" alt="Blimp (full)" loading="lazy"></div>
+        <div class="meta"><div class="name">Blimp (full)</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/blimp-full.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="137"><img src="marks/sponsors/blimp.png" alt="Blimp" loading="lazy"></div>
+        <div class="meta"><div class="name">Blimp</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/blimp.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="138"><img src="marks/sponsors/era-trek-full.png" alt="Era Trek (full)" loading="lazy"></div>
+        <div class="meta"><div class="name">Era Trek (full)</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/era-trek-full.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="139"><img src="marks/sponsors/era-trek-skewed.png" alt="Era Trek (skewed)" loading="lazy"></div>
+        <div class="meta"><div class="name">Era Trek (skewed)</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/era-trek-skewed.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="140"><img src="marks/sponsors/icom-communications-company.png" alt="Icom Communications" loading="lazy"></div>
+        <div class="meta"><div class="name">Icom Communications</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/icom-communications-company.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="141"><img src="marks/sponsors/icom-mini.png" alt="Icom (mini)" loading="lazy"></div>
+        <div class="meta"><div class="name">Icom (mini)</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/icom-mini.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="142"><img src="marks/sponsors/ignition-energy-drink.png" alt="Ignition Energy Drink" loading="lazy"></div>
+        <div class="meta"><div class="name">Ignition Energy Drink</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/ignition-energy-drink.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="143"><img src="marks/sponsors/ignition-name.png" alt="Ignition (name)" loading="lazy"></div>
+        <div class="meta"><div class="name">Ignition (name)</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/ignition-name.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="144"><img src="marks/sponsors/ignition.png" alt="Ignition" loading="lazy"></div>
+        <div class="meta"><div class="name">Ignition</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/ignition.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="145"><img src="marks/sponsors/iota.png" alt="Iota" loading="lazy"></div>
+        <div class="meta"><div class="name">Iota</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/iota.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="146"><img src="marks/sponsors/ip-lunar-parcs.png" alt="IP Lunar Parcs" loading="lazy"></div>
+        <div class="meta"><div class="name">IP Lunar Parcs</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/ip-lunar-parcs.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="147"><img src="marks/sponsors/joy-noodle-bar-full.png" alt="Joy Noodle Bar" loading="lazy"></div>
+        <div class="meta"><div class="name">Joy Noodle Bar</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/joy-noodle-bar-full.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="148"><img src="marks/sponsors/luna-parcs-syonara.png" alt="Luna Parcs Syonara" loading="lazy"></div>
+        <div class="meta"><div class="name">Luna Parcs Syonara</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/luna-parcs-syonara.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="149"><img src="marks/sponsors/lunar-parcs-typographical.png" alt="Lunar Parcs (type)" loading="lazy"></div>
+        <div class="meta"><div class="name">Lunar Parcs (type)</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/lunar-parcs-typographical.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="150"><img src="marks/sponsors/lunar-parcs.png" alt="Lunar Parcs" loading="lazy"></div>
+        <div class="meta"><div class="name">Lunar Parcs</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/lunar-parcs.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="151"><img src="marks/sponsors/mag-lock-full.png" alt="Mag-Lock" loading="lazy"></div>
+        <div class="meta"><div class="name">Mag-Lock</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/mag-lock-full.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="152"><img src="marks/sponsors/magec-full.png" alt="Magec (full)" loading="lazy"></div>
+        <div class="meta"><div class="name">Magec (full)</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/magec-full.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="153"><img src="marks/sponsors/magec.png" alt="Magec" loading="lazy"></div>
+        <div class="meta"><div class="name">Magec</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/magec.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="154"><img src="marks/sponsors/mav.svg" alt="MAV" loading="lazy"></div>
+        <div class="meta"><div class="name">MAV</div>
+          <div class="dl"><a href="marks/sponsors/mav.svg" download>SVG</a>
+          <a href="marks/sponsors/mav.png" download>PNG</a></div>
+          <a class="src" href="#credit-djdrey909" title="Source — jump to credits">source: djdrey909 (Andre Lackmann)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="155"><img src="marks/sponsors/mindcorp.png" alt="MindCorp" loading="lazy"></div>
+        <div class="meta"><div class="name">MindCorp</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/mindcorp.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="156"><img src="marks/sponsors/mr-somo.png" alt="Mr Somo" loading="lazy"></div>
+        <div class="meta"><div class="name">Mr Somo</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/mr-somo.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="157"><img src="marks/sponsors/nekita-horizontal.png" alt="Nekita (horizontal)" loading="lazy"></div>
+        <div class="meta"><div class="name">Nekita (horizontal)</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/nekita-horizontal.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="158"><img src="marks/sponsors/nekita.png" alt="Nekita" loading="lazy"></div>
+        <div class="meta"><div class="name">Nekita</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/nekita.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="159"><img src="marks/sponsors/oceania-horizontal.svg" alt="Oceania" loading="lazy"></div>
+        <div class="meta"><div class="name">Oceania</div>
+          <div class="dl"><a href="marks/sponsors/oceania-horizontal.svg" download>SVG</a>
+          <a href="marks/sponsors/oceania-horizontal.png" download>PNG</a></div>
+          <a class="src" href="#credit-djdrey909" title="Source — jump to credits">source: djdrey909 (Andre Lackmann)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="160"><img src="marks/sponsors/plus-01-corp-united.png" alt="+01 Corp United" loading="lazy"></div>
+        <div class="meta"><div class="name">+01 Corp United</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/plus-01-corp-united.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="161"><img src="marks/sponsors/plus-01-corp.png" alt="+01 Corp" loading="lazy"></div>
+        <div class="meta"><div class="name">+01 Corp</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/plus-01-corp.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="162"><img src="marks/sponsors/ricochet-alt.png" alt="Ricochet (alt)" loading="lazy"></div>
+        <div class="meta"><div class="name">Ricochet (alt)</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/ricochet-alt.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="163"><img src="marks/sponsors/ricochet-full.png" alt="Ricochet (full)" loading="lazy"></div>
+        <div class="meta"><div class="name">Ricochet (full)</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/ricochet-full.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="164"><img src="marks/sponsors/ricochet-vertical.png" alt="Ricochet (vertical)" loading="lazy"></div>
+        <div class="meta"><div class="name">Ricochet (vertical)</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/ricochet-vertical.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="165"><img src="marks/sponsors/ricochet.png" alt="Ricochet" loading="lazy"></div>
+        <div class="meta"><div class="name">Ricochet</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/ricochet.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="166"><img src="marks/sponsors/shape-1157.png" alt="Unnamed Mark (1157)" loading="lazy"></div>
+        <div class="meta"><div class="name">Unnamed Mark (1157)</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/shape-1157.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="167"><img src="marks/sponsors/stay-on-track.png" alt="Stay On Track" loading="lazy"></div>
+        <div class="meta"><div class="name">Stay On Track</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/stay-on-track.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="168"><img src="marks/sponsors/sylver.png" alt="Sylver" loading="lazy"></div>
+        <div class="meta"><div class="name">Sylver</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/sylver.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="169"><img src="marks/sponsors/synchro-logistics.png" alt="Synchro Logistics" loading="lazy"></div>
+        <div class="meta"><div class="name">Synchro Logistics</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/synchro-logistics.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="170"><img src="marks/sponsors/syncro-logistics.png" alt="Syncro Logistics" loading="lazy"></div>
+        <div class="meta"><div class="name">Syncro Logistics</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/sponsors/syncro-logistics.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="171"><img src="marks/sponsors/tech-de-ra.svg" alt="Tech De Ra" loading="lazy"></div>
+        <div class="meta"><div class="name">Tech De Ra</div>
+          <div class="dl"><a href="marks/sponsors/tech-de-ra.svg" download>SVG</a>
+          <a href="marks/sponsors/tech-de-ra.png" download>PNG</a></div>
+          <a class="src" href="#credit-djdrey909" title="Source — jump to credits">source: djdrey909 (Andre Lackmann)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="tracks">
+    <div class="sh"><h2>Tracks &amp; Venues</h2><p>Circuit / venue logos from WipEout HD / Fury.</p></div>
+    <div class="grid">
+      <div class="card">
+        <div class="thumb" data-idx="172"><img src="marks/tracks/anulpha-pass.png" alt="Anulpha Pass" loading="lazy"></div>
+        <div class="meta"><div class="name">Anulpha Pass</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/tracks/anulpha-pass.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="173"><img src="marks/tracks/chengou-project.png" alt="Chengou Project" loading="lazy"></div>
+        <div class="meta"><div class="name">Chengou Project</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/tracks/chengou-project.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="174"><img src="marks/tracks/corridon-12.png" alt="Corridon 12" loading="lazy"></div>
+        <div class="meta"><div class="name">Corridon 12</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/tracks/corridon-12.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="175"><img src="marks/tracks/mallavol.png" alt="Mallavol" loading="lazy"></div>
+        <div class="meta"><div class="name">Mallavol</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/tracks/mallavol.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="176"><img src="marks/tracks/medesto-heights.png" alt="Medesto Heights" loading="lazy"></div>
+        <div class="meta"><div class="name">Medesto Heights</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/tracks/medesto-heights.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="177"><img src="marks/tracks/metropia.png" alt="Metropia" loading="lazy"></div>
+        <div class="meta"><div class="name">Metropia</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/tracks/metropia.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="178"><img src="marks/tracks/moa-therma.png" alt="Moa Therma" loading="lazy"></div>
+        <div class="meta"><div class="name">Moa Therma</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/tracks/moa-therma.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="179"><img src="marks/tracks/pro-tozo.png" alt="Pro Tozo" loading="lazy"></div>
+        <div class="meta"><div class="name">Pro Tozo</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/tracks/pro-tozo.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="180"><img src="marks/tracks/sebenco-climb.png" alt="Sebenco Climb" loading="lazy"></div>
+        <div class="meta"><div class="name">Sebenco Climb</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/tracks/sebenco-climb.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="181"><img src="marks/tracks/sol-2.png" alt="Sol 2" loading="lazy"></div>
+        <div class="meta"><div class="name">Sol 2</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/tracks/sol-2.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="182"><img src="marks/tracks/syncopia.png" alt="Syncopia" loading="lazy"></div>
+        <div class="meta"><div class="name">Syncopia</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/tracks/syncopia.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="183"><img src="marks/tracks/talons-junction.png" alt="Talons Junction" loading="lazy"></div>
+        <div class="meta"><div class="name">Talons Junction</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/tracks/talons-junction.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="184"><img src="marks/tracks/tech-de-ra.png" alt="Tech De Ra" loading="lazy"></div>
+        <div class="meta"><div class="name">Tech De Ra</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/tracks/tech-de-ra.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="185"><img src="marks/tracks/the-amphiseum.png" alt="The Amphiseum" loading="lazy"></div>
+        <div class="meta"><div class="name">The Amphiseum</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/tracks/the-amphiseum.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="186"><img src="marks/tracks/ubermall.png" alt="Ubermall" loading="lazy"></div>
+        <div class="meta"><div class="name">Ubermall</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/tracks/ubermall.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="187"><img src="marks/tracks/vineta-k.png" alt="Vineta K" loading="lazy"></div>
+        <div class="meta"><div class="name">Vineta K</div>
+          <div class="dl"><a class="locked" role="button" href="#" data-locked-src="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" data-locked-who="Liger-Inuzuka">SVG</a><a href="marks/tracks/vineta-k.png" download>PNG</a></div>
+          <a class="src" href="#credit-liger-inuzuka" title="Source — jump to credits">source: Liger-Inuzuka</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="leagues">
+    <div class="sh"><h2>Leagues</h2><p>Anti-gravity racing league logos (F3600, F7200).</p></div>
+    <div class="grid">
+      <div class="card">
+        <div class="thumb" data-idx="188"><img src="marks/leagues/2048.svg" alt="2048 League" loading="lazy"></div>
+        <div class="meta"><div class="name">2048 League</div>
+          <div class="dl"><a href="marks/leagues/2048.svg" download>SVG</a>
+          <a href="marks/leagues/2048.png" download>PNG</a></div>
+          <a class="src" href="#credit-djdrey909" title="Source — jump to credits">source: djdrey909 (Andre Lackmann)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="189"><img src="marks/leagues/f3600.svg" alt="F3600 League" loading="lazy"></div>
+        <div class="meta"><div class="name">F3600 League</div>
+          <div class="dl"><a href="marks/leagues/f3600.svg" download>SVG</a>
+          <a href="marks/leagues/f3600.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="190"><img src="marks/leagues/f5000.svg" alt="F5000 League" loading="lazy"></div>
+        <div class="meta"><div class="name">F5000 League</div>
+          <div class="dl"><a href="marks/leagues/f5000.svg" download>SVG</a>
+          <a href="marks/leagues/f5000.png" download>PNG</a></div>
+          <span class="src src-none">source: needed</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="191"><img src="marks/leagues/f7200.svg" alt="F7200 League" loading="lazy"></div>
+        <div class="meta"><div class="name">F7200 League</div>
+          <div class="dl"><a href="marks/leagues/f7200.svg" download>SVG</a>
+          <a href="marks/leagues/f7200.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="192"><img src="marks/leagues/f9000-emblem.svg" alt="F9000 (emblem)" loading="lazy"></div>
+        <div class="meta"><div class="name">F9000 (emblem)</div>
+          <div class="dl"><a href="marks/leagues/f9000-emblem.svg" download>SVG</a>
+          <a href="marks/leagues/f9000-emblem.png" download>PNG</a></div>
+          <a class="src" href="#credit-djdrey909" title="Source — jump to credits">source: djdrey909 (Andre Lackmann)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="193"><img src="marks/leagues/f9000-wordmark.svg" alt="F9000 (wordmark)" loading="lazy"></div>
+        <div class="meta"><div class="name">F9000 (wordmark)</div>
+          <div class="dl"><a href="marks/leagues/f9000-wordmark.svg" download>SVG</a>
+          <a href="marks/leagues/f9000-wordmark.png" download>PNG</a></div>
+          <a class="src" href="#credit-djdrey909" title="Source — jump to credits">source: djdrey909 (Andre Lackmann)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="194"><img src="marks/leagues/f9000.svg" alt="F9000 League" loading="lazy"></div>
+        <div class="meta"><div class="name">F9000 League</div>
+          <div class="dl"><a href="marks/leagues/f9000.svg" download>SVG</a>
+          <a href="marks/leagues/f9000.png" download>PNG</a></div>
+          <a class="src" href="#credit-djdrey909" title="Source — jump to credits">source: djdrey909 (Andre Lackmann)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="195"><img src="marks/leagues/fx350.svg" alt="FX350 League" loading="lazy"></div>
+        <div class="meta"><div class="name">FX350 League</div>
+          <div class="dl"><a href="marks/leagues/fx350.svg" download>SVG</a>
+          <a href="marks/leagues/fx350.png" download>PNG</a></div>
+          <a class="src" href="#credit-x-0rm" title="Source — jump to credits">source: Curtis Agnew (X_0rm)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="196"><img src="marks/leagues/fx400.svg" alt="FX400 League" loading="lazy"></div>
+        <div class="meta"><div class="name">FX400 League</div>
+          <div class="dl"><a href="marks/leagues/fx400.svg" download>SVG</a>
+          <a href="marks/leagues/fx400.png" download>PNG</a></div>
+          <a class="src" href="#credit-djdrey909" title="Source — jump to credits">source: djdrey909 (Andre Lackmann)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="misc">
+    <div class="sh"><h2>Miscellaneous</h2><p>Ship silhouettes and other marks.</p></div>
+    <div class="grid">
+      <div class="card">
+        <div class="thumb" data-idx="197"><img src="marks/misc/glyph.svg" alt="Glyph" loading="lazy"></div>
+        <div class="meta"><div class="name">Glyph</div>
+          <div class="dl"><a href="marks/misc/glyph.svg" download>SVG</a>
+          <a href="marks/misc/glyph.png" download>PNG</a></div>
+          <a class="src" href="#credit-djdrey909" title="Source — jump to credits">source: djdrey909 (Andre Lackmann)</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="198"><img src="marks/misc/ship-silhouette.svg" alt="Ship Silhouette" loading="lazy"></div>
+        <div class="meta"><div class="name">Ship Silhouette</div>
+          <div class="dl"><a href="marks/misc/ship-silhouette.svg" download>SVG</a>
+          <a href="marks/misc/ship-silhouette.png" download>PNG</a></div>
+          <a class="src" href="#credit-toolboxio" title="Source — jump to credits">source: toolboxio</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-idx="199"><img src="marks/misc/tigron-glyph.svg" alt="Tigron (glyph)" loading="lazy"></div>
+        <div class="meta"><div class="name">Tigron (glyph)</div>
+          <div class="dl"><a href="marks/misc/tigron-glyph.svg" download>SVG</a>
+          <a href="marks/misc/tigron-glyph.png" download>PNG</a></div>
+          <a class="src" href="#credit-djdrey909" title="Source — jump to credits">source: djdrey909 (Andre Lackmann)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="credits" id="credits">
+    <h2>Credits &amp; attribution</h2>
+    <p>These vectors were traced and compiled by members of the WipEout community; all original
+    creators retain credit for their work. WipEout and all related names, logos and marks are
+    trademarks of Sony Interactive Entertainment / Studio Liverpool (formerly Psygnosis). This is
+    a non-commercial, fan-made archive. Each contributor released their work under different
+    terms (shown per card below); full details in <a href="credits.html">CREDITS</a> and
+    <a href="licensing.html">LICENSING</a>.</p>
+    <div class="credits-grid">
+      <div class="credit" id="credit-ollite20">
+        <div class="who">ollite20</div><div class="what">Series &amp; game title logos; WipEout HD team logos, texts &amp; symbols</div>
+        <div class="lic"><span>Licence:</span> <a href="https://creativecommons.org/licenses/by-nc/3.0/" target="_blank" rel="noopener license">CC BY-NC 3.0 ↗</a> — Adaptations permitted (non-commercial, with attribution); artist asks for a link back.</div>
+        <a href="https://www.deviantart.com/ollite20/art/WipEout-logos-and-texts-161266694" target="_blank" rel="noopener">WipEout logos and texts</a>
+      </div>
+      <div class="credit" id="credit-x-0rm">
+        <div class="who">Curtis Agnew (X_0rm)</div><div class="what">WipEout Pure team logos</div>
+        <div class="lic"><span>Licence:</span> No formal licence (© X_0rm) — No CC licence stated; used with attribution at the artist&#x27;s request (link-back requested).</div>
+        <a href="https://www.deviantart.com/x-0rm/art/WipEout-Pure-All-Logo-s-Vector-324648442" target="_blank" rel="noopener">WipEout Pure — All Logo&#x27;s Vector</a>
+      </div>
+      <div class="credit" id="credit-liger-inuzuka">
+        <div class="who">Liger-Inuzuka</div><div class="what">Sponsors, tracks, speed classes &amp; game modes</div>
+        <div class="lic"><span>Licence:</span> <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank" rel="noopener license">CC BY-NC-ND 3.0 ↗</a> — NoDerivatives; artist states &quot;Do not redistribute.&quot; Splitting/adapting is not permitted — see LICENSING.md.</div>
+        <a href="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" target="_blank" rel="noopener">Wipeout HD Fury Shapes Mega Pack / Resources</a>
+      </div>
+      <div class="credit" id="credit-toolboxio">
+        <div class="who">toolboxio</div><div class="what">WipEout / 2097 / Wip3out team logos &amp; pilots</div>
+        <div class="lic"><span>Licence:</span> No formal licence (© toolboxio) — No CC licence, but the uploader released them publicly (&quot;enjoy, internet!&quot;). Re-vectored from low-res game images.</div>
+        <a href="https://www.deviantart.com/toolboxio/art/wipeout-1-logo-pack-194855659" target="_blank" rel="noopener">WipEout 1 logo pack</a><a href="https://www.deviantart.com/toolboxio/art/wipeout-1-pilot-pack-194857413" target="_blank" rel="noopener">WipEout 1 pilot pack</a><a href="https://www.deviantart.com/toolboxio/art/wipeout-2097-logo-pack-194856576" target="_blank" rel="noopener">WipEout 2097 logo pack</a><a href="https://www.deviantart.com/toolboxio/art/w1p3out-logo-pack-194858778" target="_blank" rel="noopener">w1p3out logo pack</a>
+      </div>
+      <div class="credit" id="credit-djdrey909">
+        <div class="who">djdrey909 (Andre Lackmann)</div><div class="what">Original custom WipEout team &amp; sponsor marks and weapon glyphs</div>
+        <div class="lic"><span>Licence:</span> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener license">CC BY-NC-SA 4.0 ↗</a> — Original work by the author, released for the community.</div>
+        <a href="https://andre.lackmann.net" target="_blank" rel="noopener">andre.lackmann.net</a>
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+  <p>WipEout and all related logos, names and marks are trademarks of Sony Interactive Entertainment /
+  Studio Liverpool (formerly Psygnosis). This is a non-commercial, fan-made archive for the community.
+  Assets compiled from the work of the original creators &mdash; see
+  <a href="credits.html">CREDITS</a>. Contributions welcome via
+  <a href="contributing.html">pull request</a>.</p>
+</footer>
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lb-topbar">
+    <div class="lb-name" id="lbName"></div>
+    <div class="lb-spacer"></div>
+    <div class="lb-toggle"><span>Background</span>
+      <button data-bg="transparent">Transparent</button>
+      <button data-bg="white">White</button>
+      <button data-bg="dark">Black</button></div>
+    <div class="lb-dl" id="lbDl"></div>
+    <button class="lb-x" id="lbClose" aria-label="Close">&times;</button>
+  </div>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Next">&#8250;</button>
+  <div class="lb-stage bg-transparent" id="lbStage"><img id="lbImg" alt=""></div>
+</div>
+<div class="vbox" id="vbox" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="vbox-panel">
+    <button class="vbox-x" id="vboxClose" aria-label="Close">&times;</button>
+    <h3>The artist hosts this vector</h3>
+    <p id="vboxMsg"></p>
+    <a class="vbox-go" id="vboxGo" target="_blank" rel="noopener">Visit the artist's page ↗</a>
+  </div>
+</div>
+<script>
+(function(){
+  var ASSETS = [{"name": "Wip3out", "svg": "marks/titles/wip3out.svg", "png": "marks/titles/wip3out.png"}, {"name": "WipEout 2048", "svg": "marks/titles/wipeout-2048.svg", "png": "marks/titles/wipeout-2048.png"}, {"name": "WipEout 2097", "svg": "marks/titles/wipeout-2097.svg", "png": "marks/titles/wipeout-2097.png"}, {"name": "WipEout 3 Special Edition", "svg": "marks/titles/wipeout-3-special-edition.svg", "png": "marks/titles/wipeout-3-special-edition.png"}, {"name": "WipEout Fusion", "svg": "marks/titles/wipeout-fusion.svg", "png": "marks/titles/wipeout-fusion.png"}, {"name": "WipEout HD Fury", "svg": "marks/titles/wipeout-hd-fury.svg", "png": "marks/titles/wipeout-hd-fury.png"}, {"name": "WipEout Omega Collection", "svg": "marks/titles/wipeout-omega-collection.svg", "png": "marks/titles/wipeout-omega-collection.png"}, {"name": "WipEout Pulse", "svg": "marks/titles/wipeout-pulse.svg", "png": "marks/titles/wipeout-pulse.png"}, {"name": "WipEout Pure", "svg": "marks/titles/wipeout-pure.svg", "png": "marks/titles/wipeout-pure.png"}, {"name": "WipEout", "svg": "marks/titles/wipeout.svg", "png": "marks/titles/wipeout.png"}, {"name": "AG Systems", "svg": "marks/teams/wo1/ag-systems.svg", "png": "marks/teams/wo1/ag-systems.png"}, {"name": "Auricom", "svg": "marks/teams/wo1/auricom.svg", "png": "marks/teams/wo1/auricom.png"}, {"name": "FEISAR", "svg": "marks/teams/wo1/feisar.svg", "png": "marks/teams/wo1/feisar.png"}, {"name": "Qirex", "svg": "marks/teams/wo1/qirex.svg", "png": "marks/teams/wo1/qirex.png"}, {"name": "AG Systems", "svg": "marks/teams/2097/ag-systems.svg", "png": "marks/teams/2097/ag-systems.png"}, {"name": "Auricom", "svg": "marks/teams/2097/auricom.svg", "png": "marks/teams/2097/auricom.png"}, {"name": "FEISAR", "svg": "marks/teams/2097/feisar.svg", "png": "marks/teams/2097/feisar.png"}, {"name": "Piranha", "svg": "marks/teams/2097/piranha.svg", "png": "marks/teams/2097/piranha.png"}, {"name": "Qirex", "svg": "marks/teams/2097/qirex.svg", "png": "marks/teams/2097/qirex.png"}, {"name": "AG Systems", "svg": "marks/teams/wip3out/ag-systems.svg", "png": "marks/teams/wip3out/ag-systems.png"}, {"name": "Assegai", "svg": "marks/teams/wip3out/assegai.svg", "png": "marks/teams/wip3out/assegai.png"}, {"name": "Auricom", "svg": "marks/teams/wip3out/auricom.svg", "png": "marks/teams/wip3out/auricom.png"}, {"name": "FEISAR", "svg": "marks/teams/wip3out/feisar.svg", "png": "marks/teams/wip3out/feisar.png"}, {"name": "Goteki 45", "svg": "marks/teams/wip3out/goteki-45.svg", "png": "marks/teams/wip3out/goteki-45.png"}, {"name": "Icaras", "svg": "marks/teams/wip3out/icaras.svg", "png": "marks/teams/wip3out/icaras.png"}, {"name": "Piranha", "svg": "marks/teams/wip3out/piranha.svg", "png": "marks/teams/wip3out/piranha.png"}, {"name": "Qirex", "svg": "marks/teams/wip3out/qirex.svg", "png": "marks/teams/wip3out/qirex.png"}, {"name": "AG Systems", "svg": "marks/teams/pure/ag-systems.svg", "png": "marks/teams/pure/ag-systems.png"}, {"name": "Assegai", "svg": "marks/teams/pure/assegai.svg", "png": "marks/teams/pure/assegai.png"}, {"name": "Auricom", "svg": "marks/teams/pure/auricom.svg", "png": "marks/teams/pure/auricom.png"}, {"name": "FEISAR", "svg": "marks/teams/pure/feisar.svg", "png": "marks/teams/pure/feisar.png"}, {"name": "Goteki 45", "svg": "marks/teams/pure/goteki-45.svg", "png": "marks/teams/pure/goteki-45.png"}, {"name": "Harimau", "svg": "marks/teams/pure/harimau.svg", "png": "marks/teams/pure/harimau.png"}, {"name": "Icaras", "svg": "marks/teams/pure/icaras.svg", "png": "marks/teams/pure/icaras.png"}, {"name": "Piranha", "svg": "marks/teams/pure/piranha.svg", "png": "marks/teams/pure/piranha.png"}, {"name": "Qirex", "svg": "marks/teams/pure/qirex.svg", "png": "marks/teams/pure/qirex.png"}, {"name": "Triakis", "svg": "marks/teams/pure/triakis.svg", "png": "marks/teams/pure/triakis.png"}, {"name": "AG-Sys Logo", "svg": "marks/teams/hd/ag-sys-logo.svg", "png": "marks/teams/hd/ag-sys-logo.png"}, {"name": "AG Systems", "svg": "marks/teams/hd/ag-systems.svg", "png": "marks/teams/hd/ag-systems.png"}, {"name": "Assegai Logo", "svg": "marks/teams/hd/assegai-logo.svg", "png": "marks/teams/hd/assegai-logo.png"}, {"name": "Auricom Big Star", "svg": "marks/teams/hd/auricom-bigstar.svg", "png": "marks/teams/hd/auricom-bigstar.png"}, {"name": "Auricom Red Star", "svg": "marks/teams/hd/auricom-redstar.svg", "png": "marks/teams/hd/auricom-redstar.png"}, {"name": "Auricom", "svg": "marks/teams/hd/auricom.svg", "png": "marks/teams/hd/auricom.png"}, {"name": "EG.X Logo", "svg": "marks/teams/hd/eg-x-logo.svg", "png": "marks/teams/hd/eg-x-logo.png"}, {"name": "EG.X", "svg": "marks/teams/hd/eg-x.svg", "png": "marks/teams/hd/eg-x.png"}, {"name": "FEISAR Logo", "svg": "marks/teams/hd/feisar-logo.svg", "png": "marks/teams/hd/feisar-logo.png"}, {"name": "FEISAR Smiley", "svg": "marks/teams/hd/feisar-smiley.svg", "png": "marks/teams/hd/feisar-smiley.png"}, {"name": "FEISAR", "svg": "marks/teams/hd/feisar.svg", "png": "marks/teams/hd/feisar.png"}, {"name": "Goteki Logo", "svg": "marks/teams/hd/goteki-logo.svg", "png": "marks/teams/hd/goteki-logo.png"}, {"name": "Harimau Logo", "svg": "marks/teams/hd/harimau-logo.svg", "png": "marks/teams/hd/harimau-logo.png"}, {"name": "Icaras HD Ship", "svg": "marks/teams/hd/icaras-hdship.svg", "png": "marks/teams/hd/icaras-hdship.png"}, {"name": "Mirage Logo", "svg": "marks/teams/hd/mirage-logo.svg", "png": "marks/teams/hd/mirage-logo.png"}, {"name": "Mirage Panda", "svg": "marks/teams/hd/mirage-panda.svg", "png": "marks/teams/hd/mirage-panda.png"}, {"name": "Piranha Logo", "svg": "marks/teams/hd/piranha-logo.svg", "png": "marks/teams/hd/piranha-logo.png"}, {"name": "Piranha", "svg": "marks/teams/hd/piranha.svg", "png": "marks/teams/hd/piranha.png"}, {"name": "Qirex Logo (alt)", "svg": "marks/teams/hd/qirex-logo-2.svg", "png": "marks/teams/hd/qirex-logo-2.png"}, {"name": "Qirex-RD Logo", "svg": "marks/teams/hd/qirex-logo.svg", "png": "marks/teams/hd/qirex-logo.png"}, {"name": "Qirex", "svg": "marks/teams/hd/qirex.svg", "png": "marks/teams/hd/qirex.png"}, {"name": "Tigron Enterprises", "svg": "marks/teams/hd/tigron.svg", "png": "marks/teams/hd/tigron.png"}, {"name": "Triakis HD Ship", "svg": "marks/teams/hd/triakis-hdship.svg", "png": "marks/teams/hd/triakis-hdship.png"}, {"name": "Triakis Logo", "svg": "marks/teams/hd/triakis-logo.svg", "png": "marks/teams/hd/triakis-logo.png"}, {"name": "Van \u00dcber", "svg": "marks/teams/hd/van-uber.svg", "png": "marks/teams/hd/van-uber.png"}, {"name": "AG-Sys (Fast Friends)", "svg": "marks/teams/hd-text/ag-sys-fast.svg", "png": "marks/teams/hd-text/ag-sys-fast.png"}, {"name": "AG-Sys (A Friend in Speed)", "svg": "marks/teams/hd-text/ag-sys-speed.svg", "png": "marks/teams/hd-text/ag-sys-speed.png"}, {"name": "AG-Sys Text", "svg": "marks/teams/hd-text/ag-sys-text.svg", "png": "marks/teams/hd-text/ag-sys-text.png"}, {"name": "Assegai 2113", "svg": "marks/teams/hd-text/assegai-2113.svg", "png": "marks/teams/hd-text/assegai-2113.png"}, {"name": "Assegai Text", "svg": "marks/teams/hd-text/assegai-text.svg", "png": "marks/teams/hd-text/assegai-text.png"}, {"name": "Auricom Text", "svg": "marks/teams/hd-text/auricom-text.svg", "png": "marks/teams/hd-text/auricom-text.png"}, {"name": "EG.X (Linked Technology)", "svg": "marks/teams/hd-text/eg-x-linked.svg", "png": "marks/teams/hd-text/eg-x-linked.png"}, {"name": "FEISAR Text", "svg": "marks/teams/hd-text/feisar-text.svg", "png": "marks/teams/hd-text/feisar-text.png"}, {"name": "FEISAR (Race for E-Unity)", "svg": "marks/teams/hd-text/feisar-unity.svg", "png": "marks/teams/hd-text/feisar-unity.png"}, {"name": "Goteki (Future Proof)", "svg": "marks/teams/hd-text/goteki-future.svg", "png": "marks/teams/hd-text/goteki-future.png"}, {"name": "Goteki 45 Text", "svg": "marks/teams/hd-text/goteki-text.svg", "png": "marks/teams/hd-text/goteki-text.png"}, {"name": "Harimau Text", "svg": "marks/teams/hd-text/harimau-text.svg", "png": "marks/teams/hd-text/harimau-text.png"}, {"name": "Icaras (Flying High)", "svg": "marks/teams/hd-text/icaras-flying.svg", "png": "marks/teams/hd-text/icaras-flying.png"}, {"name": "Icaras Logotext", "svg": "marks/teams/hd-text/icaras-logotext.svg", "png": "marks/teams/hd-text/icaras-logotext.png"}, {"name": "Mirage (Mantis)", "svg": "marks/teams/hd-text/mirage-mantis.svg", "png": "marks/teams/hd-text/mirage-mantis.png"}, {"name": "Mirage (Seeing is Believing)", "svg": "marks/teams/hd-text/mirage-seeing.svg", "png": "marks/teams/hd-text/mirage-seeing.png"}, {"name": "Mirage Text", "svg": "marks/teams/hd-text/mirage-text.svg", "png": "marks/teams/hd-text/mirage-text.png"}, {"name": "Piranha (With Added Bite)", "svg": "marks/teams/hd-text/piranha-bite.svg", "png": "marks/teams/hd-text/piranha-bite.png"}, {"name": "Piranha Text", "svg": "marks/teams/hd-text/piranha-text.svg", "png": "marks/teams/hd-text/piranha-text.png"}, {"name": "Qirex (High-Speed Revolution)", "svg": "marks/teams/hd-text/qirex-revolution.svg", "png": "marks/teams/hd-text/qirex-revolution.png"}, {"name": "Triakis (Three Times More Power)", "svg": "marks/teams/hd-text/triakis-power.svg", "png": "marks/teams/hd-text/triakis-power.png"}, {"name": "Triakis Text", "svg": "marks/teams/hd-text/triakis-text.svg", "png": "marks/teams/hd-text/triakis-text.png"}, {"name": "Anastasia", "svg": "marks/pilots/anastasia.svg", "png": "marks/pilots/anastasia.png"}, {"name": "Arial", "svg": "marks/pilots/arial.svg", "png": "marks/pilots/arial.png"}, {"name": "Arian", "svg": "marks/pilots/arian.svg", "png": "marks/pilots/arian.png"}, {"name": "Chang", "svg": "marks/pilots/chang.svg", "png": "marks/pilots/chang.png"}, {"name": "Dekka", "svg": "marks/pilots/dekka.svg", "png": "marks/pilots/dekka.png"}, {"name": "Kelsolaar", "svg": "marks/pilots/kelsolaar.svg", "png": "marks/pilots/kelsolaar.png"}, {"name": "Paul Jackson", "svg": "marks/pilots/pauljackson.svg", "png": "marks/pilots/pauljackson.png"}, {"name": "Sophia", "svg": "marks/pilots/sophia.svg", "png": "marks/pilots/sophia.png"}, {"name": "Flash", "svg": null, "png": "marks/classes/flash.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Phantom", "svg": null, "png": "marks/classes/phantom.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Rapier", "svg": null, "png": "marks/classes/rapier.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Venom", "svg": null, "png": "marks/classes/venom.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Detonator", "svg": null, "png": "marks/game-modes/detonator.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Eliminator", "svg": null, "png": "marks/game-modes/eliminator.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Single Race", "svg": null, "png": "marks/game-modes/single-race.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Speed Lap (alt)", "svg": null, "png": "marks/game-modes/speed-lap-alt.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Speed Lap", "svg": null, "png": "marks/game-modes/speed-lap.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Time Trial", "svg": null, "png": "marks/game-modes/time-trial.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Tournament", "svg": null, "png": "marks/game-modes/tournament.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Zone Battle", "svg": null, "png": "marks/game-modes/zone-battle.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Autopilot", "svg": "marks/weapons/autopilot.svg", "png": "marks/weapons/autopilot.png"}, {"name": "Bomb", "svg": "marks/weapons/bomb.svg", "png": "marks/weapons/bomb.png"}, {"name": "Mines", "svg": "marks/weapons/mines.svg", "png": "marks/weapons/mines.png"}, {"name": "Missile", "svg": "marks/weapons/missile.svg", "png": "marks/weapons/missile.png"}, {"name": "Plasma", "svg": "marks/weapons/plasma.svg", "png": "marks/weapons/plasma.png"}, {"name": "Quake", "svg": "marks/weapons/quake.svg", "png": "marks/weapons/quake.png"}, {"name": "Rockets", "svg": "marks/weapons/rockets.svg", "png": "marks/weapons/rockets.png"}, {"name": "Shield", "svg": "marks/weapons/shield.svg", "png": "marks/weapons/shield.png"}, {"name": "Turbo", "svg": "marks/weapons/turbo.svg", "png": "marks/weapons/turbo.png"}, {"name": "2nd Skin (full)", "svg": null, "png": "marks/sponsors/2nd-skin-full.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "2nd Skin (text)", "svg": null, "png": "marks/sponsors/2nd-skin-text.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "45", "svg": "marks/sponsors/45.svg", "png": "marks/sponsors/45.png"}, {"name": "AD Glyph", "svg": "marks/sponsors/ad-glyph.svg", "png": "marks/sponsors/ad-glyph.png"}, {"name": "Aerial I", "svg": null, "png": "marks/sponsors/aerial-i.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Aerial II", "svg": null, "png": "marks/sponsors/aerial-ii.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Aerial III B", "svg": null, "png": "marks/sponsors/aerial-iii-b.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Aerial III", "svg": null, "png": "marks/sponsors/aerial-iii.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Aerial IV", "svg": null, "png": "marks/sponsors/aerial-iv.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Aerial Mini", "svg": null, "png": "marks/sponsors/aerial-mini.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Aerial V", "svg": null, "png": "marks/sponsors/aerial-v.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "AG-Sys Symbols", "svg": "marks/sponsors/ag-sys-symbols.svg", "png": "marks/sponsors/ag-sys-symbols.png"}, {"name": "AGD Logo", "svg": "marks/sponsors/agd-logo.svg", "png": "marks/sponsors/agd-logo.png"}, {"name": "AI Corp (text)", "svg": null, "png": "marks/sponsors/ai-corp-text.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Aimi Corp", "svg": null, "png": "marks/sponsors/aimi-corp.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Aimi", "svg": null, "png": "marks/sponsors/aimi.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "AIR", "svg": "marks/sponsors/air.svg", "png": "marks/sponsors/air.png"}, {"name": "Arrow Star", "svg": "marks/sponsors/arrow-star.svg", "png": "marks/sponsors/arrow-star.png"}, {"name": "ASAP", "svg": "marks/sponsors/asap.svg", "png": "marks/sponsors/asap.png"}, {"name": "Assegai Symbol", "svg": "marks/sponsors/assegai-symbol.svg", "png": "marks/sponsors/assegai-symbol.png"}, {"name": "Auricom Logo", "svg": "marks/sponsors/auricom-logo.svg", "png": "marks/sponsors/auricom-logo.png"}, {"name": "Auricom Symbols", "svg": "marks/sponsors/auricom-symbols.svg", "png": "marks/sponsors/auricom-symbols.png"}, {"name": "Barcode", "svg": "marks/sponsors/barcode.svg", "png": "marks/sponsors/barcode.png"}, {"name": "Blimp (full)", "svg": null, "png": "marks/sponsors/blimp-full.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Blimp", "svg": null, "png": "marks/sponsors/blimp.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Era Trek (full)", "svg": null, "png": "marks/sponsors/era-trek-full.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Era Trek (skewed)", "svg": null, "png": "marks/sponsors/era-trek-skewed.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Icom Communications", "svg": null, "png": "marks/sponsors/icom-communications-company.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Icom (mini)", "svg": null, "png": "marks/sponsors/icom-mini.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Ignition Energy Drink", "svg": null, "png": "marks/sponsors/ignition-energy-drink.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Ignition (name)", "svg": null, "png": "marks/sponsors/ignition-name.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Ignition", "svg": null, "png": "marks/sponsors/ignition.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Iota", "svg": null, "png": "marks/sponsors/iota.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "IP Lunar Parcs", "svg": null, "png": "marks/sponsors/ip-lunar-parcs.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Joy Noodle Bar", "svg": null, "png": "marks/sponsors/joy-noodle-bar-full.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Luna Parcs Syonara", "svg": null, "png": "marks/sponsors/luna-parcs-syonara.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Lunar Parcs (type)", "svg": null, "png": "marks/sponsors/lunar-parcs-typographical.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Lunar Parcs", "svg": null, "png": "marks/sponsors/lunar-parcs.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Mag-Lock", "svg": null, "png": "marks/sponsors/mag-lock-full.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Magec (full)", "svg": null, "png": "marks/sponsors/magec-full.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Magec", "svg": null, "png": "marks/sponsors/magec.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "MAV", "svg": "marks/sponsors/mav.svg", "png": "marks/sponsors/mav.png"}, {"name": "MindCorp", "svg": null, "png": "marks/sponsors/mindcorp.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Mr Somo", "svg": null, "png": "marks/sponsors/mr-somo.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Nekita (horizontal)", "svg": null, "png": "marks/sponsors/nekita-horizontal.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Nekita", "svg": null, "png": "marks/sponsors/nekita.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Oceania", "svg": "marks/sponsors/oceania-horizontal.svg", "png": "marks/sponsors/oceania-horizontal.png"}, {"name": "+01 Corp United", "svg": null, "png": "marks/sponsors/plus-01-corp-united.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "+01 Corp", "svg": null, "png": "marks/sponsors/plus-01-corp.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Ricochet (alt)", "svg": null, "png": "marks/sponsors/ricochet-alt.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Ricochet (full)", "svg": null, "png": "marks/sponsors/ricochet-full.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Ricochet (vertical)", "svg": null, "png": "marks/sponsors/ricochet-vertical.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Ricochet", "svg": null, "png": "marks/sponsors/ricochet.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Unnamed Mark (1157)", "svg": null, "png": "marks/sponsors/shape-1157.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Stay On Track", "svg": null, "png": "marks/sponsors/stay-on-track.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Sylver", "svg": null, "png": "marks/sponsors/sylver.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Synchro Logistics", "svg": null, "png": "marks/sponsors/synchro-logistics.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Syncro Logistics", "svg": null, "png": "marks/sponsors/syncro-logistics.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Tech De Ra", "svg": "marks/sponsors/tech-de-ra.svg", "png": "marks/sponsors/tech-de-ra.png"}, {"name": "Anulpha Pass", "svg": null, "png": "marks/tracks/anulpha-pass.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Chengou Project", "svg": null, "png": "marks/tracks/chengou-project.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Corridon 12", "svg": null, "png": "marks/tracks/corridon-12.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Mallavol", "svg": null, "png": "marks/tracks/mallavol.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Medesto Heights", "svg": null, "png": "marks/tracks/medesto-heights.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Metropia", "svg": null, "png": "marks/tracks/metropia.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Moa Therma", "svg": null, "png": "marks/tracks/moa-therma.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Pro Tozo", "svg": null, "png": "marks/tracks/pro-tozo.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Sebenco Climb", "svg": null, "png": "marks/tracks/sebenco-climb.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Sol 2", "svg": null, "png": "marks/tracks/sol-2.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Syncopia", "svg": null, "png": "marks/tracks/syncopia.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Talons Junction", "svg": null, "png": "marks/tracks/talons-junction.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Tech De Ra", "svg": null, "png": "marks/tracks/tech-de-ra.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "The Amphiseum", "svg": null, "png": "marks/tracks/the-amphiseum.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Ubermall", "svg": null, "png": "marks/tracks/ubermall.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "Vineta K", "svg": null, "png": "marks/tracks/vineta-k.png", "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653", "who": "Liger-Inuzuka"}, {"name": "2048 League", "svg": "marks/leagues/2048.svg", "png": "marks/leagues/2048.png"}, {"name": "F3600 League", "svg": "marks/leagues/f3600.svg", "png": "marks/leagues/f3600.png"}, {"name": "F5000 League", "svg": "marks/leagues/f5000.svg", "png": "marks/leagues/f5000.png"}, {"name": "F7200 League", "svg": "marks/leagues/f7200.svg", "png": "marks/leagues/f7200.png"}, {"name": "F9000 (emblem)", "svg": "marks/leagues/f9000-emblem.svg", "png": "marks/leagues/f9000-emblem.png"}, {"name": "F9000 (wordmark)", "svg": "marks/leagues/f9000-wordmark.svg", "png": "marks/leagues/f9000-wordmark.png"}, {"name": "F9000 League", "svg": "marks/leagues/f9000.svg", "png": "marks/leagues/f9000.png"}, {"name": "FX350 League", "svg": "marks/leagues/fx350.svg", "png": "marks/leagues/fx350.png"}, {"name": "FX400 League", "svg": "marks/leagues/fx400.svg", "png": "marks/leagues/fx400.png"}, {"name": "Glyph", "svg": "marks/misc/glyph.svg", "png": "marks/misc/glyph.png"}, {"name": "Ship Silhouette", "svg": "marks/misc/ship-silhouette.svg", "png": "marks/misc/ship-silhouette.png"}, {"name": "Tigron (glyph)", "svg": "marks/misc/tigron-glyph.svg", "png": "marks/misc/tigron-glyph.png"}];
+  var lb=document.getElementById('lightbox'), img=document.getElementById('lbImg'),
+      stage=document.getElementById('lbStage'), nameEl=document.getElementById('lbName'),
+      dl=document.getElementById('lbDl'); var i=0, bg='transparent';
+  try{ bg = localStorage.getItem('wo-lb-bg') || 'transparent'; }catch(e){}
+  function applyBg(){ stage.className='lb-stage bg-'+bg;
+    lb.querySelectorAll('.lb-toggle button').forEach(function(b){
+      b.classList.toggle('on', b.getAttribute('data-bg')===bg); }); }
+  function show(n){ i=(n+ASSETS.length)%ASSETS.length; var a=ASSETS[i];
+    img.setAttribute('src', a.svg || a.png); img.setAttribute('alt', a.name); nameEl.textContent=a.name;
+    dl.innerHTML = a.svg
+      ? '<a href="'+a.svg+'" download>SVG</a><a href="'+a.png+'" download>PNG</a>'
+      : '<a class="locked" role="button" href="#" data-locked-src="'+(a.source||'')+'" data-locked-who="'+(a.who||'')+'">SVG</a><a href="'+a.png+'" download>PNG</a>'; }
+  function openLb(n){ show(n); applyBg(); lb.classList.add('open');
+    lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+  function closeLb(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true');
+    img.removeAttribute('src'); document.body.style.overflow=''; }
+  document.querySelectorAll('.thumb').forEach(function(t){
+    t.addEventListener('click', function(){ openLb(parseInt(t.getAttribute('data-idx'),10)); }); });
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  document.getElementById('lbPrev').addEventListener('click', function(){ show(i-1); });
+  document.getElementById('lbNext').addEventListener('click', function(){ show(i+1); });
+  lb.querySelectorAll('.lb-toggle button').forEach(function(b){
+    b.addEventListener('click', function(){ bg=b.getAttribute('data-bg');
+      try{localStorage.setItem('wo-lb-bg',bg);}catch(e){} applyBg(); }); });
+  stage.addEventListener('click', function(e){ if(e.target===stage) closeLb(); });
+  document.addEventListener('keydown', function(e){
+    if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape') closeLb();
+    else if(e.key==='ArrowLeft') show(i-1);
+    else if(e.key==='ArrowRight') show(i+1); });
+})();
+</script>
+<script>
+(function(){
+  var vb=document.getElementById('vbox'), msg=document.getElementById('vboxMsg'), go=document.getElementById('vboxGo');
+  function openVb(src,who){
+    msg.textContent=(who?who+' asks ':'The artist asks ')+'that this vector be obtained from their own page rather than redistributed here \u2014 the licence does not permit us to share the vector.';
+    if(src){ go.href=src; go.style.display=''; } else { go.style.display='none'; }
+    vb.classList.add('open'); vb.setAttribute('aria-hidden','false');
+  }
+  function closeVb(){ vb.classList.remove('open'); vb.setAttribute('aria-hidden','true'); }
+  document.addEventListener('click', function(e){
+    var t=e.target.closest ? e.target.closest('.locked') : null;
+    if(t){ e.preventDefault(); openVb(t.getAttribute('data-locked-src'), t.getAttribute('data-locked-who')); return; }
+    if(e.target===vb) closeVb();
+  });
+  document.getElementById('vboxClose').addEventListener('click', closeVb);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && vb.classList.contains('open')) closeVb(); });
+})();
+</script>
+</body></html>

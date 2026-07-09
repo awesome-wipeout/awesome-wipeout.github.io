@@ -1,0 +1,21 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Scratch
+/tmp/
+*.tmp
+
+# Source provenance packs are kept locally but not committed.
+# The extracted SVGs in logos/ are the source of truth.
+/downloads/
+
+# Local planning / issue notes — not part of the published repo.
+/docs/

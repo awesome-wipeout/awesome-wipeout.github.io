@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contributing · awesome-wipeout</title>
+<style>
+:root{--bg:#f7f8fa;--card:#fff;--ink:#12151a;--muted:#6b7280;--line:#e5e7eb;
+--accent:#0b7fd4;--check:#d5dbe2}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+color:var(--ink);background:var(--bg)}
+header{padding:48px 32px 24px;max-width:1600px;margin:0 auto}
+h1{margin:0 0 8px;font-size:30px;letter-spacing:-.02em}
+.lead{color:var(--muted);max-width:70ch;margin:0 0 12px}
+.stat{display:inline-block;margin-right:18px;color:var(--muted);font-size:13px}
+.wrap{max-width:1600px;margin:0 auto;padding:0 32px 64px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 8px}
+.toc a{font-size:12.5px;text-decoration:none;color:var(--accent);border:1px solid var(--line);
+background:var(--card);padding:4px 10px;border-radius:999px}
+.pdflink{font-weight:600;color:var(--accent);text-decoration:none;border:1px solid var(--accent);
+padding:6px 12px;border-radius:8px;display:inline-block}
+.pdflink:hover{background:var(--accent);color:#fff}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px 28px;flex-wrap:wrap}
+.hero-top h1{margin:0}
+.pdfcta{display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:6px}
+.pdfcta-note{font-size:12.5px;color:var(--muted);max-width:34ch}
+@media(max-width:640px){.pdfcta{align-items:flex-start;text-align:left}}
+section{margin-top:40px}
+.sh{border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:20px}
+.sh h2{margin:0;font-size:19px}
+.sh p{margin:4px 0 0;color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;
+display:flex;flex-direction:column}
+.thumb{height:220px;display:flex;align-items:center;justify-content:center;padding:28px;cursor:zoom-in;position:relative;
+background:
+ linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 0 0/22px 22px,
+ linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 11px 11px/22px 22px,
+ #fff}
+.thumb img{width:100%;height:164px;object-fit:contain;display:block}
+.meta{padding:10px 12px;border-top:1px solid var(--line)}
+.name{font-weight:600;font-size:13.5px;margin-bottom:6px;word-break:break-word}
+.dl{display:flex;gap:6px}
+.dl a{font-size:11px;text-decoration:none;color:var(--muted);border:1px solid var(--line);
+padding:2px 8px;border-radius:6px}
+.dl a:hover{color:var(--accent);border-color:var(--accent)}
+.dl a.get{color:var(--accent);border-color:var(--accent);font-weight:600}
+.dl a.get:hover{background:var(--accent);color:#fff}
+.dl a.locked{cursor:pointer}
+/* restricted-vector overlay: shown when the SVG button of a non-redistributable mark is clicked */
+.vbox{position:fixed;inset:0;z-index:1200;display:none;align-items:center;justify-content:center;
+padding:20px;background:rgba(12,15,20,.62)}
+.vbox.open{display:flex}
+.vbox-panel{position:relative;background:var(--card);color:var(--ink);max-width:360px;width:100%;
+border:1px solid var(--line);border-radius:12px;padding:24px;box-shadow:0 24px 64px rgba(0,0,0,.4);text-align:center}
+.vbox-panel h3{margin:0 0 10px;font-size:16px}
+.vbox-panel p{margin:0 0 18px;font-size:13px;line-height:1.55;color:var(--muted)}
+.vbox-go{display:inline-block;text-decoration:none;background:var(--accent);color:#fff;font-weight:600;
+font-size:13px;padding:9px 18px;border-radius:8px}
+.vbox-go:hover{filter:brightness(1.08)}
+.vbox-x{position:absolute;top:8px;right:10px;background:none;border:0;font-size:22px;line-height:1;
+color:var(--muted);cursor:pointer}
+.vbox-x:hover{color:var(--ink)}
+.src{display:block;margin-top:8px;font-size:11px;color:var(--muted);text-decoration:none}
+.src:hover{color:var(--accent);text-decoration:underline}
+.src-none{color:#aab2bd;font-style:italic}
+.credit:target{border-color:var(--accent);box-shadow:0 0 0 2px rgba(11,127,212,.15)}
+.fonts{margin-top:56px;border-top:1px solid var(--line);padding-top:28px}
+.fonts h2{font-size:19px;margin:0 0 6px}
+.fonts>p{color:var(--muted);font-size:13px;margin:0 0 6px;max-width:82ch}
+.fonts h3{font-size:14px;margin:24px 0 12px;color:var(--ink)}
+.font-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.font-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;cursor:zoom-in}
+.font-card:hover{border-color:var(--accent)}
+.font-shot{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px 16px;height:150px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.font-shot img{width:100%;height:100%;object-fit:contain;display:block}
+.font-shot-missing{flex-direction:column;align-items:flex-start;justify-content:center;border-style:dashed;gap:4px;color:#9aa3af}
+.font-shot-missing b{font-weight:600;font-size:19px;color:#8a929c}
+.font-shot-missing small{font-size:11px}
+.font-meta{margin-top:12px;display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12px;text-align:left}
+.font-info{min-width:0}
+.font-name{font-weight:600;font-size:13.5px;color:var(--ink)}
+.font-use{color:var(--muted);font-size:11.5px;margin-top:3px}
+.font-cred{color:var(--muted);font-size:11.5px;margin-top:2px;min-height:1.25em}
+.font-cred a{color:var(--muted);text-decoration:none;border-bottom:1px dotted var(--line)}
+.font-cred a:hover{color:var(--accent)}
+.font-refer{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-wrap:wrap;gap:8px 22px;font-size:13px}
+.font-refer li{color:var(--muted)}
+.font-refer .font-name{color:var(--ink);font-size:13px}
+.font-get{flex:none;align-self:center;color:var(--accent);text-decoration:none;border:1px solid var(--line);padding:4px 11px;border-radius:6px;white-space:nowrap}
+.font-get:hover{border-color:var(--accent)}
+.fbox{position:fixed;inset:0;z-index:1000;display:none;background:#fff}
+.fbox.open{display:flex;flex-direction:column}
+.fbox-top{height:60px;display:flex;align-items:center;gap:14px;padding:0 22px;border-bottom:1px solid var(--line)}
+.fbox-name{font-weight:600;font-size:16px}
+.fbox-era{color:var(--muted);font-size:13px}
+.fbox-spacer{flex:1}
+.fbox-get{font-size:13px;text-decoration:none;color:var(--accent);border:1px solid var(--line);padding:5px 11px;border-radius:7px}
+.fbox-get:hover{border-color:var(--accent)}
+.fbox-x{background:transparent;border:0;font-size:28px;line-height:1;cursor:pointer;color:var(--ink);padding:0 4px}
+.fbox-body{flex:1;overflow:hidden;padding:24px 84px;display:flex;flex-direction:column;gap:18px;align-items:center;justify-content:center}
+.fbox-body img{width:100%;height:100%;object-fit:contain}
+.fbox-note{color:#9a3b3b;font-size:14px;max-width:60ch;text-align:center}
+.fbox-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;background:var(--card);
+border:1px solid var(--line);color:var(--ink);width:48px;height:60px;font-size:28px;cursor:pointer;border-radius:8px}
+.fbox-nav:hover{border-color:var(--accent);color:var(--accent)}
+.fbox-prev{left:16px}.fbox-next{right:16px}
+@media(max-width:640px){.fbox-body{padding:24px 16px}.fbox-nav{width:38px;height:50px;font-size:22px}}
+.credits{margin-top:56px;border-top:1px solid var(--line);padding-top:28px}
+.credits h2{font-size:19px;margin:0 0 6px}
+.credits>p{color:var(--muted);font-size:13px;margin:0 0 18px;max-width:80ch}
+.credits-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.credit{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.credit .who{font-weight:600;font-size:14px}
+.credit .what{color:var(--muted);font-size:12.5px;margin:4px 0 8px}
+.credit .lic{color:var(--muted);font-size:12px;margin:0 0 8px;line-height:1.4}
+.credit .lic span{font-weight:600;color:var(--ink)}
+.credit .lic a{display:inline;color:var(--accent)}
+.credit a{color:var(--accent);text-decoration:none;font-size:12.5px;display:block;word-break:break-word}
+.credit a:hover{text-decoration:underline}
+footer{max-width:1600px;margin:0 auto;padding:24px 32px 60px;color:var(--muted);font-size:12.5px;
+border-top:1px solid var(--line)}
+footer a{color:var(--accent)}
+.thumb::after{content:"⤢";position:absolute;top:8px;right:10px;font-size:14px;color:var(--muted);
+opacity:0;transition:opacity .15s}
+.thumb:hover::after{opacity:.7}
+/* full-screen lightbox */
+.lightbox{position:fixed;inset:0;z-index:1000;display:none}
+.lightbox.open{display:block}
+.lb-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:88px 72px}
+.lb-stage img{width:100%;height:100%;object-fit:contain}
+.lb-stage.bg-transparent{background:
+ linear-gradient(45deg,#d5dbe2 25%,#fff 25%,#fff 75%,#d5dbe2 75%) 0 0/30px 30px,
+ linear-gradient(45deg,#d5dbe2 25%,#fff 25%,#fff 75%,#d5dbe2 75%) 15px 15px/30px 30px,#fff}
+.lb-stage.bg-white{background:#fff}
+.lb-stage.bg-dark{background:#0d0f12}
+.lb-topbar{position:absolute;top:0;left:0;right:0;height:60px;display:flex;align-items:center;
+gap:16px;padding:0 20px;background:rgba(20,24,30,.82);color:#fff;z-index:2;backdrop-filter:blur(6px)}
+.lb-name{font-weight:600;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lb-spacer{flex:1}
+.lb-toggle{display:flex;align-items:center;gap:6px;font-size:12px;color:#c5ccd6}
+.lb-toggle button{font:inherit;font-size:12px;color:#c5ccd6;background:transparent;
+border:1px solid rgba(255,255,255,.25);padding:4px 10px;border-radius:999px;cursor:pointer}
+.lb-toggle button.on{background:#fff;color:#12151a;border-color:#fff}
+.lb-dl{display:flex;gap:6px}
+.lb-dl a{font-size:12px;text-decoration:none;color:#c5ccd6;border:1px solid rgba(255,255,255,.25);
+padding:4px 10px;border-radius:6px}
+.lb-dl a:hover{color:#fff;border-color:#fff}
+.lb-x{background:transparent;border:0;color:#fff;font-size:26px;line-height:1;cursor:pointer;padding:0 4px}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;background:rgba(20,24,30,.55);
+color:#fff;border:0;width:52px;height:64px;font-size:30px;cursor:pointer;border-radius:8px}
+.lb-nav:hover{background:rgba(20,24,30,.85)}
+.lb-prev{left:14px}.lb-next{right:14px}
+@media(max-width:640px){.lb-stage{padding:70px 16px}.lb-dl{display:none}}
+/* thin sticky top nav (shared across every page) */
+.topnav{position:sticky;top:0;z-index:900;background:rgba(247,248,250,.86);
+backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topnav-inner{max-width:1600px;margin:0 auto;padding:0 32px;min-height:52px;
+display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.brand{font-weight:700;font-size:16px;letter-spacing:-.01em;color:var(--ink);
+text-decoration:none;white-space:nowrap}
+.brand b{color:var(--accent);font-weight:700}
+.navlinks{display:flex;flex-wrap:wrap;gap:2px}
+.navlinks a{font-size:13px;text-decoration:none;color:var(--muted);padding:6px 11px;
+border-radius:7px;white-space:nowrap}
+.navlinks a:hover{color:var(--ink);background:rgba(0,0,0,.05)}
+.navlinks a.active{color:var(--accent);font-weight:600}
+/* nav dropdown (About → Contributing / Licensing / Credits) */
+.navitem{position:relative;display:inline-flex}
+.submenu{position:absolute;top:100%;left:0;min-width:160px;background:var(--card);
+border:1px solid var(--line);border-radius:9px;box-shadow:0 12px 30px rgba(0,0,0,.14);
+padding:5px;display:none;z-index:30}
+.navitem:hover .submenu,.navitem:focus-within .submenu{display:block}
+.navlinks .submenu a{display:block;font-size:13px;padding:7px 12px;border-radius:6px}
+@media(max-width:640px){.topnav-inner{padding:8px 16px;gap:6px 14px}
+.wrap{padding:0 16px 48px}header{padding:28px 16px 16px}
+/* no hover on touch — show the sub-links inline instead of as a dropdown */
+.navitem{display:contents}
+.submenu{position:static;display:flex;flex-wrap:wrap;background:none;border:0;box-shadow:none;
+padding:0;min-width:0}
+.navlinks .submenu a{padding:6px 11px}}
+/* simple prose pages (about / links / reference placeholders) */
+.prose{max-width:80ch;margin:8px 0}
+.prose h1{font-size:30px;letter-spacing:-.02em;margin:0 0 12px}
+.prose p{color:var(--ink);margin:0 0 14px}
+.prose .lead{color:var(--muted);font-size:16px}
+.prose a{color:var(--accent);text-decoration:none}
+.prose a:hover{text-decoration:underline}
+.signoff{margin:22px 0 0;font-style:italic;color:var(--ink);line-height:1.5}
+.social{display:flex;flex-wrap:wrap;gap:16px;margin:14px 0 0}
+.social a{display:inline-flex;align-items:center;gap:7px;color:var(--muted);text-decoration:none;
+font-size:13px;font-weight:600}
+.social a:hover{color:var(--accent)}
+.social svg{width:19px;height:19px;flex:none}
+.linklist{list-style:none;padding:0;margin:14px 0}
+.linklist li{padding:9px 0;border-bottom:1px solid var(--line)}
+.linklist a{color:var(--accent);text-decoration:none;font-weight:600}
+.linklist a:hover{text-decoration:underline}
+.linkcat{font-size:19px;margin:34px 0 2px;padding-bottom:6px;border-bottom:2px solid var(--ink)}
+.linkcat-blurb{color:var(--muted);font-size:14px;margin:6px 0 0}
+/* rendered Markdown doc pages (contributing / licensing / credits) */
+.prose.doc h2{font-size:21px;margin:30px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.prose.doc h3{font-size:16px;margin:22px 0 6px}
+.prose.doc h4{font-size:14px;margin:18px 0 4px}
+.prose.doc ul,.prose.doc ol{padding-left:22px;margin:0 0 14px}
+.prose.doc li{margin:4px 0}
+.prose.doc a{color:var(--accent);text-decoration:none}
+.prose.doc a:hover{text-decoration:underline}
+.prose.doc code{background:rgba(0,0,0,.05);border:1px solid var(--line);border-radius:4px;
+padding:1px 5px;font-size:.9em}
+.prose.doc pre{background:#12151a;color:#e6e8ec;padding:14px 16px;border-radius:8px;overflow-x:auto}
+.prose.doc pre code{background:none;border:0;padding:0;color:inherit;font-size:12.5px}
+.prose.doc blockquote{margin:0 0 14px;padding:2px 14px;border-left:3px solid var(--accent);
+color:var(--muted)}
+.prose.doc table{border-collapse:collapse;width:100%;margin:0 0 16px;font-size:13.5px;display:block;overflow-x:auto}
+.prose.doc th,.prose.doc td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+.prose.doc th{background:rgba(0,0,0,.03);font-weight:600}
+.prose.doc hr{border:0;border-top:1px solid var(--line);margin:24px 0}
+/* in-game reference gallery */
+.rgame{margin-top:40px}
+.rgame>.sh h2{font-size:19px}
+.rteam{display:flex;align-items:center;gap:14px;margin:30px 0 14px;padding-bottom:10px;
+border-bottom:1px solid var(--line)}
+.rteam-logo{height:44px;width:auto;max-width:150px;object-fit:contain;display:block}
+.rteam h3{margin:0;font-size:16px}
+.rteam .rcount{font-size:11px;color:var(--muted);font-weight:400;border:1px solid var(--line);
+border-radius:999px;padding:1px 9px;margin-left:2px}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.rcard{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:zoom-in}
+.rcard:hover{border-color:var(--accent)}
+.rthumb{aspect-ratio:16/9;background:#0d0f12;overflow:hidden}
+.rthumb img{width:100%;height:100%;object-fit:cover;display:block}
+.rmeta{padding:8px 12px;font-size:12.5px;color:var(--ink);border-top:1px solid var(--line)}
+.rcredit{color:var(--muted);font-size:12px;margin:14px 0 0}
+/* full-screen photo lightbox (screenshots) */
+.plightbox{position:fixed;inset:0;z-index:1000;display:none;background:#0d0f12}
+.plightbox.open{display:block}
+.pl-topbar{position:absolute;top:0;left:0;right:0;height:56px;display:flex;align-items:center;
+gap:14px;padding:0 20px;background:rgba(13,15,18,.72);color:#fff;z-index:2;backdrop-filter:blur(6px)}
+.pl-logo{height:26px;width:auto;max-width:90px;object-fit:contain;filter:invert(1);flex:none}
+.pl-name{font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pl-spacer{flex:1}
+.pl-x{background:transparent;border:0;color:#fff;font-size:26px;line-height:1;cursor:pointer;padding:0 4px}
+.pl-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:76px 72px}
+.pl-stage img{max-width:100%;max-height:100%;object-fit:contain}
+.pl-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;background:rgba(255,255,255,.12);
+color:#fff;border:0;width:52px;height:64px;font-size:30px;cursor:pointer;border-radius:8px}
+.pl-nav:hover{background:rgba(255,255,255,.28)}
+.pl-prev{left:14px}.pl-next{right:14px}
+@media(max-width:640px){.pl-stage{padding:64px 12px}.pl-nav{width:40px;height:52px;font-size:24px}}
+</style></head>
+<body>
+<nav class="topnav"><div class="topnav-inner"><a class="brand" href="index.html">awesome&#8209;<b>wipeout</b></a><div class="navlinks"><a href="index.html">Marks</a><a href="fonts.html">Fonts</a><a href="reference.html">In-game reference</a><a href="links.html">Links</a><div class="navitem"><a href="about.html" class="active">About ▾</a><div class="submenu"><a href="contributing.html" class="active">Contributing</a><a href="licensing.html">Licensing</a><a href="credits.html">Credits</a></div></div></div></div></nav>
+<div class="wrap">
+<div class="prose doc">
+<h1>Contributing</h1>
+<p>Thanks for helping grow <strong>awesome-wipeout</strong>! Whether you&#x27;ve made WipEout art, found a great asset, or spotted something wrong, contributions are very welcome. There are <strong>two ways</strong> to do it — pick whichever suits you.</p>
+<h2>The easy way — just open an issue</h2>
+<p><strong>No GitHub skills or command line needed.</strong> If you&#x27;ve got something to add (a logo, a font, a screenshot, a link) or a correction to make, just <a href="https://github.com/awesome-wipeout/awesome-wipeout.github.io/issues">open an issue</a> and tell us about it. The more of this you can include, the faster it goes in:</p>
+<ul><li><strong>What it is</strong> — e.g. &quot;AG-Systems team logo, WipEout HD era&quot;.</li><li><strong>A link to the source</strong> — where it comes from (a DeviantArt page, the creator&#x27;s site, a forum post, wherever you found it).</li><li><strong>Who made it</strong> — the original creator&#x27;s name or handle, so they get credited.</li><li><strong>The licence</strong>, if you know it — or just link the page where the terms are stated.</li><li><strong>The file itself</strong> — you can drag an SVG or PNG straight into the issue.</li></ul>
+<p>A maintainer takes it from there. This is also the way to <strong>flag a wrong credit, a licensing concern, or ask for your own work to be removed</strong> — it&#x27;ll be actioned promptly.</p>
+<h2>The hands-on way — open a pull request</h2>
+<p>If you&#x27;re comfortable with git and GitHub, you can add the asset yourself. Everything is data-driven: the authored metadata lives in **<code>data/*.toml</code><strong>, and <code>tools/build.py</code> regenerates all the rest — the PNGs, the manifests, the HTML pages and the tear sheet. </strong>Never hand-edit the generated files.**</p>
+<p>The shape is always the same: <strong>register the contributor → add the asset → open a PR.</strong></p>
+<h3>1. Register the contributor (if new)</h3>
+<p>Every asset is credited to a <strong>contributor</strong> — the person who created it. That might be you, or the original artist whose work you&#x27;re adding. If they&#x27;re not already in <code>data/contributors.toml</code>, add a block:</p>
+<pre><code>[[contributor]]
+id = &quot;handle&quot;                         # stable slug used to credit their work
+name = &quot;Their Name (handle)&quot;
+blurb = &quot;What they contributed&quot;
+license = { name = &quot;CC BY-NC 4.0&quot;, url = &quot;https://creativecommons.org/licenses/by-nc/4.0/&quot; }
+links = [ { label = &quot;their source page&quot;, url = &quot;https://…&quot; } ]</code></pre>
+<p>The <code>license</code> matters — tracking provenance is the whole point (see <a href="licensing.html">LICENSING.md</a>). It has a <code>name</code>, an optional <code>url</code> (a link to the licence itself — e.g. the Creative Commons page), and an optional <code>note</code>: a short plain-English description of the terms, for when the licence is informal and has no standard link — e.g. <code>note = &quot;Used with credit; artist asks for a link back.&quot;</code></p>
+<blockquote><p><strong>Only add work you have the right to.</strong> Either you are the original author, <strong>or</strong> the licence / permission must be <strong>clearly stated at the creator&#x27;s linked source</strong>. If the provenance or terms aren&#x27;t clear, don&#x27;t add it — <a href="https://github.com/awesome-wipeout/awesome-wipeout.github.io/issues">open an issue</a> so it can be checked first.</p></blockquote>
+<h3>2. Add your asset</h3>
+<p>Pick the one that matches what you&#x27;re contributing.</p>
+<h4>A vector logo — hosted as SVG</h4>
+<ol><li>Drop a clean <strong>SVG</strong> into the right <code>marks/&lt;section&gt;/</code> folder (<code>titles</code>, <code>teams/&lt;era&gt;</code>, <code>classes</code>, <code>game-modes</code>, <code>sponsors</code>, <code>tracks</code>, <code>leagues</code>, <code>misc</code>, …), named lowercase-kebab-case: <code>ag-systems.svg</code>. Vector paths only — <strong>no embedded bitmaps</strong>, a tightly cropped <code>viewBox</code>, and single-colour marks in solid black (<code>#000000</code>).</li><li>Register it in <code>data/marks.toml</code> (one entry per file). <code>python3 tools/scaffold.py --write</code> writes the stub for you — just fill in the <code>credit</code> (the contributor&#x27;s <code>id</code>).</li></ol>
+<h4>A reference-only mark — PNG only</h4>
+<p>For art whose licence won&#x27;t let us redistribute the vector, add just a <strong>PNG</strong> — <em>no</em> SVG (that absence is what marks it reference-only). This is a <strong>vector library</strong>, so the <code>source</code> link <strong>must</strong> lead to where the actual <strong>vector</strong> can be obtained (the creator&#x27;s own page or pack) — not merely an image or a mention. If there&#x27;s no vector available anywhere, it isn&#x27;t a fit for the library. Add the <code>data/marks.toml</code> entry with that <code>source</code>.</p>
+<h4>A font — referenced, never hosted</h4>
+<p>Add an entry to <code>data/fonts.toml</code> in the right group, with a &quot;get&quot; <code>url</code>. If the designer isn&#x27;t already a contributor, add them in step 1 first.</p>
+<p><em>The exact fields are documented in comments at the top of each <code>data/</em>.toml</code> file.*</p>
+<h3>3. Open the pull request</h3>
+<p>Describe the asset, link its source, and confirm the licence. That&#x27;s it — thank you! 🏁</p>
+<p><strong>No need to build anything.</strong> Just commit your file(s) and your <code>data/*.toml</code> edit — the rest of the site (PNGs, manifests, HTML pages and the tear sheet) is regenerated automatically when your change is merged.</p>
+<p><em>(Want to preview locally first? <code>pip install cairosvg pymupdf fonttools lxml pillow</code> then <code>python3 tools/build.py</code> — but it&#x27;s entirely optional.)</em></p>
+</div>
+</div>
+<footer>
+  <p>WipEout and all related logos, names and marks are trademarks of Sony Interactive Entertainment /
+  Studio Liverpool (formerly Psygnosis). This is a non-commercial, fan-made archive for the community.
+  Assets compiled from the work of the original creators &mdash; see
+  <a href="credits.html">CREDITS</a>. Contributions welcome via
+  <a href="contributing.html">pull request</a>.</p>
+</footer>
+
+</body></html>

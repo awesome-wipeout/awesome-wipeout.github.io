@@ -1,0 +1,72 @@
+# In-game reference screenshots (build = code, data = data).
+#
+# A SEPARATE, photographic collection from the vector marks: reference/<game>/<team>/<slug>.jpg.
+# These are raster screenshots, so the repo's "vector only" rule (which is about the marks)
+# does NOT apply here. They are shown for reference only and are never offered as downloads;
+# a downscaled <slug>.thumb.jpg is generated next to each for the gallery grid (the lightbox
+# loads the full image). reference/manifest.json is generated — do not hand-edit.
+#
+# Images are DISCOVERED by scanning; this file only supplies display names, ordering and the
+# shared credit. Games/teams not listed here still appear (title-cased, after the listed ones);
+# empty team folders are skipped. To add screenshots: drop JPGs in reference/<game>/<team>/ and
+# rebuild — no per-image entry needed.
+
+[credit]
+holder = "Sony Interactive Entertainment / Studio Liverpool"
+note = "Screenshots shown for reference only; © their rights-holders, not redistributed."
+
+[[game]]
+slug = "omega"
+name = "WipEout Omega Collection"
+blurb = "The PS4 remaster — HD, Fury and 2048 combined. Ship liveries and cockpits at high resolution."
+teams = ["feisar", "ag-systems", "auricom", "qirex", "pirhana", "triakis", "goteki45", "assegai", "harimau"]
+
+# Per-team display data. `slug` matches the reference/<game>/<slug> folder; `name` is the
+# shown name (omit → title-cased slug); `logo` reuses a mark SVG from the marks collection as
+# the category header + lightbox badge (HD-era emblems, to match the Omega Collection). Logos
+# are single-colour black marks — the page shows them as-is; the dark lightbox inverts them to
+# white. Omit `logo` to fall back to a plain text header.
+[[team]]
+slug = "feisar"
+name = "FEISAR"
+logo = "marks/teams/hd/feisar-logo.svg"
+
+[[team]]
+slug = "ag-systems"
+name = "AG Systems"
+logo = "marks/teams/hd/ag-sys-logo.svg"
+
+[[team]]
+slug = "auricom"
+name = "Auricom"
+logo = "marks/teams/hd/auricom.svg"
+
+[[team]]
+slug = "qirex"
+name = "Qirex"
+logo = "marks/teams/hd/qirex-logo-2.svg"
+
+[[team]]
+slug = "pirhana"
+name = "Pir-hana"
+logo = "marks/teams/hd/piranha-logo.svg"
+
+[[team]]
+slug = "triakis"
+name = "Triakis"
+logo = "marks/teams/hd/triakis-logo.svg"
+
+[[team]]
+slug = "goteki45"
+name = "Goteki 45"
+logo = "marks/teams/hd/goteki-logo.svg"
+
+[[team]]
+slug = "assegai"
+name = "Assegai"
+logo = "marks/teams/hd/assegai-logo.svg"
+
+[[team]]
+slug = "harimau"
+name = "Harimau"
+logo = "marks/teams/hd/harimau-logo.svg"

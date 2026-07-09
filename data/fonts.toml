@@ -1,0 +1,204 @@
+# Font references — the library never hosts font files; it shows a generated
+# specimen (or the source's preview) and links to 'get' each face. Authored data.
+# `credit` on a font is a contributor id from data/contributors.toml (shared registry —
+# same as marks). Fonts carry their own per-font `license`.
+
+[source]
+repo = "https://github.com/NR74W/WipEout-Fonts"
+blob = "https://github.com/NR74W/WipEout-Fonts/blob/master/"
+preview = "https://raw.githubusercontent.com/NR74W/WipEout-Fonts/master/previews/"
+
+# NR74W OpenType recreations, grouped by era (order preserved).
+[[recreated]]
+era = "WipEout · 2097 / 64"
+fonts = [ { family = "Amalgama", ttf = "Amalgama.ttf", credit = "nr74w" }, { family = "F5000", ttf = "F5000.ttf", credit = "nr74w" } ]
+
+[[recreated]]
+era = "Wip3out"
+fonts = [ { family = "F500 Ang-ular", ttf = "F500 Ang-ular.ttf", credit = "nr74w" } ]
+
+[[recreated]]
+era = "WipEout Fusion"
+fonts = [ { family = "Fusion", ttf = "Fusion.ttf", credit = "nr74w" } ]
+
+[[recreated]]
+era = "WipEout Pure"
+fonts = [ { family = "FX300 Angular", ttf = "FX300 Angular.ttf", credit = "nr74w" }, { family = "FX300", ttf = "FX300.ttf", credit = "nr74w" }, { family = "2197 Heavy", ttf = "2197 Heavy.ttf", credit = "nr74w" }, { family = "2197 Block", ttf = "2197 Block.ttf", credit = "nr74w" } ]
+
+[[recreated]]
+era = "WipEout Pulse"
+fonts = [ { family = "X2", ttf = "X2.ttf", credit = "nr74w" }, { family = "supErphoniX2", ttf = "supErphoniX2.ttf", credit = "nr74w" }, { family = "Assegai Rounded", ttf = "Assegai Rounded.ttf", credit = "nr74w" } ]
+
+[[recreated]]
+era = "WipEout HD"
+fonts = [ { family = "2097", ttf = "2097.ttf", credit = "nr74w" }, { family = "WO3", ttf = "WO3.ttf", credit = "nr74w" } ]
+
+[[thirdparty]]
+family = "04b_19"
+usage = "Fusion (cover)"
+license = "free"
+url = "https://www.dafont.com/04b-19.font"
+credit = "yuji-oshimoto"
+
+[[thirdparty]]
+family = "Bitsumishi"
+usage = "WipEout 2048"
+license = "free"
+url = "https://www.dafont.com/bitsumishi.font"
+credit = "roger-s-nelsson"
+
+[[thirdparty]]
+family = "Neo Sans"
+usage = "WipEout 2048"
+license = "commercial"
+url = "https://www.myfonts.com/collections/neo-sans-font-monotype-imaging"
+credit = "sebastian-lester"
+
+[[thirdparty]]
+family = "OCR A"
+usage = "WipEout Pure"
+license = "free"
+url = "https://sourceforge.net/projects/ocr-a-font/"
+
+[[thirdparty]]
+family = "OCR B"
+usage = "WipEout (cover)"
+license = "system / commercial"
+url = "https://learn.microsoft.com/en-us/typography/font-list/ocrb"
+credit = "adrian-frutiger"
+
+[[thirdparty]]
+family = "Orbit-B"
+usage = "WipEout (cover)"
+license = "commercial"
+url = "https://www.myfonts.com/collections/orbit-b-font-bitstream"
+
+[[thirdparty]]
+family = "DF So Gei W 9"
+usage = "Pure / HD"
+license = "commercial"
+url = "https://www.myfonts.com/collections/df-so-gei-japanese-font-dynacomware"
+
+[[thirdparty]]
+family = "TRACEROUTE"
+usage = "WipEout HD"
+license = "free"
+url = "https://www.1001fonts.com/traceroute-font.html"
+credit = "apostrophic-labs"
+
+[[dafont]]
+family = "Qirex"
+usage = "Team Qirex"
+license = "free (personal)"
+url = "https://www.fontget.com/font/qirex/"
+credit = "nathan-caldecott"
+
+[[dafont]]
+family = "Feisar"
+usage = "Team FEISAR"
+license = "free (personal)"
+url = "https://www.fontget.com/font/feisar/"
+credit = "nathan-caldecott"
+
+[[dafont]]
+family = "Icaras"
+usage = "Team Icaras"
+license = "free (personal)"
+url = "https://www.fontget.com/font/icaras/"
+credit = "nathan-caldecott"
+
+[[dafont]]
+family = "Auricom"
+usage = "Team Auricom (Wip3out)"
+license = "free (personal)"
+url = "https://www.dafont.com/auricom.font"
+
+[[dafont]]
+family = "Piranha"
+usage = "Team Piranha"
+license = "free (personal)"
+url = "https://www.fontget.com/font/piranha/"
+credit = "nathan-caldecott"
+
+[[dafont]]
+family = "Goteki 45"
+usage = "Team Goteki 45"
+license = "free (personal)"
+url = "https://www.fontget.com/font/goteki-45/"
+credit = "nathan-caldecott"
+
+[[dafont]]
+family = "Wipeout HD"
+usage = "WipEout HD logo"
+license = "free"
+url = "https://www.wfonts.com/font/wipeout-hd"
+credit = "nathan-caldecott"
+
+[[dafont]]
+family = "Wipeout HD Fury"
+usage = "WipEout HD Fury logo"
+license = "free"
+url = "https://www.wfonts.com/font/wipeout-hd-fury"
+credit = "nathan-caldecott"
+
+[[dafont]]
+family = "SilverStream"
+usage = "WipEout (1995) interface"
+license = "free"
+url = "https://www.dafont.com/silverstream.font"
+
+[[dafont]]
+family = "Wipeout Typeface"
+usage = "WipEout tribute"
+license = "free (personal)"
+url = "https://www.deviantart.com/paulw/art/Wipeout-Typeface-162587903"
+credit = "paul-willocks"
+
+# Referenced-only system faces (no specimen generated).
+[[refer]]
+family = "Helvetica"
+usage = "Wip3out / WipEout HD"
+note = "macOS system font · Linotype (commercial)"
+
+[[refer]]
+family = "Arial"
+usage = "WipEout HD"
+note = "Windows / Office system font"
+
+[[refer]]
+family = "Impact"
+usage = "WipEout Fusion (manual)"
+note = "Windows / macOS system font"
+
+# Lore-flavoured specimen line per family.
+[lore]
+"Amalgama" = "FEISAR streaks past Auricom on Vineta K"
+"F5000" = "The F5000 league ignites over Talon's Reach"
+"F500 Ang-ular" = "Qirex-RD boosts through Sebenco Climb"
+"Fusion" = "Tigron and EG-X clash in the F9000 circuit"
+"FX300 Angular" = "Piranha bites hard on Anulpha Pass"
+"FX300" = "Assegai Developments tunes an FX300 ship"
+"2197 Heavy" = "Goteki 45 holds pole at Chenghou Project"
+"2197 Block" = "Zone mode pushes pilots beyond Phantom speed"
+"X2" = "Pulse racers carve Moa Therma's neon curves"
+"supErphoniX2" = "Van-Uber engineers a quantum-drive prototype"
+"Assegai Rounded" = "Harimau glides over Metropia at dawn"
+"2097" = "Auricom Research charges the plasma bolt"
+"WO3" = "Icaras rockets down Sol 2's floodlit straight"
+"04b_19" = "Fusion pilots race beneath a pixel-lit sky"
+"Bitsumishi" = "WipEout 2048 revives anti-gravity racing"
+"Neo Sans" = "Neo teams chase the 2048 championship crown"
+"OCR A" = "Pure ships scan the FX350 grid for a lock"
+"OCR B" = "Barcode telemetry streams from the pit wall"
+"Orbit-B" = "Orbital feeds log every anti-grav lap"
+"DF So Gei W 9" = "Pure and HD banners glow above the grid"
+"TRACEROUTE" = "HD relays route racers through the Zone"
+"Qirex" = "Qirex-RD chases the podium on Corridon 12"
+"Feisar" = "FEISAR flies blue and gold over Vineta K"
+"Icaras" = "Icaras burns bright above Modesto Heights"
+"Auricom" = "Auricom Research holds the inside line"
+"Piranha" = "Piranha Advancements bites at Sebenco Climb"
+"Goteki 45" = "Goteki 45 guns it through Chenghou Project"
+"Wipeout HD" = "WipEout HD lights up the FX350 grid"
+"Wipeout HD Fury" = "Fury unleashes Zone battles at full tilt"
+"SilverStream" = "The F3600 league launches in 2052"

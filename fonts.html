@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fonts · awesome-wipeout</title>
+<style>
+:root{--bg:#f7f8fa;--card:#fff;--ink:#12151a;--muted:#6b7280;--line:#e5e7eb;
+--accent:#0b7fd4;--check:#d5dbe2}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+color:var(--ink);background:var(--bg)}
+header{padding:48px 32px 24px;max-width:1600px;margin:0 auto}
+h1{margin:0 0 8px;font-size:30px;letter-spacing:-.02em}
+.lead{color:var(--muted);max-width:70ch;margin:0 0 12px}
+.stat{display:inline-block;margin-right:18px;color:var(--muted);font-size:13px}
+.wrap{max-width:1600px;margin:0 auto;padding:0 32px 64px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 8px}
+.toc a{font-size:12.5px;text-decoration:none;color:var(--accent);border:1px solid var(--line);
+background:var(--card);padding:4px 10px;border-radius:999px}
+.pdflink{font-weight:600;color:var(--accent);text-decoration:none;border:1px solid var(--accent);
+padding:6px 12px;border-radius:8px;display:inline-block}
+.pdflink:hover{background:var(--accent);color:#fff}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px 28px;flex-wrap:wrap}
+.hero-top h1{margin:0}
+.pdfcta{display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:6px}
+.pdfcta-note{font-size:12.5px;color:var(--muted);max-width:34ch}
+@media(max-width:640px){.pdfcta{align-items:flex-start;text-align:left}}
+section{margin-top:40px}
+.sh{border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:20px}
+.sh h2{margin:0;font-size:19px}
+.sh p{margin:4px 0 0;color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;
+display:flex;flex-direction:column}
+.thumb{height:220px;display:flex;align-items:center;justify-content:center;padding:28px;cursor:zoom-in;position:relative;
+background:
+ linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 0 0/22px 22px,
+ linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 11px 11px/22px 22px,
+ #fff}
+.thumb img{width:100%;height:164px;object-fit:contain;display:block}
+.meta{padding:10px 12px;border-top:1px solid var(--line)}
+.name{font-weight:600;font-size:13.5px;margin-bottom:6px;word-break:break-word}
+.dl{display:flex;gap:6px}
+.dl a{font-size:11px;text-decoration:none;color:var(--muted);border:1px solid var(--line);
+padding:2px 8px;border-radius:6px}
+.dl a:hover{color:var(--accent);border-color:var(--accent)}
+.dl a.get{color:var(--accent);border-color:var(--accent);font-weight:600}
+.dl a.get:hover{background:var(--accent);color:#fff}
+.dl a.locked{cursor:pointer}
+/* restricted-vector overlay: shown when the SVG button of a non-redistributable mark is clicked */
+.vbox{position:fixed;inset:0;z-index:1200;display:none;align-items:center;justify-content:center;
+padding:20px;background:rgba(12,15,20,.62)}
+.vbox.open{display:flex}
+.vbox-panel{position:relative;background:var(--card);color:var(--ink);max-width:360px;width:100%;
+border:1px solid var(--line);border-radius:12px;padding:24px;box-shadow:0 24px 64px rgba(0,0,0,.4);text-align:center}
+.vbox-panel h3{margin:0 0 10px;font-size:16px}
+.vbox-panel p{margin:0 0 18px;font-size:13px;line-height:1.55;color:var(--muted)}
+.vbox-go{display:inline-block;text-decoration:none;background:var(--accent);color:#fff;font-weight:600;
+font-size:13px;padding:9px 18px;border-radius:8px}
+.vbox-go:hover{filter:brightness(1.08)}
+.vbox-x{position:absolute;top:8px;right:10px;background:none;border:0;font-size:22px;line-height:1;
+color:var(--muted);cursor:pointer}
+.vbox-x:hover{color:var(--ink)}
+.src{display:block;margin-top:8px;font-size:11px;color:var(--muted);text-decoration:none}
+.src:hover{color:var(--accent);text-decoration:underline}
+.src-none{color:#aab2bd;font-style:italic}
+.credit:target{border-color:var(--accent);box-shadow:0 0 0 2px rgba(11,127,212,.15)}
+.fonts{margin-top:56px;border-top:1px solid var(--line);padding-top:28px}
+.fonts h2{font-size:19px;margin:0 0 6px}
+.fonts>p{color:var(--muted);font-size:13px;margin:0 0 6px;max-width:82ch}
+.fonts h3{font-size:14px;margin:24px 0 12px;color:var(--ink)}
+.font-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.font-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;cursor:zoom-in}
+.font-card:hover{border-color:var(--accent)}
+.font-shot{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px 16px;height:150px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.font-shot img{width:100%;height:100%;object-fit:contain;display:block}
+.font-shot-missing{flex-direction:column;align-items:flex-start;justify-content:center;border-style:dashed;gap:4px;color:#9aa3af}
+.font-shot-missing b{font-weight:600;font-size:19px;color:#8a929c}
+.font-shot-missing small{font-size:11px}
+.font-meta{margin-top:12px;display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12px;text-align:left}
+.font-info{min-width:0}
+.font-name{font-weight:600;font-size:13.5px;color:var(--ink)}
+.font-use{color:var(--muted);font-size:11.5px;margin-top:3px}
+.font-cred{color:var(--muted);font-size:11.5px;margin-top:2px;min-height:1.25em}
+.font-cred a{color:var(--muted);text-decoration:none;border-bottom:1px dotted var(--line)}
+.font-cred a:hover{color:var(--accent)}
+.font-refer{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-wrap:wrap;gap:8px 22px;font-size:13px}
+.font-refer li{color:var(--muted)}
+.font-refer .font-name{color:var(--ink);font-size:13px}
+.font-get{flex:none;align-self:center;color:var(--accent);text-decoration:none;border:1px solid var(--line);padding:4px 11px;border-radius:6px;white-space:nowrap}
+.font-get:hover{border-color:var(--accent)}
+.fbox{position:fixed;inset:0;z-index:1000;display:none;background:#fff}
+.fbox.open{display:flex;flex-direction:column}
+.fbox-top{height:60px;display:flex;align-items:center;gap:14px;padding:0 22px;border-bottom:1px solid var(--line)}
+.fbox-name{font-weight:600;font-size:16px}
+.fbox-era{color:var(--muted);font-size:13px}
+.fbox-spacer{flex:1}
+.fbox-get{font-size:13px;text-decoration:none;color:var(--accent);border:1px solid var(--line);padding:5px 11px;border-radius:7px}
+.fbox-get:hover{border-color:var(--accent)}
+.fbox-x{background:transparent;border:0;font-size:28px;line-height:1;cursor:pointer;color:var(--ink);padding:0 4px}
+.fbox-body{flex:1;overflow:hidden;padding:24px 84px;display:flex;flex-direction:column;gap:18px;align-items:center;justify-content:center}
+.fbox-body img{width:100%;height:100%;object-fit:contain}
+.fbox-note{color:#9a3b3b;font-size:14px;max-width:60ch;text-align:center}
+.fbox-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;background:var(--card);
+border:1px solid var(--line);color:var(--ink);width:48px;height:60px;font-size:28px;cursor:pointer;border-radius:8px}
+.fbox-nav:hover{border-color:var(--accent);color:var(--accent)}
+.fbox-prev{left:16px}.fbox-next{right:16px}
+@media(max-width:640px){.fbox-body{padding:24px 16px}.fbox-nav{width:38px;height:50px;font-size:22px}}
+.credits{margin-top:56px;border-top:1px solid var(--line);padding-top:28px}
+.credits h2{font-size:19px;margin:0 0 6px}
+.credits>p{color:var(--muted);font-size:13px;margin:0 0 18px;max-width:80ch}
+.credits-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.credit{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.credit .who{font-weight:600;font-size:14px}
+.credit .what{color:var(--muted);font-size:12.5px;margin:4px 0 8px}
+.credit .lic{color:var(--muted);font-size:12px;margin:0 0 8px;line-height:1.4}
+.credit .lic span{font-weight:600;color:var(--ink)}
+.credit .lic a{display:inline;color:var(--accent)}
+.credit a{color:var(--accent);text-decoration:none;font-size:12.5px;display:block;word-break:break-word}
+.credit a:hover{text-decoration:underline}
+footer{max-width:1600px;margin:0 auto;padding:24px 32px 60px;color:var(--muted);font-size:12.5px;
+border-top:1px solid var(--line)}
+footer a{color:var(--accent)}
+.thumb::after{content:"⤢";position:absolute;top:8px;right:10px;font-size:14px;color:var(--muted);
+opacity:0;transition:opacity .15s}
+.thumb:hover::after{opacity:.7}
+/* full-screen lightbox */
+.lightbox{position:fixed;inset:0;z-index:1000;display:none}
+.lightbox.open{display:block}
+.lb-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:88px 72px}
+.lb-stage img{width:100%;height:100%;object-fit:contain}
+.lb-stage.bg-transparent{background:
+ linear-gradient(45deg,#d5dbe2 25%,#fff 25%,#fff 75%,#d5dbe2 75%) 0 0/30px 30px,
+ linear-gradient(45deg,#d5dbe2 25%,#fff 25%,#fff 75%,#d5dbe2 75%) 15px 15px/30px 30px,#fff}
+.lb-stage.bg-white{background:#fff}
+.lb-stage.bg-dark{background:#0d0f12}
+.lb-topbar{position:absolute;top:0;left:0;right:0;height:60px;display:flex;align-items:center;
+gap:16px;padding:0 20px;background:rgba(20,24,30,.82);color:#fff;z-index:2;backdrop-filter:blur(6px)}
+.lb-name{font-weight:600;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lb-spacer{flex:1}
+.lb-toggle{display:flex;align-items:center;gap:6px;font-size:12px;color:#c5ccd6}
+.lb-toggle button{font:inherit;font-size:12px;color:#c5ccd6;background:transparent;
+border:1px solid rgba(255,255,255,.25);padding:4px 10px;border-radius:999px;cursor:pointer}
+.lb-toggle button.on{background:#fff;color:#12151a;border-color:#fff}
+.lb-dl{display:flex;gap:6px}
+.lb-dl a{font-size:12px;text-decoration:none;color:#c5ccd6;border:1px solid rgba(255,255,255,.25);
+padding:4px 10px;border-radius:6px}
+.lb-dl a:hover{color:#fff;border-color:#fff}
+.lb-x{background:transparent;border:0;color:#fff;font-size:26px;line-height:1;cursor:pointer;padding:0 4px}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;background:rgba(20,24,30,.55);
+color:#fff;border:0;width:52px;height:64px;font-size:30px;cursor:pointer;border-radius:8px}
+.lb-nav:hover{background:rgba(20,24,30,.85)}
+.lb-prev{left:14px}.lb-next{right:14px}
+@media(max-width:640px){.lb-stage{padding:70px 16px}.lb-dl{display:none}}
+/* thin sticky top nav (shared across every page) */
+.topnav{position:sticky;top:0;z-index:900;background:rgba(247,248,250,.86);
+backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topnav-inner{max-width:1600px;margin:0 auto;padding:0 32px;min-height:52px;
+display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.brand{font-weight:700;font-size:16px;letter-spacing:-.01em;color:var(--ink);
+text-decoration:none;white-space:nowrap}
+.brand b{color:var(--accent);font-weight:700}
+.navlinks{display:flex;flex-wrap:wrap;gap:2px}
+.navlinks a{font-size:13px;text-decoration:none;color:var(--muted);padding:6px 11px;
+border-radius:7px;white-space:nowrap}
+.navlinks a:hover{color:var(--ink);background:rgba(0,0,0,.05)}
+.navlinks a.active{color:var(--accent);font-weight:600}
+/* nav dropdown (About → Contributing / Licensing / Credits) */
+.navitem{position:relative;display:inline-flex}
+.submenu{position:absolute;top:100%;left:0;min-width:160px;background:var(--card);
+border:1px solid var(--line);border-radius:9px;box-shadow:0 12px 30px rgba(0,0,0,.14);
+padding:5px;display:none;z-index:30}
+.navitem:hover .submenu,.navitem:focus-within .submenu{display:block}
+.navlinks .submenu a{display:block;font-size:13px;padding:7px 12px;border-radius:6px}
+@media(max-width:640px){.topnav-inner{padding:8px 16px;gap:6px 14px}
+.wrap{padding:0 16px 48px}header{padding:28px 16px 16px}
+/* no hover on touch — show the sub-links inline instead of as a dropdown */
+.navitem{display:contents}
+.submenu{position:static;display:flex;flex-wrap:wrap;background:none;border:0;box-shadow:none;
+padding:0;min-width:0}
+.navlinks .submenu a{padding:6px 11px}}
+/* simple prose pages (about / links / reference placeholders) */
+.prose{max-width:80ch;margin:8px 0}
+.prose h1{font-size:30px;letter-spacing:-.02em;margin:0 0 12px}
+.prose p{color:var(--ink);margin:0 0 14px}
+.prose .lead{color:var(--muted);font-size:16px}
+.prose a{color:var(--accent);text-decoration:none}
+.prose a:hover{text-decoration:underline}
+.signoff{margin:22px 0 0;font-style:italic;color:var(--ink);line-height:1.5}
+.social{display:flex;flex-wrap:wrap;gap:16px;margin:14px 0 0}
+.social a{display:inline-flex;align-items:center;gap:7px;color:var(--muted);text-decoration:none;
+font-size:13px;font-weight:600}
+.social a:hover{color:var(--accent)}
+.social svg{width:19px;height:19px;flex:none}
+.linklist{list-style:none;padding:0;margin:14px 0}
+.linklist li{padding:9px 0;border-bottom:1px solid var(--line)}
+.linklist a{color:var(--accent);text-decoration:none;font-weight:600}
+.linklist a:hover{text-decoration:underline}
+.linkcat{font-size:19px;margin:34px 0 2px;padding-bottom:6px;border-bottom:2px solid var(--ink)}
+.linkcat-blurb{color:var(--muted);font-size:14px;margin:6px 0 0}
+/* rendered Markdown doc pages (contributing / licensing / credits) */
+.prose.doc h2{font-size:21px;margin:30px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.prose.doc h3{font-size:16px;margin:22px 0 6px}
+.prose.doc h4{font-size:14px;margin:18px 0 4px}
+.prose.doc ul,.prose.doc ol{padding-left:22px;margin:0 0 14px}
+.prose.doc li{margin:4px 0}
+.prose.doc a{color:var(--accent);text-decoration:none}
+.prose.doc a:hover{text-decoration:underline}
+.prose.doc code{background:rgba(0,0,0,.05);border:1px solid var(--line);border-radius:4px;
+padding:1px 5px;font-size:.9em}
+.prose.doc pre{background:#12151a;color:#e6e8ec;padding:14px 16px;border-radius:8px;overflow-x:auto}
+.prose.doc pre code{background:none;border:0;padding:0;color:inherit;font-size:12.5px}
+.prose.doc blockquote{margin:0 0 14px;padding:2px 14px;border-left:3px solid var(--accent);
+color:var(--muted)}
+.prose.doc table{border-collapse:collapse;width:100%;margin:0 0 16px;font-size:13.5px;display:block;overflow-x:auto}
+.prose.doc th,.prose.doc td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+.prose.doc th{background:rgba(0,0,0,.03);font-weight:600}
+.prose.doc hr{border:0;border-top:1px solid var(--line);margin:24px 0}
+/* in-game reference gallery */
+.rgame{margin-top:40px}
+.rgame>.sh h2{font-size:19px}
+.rteam{display:flex;align-items:center;gap:14px;margin:30px 0 14px;padding-bottom:10px;
+border-bottom:1px solid var(--line)}
+.rteam-logo{height:44px;width:auto;max-width:150px;object-fit:contain;display:block}
+.rteam h3{margin:0;font-size:16px}
+.rteam .rcount{font-size:11px;color:var(--muted);font-weight:400;border:1px solid var(--line);
+border-radius:999px;padding:1px 9px;margin-left:2px}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.rcard{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:zoom-in}
+.rcard:hover{border-color:var(--accent)}
+.rthumb{aspect-ratio:16/9;background:#0d0f12;overflow:hidden}
+.rthumb img{width:100%;height:100%;object-fit:cover;display:block}
+.rmeta{padding:8px 12px;font-size:12.5px;color:var(--ink);border-top:1px solid var(--line)}
+.rcredit{color:var(--muted);font-size:12px;margin:14px 0 0}
+/* full-screen photo lightbox (screenshots) */
+.plightbox{position:fixed;inset:0;z-index:1000;display:none;background:#0d0f12}
+.plightbox.open{display:block}
+.pl-topbar{position:absolute;top:0;left:0;right:0;height:56px;display:flex;align-items:center;
+gap:14px;padding:0 20px;background:rgba(13,15,18,.72);color:#fff;z-index:2;backdrop-filter:blur(6px)}
+.pl-logo{height:26px;width:auto;max-width:90px;object-fit:contain;filter:invert(1);flex:none}
+.pl-name{font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pl-spacer{flex:1}
+.pl-x{background:transparent;border:0;color:#fff;font-size:26px;line-height:1;cursor:pointer;padding:0 4px}
+.pl-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:76px 72px}
+.pl-stage img{max-width:100%;max-height:100%;object-fit:contain}
+.pl-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;background:rgba(255,255,255,.12);
+color:#fff;border:0;width:52px;height:64px;font-size:30px;cursor:pointer;border-radius:8px}
+.pl-nav:hover{background:rgba(255,255,255,.28)}
+.pl-prev{left:14px}.pl-next{right:14px}
+@media(max-width:640px){.pl-stage{padding:64px 12px}.pl-nav{width:40px;height:52px;font-size:24px}}
+</style></head>
+<body>
+<nav class="topnav"><div class="topnav-inner"><a class="brand" href="index.html">awesome&#8209;<b>wipeout</b></a><div class="navlinks"><a href="index.html">Marks</a><a href="fonts.html" class="active">Fonts</a><a href="reference.html">In-game reference</a><a href="links.html">Links</a><div class="navitem"><a href="about.html">About ▾</a><div class="submenu"><a href="contributing.html">Contributing</a><a href="licensing.html">Licensing</a><a href="credits.html">Credits</a></div></div></div></div></nav>
+<header>
+  <h1>Fonts</h1>
+  <p class="lead">The typefaces used across the WipEout series. <strong>No font files are hosted here</strong> &mdash;
+  this section only references them. Specimen sheets are rendered from the fonts installed on the build machine and
+  outlined to vector paths, so they display for everyone without shipping a single font. Click a specimen to view it
+  full-screen.</p>
+</header>
+<div class="wrap">
+  <div class="fonts" id="fonts">
+    <p style="color:var(--muted);font-size:13px;margin:0 0 6px">Where a font isn't present at build time,
+    a placeholder is shown until someone adds it to <code>downloads/fonts</code> and rebuilds.</p>
+    <h3>Fan-made WipEout fonts</h3>
+    <div class="font-grid">
+<div class="font-card" data-idx="0"><div class="font-shot"><img src="fonts/amalgama.svg" alt="Amalgama specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">Amalgama</div><div class="font-use">WipEout · 2097 / 64</div><div class="font-cred">by <a href="https://github.com/NR74W/WipEout-Fonts" target="_blank" rel="noopener">NR74W</a></div></div><a class="font-get" href="https://github.com/NR74W/WipEout-Fonts/blob/master/Amalgama.ttf" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="1"><div class="font-shot"><img src="fonts/f5000.svg" alt="F5000 specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">F5000</div><div class="font-use">WipEout · 2097 / 64</div><div class="font-cred">by <a href="https://github.com/NR74W/WipEout-Fonts" target="_blank" rel="noopener">NR74W</a></div></div><a class="font-get" href="https://github.com/NR74W/WipEout-Fonts/blob/master/F5000.ttf" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="2"><div class="font-shot"><img src="fonts/f500-ang-ular.svg" alt="F500 Ang-ular specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">F500 Ang-ular</div><div class="font-use">Wip3out</div><div class="font-cred">by <a href="https://github.com/NR74W/WipEout-Fonts" target="_blank" rel="noopener">NR74W</a></div></div><a class="font-get" href="https://github.com/NR74W/WipEout-Fonts/blob/master/F500%20Ang-ular.ttf" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="3"><div class="font-shot"><img src="fonts/fusion.svg" alt="Fusion specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">Fusion</div><div class="font-use">WipEout Fusion</div><div class="font-cred">by <a href="https://github.com/NR74W/WipEout-Fonts" target="_blank" rel="noopener">NR74W</a></div></div><a class="font-get" href="https://github.com/NR74W/WipEout-Fonts/blob/master/Fusion.ttf" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="4"><div class="font-shot"><img src="fonts/fx300-angular.svg" alt="FX300 Angular specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">FX300 Angular</div><div class="font-use">WipEout Pure</div><div class="font-cred">by <a href="https://github.com/NR74W/WipEout-Fonts" target="_blank" rel="noopener">NR74W</a></div></div><a class="font-get" href="https://github.com/NR74W/WipEout-Fonts/blob/master/FX300%20Angular.ttf" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="5"><div class="font-shot"><img src="fonts/fx300.svg" alt="FX300 specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">FX300</div><div class="font-use">WipEout Pure</div><div class="font-cred">by <a href="https://github.com/NR74W/WipEout-Fonts" target="_blank" rel="noopener">NR74W</a></div></div><a class="font-get" href="https://github.com/NR74W/WipEout-Fonts/blob/master/FX300.ttf" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="6"><div class="font-shot"><img src="fonts/2197-heavy.svg" alt="2197 Heavy specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">2197 Heavy</div><div class="font-use">WipEout Pure</div><div class="font-cred">by <a href="https://github.com/NR74W/WipEout-Fonts" target="_blank" rel="noopener">NR74W</a></div></div><a class="font-get" href="https://github.com/NR74W/WipEout-Fonts/blob/master/2197%20Heavy.ttf" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="7"><div class="font-shot"><img src="fonts/2197-block.svg" alt="2197 Block specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">2197 Block</div><div class="font-use">WipEout Pure</div><div class="font-cred">by <a href="https://github.com/NR74W/WipEout-Fonts" target="_blank" rel="noopener">NR74W</a></div></div><a class="font-get" href="https://github.com/NR74W/WipEout-Fonts/blob/master/2197%20Block.ttf" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="8"><div class="font-shot"><img src="fonts/x2.svg" alt="X2 specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">X2</div><div class="font-use">WipEout Pulse</div><div class="font-cred">by <a href="https://github.com/NR74W/WipEout-Fonts" target="_blank" rel="noopener">NR74W</a></div></div><a class="font-get" href="https://github.com/NR74W/WipEout-Fonts/blob/master/X2.ttf" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="9"><div class="font-shot"><img src="fonts/superphonix2.svg" alt="supErphoniX2 specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">supErphoniX2</div><div class="font-use">WipEout Pulse</div><div class="font-cred">by <a href="https://github.com/NR74W/WipEout-Fonts" target="_blank" rel="noopener">NR74W</a></div></div><a class="font-get" href="https://github.com/NR74W/WipEout-Fonts/blob/master/supErphoniX2.ttf" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="10"><div class="font-shot"><img src="fonts/assegai-rounded.svg" alt="Assegai Rounded specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">Assegai Rounded</div><div class="font-use">WipEout Pulse</div><div class="font-cred">by <a href="https://github.com/NR74W/WipEout-Fonts" target="_blank" rel="noopener">NR74W</a></div></div><a class="font-get" href="https://github.com/NR74W/WipEout-Fonts/blob/master/Assegai%20Rounded.ttf" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="11"><div class="font-shot"><img src="fonts/2097.svg" alt="2097 specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">2097</div><div class="font-use">WipEout HD</div><div class="font-cred">by <a href="https://github.com/NR74W/WipEout-Fonts" target="_blank" rel="noopener">NR74W</a></div></div><a class="font-get" href="https://github.com/NR74W/WipEout-Fonts/blob/master/2097.ttf" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="12"><div class="font-shot"><img src="fonts/wo3.svg" alt="WO3 specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">WO3</div><div class="font-use">WipEout HD</div><div class="font-cred">by <a href="https://github.com/NR74W/WipEout-Fonts" target="_blank" rel="noopener">NR74W</a></div></div><a class="font-get" href="https://github.com/NR74W/WipEout-Fonts/blob/master/WO3.ttf" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="13"><div class="font-shot"><img src="fonts/qirex.svg" alt="Qirex specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">Qirex</div><div class="font-use">Team Qirex</div><div class="font-cred">by <a href="https://www.fontriver.com/foundry/nathan_caldecott/" target="_blank" rel="noopener">Nathan Caldecott</a></div></div><a class="font-get" href="https://www.fontget.com/font/qirex/" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="14"><div class="font-shot"><img src="fonts/feisar.svg" alt="Feisar specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">Feisar</div><div class="font-use">Team FEISAR</div><div class="font-cred">by <a href="https://www.fontriver.com/foundry/nathan_caldecott/" target="_blank" rel="noopener">Nathan Caldecott</a></div></div><a class="font-get" href="https://www.fontget.com/font/feisar/" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="15"><div class="font-shot"><img src="fonts/icaras.svg" alt="Icaras specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">Icaras</div><div class="font-use">Team Icaras</div><div class="font-cred">by <a href="https://www.fontriver.com/foundry/nathan_caldecott/" target="_blank" rel="noopener">Nathan Caldecott</a></div></div><a class="font-get" href="https://www.fontget.com/font/icaras/" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="16"><div class="font-shot"><img src="fonts/auricom.svg" alt="Auricom specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">Auricom</div><div class="font-use">Team Auricom (Wip3out)</div><div class="font-cred"></div></div><a class="font-get" href="https://www.dafont.com/auricom.font" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="17"><div class="font-shot"><img src="fonts/piranha.svg" alt="Piranha specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">Piranha</div><div class="font-use">Team Piranha</div><div class="font-cred">by <a href="https://www.fontriver.com/foundry/nathan_caldecott/" target="_blank" rel="noopener">Nathan Caldecott</a></div></div><a class="font-get" href="https://www.fontget.com/font/piranha/" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="18"><div class="font-shot"><img src="fonts/goteki-45.svg" alt="Goteki 45 specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">Goteki 45</div><div class="font-use">Team Goteki 45</div><div class="font-cred">by <a href="https://www.fontriver.com/foundry/nathan_caldecott/" target="_blank" rel="noopener">Nathan Caldecott</a></div></div><a class="font-get" href="https://www.fontget.com/font/goteki-45/" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="19"><div class="font-shot"><img src="fonts/wipeout-hd.svg" alt="Wipeout HD specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">Wipeout HD</div><div class="font-use">WipEout HD logo</div><div class="font-cred">by <a href="https://www.fontriver.com/foundry/nathan_caldecott/" target="_blank" rel="noopener">Nathan Caldecott</a></div></div><a class="font-get" href="https://www.wfonts.com/font/wipeout-hd" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="20"><div class="font-shot"><img src="fonts/wipeout-hd-fury.svg" alt="Wipeout HD Fury specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">Wipeout HD Fury</div><div class="font-use">WipEout HD Fury logo</div><div class="font-cred">by <a href="https://www.fontriver.com/foundry/nathan_caldecott/" target="_blank" rel="noopener">Nathan Caldecott</a></div></div><a class="font-get" href="https://www.wfonts.com/font/wipeout-hd-fury" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="21"><div class="font-shot"><img src="fonts/silverstream.svg" alt="SilverStream specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">SilverStream</div><div class="font-use">WipEout (1995) interface</div><div class="font-cred"></div></div><a class="font-get" href="https://www.dafont.com/silverstream.font" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="22"><div class="font-shot font-shot-missing"><b>Wipeout Typeface</b><small>no specimen yet — add the font to downloads/fonts and rebuild</small></div><div class="font-meta"><div class="font-info"><div class="font-name">Wipeout Typeface</div><div class="font-use">WipEout tribute</div><div class="font-cred">by <a href="https://www.deviantart.com/paulw/art/Wipeout-Typeface-162587903" target="_blank" rel="noopener">Paul Willocks</a></div></div><a class="font-get" href="https://www.deviantart.com/paulw/art/Wipeout-Typeface-162587903" target="_blank" rel="noopener">get ↗</a></div></div>
+    </div>
+    <h3>Type foundries — free</h3>
+    <div class="font-grid">
+<div class="font-card" data-idx="23"><div class="font-shot"><img src="fonts/04b-19.svg" alt="04b_19 specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">04b_19</div><div class="font-use">Fusion (cover)</div><div class="font-cred">by <a href="https://www.04.jp.org/" target="_blank" rel="noopener">Yuji Oshimoto</a></div></div><a class="font-get" href="https://www.dafont.com/04b-19.font" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="24"><div class="font-shot"><img src="fonts/bitsumishi.svg" alt="Bitsumishi specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">Bitsumishi</div><div class="font-use">WipEout 2048</div><div class="font-cred">by <a href="https://www.myfonts.com/collections/roger-s-nelsson?sort_by=price-ascending&amp;pageType=authorPage" target="_blank" rel="noopener">Roger S. Nelsson</a></div></div><a class="font-get" href="https://www.dafont.com/bitsumishi.font" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="25"><div class="font-shot"><img src="fonts/ocr-a.svg" alt="OCR A specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">OCR A</div><div class="font-use">WipEout Pure</div><div class="font-cred"></div></div><a class="font-get" href="https://sourceforge.net/projects/ocr-a-font/" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="26"><div class="font-shot"><img src="fonts/traceroute.svg" alt="TRACEROUTE specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">TRACEROUTE</div><div class="font-use">WipEout HD</div><div class="font-cred">by Apostrophic Labs</div></div><a class="font-get" href="https://www.1001fonts.com/traceroute-font.html" target="_blank" rel="noopener">get ↗</a></div></div>
+    </div>
+    <h3>Type foundries — commercial</h3>
+    <div class="font-grid">
+<div class="font-card" data-idx="27"><div class="font-shot font-shot-missing"><b>Neo Sans</b><small>no specimen yet — add the font to downloads/fonts and rebuild</small></div><div class="font-meta"><div class="font-info"><div class="font-name">Neo Sans</div><div class="font-use">WipEout 2048</div><div class="font-cred">by <a href="https://www.myfonts.com/collections/neo-sans-font-monotype-imaging" target="_blank" rel="noopener">Sebastian Lester</a></div></div><a class="font-get" href="https://www.myfonts.com/collections/neo-sans-font-monotype-imaging" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="28"><div class="font-shot"><img src="fonts/ocr-b.svg" alt="OCR B specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">OCR B</div><div class="font-use">WipEout (cover)</div><div class="font-cred">by Adrian Frutiger</div></div><a class="font-get" href="https://learn.microsoft.com/en-us/typography/font-list/ocrb" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="29"><div class="font-shot"><img src="fonts/orbit-b.svg" alt="Orbit-B specimen" loading="lazy"></div><div class="font-meta"><div class="font-info"><div class="font-name">Orbit-B</div><div class="font-use">WipEout (cover)</div><div class="font-cred"></div></div><a class="font-get" href="https://www.myfonts.com/collections/orbit-b-font-bitstream" target="_blank" rel="noopener">get ↗</a></div></div>
+<div class="font-card" data-idx="30"><div class="font-shot font-shot-missing"><b>DF So Gei W 9</b><small>no specimen yet — add the font to downloads/fonts and rebuild</small></div><div class="font-meta"><div class="font-info"><div class="font-name">DF So Gei W 9</div><div class="font-use">Pure / HD</div><div class="font-cred"></div></div><a class="font-get" href="https://www.myfonts.com/collections/df-so-gei-japanese-font-dynacomware" target="_blank" rel="noopener">get ↗</a></div></div>
+    </div>
+    <h3>Also used (common system fonts — referenced only)</h3>
+    <ul class="font-refer"><li><span class="font-name">Helvetica</span> — <span class="font-era">Wip3out / WipEout HD · macOS system font · Linotype (commercial)</span></li><li><span class="font-name">Arial</span> — <span class="font-era">WipEout HD · Windows / Office system font</span></li><li><span class="font-name">Impact</span> — <span class="font-era">WipEout Fusion (manual) · Windows / macOS system font</span></li></ul>
+  </div>
+  <div class="credits" id="credits">
+    <h2>Fonts &amp; typefaces — attribution</h2>
+    <p>Specimen sheets are outlined at build time from locally-installed fonts; no font files are hosted. Attributions, where certain:</p>
+    <div class="credits-grid">
+      <div class="credit">
+        <div class="who">Adrian Frutiger</div><div class="what">OCR B</div>
+        
+      </div>
+      <div class="credit">
+        <div class="who">Apostrophic Labs</div><div class="what">TRACEROUTE</div>
+        
+      </div>
+      <div class="credit">
+        <div class="who">Nathan Caldecott</div><div class="what">Feisar, Goteki 45, Icaras, Piranha, Qirex, Wipeout HD, Wipeout HD Fury</div>
+        <a href="https://www.fontriver.com/foundry/nathan_caldecott/" target="_blank" rel="noopener">fontriver.com</a><a href="https://www.nathancaldecott.com/" target="_blank" rel="noopener">nathancaldecott.com</a>
+      </div>
+      <div class="credit">
+        <div class="who">NR74W</div><div class="what">2097, 2197 Block, 2197 Heavy, Amalgama, Assegai Rounded, F500 Ang-ular, F5000, FX300, FX300 Angular, Fusion, WO3, X2, supErphoniX2</div>
+        <a href="https://github.com/NR74W/WipEout-Fonts" target="_blank" rel="noopener">github.com</a>
+      </div>
+      <div class="credit">
+        <div class="who">Paul Willocks</div><div class="what">Wipeout Typeface</div>
+        <a href="https://www.deviantart.com/paulw/art/Wipeout-Typeface-162587903" target="_blank" rel="noopener">deviantart.com</a>
+      </div>
+      <div class="credit">
+        <div class="who">Roger S. Nelsson</div><div class="what">Bitsumishi</div>
+        <a href="https://www.myfonts.com/collections/roger-s-nelsson?sort_by=price-ascending&amp;pageType=authorPage" target="_blank" rel="noopener">myfonts.com</a><a href="https://www.myfonts.com/collections/levente-halmos?sort_by=price-ascending&amp;pageType=authorPage" target="_blank" rel="noopener">Levente Halmos</a><a href="https://www.myfonts.com/collections/cheapprofonts-foundry?sort_by=price-ascending&amp;pageType=foundryPage" target="_blank" rel="noopener">CheapProFonts (publisher)</a>
+      </div>
+      <div class="credit">
+        <div class="who">Sebastian Lester</div><div class="what">Neo Sans</div>
+        <a href="https://www.myfonts.com/collections/neo-sans-font-monotype-imaging" target="_blank" rel="noopener">myfonts.com</a>
+      </div>
+      <div class="credit">
+        <div class="who">Yuji Oshimoto</div><div class="what">04b_19</div>
+        <a href="https://www.04.jp.org/" target="_blank" rel="noopener">04.jp.org</a>
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+  <p>WipEout and all related logos, names and marks are trademarks of Sony Interactive Entertainment /
+  Studio Liverpool (formerly Psygnosis). This is a non-commercial, fan-made archive for the community.
+  Assets compiled from the work of the original creators &mdash; see
+  <a href="credits.html">CREDITS</a>. Contributions welcome via
+  <a href="contributing.html">pull request</a>.</p>
+</footer>
+<div class="fbox" id="fbox" aria-hidden="true">
+  <div class="fbox-top">
+    <span class="fbox-name" id="fbName"></span>
+    <span class="fbox-era" id="fbEra"></span>
+    <span class="fbox-spacer"></span>
+    <a class="fbox-get" id="fbGet" target="_blank" rel="noopener"></a>
+    <button class="fbox-x" id="fbClose" aria-label="Close">&times;</button>
+  </div>
+  <button class="fbox-nav fbox-prev" id="fbPrev" aria-label="Previous">&#8249;</button>
+  <button class="fbox-nav fbox-next" id="fbNext" aria-label="Next">&#8250;</button>
+  <div class="fbox-body"><img id="fbImg" alt=""><div class="fbox-note" id="fbNote"></div></div>
+</div>
+<script>
+(function(){
+  var FONTS = [{"name": "Amalgama", "meta": "WipEout \u00b7 2097 / 64 \u00b7 by NR74W", "link": "https://github.com/NR74W/WipEout-Fonts/blob/master/Amalgama.ttf", "getlabel": "get", "shot": "fonts/amalgama.svg"}, {"name": "F5000", "meta": "WipEout \u00b7 2097 / 64 \u00b7 by NR74W", "link": "https://github.com/NR74W/WipEout-Fonts/blob/master/F5000.ttf", "getlabel": "get", "shot": "fonts/f5000.svg"}, {"name": "F500 Ang-ular", "meta": "Wip3out \u00b7 by NR74W", "link": "https://github.com/NR74W/WipEout-Fonts/blob/master/F500%20Ang-ular.ttf", "getlabel": "get", "shot": "fonts/f500-ang-ular.svg"}, {"name": "Fusion", "meta": "WipEout Fusion \u00b7 by NR74W", "link": "https://github.com/NR74W/WipEout-Fonts/blob/master/Fusion.ttf", "getlabel": "get", "shot": "fonts/fusion.svg"}, {"name": "FX300 Angular", "meta": "WipEout Pure \u00b7 by NR74W", "link": "https://github.com/NR74W/WipEout-Fonts/blob/master/FX300%20Angular.ttf", "getlabel": "get", "shot": "fonts/fx300-angular.svg"}, {"name": "FX300", "meta": "WipEout Pure \u00b7 by NR74W", "link": "https://github.com/NR74W/WipEout-Fonts/blob/master/FX300.ttf", "getlabel": "get", "shot": "fonts/fx300.svg"}, {"name": "2197 Heavy", "meta": "WipEout Pure \u00b7 by NR74W", "link": "https://github.com/NR74W/WipEout-Fonts/blob/master/2197%20Heavy.ttf", "getlabel": "get", "shot": "fonts/2197-heavy.svg"}, {"name": "2197 Block", "meta": "WipEout Pure \u00b7 by NR74W", "link": "https://github.com/NR74W/WipEout-Fonts/blob/master/2197%20Block.ttf", "getlabel": "get", "shot": "fonts/2197-block.svg"}, {"name": "X2", "meta": "WipEout Pulse \u00b7 by NR74W", "link": "https://github.com/NR74W/WipEout-Fonts/blob/master/X2.ttf", "getlabel": "get", "shot": "fonts/x2.svg"}, {"name": "supErphoniX2", "meta": "WipEout Pulse \u00b7 by NR74W", "link": "https://github.com/NR74W/WipEout-Fonts/blob/master/supErphoniX2.ttf", "getlabel": "get", "shot": "fonts/superphonix2.svg"}, {"name": "Assegai Rounded", "meta": "WipEout Pulse \u00b7 by NR74W", "link": "https://github.com/NR74W/WipEout-Fonts/blob/master/Assegai%20Rounded.ttf", "getlabel": "get", "shot": "fonts/assegai-rounded.svg"}, {"name": "2097", "meta": "WipEout HD \u00b7 by NR74W", "link": "https://github.com/NR74W/WipEout-Fonts/blob/master/2097.ttf", "getlabel": "get", "shot": "fonts/2097.svg"}, {"name": "WO3", "meta": "WipEout HD \u00b7 by NR74W", "link": "https://github.com/NR74W/WipEout-Fonts/blob/master/WO3.ttf", "getlabel": "get", "shot": "fonts/wo3.svg"}, {"name": "Qirex", "meta": "Team Qirex \u00b7 by Nathan Caldecott", "link": "https://www.fontget.com/font/qirex/", "getlabel": "get", "shot": "fonts/qirex.svg"}, {"name": "Feisar", "meta": "Team FEISAR \u00b7 by Nathan Caldecott", "link": "https://www.fontget.com/font/feisar/", "getlabel": "get", "shot": "fonts/feisar.svg"}, {"name": "Icaras", "meta": "Team Icaras \u00b7 by Nathan Caldecott", "link": "https://www.fontget.com/font/icaras/", "getlabel": "get", "shot": "fonts/icaras.svg"}, {"name": "Auricom", "meta": "Team Auricom (Wip3out)", "link": "https://www.dafont.com/auricom.font", "getlabel": "get", "shot": "fonts/auricom.svg"}, {"name": "Piranha", "meta": "Team Piranha \u00b7 by Nathan Caldecott", "link": "https://www.fontget.com/font/piranha/", "getlabel": "get", "shot": "fonts/piranha.svg"}, {"name": "Goteki 45", "meta": "Team Goteki 45 \u00b7 by Nathan Caldecott", "link": "https://www.fontget.com/font/goteki-45/", "getlabel": "get", "shot": "fonts/goteki-45.svg"}, {"name": "Wipeout HD", "meta": "WipEout HD logo \u00b7 by Nathan Caldecott", "link": "https://www.wfonts.com/font/wipeout-hd", "getlabel": "get", "shot": "fonts/wipeout-hd.svg"}, {"name": "Wipeout HD Fury", "meta": "WipEout HD Fury logo \u00b7 by Nathan Caldecott", "link": "https://www.wfonts.com/font/wipeout-hd-fury", "getlabel": "get", "shot": "fonts/wipeout-hd-fury.svg"}, {"name": "SilverStream", "meta": "WipEout (1995) interface", "link": "https://www.dafont.com/silverstream.font", "getlabel": "get", "shot": "fonts/silverstream.svg"}, {"name": "Wipeout Typeface", "meta": "WipEout tribute \u00b7 by Paul Willocks", "link": "https://www.deviantart.com/paulw/art/Wipeout-Typeface-162587903", "getlabel": "get", "shot": ""}, {"name": "04b_19", "meta": "Fusion (cover) \u00b7 by Yuji Oshimoto", "link": "https://www.dafont.com/04b-19.font", "getlabel": "get", "shot": "fonts/04b-19.svg"}, {"name": "Bitsumishi", "meta": "WipEout 2048 \u00b7 by Roger S. Nelsson", "link": "https://www.dafont.com/bitsumishi.font", "getlabel": "get", "shot": "fonts/bitsumishi.svg"}, {"name": "OCR A", "meta": "WipEout Pure", "link": "https://sourceforge.net/projects/ocr-a-font/", "getlabel": "get", "shot": "fonts/ocr-a.svg"}, {"name": "TRACEROUTE", "meta": "WipEout HD \u00b7 by Apostrophic Labs", "link": "https://www.1001fonts.com/traceroute-font.html", "getlabel": "get", "shot": "fonts/traceroute.svg"}, {"name": "Neo Sans", "meta": "WipEout 2048 \u00b7 by Sebastian Lester", "link": "https://www.myfonts.com/collections/neo-sans-font-monotype-imaging", "getlabel": "get", "shot": ""}, {"name": "OCR B", "meta": "WipEout (cover) \u00b7 by Adrian Frutiger", "link": "https://learn.microsoft.com/en-us/typography/font-list/ocrb", "getlabel": "get", "shot": "fonts/ocr-b.svg"}, {"name": "Orbit-B", "meta": "WipEout (cover)", "link": "https://www.myfonts.com/collections/orbit-b-font-bitstream", "getlabel": "get", "shot": "fonts/orbit-b.svg"}, {"name": "DF So Gei W 9", "meta": "Pure / HD", "link": "https://www.myfonts.com/collections/df-so-gei-japanese-font-dynacomware", "getlabel": "get", "shot": ""}];
+  var fb=document.getElementById('fbox'), img=document.getElementById('fbImg'),
+      nm=document.getElementById('fbName'), era=document.getElementById('fbEra'),
+      note=document.getElementById('fbNote'), get=document.getElementById('fbGet');
+  var i=0;
+  function show(n){
+    i=(n+FONTS.length)%FONTS.length; var f=FONTS[i];
+    nm.textContent=f.name; era.textContent=f.meta;
+    if(f.shot){ img.src=f.shot; img.style.display=''; note.textContent=''; }
+    else { img.removeAttribute('src'); img.style.display='none';
+      note.textContent=f.name+' was not installed on the build machine, so no specimen was generated. Install the font and rebuild to create one.'; }
+    if(f.link){ get.href=f.link; get.textContent=(f.getlabel||'get')+' \u2197'; get.style.display=''; }
+    else get.style.display='none';
+  }
+  function openFb(n){ show(n); fb.classList.add('open'); fb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+  function closeFb(){ fb.classList.remove('open'); fb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  document.querySelectorAll('.font-card').forEach(function(card){
+    card.addEventListener('click', function(e){ if(e.target.closest('.font-get')) return;
+      openFb(parseInt(card.getAttribute('data-idx'),10)); }); });
+  document.getElementById('fbClose').addEventListener('click', closeFb);
+  document.getElementById('fbPrev').addEventListener('click', function(){ show(i-1); });
+  document.getElementById('fbNext').addEventListener('click', function(){ show(i+1); });
+  fb.addEventListener('click', function(e){ if(e.target===fb) closeFb(); });
+  document.addEventListener('keydown', function(e){
+    if(!fb.classList.contains('open')) return;
+    if(e.key==='Escape') closeFb();
+    else if(e.key==='ArrowLeft') show(i-1);
+    else if(e.key==='ArrowRight') show(i+1); });
+})();
+</script>
+</body></html>

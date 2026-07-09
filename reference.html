@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>In-game reference · awesome-wipeout</title>
+<style>
+:root{--bg:#f7f8fa;--card:#fff;--ink:#12151a;--muted:#6b7280;--line:#e5e7eb;
+--accent:#0b7fd4;--check:#d5dbe2}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+color:var(--ink);background:var(--bg)}
+header{padding:48px 32px 24px;max-width:1600px;margin:0 auto}
+h1{margin:0 0 8px;font-size:30px;letter-spacing:-.02em}
+.lead{color:var(--muted);max-width:70ch;margin:0 0 12px}
+.stat{display:inline-block;margin-right:18px;color:var(--muted);font-size:13px}
+.wrap{max-width:1600px;margin:0 auto;padding:0 32px 64px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 8px}
+.toc a{font-size:12.5px;text-decoration:none;color:var(--accent);border:1px solid var(--line);
+background:var(--card);padding:4px 10px;border-radius:999px}
+.pdflink{font-weight:600;color:var(--accent);text-decoration:none;border:1px solid var(--accent);
+padding:6px 12px;border-radius:8px;display:inline-block}
+.pdflink:hover{background:var(--accent);color:#fff}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px 28px;flex-wrap:wrap}
+.hero-top h1{margin:0}
+.pdfcta{display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:6px}
+.pdfcta-note{font-size:12.5px;color:var(--muted);max-width:34ch}
+@media(max-width:640px){.pdfcta{align-items:flex-start;text-align:left}}
+section{margin-top:40px}
+.sh{border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:20px}
+.sh h2{margin:0;font-size:19px}
+.sh p{margin:4px 0 0;color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;
+display:flex;flex-direction:column}
+.thumb{height:220px;display:flex;align-items:center;justify-content:center;padding:28px;cursor:zoom-in;position:relative;
+background:
+ linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 0 0/22px 22px,
+ linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 11px 11px/22px 22px,
+ #fff}
+.thumb img{width:100%;height:164px;object-fit:contain;display:block}
+.meta{padding:10px 12px;border-top:1px solid var(--line)}
+.name{font-weight:600;font-size:13.5px;margin-bottom:6px;word-break:break-word}
+.dl{display:flex;gap:6px}
+.dl a{font-size:11px;text-decoration:none;color:var(--muted);border:1px solid var(--line);
+padding:2px 8px;border-radius:6px}
+.dl a:hover{color:var(--accent);border-color:var(--accent)}
+.dl a.get{color:var(--accent);border-color:var(--accent);font-weight:600}
+.dl a.get:hover{background:var(--accent);color:#fff}
+.dl a.locked{cursor:pointer}
+/* restricted-vector overlay: shown when the SVG button of a non-redistributable mark is clicked */
+.vbox{position:fixed;inset:0;z-index:1200;display:none;align-items:center;justify-content:center;
+padding:20px;background:rgba(12,15,20,.62)}
+.vbox.open{display:flex}
+.vbox-panel{position:relative;background:var(--card);color:var(--ink);max-width:360px;width:100%;
+border:1px solid var(--line);border-radius:12px;padding:24px;box-shadow:0 24px 64px rgba(0,0,0,.4);text-align:center}
+.vbox-panel h3{margin:0 0 10px;font-size:16px}
+.vbox-panel p{margin:0 0 18px;font-size:13px;line-height:1.55;color:var(--muted)}
+.vbox-go{display:inline-block;text-decoration:none;background:var(--accent);color:#fff;font-weight:600;
+font-size:13px;padding:9px 18px;border-radius:8px}
+.vbox-go:hover{filter:brightness(1.08)}
+.vbox-x{position:absolute;top:8px;right:10px;background:none;border:0;font-size:22px;line-height:1;
+color:var(--muted);cursor:pointer}
+.vbox-x:hover{color:var(--ink)}
+.src{display:block;margin-top:8px;font-size:11px;color:var(--muted);text-decoration:none}
+.src:hover{color:var(--accent);text-decoration:underline}
+.src-none{color:#aab2bd;font-style:italic}
+.credit:target{border-color:var(--accent);box-shadow:0 0 0 2px rgba(11,127,212,.15)}
+.fonts{margin-top:56px;border-top:1px solid var(--line);padding-top:28px}
+.fonts h2{font-size:19px;margin:0 0 6px}
+.fonts>p{color:var(--muted);font-size:13px;margin:0 0 6px;max-width:82ch}
+.fonts h3{font-size:14px;margin:24px 0 12px;color:var(--ink)}
+.font-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.font-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;cursor:zoom-in}
+.font-card:hover{border-color:var(--accent)}
+.font-shot{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px 16px;height:150px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.font-shot img{width:100%;height:100%;object-fit:contain;display:block}
+.font-shot-missing{flex-direction:column;align-items:flex-start;justify-content:center;border-style:dashed;gap:4px;color:#9aa3af}
+.font-shot-missing b{font-weight:600;font-size:19px;color:#8a929c}
+.font-shot-missing small{font-size:11px}
+.font-meta{margin-top:12px;display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12px;text-align:left}
+.font-info{min-width:0}
+.font-name{font-weight:600;font-size:13.5px;color:var(--ink)}
+.font-use{color:var(--muted);font-size:11.5px;margin-top:3px}
+.font-cred{color:var(--muted);font-size:11.5px;margin-top:2px;min-height:1.25em}
+.font-cred a{color:var(--muted);text-decoration:none;border-bottom:1px dotted var(--line)}
+.font-cred a:hover{color:var(--accent)}
+.font-refer{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-wrap:wrap;gap:8px 22px;font-size:13px}
+.font-refer li{color:var(--muted)}
+.font-refer .font-name{color:var(--ink);font-size:13px}
+.font-get{flex:none;align-self:center;color:var(--accent);text-decoration:none;border:1px solid var(--line);padding:4px 11px;border-radius:6px;white-space:nowrap}
+.font-get:hover{border-color:var(--accent)}
+.fbox{position:fixed;inset:0;z-index:1000;display:none;background:#fff}
+.fbox.open{display:flex;flex-direction:column}
+.fbox-top{height:60px;display:flex;align-items:center;gap:14px;padding:0 22px;border-bottom:1px solid var(--line)}
+.fbox-name{font-weight:600;font-size:16px}
+.fbox-era{color:var(--muted);font-size:13px}
+.fbox-spacer{flex:1}
+.fbox-get{font-size:13px;text-decoration:none;color:var(--accent);border:1px solid var(--line);padding:5px 11px;border-radius:7px}
+.fbox-get:hover{border-color:var(--accent)}
+.fbox-x{background:transparent;border:0;font-size:28px;line-height:1;cursor:pointer;color:var(--ink);padding:0 4px}
+.fbox-body{flex:1;overflow:hidden;padding:24px 84px;display:flex;flex-direction:column;gap:18px;align-items:center;justify-content:center}
+.fbox-body img{width:100%;height:100%;object-fit:contain}
+.fbox-note{color:#9a3b3b;font-size:14px;max-width:60ch;text-align:center}
+.fbox-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;background:var(--card);
+border:1px solid var(--line);color:var(--ink);width:48px;height:60px;font-size:28px;cursor:pointer;border-radius:8px}
+.fbox-nav:hover{border-color:var(--accent);color:var(--accent)}
+.fbox-prev{left:16px}.fbox-next{right:16px}
+@media(max-width:640px){.fbox-body{padding:24px 16px}.fbox-nav{width:38px;height:50px;font-size:22px}}
+.credits{margin-top:56px;border-top:1px solid var(--line);padding-top:28px}
+.credits h2{font-size:19px;margin:0 0 6px}
+.credits>p{color:var(--muted);font-size:13px;margin:0 0 18px;max-width:80ch}
+.credits-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.credit{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.credit .who{font-weight:600;font-size:14px}
+.credit .what{color:var(--muted);font-size:12.5px;margin:4px 0 8px}
+.credit .lic{color:var(--muted);font-size:12px;margin:0 0 8px;line-height:1.4}
+.credit .lic span{font-weight:600;color:var(--ink)}
+.credit .lic a{display:inline;color:var(--accent)}
+.credit a{color:var(--accent);text-decoration:none;font-size:12.5px;display:block;word-break:break-word}
+.credit a:hover{text-decoration:underline}
+footer{max-width:1600px;margin:0 auto;padding:24px 32px 60px;color:var(--muted);font-size:12.5px;
+border-top:1px solid var(--line)}
+footer a{color:var(--accent)}
+.thumb::after{content:"⤢";position:absolute;top:8px;right:10px;font-size:14px;color:var(--muted);
+opacity:0;transition:opacity .15s}
+.thumb:hover::after{opacity:.7}
+/* full-screen lightbox */
+.lightbox{position:fixed;inset:0;z-index:1000;display:none}
+.lightbox.open{display:block}
+.lb-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:88px 72px}
+.lb-stage img{width:100%;height:100%;object-fit:contain}
+.lb-stage.bg-transparent{background:
+ linear-gradient(45deg,#d5dbe2 25%,#fff 25%,#fff 75%,#d5dbe2 75%) 0 0/30px 30px,
+ linear-gradient(45deg,#d5dbe2 25%,#fff 25%,#fff 75%,#d5dbe2 75%) 15px 15px/30px 30px,#fff}
+.lb-stage.bg-white{background:#fff}
+.lb-stage.bg-dark{background:#0d0f12}
+.lb-topbar{position:absolute;top:0;left:0;right:0;height:60px;display:flex;align-items:center;
+gap:16px;padding:0 20px;background:rgba(20,24,30,.82);color:#fff;z-index:2;backdrop-filter:blur(6px)}
+.lb-name{font-weight:600;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lb-spacer{flex:1}
+.lb-toggle{display:flex;align-items:center;gap:6px;font-size:12px;color:#c5ccd6}
+.lb-toggle button{font:inherit;font-size:12px;color:#c5ccd6;background:transparent;
+border:1px solid rgba(255,255,255,.25);padding:4px 10px;border-radius:999px;cursor:pointer}
+.lb-toggle button.on{background:#fff;color:#12151a;border-color:#fff}
+.lb-dl{display:flex;gap:6px}
+.lb-dl a{font-size:12px;text-decoration:none;color:#c5ccd6;border:1px solid rgba(255,255,255,.25);
+padding:4px 10px;border-radius:6px}
+.lb-dl a:hover{color:#fff;border-color:#fff}
+.lb-x{background:transparent;border:0;color:#fff;font-size:26px;line-height:1;cursor:pointer;padding:0 4px}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;background:rgba(20,24,30,.55);
+color:#fff;border:0;width:52px;height:64px;font-size:30px;cursor:pointer;border-radius:8px}
+.lb-nav:hover{background:rgba(20,24,30,.85)}
+.lb-prev{left:14px}.lb-next{right:14px}
+@media(max-width:640px){.lb-stage{padding:70px 16px}.lb-dl{display:none}}
+/* thin sticky top nav (shared across every page) */
+.topnav{position:sticky;top:0;z-index:900;background:rgba(247,248,250,.86);
+backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topnav-inner{max-width:1600px;margin:0 auto;padding:0 32px;min-height:52px;
+display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.brand{font-weight:700;font-size:16px;letter-spacing:-.01em;color:var(--ink);
+text-decoration:none;white-space:nowrap}
+.brand b{color:var(--accent);font-weight:700}
+.navlinks{display:flex;flex-wrap:wrap;gap:2px}
+.navlinks a{font-size:13px;text-decoration:none;color:var(--muted);padding:6px 11px;
+border-radius:7px;white-space:nowrap}
+.navlinks a:hover{color:var(--ink);background:rgba(0,0,0,.05)}
+.navlinks a.active{color:var(--accent);font-weight:600}
+/* nav dropdown (About → Contributing / Licensing / Credits) */
+.navitem{position:relative;display:inline-flex}
+.submenu{position:absolute;top:100%;left:0;min-width:160px;background:var(--card);
+border:1px solid var(--line);border-radius:9px;box-shadow:0 12px 30px rgba(0,0,0,.14);
+padding:5px;display:none;z-index:30}
+.navitem:hover .submenu,.navitem:focus-within .submenu{display:block}
+.navlinks .submenu a{display:block;font-size:13px;padding:7px 12px;border-radius:6px}
+@media(max-width:640px){.topnav-inner{padding:8px 16px;gap:6px 14px}
+.wrap{padding:0 16px 48px}header{padding:28px 16px 16px}
+/* no hover on touch — show the sub-links inline instead of as a dropdown */
+.navitem{display:contents}
+.submenu{position:static;display:flex;flex-wrap:wrap;background:none;border:0;box-shadow:none;
+padding:0;min-width:0}
+.navlinks .submenu a{padding:6px 11px}}
+/* simple prose pages (about / links / reference placeholders) */
+.prose{max-width:80ch;margin:8px 0}
+.prose h1{font-size:30px;letter-spacing:-.02em;margin:0 0 12px}
+.prose p{color:var(--ink);margin:0 0 14px}
+.prose .lead{color:var(--muted);font-size:16px}
+.prose a{color:var(--accent);text-decoration:none}
+.prose a:hover{text-decoration:underline}
+.signoff{margin:22px 0 0;font-style:italic;color:var(--ink);line-height:1.5}
+.social{display:flex;flex-wrap:wrap;gap:16px;margin:14px 0 0}
+.social a{display:inline-flex;align-items:center;gap:7px;color:var(--muted);text-decoration:none;
+font-size:13px;font-weight:600}
+.social a:hover{color:var(--accent)}
+.social svg{width:19px;height:19px;flex:none}
+.linklist{list-style:none;padding:0;margin:14px 0}
+.linklist li{padding:9px 0;border-bottom:1px solid var(--line)}
+.linklist a{color:var(--accent);text-decoration:none;font-weight:600}
+.linklist a:hover{text-decoration:underline}
+.linkcat{font-size:19px;margin:34px 0 2px;padding-bottom:6px;border-bottom:2px solid var(--ink)}
+.linkcat-blurb{color:var(--muted);font-size:14px;margin:6px 0 0}
+/* rendered Markdown doc pages (contributing / licensing / credits) */
+.prose.doc h2{font-size:21px;margin:30px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.prose.doc h3{font-size:16px;margin:22px 0 6px}
+.prose.doc h4{font-size:14px;margin:18px 0 4px}
+.prose.doc ul,.prose.doc ol{padding-left:22px;margin:0 0 14px}
+.prose.doc li{margin:4px 0}
+.prose.doc a{color:var(--accent);text-decoration:none}
+.prose.doc a:hover{text-decoration:underline}
+.prose.doc code{background:rgba(0,0,0,.05);border:1px solid var(--line);border-radius:4px;
+padding:1px 5px;font-size:.9em}
+.prose.doc pre{background:#12151a;color:#e6e8ec;padding:14px 16px;border-radius:8px;overflow-x:auto}
+.prose.doc pre code{background:none;border:0;padding:0;color:inherit;font-size:12.5px}
+.prose.doc blockquote{margin:0 0 14px;padding:2px 14px;border-left:3px solid var(--accent);
+color:var(--muted)}
+.prose.doc table{border-collapse:collapse;width:100%;margin:0 0 16px;font-size:13.5px;display:block;overflow-x:auto}
+.prose.doc th,.prose.doc td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+.prose.doc th{background:rgba(0,0,0,.03);font-weight:600}
+.prose.doc hr{border:0;border-top:1px solid var(--line);margin:24px 0}
+/* in-game reference gallery */
+.rgame{margin-top:40px}
+.rgame>.sh h2{font-size:19px}
+.rteam{display:flex;align-items:center;gap:14px;margin:30px 0 14px;padding-bottom:10px;
+border-bottom:1px solid var(--line)}
+.rteam-logo{height:44px;width:auto;max-width:150px;object-fit:contain;display:block}
+.rteam h3{margin:0;font-size:16px}
+.rteam .rcount{font-size:11px;color:var(--muted);font-weight:400;border:1px solid var(--line);
+border-radius:999px;padding:1px 9px;margin-left:2px}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.rcard{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:zoom-in}
+.rcard:hover{border-color:var(--accent)}
+.rthumb{aspect-ratio:16/9;background:#0d0f12;overflow:hidden}
+.rthumb img{width:100%;height:100%;object-fit:cover;display:block}
+.rmeta{padding:8px 12px;font-size:12.5px;color:var(--ink);border-top:1px solid var(--line)}
+.rcredit{color:var(--muted);font-size:12px;margin:14px 0 0}
+/* full-screen photo lightbox (screenshots) */
+.plightbox{position:fixed;inset:0;z-index:1000;display:none;background:#0d0f12}
+.plightbox.open{display:block}
+.pl-topbar{position:absolute;top:0;left:0;right:0;height:56px;display:flex;align-items:center;
+gap:14px;padding:0 20px;background:rgba(13,15,18,.72);color:#fff;z-index:2;backdrop-filter:blur(6px)}
+.pl-logo{height:26px;width:auto;max-width:90px;object-fit:contain;filter:invert(1);flex:none}
+.pl-name{font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pl-spacer{flex:1}
+.pl-x{background:transparent;border:0;color:#fff;font-size:26px;line-height:1;cursor:pointer;padding:0 4px}
+.pl-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:76px 72px}
+.pl-stage img{max-width:100%;max-height:100%;object-fit:contain}
+.pl-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;background:rgba(255,255,255,.12);
+color:#fff;border:0;width:52px;height:64px;font-size:30px;cursor:pointer;border-radius:8px}
+.pl-nav:hover{background:rgba(255,255,255,.28)}
+.pl-prev{left:14px}.pl-next{right:14px}
+@media(max-width:640px){.pl-stage{padding:64px 12px}.pl-nav{width:40px;height:52px;font-size:24px}}
+</style></head>
+<body>
+<nav class="topnav"><div class="topnav-inner"><a class="brand" href="index.html">awesome&#8209;<b>wipeout</b></a><div class="navlinks"><a href="index.html">Marks</a><a href="fonts.html">Fonts</a><a href="reference.html" class="active">In-game reference</a><a href="links.html">Links</a><div class="navitem"><a href="about.html">About ▾</a><div class="submenu"><a href="contributing.html">Contributing</a><a href="licensing.html">Licensing</a><a href="credits.html">Credits</a></div></div></div></div></nav>
+<header>
+  <h1>In-game reference</h1>
+  <p class="lead">Screenshot reference of the ships in-game, grouped by team. Each team is headed by its emblem from the marks collection; click any shot to view it full-screen. Content authored in data/reference.toml.</p>
+  <span class="stat">109 screenshots</span>
+  <span class="stat">8 teams</span>
+  <div class="toc"><a href="#omega-feisar">FEISAR (14)</a><a href="#omega-ag-systems">AG Systems (10)</a><a href="#omega-auricom">Auricom (7)</a><a href="#omega-qirex">Qirex (10)</a><a href="#omega-pirhana">Pir-hana (18)</a><a href="#omega-triakis">Triakis (17)</a><a href="#omega-goteki45">Goteki 45 (24)</a><a href="#omega-harimau">Harimau (9)</a></div>
+  <p class="rcredit">Sony Interactive Entertainment / Studio Liverpool &mdash; Screenshots shown for reference only; © their rights-holders, not redistributed.</p>
+</header>
+<div class="wrap">
+  <section class="rgame" id="omega">
+    <div class="sh"><h2>WipEout Omega Collection</h2><p>The PS4 remaster — HD, Fury and 2048 combined. Ship liveries and cockpits at high resolution.</p></div>
+    <div class="rteam" id="omega-feisar"><img class="rteam-logo" src="marks/teams/hd/feisar-logo.svg" alt="FEISAR emblem"><h3>FEISAR</h3><span class="rcount">14 shots</span></div>
+    <div class="rgrid">
+      <div class="rcard" data-idx="0">
+        <div class="rthumb"><img src="reference/omega/feisar/feisar-banking-left.thumb.jpg" alt="FEISAR — Banking Left" loading="lazy"></div>
+        <div class="rmeta">Banking Left</div>
+      </div>
+      <div class="rcard" data-idx="1">
+        <div class="rthumb"><img src="reference/omega/feisar/feisar-front-quarter-left.thumb.jpg" alt="FEISAR — Front Quarter Left" loading="lazy"></div>
+        <div class="rmeta">Front Quarter Left</div>
+      </div>
+      <div class="rcard" data-idx="2">
+        <div class="rthumb"><img src="reference/omega/feisar/feisar-front-quarter-sunset.thumb.jpg" alt="FEISAR — Front Quarter Sunset" loading="lazy"></div>
+        <div class="rmeta">Front Quarter Sunset</div>
+      </div>
+      <div class="rcard" data-idx="3">
+        <div class="rthumb"><img src="reference/omega/feisar/feisar-hd-fury-key-art.thumb.jpg" alt="FEISAR — Hd Fury Key Art" loading="lazy"></div>
+        <div class="rmeta">Hd Fury Key Art</div>
+      </div>
+      <div class="rcard" data-idx="4">
+        <div class="rthumb"><img src="reference/omega/feisar/feisar-overhead-rear.thumb.jpg" alt="FEISAR — Overhead Rear" loading="lazy"></div>
+        <div class="rmeta">Overhead Rear</div>
+      </div>
+      <div class="rcard" data-idx="5">
+        <div class="rthumb"><img src="reference/omega/feisar/feisar-profile-left.thumb.jpg" alt="FEISAR — Profile Left" loading="lazy"></div>
+        <div class="rmeta">Profile Left</div>
+      </div>
+      <div class="rcard" data-idx="6">
+        <div class="rthumb"><img src="reference/omega/feisar/feisar-rear-chase.thumb.jpg" alt="FEISAR — Rear Chase" loading="lazy"></div>
+        <div class="rmeta">Rear Chase</div>
+      </div>
+      <div class="rcard" data-idx="7">
+        <div class="rthumb"><img src="reference/omega/feisar/feisar-rear-quarter-right.thumb.jpg" alt="FEISAR — Rear Quarter Right" loading="lazy"></div>
+        <div class="rmeta">Rear Quarter Right</div>
+      </div>
+      <div class="rcard" data-idx="8">
+        <div class="rthumb"><img src="reference/omega/feisar/feisar-render-banking-left.thumb.jpg" alt="FEISAR — Render Banking Left" loading="lazy"></div>
+        <div class="rmeta">Render Banking Left</div>
+      </div>
+      <div class="rcard" data-idx="9">
+        <div class="rthumb"><img src="reference/omega/feisar/feisar-render-front-quarter-left.thumb.jpg" alt="FEISAR — Render Front Quarter Left" loading="lazy"></div>
+        <div class="rmeta">Render Front Quarter Left</div>
+      </div>
+      <div class="rcard" data-idx="10">
+        <div class="rthumb"><img src="reference/omega/feisar/feisar-render-front-quarter-right.thumb.jpg" alt="FEISAR — Render Front Quarter Right" loading="lazy"></div>
+        <div class="rmeta">Render Front Quarter Right</div>
+      </div>
+      <div class="rcard" data-idx="11">
+        <div class="rthumb"><img src="reference/omega/feisar/feisar-render-overhead-rear.thumb.jpg" alt="FEISAR — Render Overhead Rear" loading="lazy"></div>
+        <div class="rmeta">Render Overhead Rear</div>
+      </div>
+      <div class="rcard" data-idx="12">
+        <div class="rthumb"><img src="reference/omega/feisar/feisar-render-rear-quarter.thumb.jpg" alt="FEISAR — Render Rear Quarter" loading="lazy"></div>
+        <div class="rmeta">Render Rear Quarter</div>
+      </div>
+      <div class="rcard" data-idx="13">
+        <div class="rthumb"><img src="reference/omega/feisar/feisar-render-sunset-bank.thumb.jpg" alt="FEISAR — Render Sunset Bank" loading="lazy"></div>
+        <div class="rmeta">Render Sunset Bank</div>
+      </div>
+    </div>
+    <div class="rteam" id="omega-ag-systems"><img class="rteam-logo" src="marks/teams/hd/ag-sys-logo.svg" alt="AG Systems emblem"><h3>AG Systems</h3><span class="rcount">10 shots</span></div>
+    <div class="rgrid">
+      <div class="rcard" data-idx="14">
+        <div class="rthumb"><img src="reference/omega/ag-systems/ag-systems-front-overhead.thumb.jpg" alt="AG Systems — Front Overhead" loading="lazy"></div>
+        <div class="rmeta">Front Overhead</div>
+      </div>
+      <div class="rcard" data-idx="15">
+        <div class="rthumb"><img src="reference/omega/ag-systems/ag-systems-front.thumb.jpg" alt="AG Systems — Front" loading="lazy"></div>
+        <div class="rmeta">Front</div>
+      </div>
+      <div class="rcard" data-idx="16">
+        <div class="rthumb"><img src="reference/omega/ag-systems/ag-systems-profile-left.thumb.jpg" alt="AG Systems — Profile Left" loading="lazy"></div>
+        <div class="rmeta">Profile Left</div>
+      </div>
+      <div class="rcard" data-idx="17">
+        <div class="rthumb"><img src="reference/omega/ag-systems/ag-systems-profile-right.thumb.jpg" alt="AG Systems — Profile Right" loading="lazy"></div>
+        <div class="rmeta">Profile Right</div>
+      </div>
+      <div class="rcard" data-idx="18">
+        <div class="rthumb"><img src="reference/omega/ag-systems/ag-systems-race-profile-left-rect.thumb.jpg" alt="AG Systems — Race Profile Left Rect" loading="lazy"></div>
+        <div class="rmeta">Race Profile Left Rect</div>
+      </div>
+      <div class="rcard" data-idx="19">
+        <div class="rthumb"><img src="reference/omega/ag-systems/ag-systems-race-profile-left.thumb.jpg" alt="AG Systems — Race Profile Left" loading="lazy"></div>
+        <div class="rmeta">Race Profile Left</div>
+      </div>
+      <div class="rcard" data-idx="20">
+        <div class="rthumb"><img src="reference/omega/ag-systems/ag-systems-race-rear-chase.thumb.jpg" alt="AG Systems — Race Rear Chase" loading="lazy"></div>
+        <div class="rmeta">Race Rear Chase</div>
+      </div>
+      <div class="rcard" data-idx="21">
+        <div class="rthumb"><img src="reference/omega/ag-systems/ag-systems-race-rear-quarter-left.thumb.jpg" alt="AG Systems — Race Rear Quarter Left" loading="lazy"></div>
+        <div class="rmeta">Race Rear Quarter Left</div>
+      </div>
+      <div class="rcard" data-idx="22">
+        <div class="rthumb"><img src="reference/omega/ag-systems/ag-systems-rear-quarter.thumb.jpg" alt="AG Systems — Rear Quarter" loading="lazy"></div>
+        <div class="rmeta">Rear Quarter</div>
+      </div>
+      <div class="rcard" data-idx="23">
+        <div class="rthumb"><img src="reference/omega/ag-systems/ag-systems-rear.thumb.jpg" alt="AG Systems — Rear" loading="lazy"></div>
+        <div class="rmeta">Rear</div>
+      </div>
+    </div>
+    <div class="rteam" id="omega-auricom"><img class="rteam-logo" src="marks/teams/hd/auricom.svg" alt="Auricom emblem"><h3>Auricom</h3><span class="rcount">7 shots</span></div>
+    <div class="rgrid">
+      <div class="rcard" data-idx="24">
+        <div class="rthumb"><img src="reference/omega/auricom/auricom-front-quarter-left.thumb.jpg" alt="Auricom — Front Quarter Left" loading="lazy"></div>
+        <div class="rmeta">Front Quarter Left</div>
+      </div>
+      <div class="rcard" data-idx="25">
+        <div class="rthumb"><img src="reference/omega/auricom/auricom-overhead.thumb.jpg" alt="Auricom — Overhead" loading="lazy"></div>
+        <div class="rmeta">Overhead</div>
+      </div>
+      <div class="rcard" data-idx="26">
+        <div class="rthumb"><img src="reference/omega/auricom/auricom-profile-left.thumb.jpg" alt="Auricom — Profile Left" loading="lazy"></div>
+        <div class="rmeta">Profile Left</div>
+      </div>
+      <div class="rcard" data-idx="27">
+        <div class="rthumb"><img src="reference/omega/auricom/auricom-rear-chase.thumb.jpg" alt="Auricom — Rear Chase" loading="lazy"></div>
+        <div class="rmeta">Rear Chase</div>
+      </div>
+      <div class="rcard" data-idx="28">
+        <div class="rthumb"><img src="reference/omega/auricom/auricom-rear-low.thumb.jpg" alt="Auricom — Rear Low" loading="lazy"></div>
+        <div class="rmeta">Rear Low</div>
+      </div>
+      <div class="rcard" data-idx="29">
+        <div class="rthumb"><img src="reference/omega/auricom/auricom-rear-quarter-left.thumb.jpg" alt="Auricom — Rear Quarter Left" loading="lazy"></div>
+        <div class="rmeta">Rear Quarter Left</div>
+      </div>
+      <div class="rcard" data-idx="30">
+        <div class="rthumb"><img src="reference/omega/auricom/auricom-rear-quarter-right.thumb.jpg" alt="Auricom — Rear Quarter Right" loading="lazy"></div>
+        <div class="rmeta">Rear Quarter Right</div>
+      </div>
+    </div>
+    <div class="rteam" id="omega-qirex"><img class="rteam-logo" src="marks/teams/hd/qirex-logo-2.svg" alt="Qirex emblem"><h3>Qirex</h3><span class="rcount">10 shots</span></div>
+    <div class="rgrid">
+      <div class="rcard" data-idx="31">
+        <div class="rthumb"><img src="reference/omega/qirex/qirex-concept-one-blueprint.thumb.jpg" alt="Qirex — Concept One Blueprint" loading="lazy"></div>
+        <div class="rmeta">Concept One Blueprint</div>
+      </div>
+      <div class="rcard" data-idx="32">
+        <div class="rthumb"><img src="reference/omega/qirex/qirex-concept-one-perspective.thumb.jpg" alt="Qirex — Concept One Perspective" loading="lazy"></div>
+        <div class="rmeta">Concept One Perspective</div>
+      </div>
+      <div class="rcard" data-idx="33">
+        <div class="rthumb"><img src="reference/omega/qirex/qirex-front-quarter.thumb.jpg" alt="Qirex — Front Quarter" loading="lazy"></div>
+        <div class="rmeta">Front Quarter</div>
+      </div>
+      <div class="rcard" data-idx="34">
+        <div class="rthumb"><img src="reference/omega/qirex/qirex-overhead.thumb.jpg" alt="Qirex — Overhead" loading="lazy"></div>
+        <div class="rmeta">Overhead</div>
+      </div>
+      <div class="rcard" data-idx="35">
+        <div class="rthumb"><img src="reference/omega/qirex/qirex-profile-right-closeup.thumb.jpg" alt="Qirex — Profile Right Closeup" loading="lazy"></div>
+        <div class="rmeta">Profile Right Closeup</div>
+      </div>
+      <div class="rcard" data-idx="36">
+        <div class="rthumb"><img src="reference/omega/qirex/qirex-profile-right.thumb.jpg" alt="Qirex — Profile Right" loading="lazy"></div>
+        <div class="rmeta">Profile Right</div>
+      </div>
+      <div class="rcard" data-idx="37">
+        <div class="rthumb"><img src="reference/omega/qirex/qirex-rear-chase-distant.thumb.jpg" alt="Qirex — Rear Chase Distant" loading="lazy"></div>
+        <div class="rmeta">Rear Chase Distant</div>
+      </div>
+      <div class="rcard" data-idx="38">
+        <div class="rthumb"><img src="reference/omega/qirex/qirex-rear-chase.thumb.jpg" alt="Qirex — Rear Chase" loading="lazy"></div>
+        <div class="rmeta">Rear Chase</div>
+      </div>
+      <div class="rcard" data-idx="39">
+        <div class="rthumb"><img src="reference/omega/qirex/qirex-rear-quarter-left.thumb.jpg" alt="Qirex — Rear Quarter Left" loading="lazy"></div>
+        <div class="rmeta">Rear Quarter Left</div>
+      </div>
+      <div class="rcard" data-idx="40">
+        <div class="rthumb"><img src="reference/omega/qirex/qirex-rear-quarter-right.thumb.jpg" alt="Qirex — Rear Quarter Right" loading="lazy"></div>
+        <div class="rmeta">Rear Quarter Right</div>
+      </div>
+    </div>
+    <div class="rteam" id="omega-pirhana"><img class="rteam-logo" src="marks/teams/hd/piranha-logo.svg" alt="Pir-hana emblem"><h3>Pir-hana</h3><span class="rcount">18 shots</span></div>
+    <div class="rgrid">
+      <div class="rcard" data-idx="41">
+        <div class="rthumb"><img src="reference/omega/pirhana/pirhana-closeup-cockpit.thumb.jpg" alt="Pir-hana — Closeup Cockpit" loading="lazy"></div>
+        <div class="rmeta">Closeup Cockpit</div>
+      </div>
+      <div class="rcard" data-idx="42">
+        <div class="rthumb"><img src="reference/omega/pirhana/pirhana-closeup-nose-overhead.thumb.jpg" alt="Pir-hana — Closeup Nose Overhead" loading="lazy"></div>
+        <div class="rmeta">Closeup Nose Overhead</div>
+      </div>
+      <div class="rcard" data-idx="43">
+        <div class="rthumb"><img src="reference/omega/pirhana/pirhana-closeup-side-sponsor.thumb.jpg" alt="Pir-hana — Closeup Side Sponsor" loading="lazy"></div>
+        <div class="rmeta">Closeup Side Sponsor</div>
+      </div>
+      <div class="rcard" data-idx="44">
+        <div class="rthumb"><img src="reference/omega/pirhana/pirhana-overhead-alt.thumb.jpg" alt="Pir-hana — Overhead Alt" loading="lazy"></div>
+        <div class="rmeta">Overhead Alt</div>
+      </div>
+      <div class="rcard" data-idx="45">
+        <div class="rthumb"><img src="reference/omega/pirhana/pirhana-overhead.thumb.jpg" alt="Pir-hana — Overhead" loading="lazy"></div>
+        <div class="rmeta">Overhead</div>
+      </div>
+      <div class="rcard" data-idx="46">
+        <div class="rthumb"><img src="reference/omega/pirhana/pirhana-profile-right-alt.thumb.jpg" alt="Pir-hana — Profile Right Alt" loading="lazy"></div>
+        <div class="rmeta">Profile Right Alt</div>
+      </div>
+      <div class="rcard" data-idx="47">
+        <div class="rthumb"><img src="reference/omega/pirhana/pirhana-profile-right-jump.thumb.jpg" alt="Pir-hana — Profile Right Jump" loading="lazy"></div>
+        <div class="rmeta">Profile Right Jump</div>
+      </div>
+      <div class="rcard" data-idx="48">
+        <div class="rthumb"><img src="reference/omega/pirhana/pirhana-profile-right.thumb.jpg" alt="Pir-hana — Profile Right" loading="lazy"></div>
+        <div class="rmeta">Profile Right</div>
+      </div>
+      <div class="rcard" data-idx="49">
+        <div class="rthumb"><img src="reference/omega/pirhana/pirhana-rear-chase-alt.thumb.jpg" alt="Pir-hana — Rear Chase Alt" loading="lazy"></div>
+        <div class="rmeta">Rear Chase Alt</div>
+      </div>
+      <div class="rcard" data-idx="50">
+        <div class="rthumb"><img src="reference/omega/pirhana/pirhana-rear-chase-low-alt.thumb.jpg" alt="Pir-hana — Rear Chase Low Alt" loading="lazy"></div>
+        <div class="rmeta">Rear Chase Low Alt</div>
+      </div>
+      <div class="rcard" data-idx="51">
+        <div class="rthumb"><img src="reference/omega/pirhana/pirhana-rear-chase-low.thumb.jpg" alt="Pir-hana — Rear Chase Low" loading="lazy"></div>
+        <div class="rmeta">Rear Chase Low</div>
+      </div>
+      <div class="rcard" data-idx="52">
+        <div class="rthumb"><img src="reference/omega/pirhana/pirhana-rear-chase-snow.thumb.jpg" alt="Pir-hana — Rear Chase Snow" loading="lazy"></div>
+        <div class="rmeta">Rear Chase Snow</div>
+      </div>
+      <div class="rcard" data-idx="53">
+        <div class="rthumb"><img src="reference/omega/pirhana/pirhana-rear-chase.thumb.jpg" alt="Pir-hana — Rear Chase" loading="lazy"></div>
+        <div class="rmeta">Rear Chase</div>
+      </div>
+      <div class="rcard" data-idx="54">
+        <div class="rthumb"><img src="reference/omega/pirhana/pirhana-rear-quarter-left-alt.thumb.jpg" alt="Pir-hana — Rear Quarter Left Alt" loading="lazy"></div>
+        <div class="rmeta">Rear Quarter Left Alt</div>
+      </div>
+      <div class="rcard" data-idx="55">
+        <div class="rthumb"><img src="reference/omega/pirhana/pirhana-rear-quarter-left.thumb.jpg" alt="Pir-hana — Rear Quarter Left" loading="lazy"></div>
+        <div class="rmeta">Rear Quarter Left</div>
+      </div>
+      <div class="rcard" data-idx="56">
+        <div class="rthumb"><img src="reference/omega/pirhana/pirhana-rear-quarter-right-alt.thumb.jpg" alt="Pir-hana — Rear Quarter Right Alt" loading="lazy"></div>
+        <div class="rmeta">Rear Quarter Right Alt</div>
+      </div>
+      <div class="rcard" data-idx="57">
+        <div class="rthumb"><img src="reference/omega/pirhana/pirhana-rear-quarter-right.thumb.jpg" alt="Pir-hana — Rear Quarter Right" loading="lazy"></div>
+        <div class="rmeta">Rear Quarter Right</div>
+      </div>
+      <div class="rcard" data-idx="58">
+        <div class="rthumb"><img src="reference/omega/pirhana/pirhana-ship-select-profile.thumb.jpg" alt="Pir-hana — Ship Select Profile" loading="lazy"></div>
+        <div class="rmeta">Ship Select Profile</div>
+      </div>
+    </div>
+    <div class="rteam" id="omega-triakis"><img class="rteam-logo" src="marks/teams/hd/triakis-logo.svg" alt="Triakis emblem"><h3>Triakis</h3><span class="rcount">17 shots</span></div>
+    <div class="rgrid">
+      <div class="rcard" data-idx="59">
+        <div class="rthumb"><img src="reference/omega/triakis/triakis-closeup-cockpit-hud.thumb.jpg" alt="Triakis — Closeup Cockpit Hud" loading="lazy"></div>
+        <div class="rmeta">Closeup Cockpit Hud</div>
+      </div>
+      <div class="rcard" data-idx="60">
+        <div class="rthumb"><img src="reference/omega/triakis/triakis-closeup-cockpit.thumb.jpg" alt="Triakis — Closeup Cockpit" loading="lazy"></div>
+        <div class="rmeta">Closeup Cockpit</div>
+      </div>
+      <div class="rcard" data-idx="61">
+        <div class="rthumb"><img src="reference/omega/triakis/triakis-closeup-nose-cockpit.thumb.jpg" alt="Triakis — Closeup Nose Cockpit" loading="lazy"></div>
+        <div class="rmeta">Closeup Nose Cockpit</div>
+      </div>
+      <div class="rcard" data-idx="62">
+        <div class="rthumb"><img src="reference/omega/triakis/triakis-closeup-nose-front.thumb.jpg" alt="Triakis — Closeup Nose Front" loading="lazy"></div>
+        <div class="rmeta">Closeup Nose Front</div>
+      </div>
+      <div class="rcard" data-idx="63">
+        <div class="rthumb"><img src="reference/omega/triakis/triakis-closeup-tail-oceania.thumb.jpg" alt="Triakis — Closeup Tail Oceania" loading="lazy"></div>
+        <div class="rmeta">Closeup Tail Oceania</div>
+      </div>
+      <div class="rcard" data-idx="64">
+        <div class="rthumb"><img src="reference/omega/triakis/triakis-closeup-underside-cannon.thumb.jpg" alt="Triakis — Closeup Underside Cannon" loading="lazy"></div>
+        <div class="rmeta">Closeup Underside Cannon</div>
+      </div>
+      <div class="rcard" data-idx="65">
+        <div class="rthumb"><img src="reference/omega/triakis/triakis-closeup-underside-gun.thumb.jpg" alt="Triakis — Closeup Underside Gun" loading="lazy"></div>
+        <div class="rmeta">Closeup Underside Gun</div>
+      </div>
+      <div class="rcard" data-idx="66">
+        <div class="rthumb"><img src="reference/omega/triakis/triakis-closeup-wing-logo.thumb.jpg" alt="Triakis — Closeup Wing Logo" loading="lazy"></div>
+        <div class="rmeta">Closeup Wing Logo</div>
+      </div>
+      <div class="rcard" data-idx="67">
+        <div class="rthumb"><img src="reference/omega/triakis/triakis-front-quarter-left.thumb.jpg" alt="Triakis — Front Quarter Left" loading="lazy"></div>
+        <div class="rmeta">Front Quarter Left</div>
+      </div>
+      <div class="rcard" data-idx="68">
+        <div class="rthumb"><img src="reference/omega/triakis/triakis-front-quarter-right.thumb.jpg" alt="Triakis — Front Quarter Right" loading="lazy"></div>
+        <div class="rmeta">Front Quarter Right</div>
+      </div>
+      <div class="rcard" data-idx="69">
+        <div class="rthumb"><img src="reference/omega/triakis/triakis-overhead.thumb.jpg" alt="Triakis — Overhead" loading="lazy"></div>
+        <div class="rmeta">Overhead</div>
+      </div>
+      <div class="rcard" data-idx="70">
+        <div class="rthumb"><img src="reference/omega/triakis/triakis-profile-right.thumb.jpg" alt="Triakis — Profile Right" loading="lazy"></div>
+        <div class="rmeta">Profile Right</div>
+      </div>
+      <div class="rcard" data-idx="71">
+        <div class="rthumb"><img src="reference/omega/triakis/triakis-rear-chase.thumb.jpg" alt="Triakis — Rear Chase" loading="lazy"></div>
+        <div class="rmeta">Rear Chase</div>
+      </div>
+      <div class="rcard" data-idx="72">
+        <div class="rthumb"><img src="reference/omega/triakis/triakis-rear-quarter-left.thumb.jpg" alt="Triakis — Rear Quarter Left" loading="lazy"></div>
+        <div class="rmeta">Rear Quarter Left</div>
+      </div>
+      <div class="rcard" data-idx="73">
+        <div class="rthumb"><img src="reference/omega/triakis/triakis-rear-quarter-right-closeup.thumb.jpg" alt="Triakis — Rear Quarter Right Closeup" loading="lazy"></div>
+        <div class="rmeta">Rear Quarter Right Closeup</div>
+      </div>
+      <div class="rcard" data-idx="74">
+        <div class="rthumb"><img src="reference/omega/triakis/triakis-rear-quarter-right-high.thumb.jpg" alt="Triakis — Rear Quarter Right High" loading="lazy"></div>
+        <div class="rmeta">Rear Quarter Right High</div>
+      </div>
+      <div class="rcard" data-idx="75">
+        <div class="rthumb"><img src="reference/omega/triakis/triakis-ship-select-profile.thumb.jpg" alt="Triakis — Ship Select Profile" loading="lazy"></div>
+        <div class="rmeta">Ship Select Profile</div>
+      </div>
+    </div>
+    <div class="rteam" id="omega-goteki45"><img class="rteam-logo" src="marks/teams/hd/goteki-logo.svg" alt="Goteki 45 emblem"><h3>Goteki 45</h3><span class="rcount">24 shots</span></div>
+    <div class="rgrid">
+      <div class="rcard" data-idx="76">
+        <div class="rthumb"><img src="reference/omega/goteki45/goteki45-closeup-cockpit-front.thumb.jpg" alt="Goteki 45 — Closeup Cockpit Front" loading="lazy"></div>
+        <div class="rmeta">Closeup Cockpit Front</div>
+      </div>
+      <div class="rcard" data-idx="77">
+        <div class="rthumb"><img src="reference/omega/goteki45/goteki45-closeup-nose-underside.thumb.jpg" alt="Goteki 45 — Closeup Nose Underside" loading="lazy"></div>
+        <div class="rmeta">Closeup Nose Underside</div>
+      </div>
+      <div class="rcard" data-idx="78">
+        <div class="rthumb"><img src="reference/omega/goteki45/goteki45-closeup-rear-airbrake.thumb.jpg" alt="Goteki 45 — Closeup Rear Airbrake" loading="lazy"></div>
+        <div class="rmeta">Closeup Rear Airbrake</div>
+      </div>
+      <div class="rcard" data-idx="79">
+        <div class="rthumb"><img src="reference/omega/goteki45/goteki45-closeup-tail-logo.thumb.jpg" alt="Goteki 45 — Closeup Tail Logo" loading="lazy"></div>
+        <div class="rmeta">Closeup Tail Logo</div>
+      </div>
+      <div class="rcard" data-idx="80">
+        <div class="rthumb"><img src="reference/omega/goteki45/goteki45-closeup-underside-rear.thumb.jpg" alt="Goteki 45 — Closeup Underside Rear" loading="lazy"></div>
+        <div class="rmeta">Closeup Underside Rear</div>
+      </div>
+      <div class="rcard" data-idx="81">
+        <div class="rthumb"><img src="reference/omega/goteki45/goteki45-closeup-underside-tail.thumb.jpg" alt="Goteki 45 — Closeup Underside Tail" loading="lazy"></div>
+        <div class="rmeta">Closeup Underside Tail</div>
+      </div>
+      <div class="rcard" data-idx="82">
+        <div class="rthumb"><img src="reference/omega/goteki45/goteki45-front-quarter-closeup.thumb.jpg" alt="Goteki 45 — Front Quarter Closeup" loading="lazy"></div>
+        <div class="rmeta">Front Quarter Closeup</div>
+      </div>
+      <div class="rcard" data-idx="83">
+        <div class="rthumb"><img src="reference/omega/goteki45/goteki45-front-quarter-right.thumb.jpg" alt="Goteki 45 — Front Quarter Right" loading="lazy"></div>
+        <div class="rmeta">Front Quarter Right</div>
+      </div>
+      <div class="rcard" data-idx="84">
+        <div class="rthumb"><img src="reference/omega/goteki45/goteki45-front-quarter-sky.thumb.jpg" alt="Goteki 45 — Front Quarter Sky" loading="lazy"></div>
+        <div class="rmeta">Front Quarter Sky</div>
+      </div>
+      <div class="rcard" data-idx="85">
+        <div class="rthumb"><img src="reference/omega/goteki45/goteki45-overhead.thumb.jpg" alt="Goteki 45 — Overhead" loading="lazy"></div>
+        <div class="rmeta">Overhead</div>
+      </div>
+      <div class="rcard" data-idx="86">
+        <div class="rthumb"><img src="reference/omega/goteki45/goteki45-profile-left-wall.thumb.jpg" alt="Goteki 45 — Profile Left Wall" loading="lazy"></div>
+        <div class="rmeta">Profile Left Wall</div>
+      </div>
+      <div class="rcard" data-idx="87">
+        <div class="rthumb"><img src="reference/omega/goteki45/goteki45-profile-left.thumb.jpg" alt="Goteki 45 — Profile Left" loading="lazy"></div>
+        <div class="rmeta">Profile Left</div>
+      </div>
+      <div class="rcard" data-idx="88">
+        <div class="rthumb"><img src="reference/omega/goteki45/goteki45-profile-right-closeup.thumb.jpg" alt="Goteki 45 — Profile Right Closeup" loading="lazy"></div>
+        <div class="rmeta">Profile Right Closeup</div>
+      </div>
+      <div class="rcard" data-idx="89">
+        <div class="rthumb"><img src="reference/omega/goteki45/goteki45-profile-right-horizon.thumb.jpg" alt="Goteki 45 — Profile Right Horizon" loading="lazy"></div>
+        <div class="rmeta">Profile Right Horizon</div>
+      </div>
+      <div class="rcard" data-idx="90">
+        <div class="rthumb"><img src="reference/omega/goteki45/goteki45-rear-chase-wall.thumb.jpg" alt="Goteki 45 — Rear Chase Wall" loading="lazy"></div>
+        <div class="rmeta">Rear Chase Wall</div>
+      </div>
+      <div class="rcard" data-idx="91">
+        <div class="rthumb"><img src="reference/omega/goteki45/goteki45-rear-chase-white.thumb.jpg" alt="Goteki 45 — Rear Chase White" loading="lazy"></div>
+        <div class="rmeta">Rear Chase White</div>
+      </div>
+      <div class="rcard" data-idx="92">
+        <div class="rthumb"><img src="reference/omega/goteki45/goteki45-rear-chase.thumb.jpg" alt="Goteki 45 — Rear Chase" loading="lazy"></div>
+        <div class="rmeta">Rear Chase</div>
+      </div>
+      <div class="rcard" data-idx="93">
+        <div class="rthumb"><img src="reference/omega/goteki45/goteki45-rear-quarter-left-wide.thumb.jpg" alt="Goteki 45 — Rear Quarter Left Wide" loading="lazy"></div>
+        <div class="rmeta">Rear Quarter Left Wide</div>
+      </div>
+      <div class="rcard" data-idx="94">
+        <div class="rthumb"><img src="reference/omega/goteki45/goteki45-rear-quarter-left.thumb.jpg" alt="Goteki 45 — Rear Quarter Left" loading="lazy"></div>
+        <div class="rmeta">Rear Quarter Left</div>
+      </div>
+      <div class="rcard" data-idx="95">
+        <div class="rthumb"><img src="reference/omega/goteki45/goteki45-rear-quarter-red.thumb.jpg" alt="Goteki 45 — Rear Quarter Red" loading="lazy"></div>
+        <div class="rmeta">Rear Quarter Red</div>
+      </div>
+      <div class="rcard" data-idx="96">
+        <div class="rthumb"><img src="reference/omega/goteki45/goteki45-rear-quarter-right-closeup.thumb.jpg" alt="Goteki 45 — Rear Quarter Right Closeup" loading="lazy"></div>
+        <div class="rmeta">Rear Quarter Right Closeup</div>
+      </div>
+      <div class="rcard" data-idx="97">
+        <div class="rthumb"><img src="reference/omega/goteki45/goteki45-rear-quarter-right.thumb.jpg" alt="Goteki 45 — Rear Quarter Right" loading="lazy"></div>
+        <div class="rmeta">Rear Quarter Right</div>
+      </div>
+      <div class="rcard" data-idx="98">
+        <div class="rthumb"><img src="reference/omega/goteki45/goteki45-rear-quarter-sunset.thumb.jpg" alt="Goteki 45 — Rear Quarter Sunset" loading="lazy"></div>
+        <div class="rmeta">Rear Quarter Sunset</div>
+      </div>
+      <div class="rcard" data-idx="99">
+        <div class="rthumb"><img src="reference/omega/goteki45/goteki45-ship-select-rear.thumb.jpg" alt="Goteki 45 — Ship Select Rear" loading="lazy"></div>
+        <div class="rmeta">Ship Select Rear</div>
+      </div>
+    </div>
+    <div class="rteam" id="omega-harimau"><img class="rteam-logo" src="marks/teams/hd/harimau-logo.svg" alt="Harimau emblem"><h3>Harimau</h3><span class="rcount">9 shots</span></div>
+    <div class="rgrid">
+      <div class="rcard" data-idx="100">
+        <div class="rthumb"><img src="reference/omega/harimau/harimau-front-quarter-left.thumb.jpg" alt="Harimau — Front Quarter Left" loading="lazy"></div>
+        <div class="rmeta">Front Quarter Left</div>
+      </div>
+      <div class="rcard" data-idx="101">
+        <div class="rthumb"><img src="reference/omega/harimau/harimau-overhead-rear.thumb.jpg" alt="Harimau — Overhead Rear" loading="lazy"></div>
+        <div class="rmeta">Overhead Rear</div>
+      </div>
+      <div class="rcard" data-idx="102">
+        <div class="rthumb"><img src="reference/omega/harimau/harimau-overhead.thumb.jpg" alt="Harimau — Overhead" loading="lazy"></div>
+        <div class="rmeta">Overhead</div>
+      </div>
+      <div class="rcard" data-idx="103">
+        <div class="rthumb"><img src="reference/omega/harimau/harimau-profile-left.thumb.jpg" alt="Harimau — Profile Left" loading="lazy"></div>
+        <div class="rmeta">Profile Left</div>
+      </div>
+      <div class="rcard" data-idx="104">
+        <div class="rthumb"><img src="reference/omega/harimau/harimau-profile-right.thumb.jpg" alt="Harimau — Profile Right" loading="lazy"></div>
+        <div class="rmeta">Profile Right</div>
+      </div>
+      <div class="rcard" data-idx="105">
+        <div class="rthumb"><img src="reference/omega/harimau/harimau-rear-chase.thumb.jpg" alt="Harimau — Rear Chase" loading="lazy"></div>
+        <div class="rmeta">Rear Chase</div>
+      </div>
+      <div class="rcard" data-idx="106">
+        <div class="rthumb"><img src="reference/omega/harimau/harimau-rear-quarter-left.thumb.jpg" alt="Harimau — Rear Quarter Left" loading="lazy"></div>
+        <div class="rmeta">Rear Quarter Left</div>
+      </div>
+      <div class="rcard" data-idx="107">
+        <div class="rthumb"><img src="reference/omega/harimau/harimau-rear-quarter-right-closeup.thumb.jpg" alt="Harimau — Rear Quarter Right Closeup" loading="lazy"></div>
+        <div class="rmeta">Rear Quarter Right Closeup</div>
+      </div>
+      <div class="rcard" data-idx="108">
+        <div class="rthumb"><img src="reference/omega/harimau/harimau-rear-quarter-right.thumb.jpg" alt="Harimau — Rear Quarter Right" loading="lazy"></div>
+        <div class="rmeta">Rear Quarter Right</div>
+      </div>
+    </div>
+  </section>
+</div>
+<footer>
+  <p>WipEout and all related logos, names and marks are trademarks of Sony Interactive Entertainment /
+  Studio Liverpool (formerly Psygnosis). This is a non-commercial, fan-made archive for the community.
+  Assets compiled from the work of the original creators &mdash; see
+  <a href="credits.html">CREDITS</a>. Contributions welcome via
+  <a href="contributing.html">pull request</a>.</p>
+</footer>
+<div class="plightbox" id="plightbox" aria-hidden="true">
+  <div class="pl-topbar">
+    <img class="pl-logo" id="plLogo" alt="">
+    <div class="pl-name" id="plName"></div>
+    <div class="pl-spacer"></div>
+    <button class="pl-x" id="plClose" aria-label="Close">&times;</button>
+  </div>
+  <button class="pl-nav pl-prev" id="plPrev" aria-label="Previous">&#8249;</button>
+  <button class="pl-nav pl-next" id="plNext" aria-label="Next">&#8250;</button>
+  <div class="pl-stage" id="plStage"><img id="plImg" alt=""></div>
+</div>
+<script>
+(function(){
+  var SHOTS=[{"name": "Banking Left", "team": "FEISAR", "full": "reference/omega/feisar/feisar-banking-left.jpg", "logo": "marks/teams/hd/feisar-logo.svg"}, {"name": "Front Quarter Left", "team": "FEISAR", "full": "reference/omega/feisar/feisar-front-quarter-left.jpg", "logo": "marks/teams/hd/feisar-logo.svg"}, {"name": "Front Quarter Sunset", "team": "FEISAR", "full": "reference/omega/feisar/feisar-front-quarter-sunset.jpg", "logo": "marks/teams/hd/feisar-logo.svg"}, {"name": "Hd Fury Key Art", "team": "FEISAR", "full": "reference/omega/feisar/feisar-hd-fury-key-art.jpg", "logo": "marks/teams/hd/feisar-logo.svg"}, {"name": "Overhead Rear", "team": "FEISAR", "full": "reference/omega/feisar/feisar-overhead-rear.jpg", "logo": "marks/teams/hd/feisar-logo.svg"}, {"name": "Profile Left", "team": "FEISAR", "full": "reference/omega/feisar/feisar-profile-left.jpg", "logo": "marks/teams/hd/feisar-logo.svg"}, {"name": "Rear Chase", "team": "FEISAR", "full": "reference/omega/feisar/feisar-rear-chase.jpg", "logo": "marks/teams/hd/feisar-logo.svg"}, {"name": "Rear Quarter Right", "team": "FEISAR", "full": "reference/omega/feisar/feisar-rear-quarter-right.jpg", "logo": "marks/teams/hd/feisar-logo.svg"}, {"name": "Render Banking Left", "team": "FEISAR", "full": "reference/omega/feisar/feisar-render-banking-left.jpg", "logo": "marks/teams/hd/feisar-logo.svg"}, {"name": "Render Front Quarter Left", "team": "FEISAR", "full": "reference/omega/feisar/feisar-render-front-quarter-left.jpg", "logo": "marks/teams/hd/feisar-logo.svg"}, {"name": "Render Front Quarter Right", "team": "FEISAR", "full": "reference/omega/feisar/feisar-render-front-quarter-right.jpg", "logo": "marks/teams/hd/feisar-logo.svg"}, {"name": "Render Overhead Rear", "team": "FEISAR", "full": "reference/omega/feisar/feisar-render-overhead-rear.jpg", "logo": "marks/teams/hd/feisar-logo.svg"}, {"name": "Render Rear Quarter", "team": "FEISAR", "full": "reference/omega/feisar/feisar-render-rear-quarter.jpg", "logo": "marks/teams/hd/feisar-logo.svg"}, {"name": "Render Sunset Bank", "team": "FEISAR", "full": "reference/omega/feisar/feisar-render-sunset-bank.jpg", "logo": "marks/teams/hd/feisar-logo.svg"}, {"name": "Front Overhead", "team": "AG Systems", "full": "reference/omega/ag-systems/ag-systems-front-overhead.jpg", "logo": "marks/teams/hd/ag-sys-logo.svg"}, {"name": "Front", "team": "AG Systems", "full": "reference/omega/ag-systems/ag-systems-front.jpg", "logo": "marks/teams/hd/ag-sys-logo.svg"}, {"name": "Profile Left", "team": "AG Systems", "full": "reference/omega/ag-systems/ag-systems-profile-left.jpg", "logo": "marks/teams/hd/ag-sys-logo.svg"}, {"name": "Profile Right", "team": "AG Systems", "full": "reference/omega/ag-systems/ag-systems-profile-right.jpg", "logo": "marks/teams/hd/ag-sys-logo.svg"}, {"name": "Race Profile Left Rect", "team": "AG Systems", "full": "reference/omega/ag-systems/ag-systems-race-profile-left-rect.jpg", "logo": "marks/teams/hd/ag-sys-logo.svg"}, {"name": "Race Profile Left", "team": "AG Systems", "full": "reference/omega/ag-systems/ag-systems-race-profile-left.jpg", "logo": "marks/teams/hd/ag-sys-logo.svg"}, {"name": "Race Rear Chase", "team": "AG Systems", "full": "reference/omega/ag-systems/ag-systems-race-rear-chase.jpg", "logo": "marks/teams/hd/ag-sys-logo.svg"}, {"name": "Race Rear Quarter Left", "team": "AG Systems", "full": "reference/omega/ag-systems/ag-systems-race-rear-quarter-left.jpg", "logo": "marks/teams/hd/ag-sys-logo.svg"}, {"name": "Rear Quarter", "team": "AG Systems", "full": "reference/omega/ag-systems/ag-systems-rear-quarter.jpg", "logo": "marks/teams/hd/ag-sys-logo.svg"}, {"name": "Rear", "team": "AG Systems", "full": "reference/omega/ag-systems/ag-systems-rear.jpg", "logo": "marks/teams/hd/ag-sys-logo.svg"}, {"name": "Front Quarter Left", "team": "Auricom", "full": "reference/omega/auricom/auricom-front-quarter-left.jpg", "logo": "marks/teams/hd/auricom.svg"}, {"name": "Overhead", "team": "Auricom", "full": "reference/omega/auricom/auricom-overhead.jpg", "logo": "marks/teams/hd/auricom.svg"}, {"name": "Profile Left", "team": "Auricom", "full": "reference/omega/auricom/auricom-profile-left.jpg", "logo": "marks/teams/hd/auricom.svg"}, {"name": "Rear Chase", "team": "Auricom", "full": "reference/omega/auricom/auricom-rear-chase.jpg", "logo": "marks/teams/hd/auricom.svg"}, {"name": "Rear Low", "team": "Auricom", "full": "reference/omega/auricom/auricom-rear-low.jpg", "logo": "marks/teams/hd/auricom.svg"}, {"name": "Rear Quarter Left", "team": "Auricom", "full": "reference/omega/auricom/auricom-rear-quarter-left.jpg", "logo": "marks/teams/hd/auricom.svg"}, {"name": "Rear Quarter Right", "team": "Auricom", "full": "reference/omega/auricom/auricom-rear-quarter-right.jpg", "logo": "marks/teams/hd/auricom.svg"}, {"name": "Concept One Blueprint", "team": "Qirex", "full": "reference/omega/qirex/qirex-concept-one-blueprint.jpg", "logo": "marks/teams/hd/qirex-logo-2.svg"}, {"name": "Concept One Perspective", "team": "Qirex", "full": "reference/omega/qirex/qirex-concept-one-perspective.jpg", "logo": "marks/teams/hd/qirex-logo-2.svg"}, {"name": "Front Quarter", "team": "Qirex", "full": "reference/omega/qirex/qirex-front-quarter.jpg", "logo": "marks/teams/hd/qirex-logo-2.svg"}, {"name": "Overhead", "team": "Qirex", "full": "reference/omega/qirex/qirex-overhead.jpg", "logo": "marks/teams/hd/qirex-logo-2.svg"}, {"name": "Profile Right Closeup", "team": "Qirex", "full": "reference/omega/qirex/qirex-profile-right-closeup.jpg", "logo": "marks/teams/hd/qirex-logo-2.svg"}, {"name": "Profile Right", "team": "Qirex", "full": "reference/omega/qirex/qirex-profile-right.jpg", "logo": "marks/teams/hd/qirex-logo-2.svg"}, {"name": "Rear Chase Distant", "team": "Qirex", "full": "reference/omega/qirex/qirex-rear-chase-distant.jpg", "logo": "marks/teams/hd/qirex-logo-2.svg"}, {"name": "Rear Chase", "team": "Qirex", "full": "reference/omega/qirex/qirex-rear-chase.jpg", "logo": "marks/teams/hd/qirex-logo-2.svg"}, {"name": "Rear Quarter Left", "team": "Qirex", "full": "reference/omega/qirex/qirex-rear-quarter-left.jpg", "logo": "marks/teams/hd/qirex-logo-2.svg"}, {"name": "Rear Quarter Right", "team": "Qirex", "full": "reference/omega/qirex/qirex-rear-quarter-right.jpg", "logo": "marks/teams/hd/qirex-logo-2.svg"}, {"name": "Closeup Cockpit", "team": "Pir-hana", "full": "reference/omega/pirhana/pirhana-closeup-cockpit.jpg", "logo": "marks/teams/hd/piranha-logo.svg"}, {"name": "Closeup Nose Overhead", "team": "Pir-hana", "full": "reference/omega/pirhana/pirhana-closeup-nose-overhead.jpg", "logo": "marks/teams/hd/piranha-logo.svg"}, {"name": "Closeup Side Sponsor", "team": "Pir-hana", "full": "reference/omega/pirhana/pirhana-closeup-side-sponsor.jpg", "logo": "marks/teams/hd/piranha-logo.svg"}, {"name": "Overhead Alt", "team": "Pir-hana", "full": "reference/omega/pirhana/pirhana-overhead-alt.jpg", "logo": "marks/teams/hd/piranha-logo.svg"}, {"name": "Overhead", "team": "Pir-hana", "full": "reference/omega/pirhana/pirhana-overhead.jpg", "logo": "marks/teams/hd/piranha-logo.svg"}, {"name": "Profile Right Alt", "team": "Pir-hana", "full": "reference/omega/pirhana/pirhana-profile-right-alt.jpg", "logo": "marks/teams/hd/piranha-logo.svg"}, {"name": "Profile Right Jump", "team": "Pir-hana", "full": "reference/omega/pirhana/pirhana-profile-right-jump.jpg", "logo": "marks/teams/hd/piranha-logo.svg"}, {"name": "Profile Right", "team": "Pir-hana", "full": "reference/omega/pirhana/pirhana-profile-right.jpg", "logo": "marks/teams/hd/piranha-logo.svg"}, {"name": "Rear Chase Alt", "team": "Pir-hana", "full": "reference/omega/pirhana/pirhana-rear-chase-alt.jpg", "logo": "marks/teams/hd/piranha-logo.svg"}, {"name": "Rear Chase Low Alt", "team": "Pir-hana", "full": "reference/omega/pirhana/pirhana-rear-chase-low-alt.jpg", "logo": "marks/teams/hd/piranha-logo.svg"}, {"name": "Rear Chase Low", "team": "Pir-hana", "full": "reference/omega/pirhana/pirhana-rear-chase-low.jpg", "logo": "marks/teams/hd/piranha-logo.svg"}, {"name": "Rear Chase Snow", "team": "Pir-hana", "full": "reference/omega/pirhana/pirhana-rear-chase-snow.jpg", "logo": "marks/teams/hd/piranha-logo.svg"}, {"name": "Rear Chase", "team": "Pir-hana", "full": "reference/omega/pirhana/pirhana-rear-chase.jpg", "logo": "marks/teams/hd/piranha-logo.svg"}, {"name": "Rear Quarter Left Alt", "team": "Pir-hana", "full": "reference/omega/pirhana/pirhana-rear-quarter-left-alt.jpg", "logo": "marks/teams/hd/piranha-logo.svg"}, {"name": "Rear Quarter Left", "team": "Pir-hana", "full": "reference/omega/pirhana/pirhana-rear-quarter-left.jpg", "logo": "marks/teams/hd/piranha-logo.svg"}, {"name": "Rear Quarter Right Alt", "team": "Pir-hana", "full": "reference/omega/pirhana/pirhana-rear-quarter-right-alt.jpg", "logo": "marks/teams/hd/piranha-logo.svg"}, {"name": "Rear Quarter Right", "team": "Pir-hana", "full": "reference/omega/pirhana/pirhana-rear-quarter-right.jpg", "logo": "marks/teams/hd/piranha-logo.svg"}, {"name": "Ship Select Profile", "team": "Pir-hana", "full": "reference/omega/pirhana/pirhana-ship-select-profile.jpg", "logo": "marks/teams/hd/piranha-logo.svg"}, {"name": "Closeup Cockpit Hud", "team": "Triakis", "full": "reference/omega/triakis/triakis-closeup-cockpit-hud.jpg", "logo": "marks/teams/hd/triakis-logo.svg"}, {"name": "Closeup Cockpit", "team": "Triakis", "full": "reference/omega/triakis/triakis-closeup-cockpit.jpg", "logo": "marks/teams/hd/triakis-logo.svg"}, {"name": "Closeup Nose Cockpit", "team": "Triakis", "full": "reference/omega/triakis/triakis-closeup-nose-cockpit.jpg", "logo": "marks/teams/hd/triakis-logo.svg"}, {"name": "Closeup Nose Front", "team": "Triakis", "full": "reference/omega/triakis/triakis-closeup-nose-front.jpg", "logo": "marks/teams/hd/triakis-logo.svg"}, {"name": "Closeup Tail Oceania", "team": "Triakis", "full": "reference/omega/triakis/triakis-closeup-tail-oceania.jpg", "logo": "marks/teams/hd/triakis-logo.svg"}, {"name": "Closeup Underside Cannon", "team": "Triakis", "full": "reference/omega/triakis/triakis-closeup-underside-cannon.jpg", "logo": "marks/teams/hd/triakis-logo.svg"}, {"name": "Closeup Underside Gun", "team": "Triakis", "full": "reference/omega/triakis/triakis-closeup-underside-gun.jpg", "logo": "marks/teams/hd/triakis-logo.svg"}, {"name": "Closeup Wing Logo", "team": "Triakis", "full": "reference/omega/triakis/triakis-closeup-wing-logo.jpg", "logo": "marks/teams/hd/triakis-logo.svg"}, {"name": "Front Quarter Left", "team": "Triakis", "full": "reference/omega/triakis/triakis-front-quarter-left.jpg", "logo": "marks/teams/hd/triakis-logo.svg"}, {"name": "Front Quarter Right", "team": "Triakis", "full": "reference/omega/triakis/triakis-front-quarter-right.jpg", "logo": "marks/teams/hd/triakis-logo.svg"}, {"name": "Overhead", "team": "Triakis", "full": "reference/omega/triakis/triakis-overhead.jpg", "logo": "marks/teams/hd/triakis-logo.svg"}, {"name": "Profile Right", "team": "Triakis", "full": "reference/omega/triakis/triakis-profile-right.jpg", "logo": "marks/teams/hd/triakis-logo.svg"}, {"name": "Rear Chase", "team": "Triakis", "full": "reference/omega/triakis/triakis-rear-chase.jpg", "logo": "marks/teams/hd/triakis-logo.svg"}, {"name": "Rear Quarter Left", "team": "Triakis", "full": "reference/omega/triakis/triakis-rear-quarter-left.jpg", "logo": "marks/teams/hd/triakis-logo.svg"}, {"name": "Rear Quarter Right Closeup", "team": "Triakis", "full": "reference/omega/triakis/triakis-rear-quarter-right-closeup.jpg", "logo": "marks/teams/hd/triakis-logo.svg"}, {"name": "Rear Quarter Right High", "team": "Triakis", "full": "reference/omega/triakis/triakis-rear-quarter-right-high.jpg", "logo": "marks/teams/hd/triakis-logo.svg"}, {"name": "Ship Select Profile", "team": "Triakis", "full": "reference/omega/triakis/triakis-ship-select-profile.jpg", "logo": "marks/teams/hd/triakis-logo.svg"}, {"name": "Closeup Cockpit Front", "team": "Goteki 45", "full": "reference/omega/goteki45/goteki45-closeup-cockpit-front.jpg", "logo": "marks/teams/hd/goteki-logo.svg"}, {"name": "Closeup Nose Underside", "team": "Goteki 45", "full": "reference/omega/goteki45/goteki45-closeup-nose-underside.jpg", "logo": "marks/teams/hd/goteki-logo.svg"}, {"name": "Closeup Rear Airbrake", "team": "Goteki 45", "full": "reference/omega/goteki45/goteki45-closeup-rear-airbrake.jpg", "logo": "marks/teams/hd/goteki-logo.svg"}, {"name": "Closeup Tail Logo", "team": "Goteki 45", "full": "reference/omega/goteki45/goteki45-closeup-tail-logo.jpg", "logo": "marks/teams/hd/goteki-logo.svg"}, {"name": "Closeup Underside Rear", "team": "Goteki 45", "full": "reference/omega/goteki45/goteki45-closeup-underside-rear.jpg", "logo": "marks/teams/hd/goteki-logo.svg"}, {"name": "Closeup Underside Tail", "team": "Goteki 45", "full": "reference/omega/goteki45/goteki45-closeup-underside-tail.jpg", "logo": "marks/teams/hd/goteki-logo.svg"}, {"name": "Front Quarter Closeup", "team": "Goteki 45", "full": "reference/omega/goteki45/goteki45-front-quarter-closeup.jpg", "logo": "marks/teams/hd/goteki-logo.svg"}, {"name": "Front Quarter Right", "team": "Goteki 45", "full": "reference/omega/goteki45/goteki45-front-quarter-right.jpg", "logo": "marks/teams/hd/goteki-logo.svg"}, {"name": "Front Quarter Sky", "team": "Goteki 45", "full": "reference/omega/goteki45/goteki45-front-quarter-sky.jpg", "logo": "marks/teams/hd/goteki-logo.svg"}, {"name": "Overhead", "team": "Goteki 45", "full": "reference/omega/goteki45/goteki45-overhead.jpg", "logo": "marks/teams/hd/goteki-logo.svg"}, {"name": "Profile Left Wall", "team": "Goteki 45", "full": "reference/omega/goteki45/goteki45-profile-left-wall.jpg", "logo": "marks/teams/hd/goteki-logo.svg"}, {"name": "Profile Left", "team": "Goteki 45", "full": "reference/omega/goteki45/goteki45-profile-left.jpg", "logo": "marks/teams/hd/goteki-logo.svg"}, {"name": "Profile Right Closeup", "team": "Goteki 45", "full": "reference/omega/goteki45/goteki45-profile-right-closeup.jpg", "logo": "marks/teams/hd/goteki-logo.svg"}, {"name": "Profile Right Horizon", "team": "Goteki 45", "full": "reference/omega/goteki45/goteki45-profile-right-horizon.jpg", "logo": "marks/teams/hd/goteki-logo.svg"}, {"name": "Rear Chase Wall", "team": "Goteki 45", "full": "reference/omega/goteki45/goteki45-rear-chase-wall.jpg", "logo": "marks/teams/hd/goteki-logo.svg"}, {"name": "Rear Chase White", "team": "Goteki 45", "full": "reference/omega/goteki45/goteki45-rear-chase-white.jpg", "logo": "marks/teams/hd/goteki-logo.svg"}, {"name": "Rear Chase", "team": "Goteki 45", "full": "reference/omega/goteki45/goteki45-rear-chase.jpg", "logo": "marks/teams/hd/goteki-logo.svg"}, {"name": "Rear Quarter Left Wide", "team": "Goteki 45", "full": "reference/omega/goteki45/goteki45-rear-quarter-left-wide.jpg", "logo": "marks/teams/hd/goteki-logo.svg"}, {"name": "Rear Quarter Left", "team": "Goteki 45", "full": "reference/omega/goteki45/goteki45-rear-quarter-left.jpg", "logo": "marks/teams/hd/goteki-logo.svg"}, {"name": "Rear Quarter Red", "team": "Goteki 45", "full": "reference/omega/goteki45/goteki45-rear-quarter-red.jpg", "logo": "marks/teams/hd/goteki-logo.svg"}, {"name": "Rear Quarter Right Closeup", "team": "Goteki 45", "full": "reference/omega/goteki45/goteki45-rear-quarter-right-closeup.jpg", "logo": "marks/teams/hd/goteki-logo.svg"}, {"name": "Rear Quarter Right", "team": "Goteki 45", "full": "reference/omega/goteki45/goteki45-rear-quarter-right.jpg", "logo": "marks/teams/hd/goteki-logo.svg"}, {"name": "Rear Quarter Sunset", "team": "Goteki 45", "full": "reference/omega/goteki45/goteki45-rear-quarter-sunset.jpg", "logo": "marks/teams/hd/goteki-logo.svg"}, {"name": "Ship Select Rear", "team": "Goteki 45", "full": "reference/omega/goteki45/goteki45-ship-select-rear.jpg", "logo": "marks/teams/hd/goteki-logo.svg"}, {"name": "Front Quarter Left", "team": "Harimau", "full": "reference/omega/harimau/harimau-front-quarter-left.jpg", "logo": "marks/teams/hd/harimau-logo.svg"}, {"name": "Overhead Rear", "team": "Harimau", "full": "reference/omega/harimau/harimau-overhead-rear.jpg", "logo": "marks/teams/hd/harimau-logo.svg"}, {"name": "Overhead", "team": "Harimau", "full": "reference/omega/harimau/harimau-overhead.jpg", "logo": "marks/teams/hd/harimau-logo.svg"}, {"name": "Profile Left", "team": "Harimau", "full": "reference/omega/harimau/harimau-profile-left.jpg", "logo": "marks/teams/hd/harimau-logo.svg"}, {"name": "Profile Right", "team": "Harimau", "full": "reference/omega/harimau/harimau-profile-right.jpg", "logo": "marks/teams/hd/harimau-logo.svg"}, {"name": "Rear Chase", "team": "Harimau", "full": "reference/omega/harimau/harimau-rear-chase.jpg", "logo": "marks/teams/hd/harimau-logo.svg"}, {"name": "Rear Quarter Left", "team": "Harimau", "full": "reference/omega/harimau/harimau-rear-quarter-left.jpg", "logo": "marks/teams/hd/harimau-logo.svg"}, {"name": "Rear Quarter Right Closeup", "team": "Harimau", "full": "reference/omega/harimau/harimau-rear-quarter-right-closeup.jpg", "logo": "marks/teams/hd/harimau-logo.svg"}, {"name": "Rear Quarter Right", "team": "Harimau", "full": "reference/omega/harimau/harimau-rear-quarter-right.jpg", "logo": "marks/teams/hd/harimau-logo.svg"}];
+  var lb=document.getElementById('plightbox'), img=document.getElementById('plImg'),
+      nameEl=document.getElementById('plName'), logo=document.getElementById('plLogo'),
+      stage=document.getElementById('plStage'); var i=0;
+  function show(n){ i=(n+SHOTS.length)%SHOTS.length; var s=SHOTS[i];
+    img.src=s.full; img.alt=s.name; nameEl.textContent=(s.team? s.team+' — ':'')+s.name;
+    if(s.logo){ logo.src=s.logo; logo.style.display=''; } else { logo.removeAttribute('src'); logo.style.display='none'; } }
+  function openLb(n){ show(n); lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+  function closeLb(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); img.removeAttribute('src'); document.body.style.overflow=''; }
+  document.querySelectorAll('.rcard').forEach(function(c){
+    c.addEventListener('click', function(){ openLb(parseInt(c.getAttribute('data-idx'),10)); }); });
+  document.getElementById('plClose').addEventListener('click', closeLb);
+  document.getElementById('plPrev').addEventListener('click', function(){ show(i-1); });
+  document.getElementById('plNext').addEventListener('click', function(){ show(i+1); });
+  stage.addEventListener('click', function(e){ if(e.target===stage) closeLb(); });
+  document.addEventListener('keydown', function(e){ if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape') closeLb(); else if(e.key==='ArrowLeft') show(i-1); else if(e.key==='ArrowRight') show(i+1); });
+})();
+</script>
+</body></html>
