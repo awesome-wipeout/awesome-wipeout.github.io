@@ -1,23 +1,18 @@
-name: Build assets & tear sheet
+name: Build check
 
-# Regenerates PNG/PDF derivatives, manifest.json and index.html from the SVGs.
-# Contributors only need to add/edit SVGs; this keeps everything else in sync.
+# The site is generated LOCALLY and its output committed to the repo — GitHub Pages
+# serves those files directly, so this workflow does NOT regenerate, commit or deploy
+# anything. It just verifies that tools/build.py still runs on a clean checkout, so a
+# PR that would break the build is caught early.
+#
+# Font specimens can't be produced here (the runner has no fonts installed); build.py
+# skips that step gracefully and the committed fonts/*.svg are used as-is.
 
 on:
   push:
     branches: [main]
-    paths:
-      - "logos/**/*.svg"
-      - "tools/**"
-      - ".github/workflows/build.yml"
   pull_request:
-    paths:
-      - "logos/**/*.svg"
-      - "tools/**"
   workflow_dispatch:
-
-permissions:
-  contents: write
 
 jobs:
   build:
@@ -29,32 +24,11 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install dependencies
+      - name: Install build dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y libcairo2
-          pip install cairosvg pymupdf
+          pip install cairosvg pymupdf fonttools lxml pillow
 
-      - name: Build library
+      - name: Build (must succeed)
         run: python3 tools/build.py
-
-      - name: Commit regenerated files (push to main only)
-        if: github.event_name == 'push'
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add logos/**/*.png logos/**/*.pdf logos/manifest.json index.html tearsheet.pdf
-          if git diff --staged --quiet; then
-            echo "No changes to commit."
-          else
-            git commit -m "chore: rebuild derivatives, manifest and tear sheet [skip ci]"
-            git push
-          fi
-
-      - name: Verify build is up to date (PRs)
-        if: github.event_name == 'pull_request'
-        run: |
-          if [ -n "$(git status --porcelain logos/manifest.json index.html)" ]; then
-            echo "::warning::manifest.json / index.html are out of date. Run 'python3 tools/build.py' and commit, or a maintainer will on merge."
-          fi
-          echo "SVGs rendered successfully."

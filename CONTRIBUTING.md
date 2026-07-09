@@ -78,9 +78,9 @@ Add an entry to `data/fonts.toml` in the right group, with a "get" `url`. If the
 
 Describe the asset, link its source, and confirm the licence. That's it — thank you! 🏁
 
-**No need to build anything.** Just commit your file(s) and your `data/*.toml` edit — the rest of
-the site (PNGs, manifests, HTML pages and the tear sheet) is regenerated automatically when your
-change is merged.
+**No need to build anything.** Just commit your file(s) and your `data/*.toml` edit — the generated
+site (PNGs, manifests, HTML pages and the tear sheet) is rebuilt from your source before it goes
+live.
 
 *(Want to preview locally first? `pip install cairosvg pymupdf fonttools lxml pillow` then
 `python3 tools/build.py` — but it's entirely optional.)*

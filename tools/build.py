@@ -761,6 +761,12 @@ def generate_font_samples():
     (e.g. CI, or after downloads/ is wiped). A font is only reported "missing"
     when there is no committed specimen to fall back on. One bad/corrupt font
     never breaks the build. Returns (missing_families, name_hints)."""
+    try:
+        import fontTools  # noqa: F401 — only needed to outline specimens; absent in CI
+    except ImportError:
+        print("  fontTools not installed — skipping specimen generation; "
+              "committed fonts/*.svg are used as-is")
+        return [], {}
     outdir = os.path.join(ROOT, "fonts")
     os.makedirs(outdir, exist_ok=True)
     _font_index()  # populates _FONT_ORIG for hints; skips any font dir that's absent
