@@ -910,6 +910,19 @@ def _nav_html(active):
             f'<div class="navlinks">{"".join(items)}</div></div></nav>')
 
 
+# Google Analytics 4 (gtag.js). Injected into every page's <head> by _document().
+# Loaded async so it never blocks render. Measurement ID: awesome-wipeout web stream.
+ANALYTICS = """<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KX3WW4Q3NG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KX3WW4Q3NG');
+</script>
+"""
+
+
 FOOTER = """<footer>
   <p>WipEout and all related logos, names and marks are trademarks of Sony Interactive Entertainment /
   Studio Liverpool (formerly Psygnosis). This is a non-commercial, fan-made archive for the community.
@@ -927,7 +940,7 @@ def _document(slug, title, header_inner, body, scripts=""):
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title)} · awesome-wipeout</title>
-<style>{CSS}</style></head>
+{ANALYTICS}<style>{CSS}</style></head>
 <body>
 {_nav_html(slug)}
 {hero}<div class="wrap">
