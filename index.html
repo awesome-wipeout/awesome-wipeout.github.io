@@ -10,6 +10,34 @@
   gtag('js', new Date());
   gtag('config', 'G-KX3WW4Q3NG');
 </script>
+<script>
+  // Custom action tracking — one delegated listener for the whole site.
+  (function(){
+    function ev(name, params){ try{ gtag('event', name, params||{}); }catch(e){} }
+    function slug(h){ return (h.split('#')[0].split('?')[0].split('/').pop()||'').replace(/\.[^.]+$/,''); }
+    document.addEventListener('click', function(e){
+      var a = e.target.closest && e.target.closest('a'); if(!a) return;
+      if(a.hasAttribute('download')){
+        var href = a.getAttribute('href') || '';
+        if(/\.svg(?:[?#]|$)/i.test(href)) ev('download_svg', {mark: slug(href), file: href});
+        else if(/\.png(?:[?#]|$)/i.test(href)) ev('download_png', {mark: slug(href), file: href});
+        return;
+      }
+      if(a.classList.contains('pdflink')){
+        ev('download_pdf', {file: a.getAttribute('href') || ''});
+        return;
+      }
+      if(a.classList.contains('font-get')){
+        ev('get_font', {font: a.getAttribute('data-font') || '', link_url: a.href, link_domain: a.hostname});
+        return;
+      }
+      if(a.classList.contains('contrib-link')){
+        ev('contributor_link', {contributor: a.getAttribute('data-contrib') || '', link_url: a.href, link_domain: a.hostname});
+        return;
+      }
+    }, true);
+  })();
+</script>
 <style>
 :root{--bg:#f7f8fa;--card:#fff;--ink:#12151a;--muted:#6b7280;--line:#e5e7eb;
 --accent:#0b7fd4;--check:#d5dbe2}
@@ -271,7 +299,7 @@ color:#fff;border:0;width:52px;height:64px;font-size:30px;cursor:pointer;border-
   every asset available as SVG and PNG.</p>
   <span class="stat">200 assets</span>
   <span class="stat">15 categories</span>
-  <span class="stat">Updated 2026-07-09</span>
+  <span class="stat">Updated 2026-07-10</span>
   <div class="toc"><a href="#titles">Game Titles (10)</a><a href="#teams-wo1">Teams — WipEout (4)</a><a href="#teams-2097">Teams — WipEout 2097 (5)</a><a href="#teams-wip3out">Teams — Wip3out (8)</a><a href="#teams-pure">Teams — WipEout Pure (10)</a><a href="#teams-hd">Teams — WipEout HD / 2048 (25)</a><a href="#teams-hd-text">WipEout HD — Wordmarks &amp; Taglines (22)</a><a href="#pilots">Pilots (8)</a><a href="#classes">Speed Classes (4)</a><a href="#game-modes">Game Modes (8)</a><a href="#weapons">Weapons (9)</a><a href="#sponsors">Sponsors (59)</a><a href="#tracks">Tracks &amp; Venues (16)</a><a href="#leagues">Leagues (9)</a><a href="#misc">Miscellaneous (3)</a><a href="#credits">Credits</a></div>
 </header>
 <div class="wrap">
@@ -1889,27 +1917,27 @@ color:#fff;border:0;width:52px;height:64px;font-size:30px;cursor:pointer;border-
       <div class="credit" id="credit-ollite20">
         <div class="who">ollite20</div><div class="what">Series &amp; game title logos; WipEout HD team logos, texts &amp; symbols</div>
         <div class="lic"><span>Licence:</span> <a href="https://creativecommons.org/licenses/by-nc/3.0/" target="_blank" rel="noopener license">CC BY-NC 3.0 ↗</a> — Adaptations permitted (non-commercial, with attribution); artist asks for a link back.</div>
-        <a href="https://www.deviantart.com/ollite20/art/WipEout-logos-and-texts-161266694" target="_blank" rel="noopener">WipEout logos and texts</a>
+        <a class="contrib-link" data-contrib="ollite20" href="https://www.deviantart.com/ollite20/art/WipEout-logos-and-texts-161266694" target="_blank" rel="noopener">WipEout logos and texts</a>
       </div>
       <div class="credit" id="credit-x-0rm">
         <div class="who">Curtis Agnew (X_0rm)</div><div class="what">WipEout Pure team logos</div>
         <div class="lic"><span>Licence:</span> No formal licence (© X_0rm) — No CC licence stated; used with attribution at the artist&#x27;s request (link-back requested).</div>
-        <a href="https://www.deviantart.com/x-0rm/art/WipEout-Pure-All-Logo-s-Vector-324648442" target="_blank" rel="noopener">WipEout Pure — All Logo&#x27;s Vector</a>
+        <a class="contrib-link" data-contrib="x-0rm" href="https://www.deviantart.com/x-0rm/art/WipEout-Pure-All-Logo-s-Vector-324648442" target="_blank" rel="noopener">WipEout Pure — All Logo&#x27;s Vector</a>
       </div>
       <div class="credit" id="credit-liger-inuzuka">
         <div class="who">Liger-Inuzuka</div><div class="what">Sponsors, tracks, speed classes &amp; game modes</div>
         <div class="lic"><span>Licence:</span> <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank" rel="noopener license">CC BY-NC-ND 3.0 ↗</a> — NoDerivatives; artist states &quot;Do not redistribute.&quot; Splitting/adapting is not permitted — see LICENSING.md.</div>
-        <a href="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" target="_blank" rel="noopener">Wipeout HD Fury Shapes Mega Pack / Resources</a>
+        <a class="contrib-link" data-contrib="liger-inuzuka" href="https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653" target="_blank" rel="noopener">Wipeout HD Fury Shapes Mega Pack / Resources</a>
       </div>
       <div class="credit" id="credit-toolboxio">
         <div class="who">toolboxio</div><div class="what">WipEout / 2097 / Wip3out team logos &amp; pilots</div>
         <div class="lic"><span>Licence:</span> No formal licence (© toolboxio) — No CC licence, but the uploader released them publicly (&quot;enjoy, internet!&quot;). Re-vectored from low-res game images.</div>
-        <a href="https://www.deviantart.com/toolboxio/art/wipeout-1-logo-pack-194855659" target="_blank" rel="noopener">WipEout 1 logo pack</a><a href="https://www.deviantart.com/toolboxio/art/wipeout-1-pilot-pack-194857413" target="_blank" rel="noopener">WipEout 1 pilot pack</a><a href="https://www.deviantart.com/toolboxio/art/wipeout-2097-logo-pack-194856576" target="_blank" rel="noopener">WipEout 2097 logo pack</a><a href="https://www.deviantart.com/toolboxio/art/w1p3out-logo-pack-194858778" target="_blank" rel="noopener">w1p3out logo pack</a>
+        <a class="contrib-link" data-contrib="toolboxio" href="https://www.deviantart.com/toolboxio/art/wipeout-1-logo-pack-194855659" target="_blank" rel="noopener">WipEout 1 logo pack</a><a class="contrib-link" data-contrib="toolboxio" href="https://www.deviantart.com/toolboxio/art/wipeout-1-pilot-pack-194857413" target="_blank" rel="noopener">WipEout 1 pilot pack</a><a class="contrib-link" data-contrib="toolboxio" href="https://www.deviantart.com/toolboxio/art/wipeout-2097-logo-pack-194856576" target="_blank" rel="noopener">WipEout 2097 logo pack</a><a class="contrib-link" data-contrib="toolboxio" href="https://www.deviantart.com/toolboxio/art/w1p3out-logo-pack-194858778" target="_blank" rel="noopener">w1p3out logo pack</a>
       </div>
       <div class="credit" id="credit-djdrey909">
         <div class="who">djdrey909 (Andre Lackmann)</div><div class="what">Original custom WipEout team &amp; sponsor marks and weapon glyphs</div>
         <div class="lic"><span>Licence:</span> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener license">CC BY-NC-SA 4.0 ↗</a> — Original work by the author, released for the community.</div>
-        <a href="https://andre.lackmann.net" target="_blank" rel="noopener">andre.lackmann.net</a>
+        <a class="contrib-link" data-contrib="djdrey909" href="https://andre.lackmann.net" target="_blank" rel="noopener">andre.lackmann.net</a>
       </div>
     </div>
   </div>
@@ -1941,7 +1969,7 @@ color:#fff;border:0;width:52px;height:64px;font-size:30px;cursor:pointer;border-
     <button class="vbox-x" id="vboxClose" aria-label="Close">&times;</button>
     <h3>The artist hosts this vector</h3>
     <p id="vboxMsg"></p>
-    <a class="vbox-go" id="vboxGo" target="_blank" rel="noopener">Visit the artist's page ↗</a>
+    <a class="vbox-go contrib-link" id="vboxGo" target="_blank" rel="noopener">Visit the artist's page ↗</a>
   </div>
 </div>
 <script>
@@ -1960,7 +1988,8 @@ color:#fff;border:0;width:52px;height:64px;font-size:30px;cursor:pointer;border-
       ? '<a href="'+a.svg+'" download>SVG</a><a href="'+a.png+'" download>PNG</a>'
       : '<a class="locked" role="button" href="#" data-locked-src="'+(a.source||'')+'" data-locked-who="'+(a.who||'')+'">SVG</a><a href="'+a.png+'" download>PNG</a>'; }
   function openLb(n){ show(n); applyBg(); lb.classList.add('open');
-    lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+    lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+    var a=ASSETS[i]; try{ gtag('event','view_mark',{mark:a.name, file:(a.svg||a.png||'')}); }catch(e){} }
   function closeLb(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true');
     img.removeAttribute('src'); document.body.style.overflow=''; }
   document.querySelectorAll('.thumb').forEach(function(t){
@@ -1984,7 +2013,7 @@ color:#fff;border:0;width:52px;height:64px;font-size:30px;cursor:pointer;border-
   var vb=document.getElementById('vbox'), msg=document.getElementById('vboxMsg'), go=document.getElementById('vboxGo');
   function openVb(src,who){
     msg.textContent=(who?who+' asks ':'The artist asks ')+'that this vector be obtained from their own page rather than redistributed here \u2014 the licence does not permit us to share the vector.';
-    if(src){ go.href=src; go.style.display=''; } else { go.style.display='none'; }
+    if(src){ go.href=src; go.setAttribute('data-contrib', who||''); go.style.display=''; } else { go.style.display='none'; }
     vb.classList.add('open'); vb.setAttribute('aria-hidden','false');
   }
   function closeVb(){ vb.classList.remove('open'); vb.setAttribute('aria-hidden','true'); }

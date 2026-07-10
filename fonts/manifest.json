@@ -1,6 +1,6 @@
 {
   "name": "awesome-wipeout \u2014 fonts",
-  "generated": "2026-07-09",
+  "generated": "2026-07-10",
   "note": "Fonts are referenced, never hosted. Specimen SVGs are outlined from locally-installed fonts at build time; specimen=null means no committed sample yet. Generated from tools/build.py \u2014 do not hand-edit.",
   "total": 34,
   "sections": [

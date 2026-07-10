@@ -912,6 +912,23 @@ def _nav_html(active):
 
 # Google Analytics 4 (gtag.js). Injected into every page's <head> by _document().
 # Loaded async so it never blocks render. Measurement ID: awesome-wipeout web stream.
+#
+# Custom events (see also the "Analytics" section in CLAUDE.md). One delegated,
+# capture-phase click listener on `document` catches clicks anywhere — including the
+# lightbox / vbox / fonts overlays whose markup is built in JS — so there are no
+# per-element onclick handlers to keep in sync. Event ⇄ trigger:
+#   download_svg      — an asset's SVG button (any a[download] href ending .svg)
+#   download_png      — an asset's PNG button (any a[download] href ending .png)
+#   download_pdf      — the aggregate tear-sheet PDF link (.pdflink)
+#   get_font          — a font's "get ↗" link (.font-get, card or lightbox)
+#   contributor_link  — an outbound link to a contributor's own site (.contrib-link:
+#                       credit cards, font "by <designer>", the restricted-vector overlay)
+# Two more — view_mark / view_font — are lightbox-open events fired from the marks/fonts
+# lightbox scripts themselves (openLb / openFb), since those opens are <div> clicks, not
+# anchors this listener would see.
+# gtag() is defined synchronously below, so calls queue to dataLayer even before the
+# async library finishes loading. Params are plain event params — to slice reports by
+# them, register matching custom dimensions in the GA4 admin (Analytics section, CLAUDE.md).
 ANALYTICS = """<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KX3WW4Q3NG"></script>
 <script>
@@ -919,6 +936,34 @@ ANALYTICS = """<!-- Google tag (gtag.js) -->
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-KX3WW4Q3NG');
+</script>
+<script>
+  // Custom action tracking — one delegated listener for the whole site.
+  (function(){
+    function ev(name, params){ try{ gtag('event', name, params||{}); }catch(e){} }
+    function slug(h){ return (h.split('#')[0].split('?')[0].split('/').pop()||'').replace(/\\.[^.]+$/,''); }
+    document.addEventListener('click', function(e){
+      var a = e.target.closest && e.target.closest('a'); if(!a) return;
+      if(a.hasAttribute('download')){
+        var href = a.getAttribute('href') || '';
+        if(/\\.svg(?:[?#]|$)/i.test(href)) ev('download_svg', {mark: slug(href), file: href});
+        else if(/\\.png(?:[?#]|$)/i.test(href)) ev('download_png', {mark: slug(href), file: href});
+        return;
+      }
+      if(a.classList.contains('pdflink')){
+        ev('download_pdf', {file: a.getAttribute('href') || ''});
+        return;
+      }
+      if(a.classList.contains('font-get')){
+        ev('get_font', {font: a.getAttribute('data-font') || '', link_url: a.href, link_domain: a.hostname});
+        return;
+      }
+      if(a.classList.contains('contrib-link')){
+        ev('contributor_link', {contributor: a.getAttribute('data-contrib') || '', link_url: a.href, link_domain: a.hostname});
+        return;
+      }
+    }, true);
+  })();
 </script>
 """
 
@@ -1303,7 +1348,8 @@ def build_pages(manifest, ref_manifest=None):
         if c["id"] not in used:
             continue
         link_html = "".join(
-            f'<a href="{esc(u)}" target="_blank" rel="noopener">{esc(t)}</a>'
+            f'<a class="contrib-link" data-contrib="{esc(c["id"])}" '
+            f'href="{esc(u)}" target="_blank" rel="noopener">{esc(t)}</a>'
             for t, u in c["links"])
         lic = c.get("license")
         lic_html = ""
@@ -1328,8 +1374,10 @@ def build_pages(manifest, ref_manifest=None):
     fc_cards = []
     for (des, url), fams in sorted(by_designer.items(), key=lambda kv: kv[0][0].lower()):
         links = ([(_host(url), url)] if url else []) + FONT_CREDIT_EXTRA.get(des, [])
-        link_html = "".join(f'<a href="{esc(u)}" target="_blank" rel="noopener">{esc(lbl)}</a>'
-                            for lbl, u in links)
+        link_html = "".join(
+            f'<a class="contrib-link" data-contrib="{esc(des)}" '
+            f'href="{esc(u)}" target="_blank" rel="noopener">{esc(lbl)}</a>'
+            for lbl, u in links)
         fc_cards.append(f"""      <div class="credit">
         <div class="who">{esc(des)}</div><div class="what">{esc(", ".join(sorted(fams)))}</div>
         {link_html}
@@ -1363,13 +1411,14 @@ def build_pages(manifest, ref_manifest=None):
                else (FONT_PREVIEW + preview_png.replace(" ", "%20") if preview_png else ""))
         i = len(font_lb)
         designer, dl = FONT_CREDIT.get(family, (None, None))
-        cred = ("by " + (f'<a href="{esc(dl)}" target="_blank" rel="noopener">{esc(designer)}</a>'
+        cred = ("by " + (f'<a class="contrib-link" data-contrib="{esc(designer)}" '
+                         f'href="{esc(dl)}" target="_blank" rel="noopener">{esc(designer)}</a>'
                          if dl else esc(designer))) if designer else ""
         font_lb.append({"name": family,
                         "meta": era + ((" · by " + designer) if designer else ""),
                         "link": link, "getlabel": link_label, "shot": src})
-        linkh = (f'<a class="font-get" href="{esc(link)}" target="_blank" rel="noopener">'
-                 f'{esc(link_label)} ↗</a>' if link else "")
+        linkh = (f'<a class="font-get" data-font="{esc(family)}" href="{esc(link)}" '
+                 f'target="_blank" rel="noopener">{esc(link_label)} ↗</a>' if link else "")
         if src:
             shot = f'<div class="font-shot"><img src="{esc(src)}" alt="{esc(family)} specimen" loading="lazy"></div>'
         else:
@@ -1447,7 +1496,8 @@ def build_pages(manifest, ref_manifest=None):
       ? '<a href="'+a.svg+'" download>SVG</a><a href="'+a.png+'" download>PNG</a>'
       : '<a class="locked" role="button" href="#" data-locked-src="'+(a.source||'')+'" data-locked-who="'+(a.who||'')+'">SVG</a><a href="'+a.png+'" download>PNG</a>'; }
   function openLb(n){ show(n); applyBg(); lb.classList.add('open');
-    lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+    lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+    var a=ASSETS[i]; try{ gtag('event','view_mark',{mark:a.name, file:(a.svg||a.png||'')}); }catch(e){} }
   function closeLb(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true');
     img.removeAttribute('src'); document.body.style.overflow=''; }
   document.querySelectorAll('.thumb').forEach(function(t){
@@ -1474,7 +1524,7 @@ def build_pages(manifest, ref_manifest=None):
     <button class="vbox-x" id="vboxClose" aria-label="Close">&times;</button>
     <h3>The artist hosts this vector</h3>
     <p id="vboxMsg"></p>
-    <a class="vbox-go" id="vboxGo" target="_blank" rel="noopener">Visit the artist's page ↗</a>
+    <a class="vbox-go contrib-link" id="vboxGo" target="_blank" rel="noopener">Visit the artist's page ↗</a>
   </div>
 </div>"""
     vbox_script = """<script>
@@ -1482,7 +1532,7 @@ def build_pages(manifest, ref_manifest=None):
   var vb=document.getElementById('vbox'), msg=document.getElementById('vboxMsg'), go=document.getElementById('vboxGo');
   function openVb(src,who){
     msg.textContent=(who?who+' asks ':'The artist asks ')+'that this vector be obtained from their own page rather than redistributed here \\u2014 the licence does not permit us to share the vector.';
-    if(src){ go.href=src; go.style.display=''; } else { go.style.display='none'; }
+    if(src){ go.href=src; go.setAttribute('data-contrib', who||''); go.style.display=''; } else { go.style.display='none'; }
     vb.classList.add('open'); vb.setAttribute('aria-hidden','false');
   }
   function closeVb(){ vb.classList.remove('open'); vb.setAttribute('aria-hidden','true'); }
@@ -1501,7 +1551,7 @@ def build_pages(manifest, ref_manifest=None):
     <span class="fbox-name" id="fbName"></span>
     <span class="fbox-era" id="fbEra"></span>
     <span class="fbox-spacer"></span>
-    <a class="fbox-get" id="fbGet" target="_blank" rel="noopener"></a>
+    <a class="fbox-get font-get" id="fbGet" target="_blank" rel="noopener"></a>
     <button class="fbox-x" id="fbClose" aria-label="Close">&times;</button>
   </div>
   <button class="fbox-nav fbox-prev" id="fbPrev" aria-label="Previous">&#8249;</button>
@@ -1521,10 +1571,11 @@ def build_pages(manifest, ref_manifest=None):
     if(f.shot){ img.src=f.shot; img.style.display=''; note.textContent=''; }
     else { img.removeAttribute('src'); img.style.display='none';
       note.textContent=f.name+' was not installed on the build machine, so no specimen was generated. Install the font and rebuild to create one.'; }
-    if(f.link){ get.href=f.link; get.textContent=(f.getlabel||'get')+' \\u2197'; get.style.display=''; }
+    if(f.link){ get.href=f.link; get.setAttribute('data-font', f.name); get.textContent=(f.getlabel||'get')+' \\u2197'; get.style.display=''; }
     else get.style.display='none';
   }
-  function openFb(n){ show(n); fb.classList.add('open'); fb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+  function openFb(n){ show(n); fb.classList.add('open'); fb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+    var f=FONTS[i]; try{ gtag('event','view_font',{font:f.name}); }catch(e){} }
   function closeFb(){ fb.classList.remove('open'); fb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
   document.querySelectorAll('.font-card').forEach(function(card){
     card.addEventListener('click', function(e){ if(e.target.closest('.font-get')) return;

@@ -10,6 +10,34 @@
   gtag('js', new Date());
   gtag('config', 'G-KX3WW4Q3NG');
 </script>
+<script>
+  // Custom action tracking — one delegated listener for the whole site.
+  (function(){
+    function ev(name, params){ try{ gtag('event', name, params||{}); }catch(e){} }
+    function slug(h){ return (h.split('#')[0].split('?')[0].split('/').pop()||'').replace(/\.[^.]+$/,''); }
+    document.addEventListener('click', function(e){
+      var a = e.target.closest && e.target.closest('a'); if(!a) return;
+      if(a.hasAttribute('download')){
+        var href = a.getAttribute('href') || '';
+        if(/\.svg(?:[?#]|$)/i.test(href)) ev('download_svg', {mark: slug(href), file: href});
+        else if(/\.png(?:[?#]|$)/i.test(href)) ev('download_png', {mark: slug(href), file: href});
+        return;
+      }
+      if(a.classList.contains('pdflink')){
+        ev('download_pdf', {file: a.getAttribute('href') || ''});
+        return;
+      }
+      if(a.classList.contains('font-get')){
+        ev('get_font', {font: a.getAttribute('data-font') || '', link_url: a.href, link_domain: a.hostname});
+        return;
+      }
+      if(a.classList.contains('contrib-link')){
+        ev('contributor_link', {contributor: a.getAttribute('data-contrib') || '', link_url: a.href, link_domain: a.hostname});
+        return;
+      }
+    }, true);
+  })();
+</script>
 <style>
 :root{--bg:#f7f8fa;--card:#fff;--ink:#12151a;--muted:#6b7280;--line:#e5e7eb;
 --accent:#0b7fd4;--check:#d5dbe2}

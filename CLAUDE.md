@@ -232,6 +232,53 @@ Key rules:
   generate a specimen without a system install. `manifest.json`'s `specimen` is `null`
   when no sample is committed yet (e.g. a placeholder like *Wipeout Typeface*).
 
+## Analytics (Google Analytics 4)
+
+The site loads **gtag.js** (GA4 measurement ID `G-KX3WW4Q3NG`) plus a small custom-event
+tracker. Both live in the `ANALYTICS` constant in `tools/build.py` and are injected into
+**every page's `<head>`** by `_document()` — so, like everything else, analytics markup is
+generated. **Never paste GA snippets into the `*.html`; edit `ANALYTICS`.** (The measurement
+ID is a public web-stream ID — safe to commit; it identifies the stream, it is not a secret.)
+
+Custom events are fired by **one delegated, capture-phase `click` listener on `document`**.
+A single listener (rather than per-element `onclick`) is deliberate: it also catches clicks
+inside the lightbox / restricted-vector (`vbox`) / fonts overlays, whose markup is built in
+JS at runtime and so can't carry server-rendered handlers. Events ⇄ triggers:
+
+| Event | Fires when | Key params |
+|-------|-----------|-----------|
+| `download_svg` | an asset's **SVG** button is clicked (any `a[download]` whose href ends `.svg`) | `mark` (slug), `file` |
+| `download_png` | an asset's **PNG** button is clicked (any `a[download]` whose href ends `.png`) | `mark` (slug), `file` |
+| `download_pdf` | the aggregate **tear-sheet PDF** link is clicked (`.pdflink`) | `file` |
+| `get_font` | a font's **"get ↗"** link is clicked (`.font-get`, on a card or in the fonts lightbox) | `font`, `link_url`, `link_domain` |
+| `contributor_link` | an **outbound** link to a contributor's own site is clicked (`.contrib-link`) | `contributor`, `link_url`, `link_domain` |
+| `view_mark` | the **marks lightbox** is opened on a mark (fired in `openLb`) | `mark`, `file` |
+| `view_font` | the **fonts lightbox** is opened on a font (fired in `openFb`) | `font` |
+
+`view_mark` / `view_font` are the exception to the one-listener rule: a lightbox opens from a
+`<div class="thumb">` / `.font-card` click (not an anchor), so they're fired directly from the
+marks/fonts lightbox scripts (`openLb` / `openFb`) rather than the delegated listener. They
+fire on **open only** — arrow-key / prev-next navigation within an open lightbox is not
+re-counted.
+
+How the triggers are wired, so new UI keeps tracking for free:
+- **Downloads** need no marker — the listener sniffs the `download` attribute + file
+  extension, which every SVG/PNG button already has (grid *and* lightbox). The internal
+  "source:" credit-jump is a same-page `#anchor` (no `download`), so it correctly fires
+  nothing. The tear-sheet PDF link has no `download` attr, so it's matched by its own
+  `.pdflink` class instead (→ `download_pdf`).
+- **`.font-get`** marks every "get" link (font cards + the `#fbGet` lightbox link); its
+  `data-font` carries the family name (set server-side on cards, in JS on the lightbox link).
+- **`.contrib-link`** marks every offsite contributor link — credit cards, the font
+  "by &lt;designer&gt;" byline, and the restricted-vector overlay's "Visit the artist's
+  page"; its `data-contrib` carries the contributor id/name.
+
+Adding a tracked action = give the element the right class/`data-*` (or, for downloads, just
+the `download` attr) — no new listener. The event **params** above are sent as-is; to slice
+GA4 reports by `mark` / `font` / `contributor`, register matching **custom dimensions** in the
+GA4 admin (Admin → Custom definitions). `gtag()` is defined synchronously ahead of the async
+library, so early clicks queue on `dataLayer` and are never lost.
+
 ## Cleaning SVGs — `tools/clean_svgs.py`
 
 Some extracted SVGs carried geometry **outside** their cropped viewBox (neighbouring
