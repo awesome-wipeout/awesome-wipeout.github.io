@@ -18,8 +18,15 @@ assets* below; that public behaviour is the full extent of what this repo knows 
 
 For every logo the canonical file is `marks/<cat>/<slug>.svg`. The matching `.png`, plus
 `marks/manifest.json`, `fonts/manifest.json`, every generated HTML page (`index.html`,
-`fonts.html`, `about.html`, `links.html`, `reference.html`, …) and `tearsheet.pdf`, are all
-**derived** and overwritten on every build. Edit the SVG, never the PNG/manifests/HTML.
+`fonts.html`, `teams.html`, `about.html`, `links.html`, `reference.html`, …), the shared
+`styles.css` + `analytics.js`, and `tearsheet.pdf`, are all **derived** and overwritten on
+every build. Edit the SVG (or the `data/*.toml`), never the PNG/manifests/HTML/CSS/JS.
+
+**Shared CSS/JS, not inlined per page.** `styles.css` (the whole site stylesheet, incl. the
+Teams-page rules) and `analytics.js` (GA4 + the one delegated action listener) are written
+once by `write_shared_assets()` and linked by every page in `_document` — pages no longer
+carry a `<style>` block or an inline analytics script. Edit the `CSS`/`TEAMS_CSS`/`_ANALYTICS_JS`
+constants in `tools/build.py`, never the generated `styles.css`/`analytics.js`.
 
 **The site is multi-page.** `data/pages.toml` is the page registry (nav order + which
 generator renders each page via `kind`: `marks` | `fonts` | `prose`). A thin sticky header
@@ -107,6 +114,7 @@ data/marks.toml               AUTHORED — mark sections + one entry per file (1
 data/fonts.toml               AUTHORED — font references
 data/pages.toml               AUTHORED — site page registry (nav order + prose-page copy)
 data/reference.toml           AUTHORED — in-game reference: game/team names, emblems, credit
+data/teams.toml               AUTHORED — Teams page: series×teams brand matrix + colours
 marks/<category>/<slug>.svg   + matching .png   (.png generated; PNG-only slug = reference-only)
 marks/manifest.json           generated asset index
 fonts/<slug>.svg              generated font specimen sheets (committed)
@@ -116,7 +124,9 @@ reference/manifest.json       generated reference index
 index.html                    generated marks page (GitHub Pages entry point)
 fonts.html                    generated fonts page
 reference.html                generated in-game reference gallery
+teams.html                    generated Teams page (brand-guidelines matrix, from data/teams.toml)
 about.html links.html         generated prose pages (from data/pages.toml)
+styles.css analytics.js       generated SHARED assets, linked by every page (not inlined)
 tearsheet.pdf                 generated multi-page vector tear sheet (marks only)
 tools/                        build + extraction + cleanup scripts
 tools/fonts/                  BUNDLED DejaVu Sans (tear-sheet labels; Bitstream Vera licence)
@@ -235,10 +245,12 @@ Key rules:
 ## Analytics (Google Analytics 4)
 
 The site loads **gtag.js** (GA4 measurement ID `G-KX3WW4Q3NG`) plus a small custom-event
-tracker. Both live in the `ANALYTICS` constant in `tools/build.py` and are injected into
-**every page's `<head>`** by `_document()` — so, like everything else, analytics markup is
-generated. **Never paste GA snippets into the `*.html`; edit `ANALYTICS`.** (The measurement
-ID is a public web-stream ID — safe to commit; it identifies the stream, it is not a secret.)
+tracker. Both live in the `_ANALYTICS_JS` constant in `tools/build.py`, written once to the
+shared **`analytics.js`** (by `write_shared_assets()`) and referenced by **every page's
+`<head>`** via `<script defer src="analytics.js">` in `_document()` — analytics.js injects the
+async gtag library itself, so one script tag is all a page needs. **Never paste GA snippets
+into the `*.html` or `analytics.js`; edit `_ANALYTICS_JS`.** (The measurement ID is a public
+web-stream ID — safe to commit; it identifies the stream, it is not a secret.)
 
 Custom events are fired by **one delegated, capture-phase `click` listener on `document`**.
 A single listener (rather than per-element `onclick`) is deliberate: it also catches clicks

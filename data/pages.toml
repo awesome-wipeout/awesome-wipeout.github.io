@@ -32,6 +32,13 @@ kind = "reference"
 intro = "Screenshot reference of the ships in-game, grouped by team. Each team is headed by its emblem from the marks collection; click any shot to view it full-screen. Content authored in data/reference.toml."
 
 [[page]]
+slug = "teams"
+nav = "Teams"
+title = "Teams"
+kind = "teams"
+intro = "Every WipEout racing team, traced across every series — the logo as it evolves, its league emblem, and the official (or sampled) brand colours. Click any logo for its colour guideline, copy-ready hex, and SVG/PNG downloads. Authored in data/teams.toml."
+
+[[page]]
 slug = "links"
 nav = "Links"
 title = "Awesome WipEout"
@@ -73,6 +80,7 @@ links = [
 title = "Articles & history"
 blurb = "Writing on the design and legacy of the series."
 links = [
+  { label = "The History & Lore of WipEout's Teams (video)", url = "https://www.youtube.com/watch?v=7e4mDhaxj_M", note = "A deep dive into each racing team's backstory and the WipEout universe — great companion to the brand guidelines" },
   { label = "The Making of the WipEout Logo — imjustcreative", url = "https://imjustcreative.com/wipeout-logo-history/2023/01/18", note = "How the wordmark was cut from a single Eurostile ‘8’ — a great deep dive" },
   { label = "WipEout Had Some of Gaming's Coolest Branding — Kotaku", url = "https://kotaku.com/wipeout-had-some-of-gamings-coolest-branding-1783707474", note = "On the fictional-brand world of teams and trackside ads" },
   { label = "An oral history of Wipeout — Creative Review", url = "https://www.creativereview.co.uk/an-oral-history-of-wipeout/", note = "The people who made it, in their own words" },
