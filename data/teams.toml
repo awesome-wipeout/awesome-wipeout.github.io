@@ -1,0 +1,437 @@
+# Teams — brand guidelines across the series (build = code, data = data).
+#
+# Drives the Teams page (teams.html): a series (columns) x teams (rows) matrix. Each
+# [[series]] is a game/era; each [[team]] a row; each [[brand]] one (team, series) cell
+# that has a logo. A team in a series' `roster` with no [[brand]] = a gap (logo needed);
+# a team absent from the roster = didn't race that series. Logos reuse the marks/ vectors
+# (path is under marks/); the page shows the PNG and offers SVG+PNG downloads. Colours are
+# optional per brand: state = "official" (documented) or "sampled" (measured from art);
+# no colours = unknown. teams.html is generated — do not hand-edit it.
+#
+# NOTE: the `sampled` colours below were AUTO-SAMPLED from the logo PNGs (dominant
+# colours, rough names) — approximate, and monochrome marks sample to a single ink.
+# Refine or replace with `official` values from documentation as they're found.
+
+[[series]]
+slug = "wo1"
+name = "WipEout"
+year = 1995
+league = "F3600"
+title = "titles/wipeout.svg"          # series wordmark (a marks/ vector)
+league_logo = "leagues/f3600.svg"
+roster = ["ag-systems", "auricom", "feisar", "qirex"]
+
+[[series]]
+slug = "2097"
+name = "WipEout 2097"
+year = 1996
+league = "F5000"
+title = "titles/wipeout-2097.svg"          # series wordmark (a marks/ vector)
+league_logo = "leagues/f5000.svg"
+roster = ["ag-systems", "auricom", "feisar", "piranha", "qirex"]
+
+[[series]]
+slug = "wip3out"
+name = "Wip3out"
+year = 1999
+league = "F7200"
+title = "titles/wip3out.svg"          # series wordmark (a marks/ vector)
+league_logo = "leagues/f7200.svg"
+roster = ["ag-systems", "assegai", "auricom", "feisar", "goteki-45", "icaras", "piranha", "qirex"]
+
+[[series]]
+slug = "fusion"
+name = "WipEout Fusion"
+year = 2002
+league = "F9000"
+title = "titles/wipeout-fusion.svg"          # series wordmark (a marks/ vector)
+league_logo = "leagues/f9000.svg"
+roster = ["ag-systems", "assegai", "auricom", "eg-x", "feisar", "goteki-45", "icaras", "piranha", "qirex", "triakis"]
+
+[[series]]
+slug = "pure"
+name = "WipEout Pure"
+year = 2005
+league = "FX300"
+title = "titles/wipeout-pure.svg"          # series wordmark (a marks/ vector)
+league_logo = "leagues/fx300.svg"
+roster = ["ag-systems", "assegai", "auricom", "feisar", "goteki-45", "harimau", "icaras", "piranha", "qirex", "triakis"]
+
+[[series]]
+slug = "pulse"
+name = "WipEout Pulse"
+year = 2007
+league = "FX400"
+title = "titles/wipeout-pulse.svg"          # series wordmark (a marks/ vector)
+league_logo = "leagues/fx400.svg"
+roster = ["ag-systems", "assegai", "auricom", "eg-x", "feisar", "goteki-45", "harimau", "mirage", "piranha", "qirex", "triakis"]
+
+[[series]]
+slug = "hd"
+name = "WipEout HD"
+year = 2008
+league = "FX350"
+title = "titles/wipeout-hd-fury.svg"          # series wordmark (a marks/ vector)
+league_logo = "leagues/fx350.png"        # restricted (PNG stub); the "Fury" emblem
+roster = ["ag-systems", "assegai", "auricom", "eg-x", "feisar", "goteki-45", "harimau", "icaras", "mirage", "piranha", "qirex", "triakis"]
+
+[[team]]
+slug = "ag-systems"
+name = "AG Systems"
+bar = "#e2231a"          # identity colour bar
+sub = "Est. 2035 · Europe"
+
+[[team]]
+slug = "assegai"
+name = "Assegai"
+bar = "#3f78c4"          # identity colour bar
+sub = "African Union"
+
+[[team]]
+slug = "auricom"
+name = "Auricom"
+bar = "#1b3fa0"          # identity colour bar
+sub = "USA"
+
+[[team]]
+slug = "eg-x"
+name = "EG.X"
+bar = "#f5c518"          # identity colour bar
+sub = "EG.r / Xios lineage"
+
+[[team]]
+slug = "feisar"
+name = "FEISAR"
+bar = "#2f8f9d"          # identity colour bar
+sub = "European consortium"
+
+[[team]]
+slug = "goteki-45"
+name = "Goteki 45"
+bar = "#f6d900"          # identity colour bar
+sub = "Japan"
+
+[[team]]
+slug = "harimau"
+name = "Harimau"
+bar = "#2aa1e0"          # identity colour bar
+sub = "Malaysia"
+
+[[team]]
+slug = "icaras"
+name = "Icaras"
+bar = "#e5548c"          # identity colour bar
+sub = "Switzerland"
+
+[[team]]
+slug = "mirage"
+name = "Mirage"
+bar = "#1f9e57"          # identity colour bar
+sub = "UAE / Egypt"
+
+[[team]]
+slug = "piranha"
+name = "Piranha"
+bar = "#f3901d"          # identity colour bar
+sub = "Advancements Ltd"
+
+[[team]]
+slug = "qirex"
+name = "Qirex"
+bar = "#8c8f95"          # identity colour bar
+sub = "Russia"
+
+[[team]]
+slug = "triakis"
+name = "Triakis"
+bar = "#c9b48a"          # identity colour bar
+sub = "Military contractor"
+
+# --- brands: one entry per (team, series) cell that has a logo ---
+# WipEout
+[[brand]]
+team = "ag-systems"
+series = "wo1"
+logo = "teams/wo1/ag-systems.svg"
+state = "sampled"
+colors = [{ name = "AG Red", hex = "#E2231A" }, { name = "Ink Black", hex = "#1A1A1A" }, { name = "Paper White", hex = "#FFFFFF" }]
+
+[[brand]]
+team = "auricom"
+series = "wo1"
+logo = "teams/wo1/auricom.svg"
+state = "sampled"
+colors = [{ name = "Star Red", hex = "#D81F26" }, { name = "Auricom Blue", hex = "#1B3FA0" }, { name = "Paper White", hex = "#FFFFFF" }]
+
+[[brand]]
+team = "feisar"
+series = "wo1"
+logo = "teams/wo1/feisar.svg"
+state = "sampled"
+colors = [{ name = "Blue", hex = "#000C3C" }]
+
+[[brand]]
+team = "qirex"
+series = "wo1"
+logo = "teams/wo1/qirex.svg"
+state = "sampled"
+colors = [{ name = "Red", hex = "#FC0000" }, { name = "Blue", hex = "#0030FC" }]
+
+# WipEout 2097
+[[brand]]
+team = "ag-systems"
+series = "2097"
+logo = "teams/2097/ag-systems.svg"
+state = "sampled"
+colors = [{ name = "Red", hex = "#CC1824" }, { name = "Black", hex = "#000000" }]
+
+[[brand]]
+team = "auricom"
+series = "2097"
+logo = "teams/2097/auricom.svg"
+state = "sampled"
+colors = [{ name = "Blue", hex = "#303078" }, { name = "Red", hex = "#E41824" }]
+
+[[brand]]
+team = "feisar"
+series = "2097"
+logo = "teams/2097/feisar.svg"
+state = "sampled"
+colors = [{ name = "Blue", hex = "#00609C" }, { name = "Orange", hex = "#FCB40C" }]
+
+[[brand]]
+team = "piranha"
+series = "2097"
+logo = "teams/2097/piranha.svg"
+state = "sampled"
+colors = [{ name = "Red", hex = "#E41824" }, { name = "Orange", hex = "#FCB40C" }]
+
+[[brand]]
+team = "qirex"
+series = "2097"
+logo = "teams/2097/qirex.svg"
+state = "sampled"
+colors = [{ name = "Magenta", hex = "#6C246C" }, { name = "Blue", hex = "#303078" }]
+
+# Wip3out
+[[brand]]
+team = "ag-systems"
+series = "wip3out"
+logo = "teams/wip3out/ag-systems.svg"
+state = "official"
+colors = [{ name = "AG Red", hex = "#E2231A" }, { name = "Ink Black", hex = "#1A1A1A" }, { name = "Paper White", hex = "#FFFFFF" }]
+notes = "Bold red mark on white; katakana ‘AG’ device. Red is the constant across every era."
+
+[[brand]]
+team = "assegai"
+series = "wip3out"
+logo = "teams/wip3out/assegai.svg"
+state = "sampled"
+colors = [{ name = "Blue", hex = "#60A8D8" }, { name = "Yellow", hex = "#B4B478" }]
+
+[[brand]]
+team = "auricom"
+series = "wip3out"
+logo = "teams/wip3out/auricom.svg"
+state = "official"
+colors = [{ name = "Auricom Blue", hex = "#1B3FA0" }, { name = "Star Red", hex = "#D81F26" }, { name = "Steel", hex = "#C9D3E0" }]
+notes = "Corporate blue with the red research star. Steel greys for tech detailing."
+
+[[brand]]
+team = "feisar"
+series = "wip3out"
+logo = "teams/wip3out/feisar.svg"
+state = "official"
+colors = [{ name = "Feisar Blue", hex = "#003DA5" }, { name = "Signal Yellow", hex = "#FFCB05" }, { name = "Paper White", hex = "#FFFFFF" }]
+notes = "European blue + signal yellow — the EU-flag heritage. The most stable palette in the series."
+
+[[brand]]
+team = "goteki-45"
+series = "wip3out"
+logo = "teams/wip3out/goteki-45.svg"
+state = "official"
+colors = [{ name = "Goteki Yellow", hex = "#FFD400" }, { name = "Magenta", hex = "#E6007E" }, { name = "Ink Black", hex = "#1A1A1A" }]
+notes = "High-vis yellow with magenta — the loudest identity on the grid."
+
+[[brand]]
+team = "icaras"
+series = "wip3out"
+logo = "teams/wip3out/icaras.svg"
+state = "official"
+colors = [{ name = "Icaras Magenta", hex = "#C2185B" }, { name = "Rose", hex = "#F06292" }]
+notes = "Precision Swiss brand — magenta/rose duotone."
+
+[[brand]]
+team = "piranha"
+series = "wip3out"
+logo = "teams/wip3out/piranha.svg"
+state = "official"
+colors = [{ name = "Piranha Red", hex = "#D5121A" }, { name = "Hazard Yellow", hex = "#F4C400" }, { name = "Ink Black", hex = "#1A1A1A" }]
+notes = "Aggressive red/black with hazard-yellow accents — Piranha Advancements’ ‘fastest, most dangerous’ brand."
+
+[[brand]]
+team = "qirex"
+series = "wip3out"
+logo = "teams/wip3out/qirex.svg"
+state = "official"
+colors = [{ name = "Qirex Red", hex = "#C8102E" }, { name = "Violet", hex = "#5B2A86" }, { name = "Graphite", hex = "#2B2B2B" }]
+notes = "Shifts red→violet across eras; heavy graphite industrial base."
+
+# WipEout Fusion
+# WipEout Pure
+[[brand]]
+team = "ag-systems"
+series = "pure"
+logo = "teams/pure/ag-systems.svg"
+state = "sampled"
+colors = [{ name = "Cyan", hex = "#0CA8D8" }, { name = "Red", hex = "#D83C24" }, { name = "Black", hex = "#181818" }]
+
+[[brand]]
+team = "assegai"
+series = "pure"
+logo = "teams/pure/assegai.svg"
+state = "sampled"
+colors = [{ name = "Cyan", hex = "#3CA8CC" }, { name = "Yellow", hex = "#B4B46C" }]
+
+[[brand]]
+team = "auricom"
+series = "pure"
+logo = "teams/pure/auricom.svg"
+state = "sampled"
+colors = [{ name = "Blue", hex = "#185484" }, { name = "White", hex = "#FCFCFC" }]
+
+[[brand]]
+team = "feisar"
+series = "pure"
+logo = "teams/pure/feisar.svg"
+state = "sampled"
+colors = [{ name = "Cyan", hex = "#1890B4" }, { name = "White", hex = "#FCFCFC" }, { name = "Yellow", hex = "#FCCC24" }]
+
+[[brand]]
+team = "goteki-45"
+series = "pure"
+logo = "teams/pure/goteki-45.svg"
+state = "sampled"
+colors = [{ name = "Goteki Yellow", hex = "#FFD400" }, { name = "Magenta", hex = "#E6007E" }, { name = "Ink Black", hex = "#1A1A1A" }]
+
+[[brand]]
+team = "harimau"
+series = "pure"
+logo = "teams/pure/harimau.svg"
+state = "sampled"
+colors = [{ name = "Yellow", hex = "#F0CC24" }, { name = "Black", hex = "#181818" }, { name = "Orange", hex = "#F09024" }]
+
+[[brand]]
+team = "icaras"
+series = "pure"
+logo = "teams/pure/icaras.svg"
+state = "sampled"
+colors = [{ name = "Magenta", hex = "#9C1854" }, { name = "Light Magenta", hex = "#CC84A8" }, { name = "Red", hex = "#B43C24" }]
+
+[[brand]]
+team = "piranha"
+series = "pure"
+logo = "teams/pure/piranha.svg"
+state = "sampled"
+colors = [{ name = "Red", hex = "#D81824" }, { name = "Orange", hex = "#F0A818" }]
+
+[[brand]]
+team = "qirex"
+series = "pure"
+logo = "teams/pure/qirex.svg"
+state = "sampled"
+colors = [{ name = "Magenta", hex = "#843C84" }, { name = "White", hex = "#FCFCFC" }, { name = "Grey", hex = "#C0CCD8" }]
+
+[[brand]]
+team = "triakis"
+series = "pure"
+logo = "teams/pure/triakis.svg"
+state = "sampled"
+colors = [{ name = "Grey", hex = "#B4B4A8" }, { name = "Light Grey", hex = "#F0D8CC" }]
+
+# WipEout Pulse
+# WipEout HD  — colour logos (recoloured HD/Fury team-select art); swatches sampled from each mark
+
+[[brand]]
+team = "ag-systems"
+series = "hd"
+logo = "teams/hd/ag-systems-colour.svg"
+state = "sampled"
+colors = [{ name = "Cyan", hex = "#9BD9E8" }, { name = "Light Cyan", hex = "#35B4D0" }, { name = "Black", hex = "#000000" }]
+
+[[brand]]
+team = "assegai"
+series = "hd"
+logo = "teams/hd/assegai-logo-colour.svg"
+state = "sampled"
+colors = [{ name = "Blue", hex = "#3B7FBF" }]
+
+[[brand]]
+team = "auricom"
+series = "hd"
+logo = "teams/hd/auricom-colour.svg"
+state = "sampled"
+colors = [{ name = "Blue", hex = "#24336A" }, { name = "Red", hex = "#D9212C" }]
+
+[[brand]]
+team = "eg-x"
+series = "hd"
+logo = "teams/hd/eg-x-colour.svg"
+state = "sampled"
+colors = [{ name = "Red", hex = "#640000" }, { name = "Blue", hex = "#030335" }]
+
+[[brand]]
+team = "feisar"
+series = "hd"
+logo = "teams/hd/feisar-logo-colour.svg"
+state = "sampled"
+colors = [{ name = "Cyan", hex = "#A7CCD5" }, { name = "Light Cyan", hex = "#2080A1" }, { name = "Yellow", hex = "#FCCD14" }]
+
+[[brand]]
+team = "goteki-45"
+series = "hd"
+logo = "teams/hd/goteki-logo-colour.svg"
+state = "sampled"
+colors = [{ name = "Orange", hex = "#FFC10E" }, { name = "Magenta", hex = "#ED3D7E" }]
+
+[[brand]]
+team = "harimau"
+series = "hd"
+logo = "teams/hd/harimau-logo-colour.svg"
+state = "sampled"
+colors = [{ name = "Yellow", hex = "#F8F71A" }, { name = "Orange", hex = "#F98412" }]
+
+[[brand]]
+team = "icaras"
+series = "hd"
+logo = "teams/hd/icaras-logo-colour.svg"
+state = "sampled"
+colors = [{ name = "Magenta", hex = "#A82058" }, { name = "Light Magenta", hex = "#D388A9" }]
+
+[[brand]]
+team = "mirage"
+series = "hd"
+logo = "teams/hd/mirage-logo-colour.svg"
+state = "sampled"
+colors = [{ name = "Green", hex = "#02A200" }, { name = "Dark Green", hex = "#004900" }]
+
+[[brand]]
+team = "piranha"
+series = "hd"
+logo = "teams/hd/piranha-logo-colour.svg"
+state = "sampled"
+colors = [{ name = "Red", hex = "#CB0001" }, { name = "Yellow", hex = "#FCCE08" }]
+
+[[brand]]
+team = "qirex"
+series = "hd"
+logo = "teams/hd/qirex-logo-colour.svg"
+state = "sampled"
+colors = [{ name = "Magenta", hex = "#642869" }, { name = "Light Magenta", hex = "#BB2E83" }]
+
+[[brand]]
+team = "triakis"
+series = "hd"
+logo = "teams/hd/triakis-logo-colour.svg"
+state = "sampled"
+colors = [{ name = "Green", hex = "#3A4E35" }]

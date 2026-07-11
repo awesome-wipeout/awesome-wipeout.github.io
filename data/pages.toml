@@ -32,6 +32,13 @@ kind = "reference"
 intro = "Screenshot reference of the ships in-game, grouped by team. Each team is headed by its emblem from the marks collection; click any shot to view it full-screen. Content authored in data/reference.toml."
 
 [[page]]
+slug = "teams"
+nav = "Teams"
+title = "Teams"
+kind = "teams"
+intro = "Every WipEout racing team, traced across every series — the logo as it evolves, its league emblem, and the official (or sampled) brand colours. Click any logo for its colour guideline, copy-ready hex, and SVG/PNG downloads. Authored in data/teams.toml."
+
+[[page]]
 slug = "links"
 nav = "Links"
 title = "Awesome WipEout"

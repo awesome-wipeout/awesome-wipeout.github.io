@@ -1,7 +1,7 @@
 {
   "name": "awesome-wipeout \u2014 marks",
-  "generated": "2026-07-10",
-  "total": 200,
+  "generated": "2026-07-11",
+  "total": 214,
   "sections": [
     {
       "id": "titles",
@@ -354,10 +354,26 @@
           "credit_name": "ollite20"
         },
         {
+          "slug": "ag-systems-colour",
+          "name": "AG Systems (colour)",
+          "svg": "marks/teams/hd/ag-systems-colour.svg",
+          "png": "marks/teams/hd/ag-systems-colour.png",
+          "credit": "ollite20",
+          "credit_name": "ollite20"
+        },
+        {
           "slug": "ag-systems",
           "name": "AG Systems",
           "svg": "marks/teams/hd/ag-systems.svg",
           "png": "marks/teams/hd/ag-systems.png",
+          "credit": "ollite20",
+          "credit_name": "ollite20"
+        },
+        {
+          "slug": "assegai-logo-colour",
+          "name": "Assegai (colour)",
+          "svg": "marks/teams/hd/assegai-logo-colour.svg",
+          "png": "marks/teams/hd/assegai-logo-colour.png",
           "credit": "ollite20",
           "credit_name": "ollite20"
         },
@@ -378,6 +394,14 @@
           "credit_name": "ollite20"
         },
         {
+          "slug": "auricom-colour",
+          "name": "Auricom (colour)",
+          "svg": "marks/teams/hd/auricom-colour.svg",
+          "png": "marks/teams/hd/auricom-colour.png",
+          "credit": "ollite20",
+          "credit_name": "ollite20"
+        },
+        {
           "slug": "auricom-redstar",
           "name": "Auricom Red Star",
           "svg": "marks/teams/hd/auricom-redstar.svg",
@@ -394,6 +418,14 @@
           "credit_name": "ollite20"
         },
         {
+          "slug": "eg-x-colour",
+          "name": "EG.X (colour)",
+          "svg": "marks/teams/hd/eg-x-colour.svg",
+          "png": "marks/teams/hd/eg-x-colour.png",
+          "credit": "ollite20",
+          "credit_name": "ollite20"
+        },
+        {
           "slug": "eg-x-logo",
           "name": "EG.X Logo",
           "svg": "marks/teams/hd/eg-x-logo.svg",
@@ -406,6 +438,14 @@
           "name": "EG.X",
           "svg": "marks/teams/hd/eg-x.svg",
           "png": "marks/teams/hd/eg-x.png",
+          "credit": "ollite20",
+          "credit_name": "ollite20"
+        },
+        {
+          "slug": "feisar-logo-colour",
+          "name": "FEISAR (colour)",
+          "svg": "marks/teams/hd/feisar-logo-colour.svg",
+          "png": "marks/teams/hd/feisar-logo-colour.png",
           "credit": "ollite20",
           "credit_name": "ollite20"
         },
@@ -434,10 +474,26 @@
           "credit_name": "ollite20"
         },
         {
+          "slug": "goteki-logo-colour",
+          "name": "Goteki 45 (colour)",
+          "svg": "marks/teams/hd/goteki-logo-colour.svg",
+          "png": "marks/teams/hd/goteki-logo-colour.png",
+          "credit": "ollite20",
+          "credit_name": "ollite20"
+        },
+        {
           "slug": "goteki-logo",
           "name": "Goteki Logo",
           "svg": "marks/teams/hd/goteki-logo.svg",
           "png": "marks/teams/hd/goteki-logo.png",
+          "credit": "ollite20",
+          "credit_name": "ollite20"
+        },
+        {
+          "slug": "harimau-logo-colour",
+          "name": "Harimau (colour)",
+          "svg": "marks/teams/hd/harimau-logo-colour.svg",
+          "png": "marks/teams/hd/harimau-logo-colour.png",
           "credit": "ollite20",
           "credit_name": "ollite20"
         },
@@ -458,6 +514,30 @@
           "credit_name": "ollite20"
         },
         {
+          "slug": "icaras-logo-colour",
+          "name": "Icaras (colour)",
+          "svg": "marks/teams/hd/icaras-logo-colour.svg",
+          "png": "marks/teams/hd/icaras-logo-colour.png",
+          "credit": "djdrey909",
+          "credit_name": "djdrey909 (Andre Lackmann)"
+        },
+        {
+          "slug": "icaras-logo",
+          "name": "Icaras",
+          "svg": "marks/teams/hd/icaras-logo.svg",
+          "png": "marks/teams/hd/icaras-logo.png",
+          "credit": "djdrey909",
+          "credit_name": "djdrey909 (Andre Lackmann)"
+        },
+        {
+          "slug": "mirage-logo-colour",
+          "name": "Mirage (colour)",
+          "svg": "marks/teams/hd/mirage-logo-colour.svg",
+          "png": "marks/teams/hd/mirage-logo-colour.png",
+          "credit": "ollite20",
+          "credit_name": "ollite20"
+        },
+        {
           "slug": "mirage-logo",
           "name": "Mirage Logo",
           "svg": "marks/teams/hd/mirage-logo.svg",
@@ -470,6 +550,14 @@
           "name": "Mirage Panda",
           "svg": "marks/teams/hd/mirage-panda.svg",
           "png": "marks/teams/hd/mirage-panda.png",
+          "credit": "ollite20",
+          "credit_name": "ollite20"
+        },
+        {
+          "slug": "piranha-logo-colour",
+          "name": "Piranha (colour)",
+          "svg": "marks/teams/hd/piranha-logo-colour.svg",
+          "png": "marks/teams/hd/piranha-logo-colour.png",
           "credit": "ollite20",
           "credit_name": "ollite20"
         },
@@ -494,6 +582,14 @@
           "name": "Qirex Logo (alt)",
           "svg": "marks/teams/hd/qirex-logo-2.svg",
           "png": "marks/teams/hd/qirex-logo-2.png",
+          "credit": "ollite20",
+          "credit_name": "ollite20"
+        },
+        {
+          "slug": "qirex-logo-colour",
+          "name": "Qirex (colour)",
+          "svg": "marks/teams/hd/qirex-logo-colour.svg",
+          "png": "marks/teams/hd/qirex-logo-colour.png",
           "credit": "ollite20",
           "credit_name": "ollite20"
         },
@@ -526,6 +622,14 @@
           "name": "Triakis HD Ship",
           "svg": "marks/teams/hd/triakis-hdship.svg",
           "png": "marks/teams/hd/triakis-hdship.png",
+          "credit": "ollite20",
+          "credit_name": "ollite20"
+        },
+        {
+          "slug": "triakis-logo-colour",
+          "name": "Triakis (colour)",
+          "svg": "marks/teams/hd/triakis-logo-colour.svg",
+          "png": "marks/teams/hd/triakis-logo-colour.png",
           "credit": "ollite20",
           "credit_name": "ollite20"
         },
@@ -1820,12 +1924,22 @@
           "credit_name": "djdrey909 (Andre Lackmann)"
         },
         {
-          "slug": "fx350",
-          "name": "FX350 League",
-          "svg": "marks/leagues/fx350.svg",
-          "png": "marks/leagues/fx350.png",
+          "slug": "fx300",
+          "name": "FX300 League",
+          "svg": "marks/leagues/fx300.svg",
+          "png": "marks/leagues/fx300.png",
           "credit": "x-0rm",
           "credit_name": "Curtis Agnew (X_0rm)"
+        },
+        {
+          "slug": "fx350",
+          "name": "FX350 League",
+          "svg": null,
+          "png": "marks/leagues/fx350.png",
+          "credit": "liger-inuzuka",
+          "credit_name": "Liger-Inuzuka",
+          "hosting": "reference",
+          "source": "https://www.deviantart.com/liger-inuzuka/art/Wipeout-HD-Fury-Shapes-Mega-Pack-Resources-402758653"
         },
         {
           "slug": "fx400",
