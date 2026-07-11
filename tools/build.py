@@ -296,7 +296,10 @@ CSS = """
 body{margin:0;font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 color:var(--ink);background:var(--bg)}
 header{padding:48px 32px 24px;max-width:1600px;margin:0 auto}
-h1{margin:0 0 8px;font-size:30px;letter-spacing:-.02em}
+h1{margin:0 0 22px;font-size:30px;letter-spacing:-.02em;position:relative}
+/* standardised accent underline under every page title */
+h1::after{content:"";position:absolute;left:0;bottom:-9px;width:54px;height:5px;
+background:var(--accent);border-radius:3px}
 .lead{color:var(--muted);max-width:70ch;margin:0 0 12px}
 .stat{display:inline-block;margin-right:18px;color:var(--muted);font-size:13px}
 .wrap{max-width:1600px;margin:0 auto;padding:0 32px 64px}
@@ -467,7 +470,7 @@ padding:0;min-width:0}
 .navlinks .submenu a{padding:6px 11px}}
 /* simple prose pages (about / links / reference placeholders) */
 .prose{max-width:80ch;margin:8px 0}
-.prose h1{font-size:30px;letter-spacing:-.02em;margin:0 0 12px}
+.prose h1{font-size:30px;letter-spacing:-.02em;margin:0 0 22px}
 .prose p{color:var(--ink);margin:0 0 14px}
 .prose .lead{color:var(--muted);font-size:16px}
 .prose a{color:var(--accent);text-decoration:none}
@@ -929,43 +932,43 @@ def _nav_html(active):
 # gtag() is defined synchronously below, so calls queue to dataLayer even before the
 # async library finishes loading. Params are plain event params — to slice reports by
 # them, register matching custom dimensions in the GA4 admin (Analytics section, CLAUDE.md).
-ANALYTICS = """<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KX3WW4Q3NG"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-KX3WW4Q3NG');
-</script>
-<script>
-  // Custom action tracking — one delegated listener for the whole site.
-  (function(){
-    function ev(name, params){ try{ gtag('event', name, params||{}); }catch(e){} }
-    function slug(h){ return (h.split('#')[0].split('?')[0].split('/').pop()||'').replace(/\\.[^.]+$/,''); }
-    document.addEventListener('click', function(e){
-      var a = e.target.closest && e.target.closest('a'); if(!a) return;
-      if(a.hasAttribute('download')){
-        var href = a.getAttribute('href') || '';
-        if(/\\.svg(?:[?#]|$)/i.test(href)) ev('download_svg', {mark: slug(href), file: href});
-        else if(/\\.png(?:[?#]|$)/i.test(href)) ev('download_png', {mark: slug(href), file: href});
-        return;
-      }
-      if(a.classList.contains('pdflink')){
-        ev('download_pdf', {file: a.getAttribute('href') || ''});
-        return;
-      }
-      if(a.classList.contains('font-get')){
-        ev('get_font', {font: a.getAttribute('data-font') || '', link_url: a.href, link_domain: a.hostname});
-        return;
-      }
-      if(a.classList.contains('contrib-link')){
-        ev('contributor_link', {contributor: a.getAttribute('data-contrib') || '', link_url: a.href, link_domain: a.hostname});
-        return;
-      }
-    }, true);
-  })();
-</script>
+# GA4 (gtag.js) + the site's one delegated action-tracking listener. Written once to
+# the shared analytics.js (see write_shared_assets) and referenced by every page via
+# _document — no longer inlined per page. The async gtag library is injected from here
+# so a single <script src="analytics.js"> in <head> is all a page needs.
+_ANALYTICS_JS = r"""window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KX3WW4Q3NG');
+(function(){var s=document.createElement('script');s.async=true;
+  s.src='https://www.googletagmanager.com/gtag/js?id=G-KX3WW4Q3NG';document.head.appendChild(s);})();
+// Custom action tracking — one delegated listener for the whole site.
+(function(){
+  function ev(name, params){ try{ gtag('event', name, params||{}); }catch(e){} }
+  function slug(h){ return (h.split('#')[0].split('?')[0].split('/').pop()||'').replace(/\.[^.]+$/,''); }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a'); if(!a) return;
+    if(a.hasAttribute('download')){
+      var href = a.getAttribute('href') || '';
+      if(/\.svg(?:[?#]|$)/i.test(href)) ev('download_svg', {mark: slug(href), file: href});
+      else if(/\.png(?:[?#]|$)/i.test(href)) ev('download_png', {mark: slug(href), file: href});
+      return;
+    }
+    if(a.classList.contains('pdflink')){ ev('download_pdf', {file: a.getAttribute('href') || ''}); return; }
+    if(a.classList.contains('font-get')){ ev('get_font', {font: a.getAttribute('data-font') || '', link_url: a.href, link_domain: a.hostname}); return; }
+    if(a.classList.contains('contrib-link')){ ev('contributor_link', {contributor: a.getAttribute('data-contrib') || '', link_url: a.href, link_domain: a.hostname}); return; }
+  }, true);
+})();
 """
+
+
+def write_shared_assets():
+    """Write the two shared, generated static assets that every page links instead of
+    inlining: styles.css (the site CSS + Teams-page CSS) and analytics.js (GA4 + the
+    delegated action listener). Keeping them external de-duplicates ~25 KB of CSS and the
+    analytics block from every HTML page."""
+    _write("styles.css", CSS)
+    _write("analytics.js", _ANALYTICS_JS)
 
 
 FOOTER = """<footer>
@@ -985,7 +988,8 @@ def _document(slug, title, header_inner, body, scripts=""):
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title)} · awesome-wipeout</title>
-{ANALYTICS}<style>{CSS}</style></head>
+<link rel="stylesheet" href="styles.css">
+<script defer src="analytics.js"></script></head>
 <body>
 {_nav_html(slug)}
 {hero}<div class="wrap">
@@ -1904,6 +1908,8 @@ if __name__ == "__main__":
     print("Writing reference/manifest.json…")
     rm = build_reference_manifest()
     print(f"  {rm['total']} screenshots across {len(rm['games'])} game(s)")
+    print("Writing shared styles.css + analytics.js…")
+    write_shared_assets()
     print("Writing pages…")
     build_pages(m, rm)
     print(f"  {len(NAV_PAGES)} pages: " + ", ".join(p["file"] for p in NAV_PAGES))
