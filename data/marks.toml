@@ -472,6 +472,53 @@ file = "teams/hd/triakis-logo-colour.svg"
 name = "Triakis (colour)"
 credit = "ollite20"
 
+# Colour lockups: the HD colour team device + wordmark combined into one mark.
+# Credit follows the colour mark each is built from (Icaras = djdrey909, rest ollite20).
+[[asset]]
+file = "teams/hd/assegai-logo-lockup-colour.svg"
+name = "Assegai (colour lockup)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/feisar-logo-lockup-colour.svg"
+name = "FEISAR (colour lockup)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/goteki-logo-lockup-colour.svg"
+name = "Goteki 45 (colour lockup)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/harimau-logo-lockup-colour.svg"
+name = "Harimau (colour lockup)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/icaras-logo-lockup-colour.svg"
+name = "Icaras (colour lockup)"
+credit = "djdrey909"
+
+[[asset]]
+file = "teams/hd/mirage-logo-lockup-colour.svg"
+name = "Mirage (colour lockup)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/piranha-logo-lockup-colour.svg"
+name = "Piranha (colour lockup)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/qirex-logo-lockup-colour.svg"
+name = "Qirex (colour lockup)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/triakis-logo-lockup-colour.svg"
+name = "Triakis (colour lockup)"
+credit = "ollite20"
+
 # --- teams/hd-text ---
 [[asset]]
 file = "teams/hd-text/ag-sys-fast.svg"
