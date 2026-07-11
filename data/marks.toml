@@ -404,6 +404,74 @@ file = "teams/hd/van-uber.svg"
 name = "Van Über"
 credit = "djdrey909"
 
+# Colour versions of the HD/Fury team logos (recoloured by djdrey909 from the HD
+# team-select art). Per-mark credit follows the black source it was coloured from
+# (all ollite20's). The Icaras marks are new — no prior b/w source — so djdrey909's.
+[[asset]]
+file = "teams/hd/ag-systems-colour.svg"
+name = "AG Systems (colour)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/assegai-logo-colour.svg"
+name = "Assegai (colour)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/auricom-colour.svg"
+name = "Auricom (colour)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/eg-x-colour.svg"
+name = "EG.X (colour)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/feisar-logo-colour.svg"
+name = "FEISAR (colour)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/goteki-logo-colour.svg"
+name = "Goteki 45 (colour)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/harimau-logo-colour.svg"
+name = "Harimau (colour)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/icaras-logo.svg"
+name = "Icaras"
+credit = "djdrey909"
+
+[[asset]]
+file = "teams/hd/icaras-logo-colour.svg"
+name = "Icaras (colour)"
+credit = "djdrey909"
+
+[[asset]]
+file = "teams/hd/mirage-logo-colour.svg"
+name = "Mirage (colour)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/piranha-logo-colour.svg"
+name = "Piranha (colour)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/qirex-logo-colour.svg"
+name = "Qirex (colour)"
+credit = "ollite20"
+
+[[asset]]
+file = "teams/hd/triakis-logo-colour.svg"
+name = "Triakis (colour)"
+credit = "ollite20"
+
 # --- teams/hd-text ---
 [[asset]]
 file = "teams/hd-text/ag-sys-fast.svg"
@@ -1032,9 +1100,16 @@ name = "F9000 League"
 credit = "djdrey909"
 
 [[asset]]
-file = "leagues/fx350.svg"
-name = "FX350 League"
+file = "leagues/fx300.svg"
+name = "FX300 League"
 credit = "x-0rm"
+
+# FX350 (Fury) — the same emblem as the Liger-Inuzuka "tournament" game-mode mark,
+# copied here as a league. Restricted (CC BY-NC-ND): PNG stub only, vector withheld.
+[[asset]]
+file = "leagues/fx350.png"
+name = "FX350 League"
+credit = "liger-inuzuka"
 
 [[asset]]
 file = "leagues/fx400.svg"

@@ -539,6 +539,98 @@ color:#fff;border:0;width:52px;height:64px;font-size:30px;cursor:pointer;border-
 @media(max-width:640px){.pl-stage{padding:64px 12px}.pl-nav{width:40px;height:52px;font-size:24px}}
 """
 
+# Teams page (brand-guidelines matrix + slide-out drawer). Appended to the shared
+# styles.css. Class names are chosen not to collide with the marks/fonts/reference
+# pages (the one overlap, the marks-page `.dl`, is renamed here to `.tdl`).
+TEAMS_CSS = """
+/* ================= Teams (brand guidelines) ================= */
+:root{--gap:#f0a800;--warn:#c2570b;--ok:#1a9d63;--drawer:400px}
+body{transition:padding-right .3s ease}
+body.drawer-open{padding-right:var(--drawer)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;margin:14px 0 2px}
+.legend .item{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--muted)}
+.key{width:22px;height:16px;border-radius:4px;border:1px solid var(--line);flex:none}
+.key.gap{background:#fafafa;border:1px dashed #cbd0d6}
+.key.na{background:#e9ebef}
+.hint{font-size:12.5px;color:var(--muted)}
+.matrix{display:grid;grid-auto-rows:minmax(112px,auto);width:100%;background:var(--card);
+  border:1px solid var(--line);margin-top:12px}
+.cell{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px;position:relative}
+.corner,.colhead{position:sticky;top:52px;z-index:5;background:#eef1f6}
+.corner{left:0;z-index:6;border-bottom:2px solid var(--ink)}
+.colhead{display:flex;flex-direction:column;justify-content:flex-end;gap:2px;padding:12px 14px 10px;border-bottom:2px solid var(--ink)}
+.colhead .yr{font-size:11px;color:var(--muted);font-weight:600}
+.colhead .nm{font-weight:800;font-size:14.5px;letter-spacing:-.015em;line-height:1.12;color:var(--ink)}
+.slcell{display:flex;flex-direction:column;justify-content:center;gap:5px;padding:12px 14px;
+  background:#fbfcfd;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.slcell.slhead{position:sticky;left:0;z-index:2;font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.slcell.lgrow{background:#f6f8fb;align-items:center;justify-content:center}
+.slcell.slhead.lgrow{align-items:flex-start}
+.slcell .thead-logo{max-height:40px;max-width:100%;width:auto;object-fit:contain;object-position:left center;align-self:flex-start}
+.slcell .league-logo{max-height:64px;max-width:130px;width:auto;object-fit:contain;align-self:center}
+.slcell .lg{align-self:flex-start;font-size:10px;font-weight:800;letter-spacing:.06em;color:var(--accent);background:#eaf4fc;border:1px solid #cfe6f8;border-radius:5px;padding:1px 7px}
+.slcell .lgneed{font-size:9.5px;color:#9aa1a9;margin-top:2px}
+.rowhead{position:sticky;left:0;z-index:2;display:flex;align-items:stretch;background:var(--card);border-right:2px solid var(--line);overflow:hidden}
+.rowhead .bar{width:14px;align-self:stretch;flex:none}
+.rowhead .rh-body{display:flex;flex-direction:column;justify-content:center;padding:10px 14px;min-width:0}
+.rowhead .tname{font-weight:800;font-size:14px;letter-spacing:-.015em}
+.rowhead .tsub{font-size:11px;color:var(--muted)}
+.mk{display:flex;flex-direction:column;height:100%;cursor:pointer;border-radius:8px;transition:background .12s,box-shadow .12s;padding:2px}
+.mk:hover{background:#f2f7fc;box-shadow:inset 0 0 0 1px #cfe3f5}
+.mk .logo{flex:1;display:flex;align-items:center;justify-content:center;min-height:56px;overflow:hidden}
+.mk .logo img{max-width:100%;max-height:72px;object-fit:contain}
+.gapcell{display:flex;align-items:center;justify-content:center;height:100%;cursor:pointer;border:1px dashed #cbd0d6;border-radius:8px;color:#9aa1a9;font-size:11.5px;text-align:center;background:#fcfcfd;transition:border-color .12s,color .12s}
+.gapcell:hover{border-color:var(--gap);color:var(--warn)}
+.gapcell .plus{font-size:18px;line-height:1;display:block;margin-bottom:2px;color:#c3c8ce}
+.gapcell:hover .plus{color:var(--gap)}
+.cell.na{background:#eaecef}
+.drawer{position:fixed;top:0;right:0;height:100vh;height:100dvh;width:var(--drawer);z-index:1000;display:flex;flex-direction:column;background:var(--card);border-left:3px solid var(--ink);box-shadow:-18px 0 50px rgba(16,20,26,.22);transform:translateX(100%);transition:transform .3s cubic-bezier(.22,1,.36,1)}
+body.drawer-open .drawer{transform:translateX(0)}
+.drawer-inner{flex:1;width:100%;overflow-y:auto;overflow-x:hidden}
+.dhead{position:relative;padding:26px 24px 22px;color:#fff;flex:none;border-bottom:5px solid rgba(0,0,0,.18)}
+.dhead .kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.92;font-weight:800}
+.dhead h2{margin:4px 0 0;font-size:28px;font-weight:800;letter-spacing:-.03em;line-height:1;color:#fff}
+.dhead .series{font-size:13px;opacity:.92;margin-top:6px;font-weight:500}
+.dclose{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.2);border:0;color:#fff;width:40px;height:40px;border-radius:50%;font-size:24px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;transition:background .12s}
+.dclose:hover{background:rgba(255,255,255,.42)}
+.dclose:active{background:rgba(255,255,255,.55)}
+.dlogo{padding:26px 22px;display:flex;align-items:center;justify-content:center;min-height:150px;background:#fff;border-bottom:1px solid var(--line)}
+.dlogo img{max-width:100%;max-height:150px;object-fit:contain}
+.dbody{padding:18px 22px 30px}
+.dbody h3{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.status{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;margin-bottom:16px}
+.status.official{color:var(--ok);background:#e8f7f0}
+.status.sampled{color:var(--warn);background:#fff2e2}
+.status.unknown{color:#5b6270;background:#eef0f3}
+.status.gap{color:var(--warn);background:#fff7ed}
+.csource{font-size:12px;color:var(--muted);line-height:1.5;margin:12px 0 0}
+.csource b{color:var(--ink);font-weight:700}
+.tdl{display:flex;gap:8px;margin:0 0 18px}
+.tdl a{flex:1;text-align:center;font-size:12.5px;font-weight:600;text-decoration:none;color:var(--accent);border:1px solid var(--line);border-radius:8px;padding:8px 14px;transition:border-color .12s,background .12s}
+.tdl a:hover{border-color:var(--accent);background:#eaf4fc}
+.sw{display:flex;align-items:center;gap:12px;padding:9px 10px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;cursor:pointer;background:var(--card);transition:border-color .12s,transform .06s}
+.sw:hover{border-color:var(--accent)}
+.sw:active{transform:scale(.995)}
+.sw .chip{width:40px;height:40px;border-radius:8px;flex:none;border:1px solid rgba(0,0,0,.1)}
+.sw .swmeta{flex:1;min-width:0}
+.sw .swname{font-weight:600;font-size:13.5px}
+.sw .swhex{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.02em}
+.sw .copy{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:3px 8px;white-space:nowrap}
+.sw:hover .copy{color:var(--accent);border-color:var(--accent)}
+.sw.copied .copy{color:#fff;background:var(--ok);border-color:var(--ok)}
+.notes{font-size:13px;color:#374151;line-height:1.55;margin:16px 0 0}
+.needbox{border:1px dashed var(--gap);background:#fffdf6;border-radius:10px;padding:14px 15px;font-size:13px;color:#6b4a12;line-height:1.5}
+.needbox b{color:var(--warn)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#14171c;color:#fff;font-size:13px;padding:9px 16px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:1100}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast code{font-family:ui-monospace,Menlo,monospace}
+@media (max-width:820px){
+  body.drawer-open{padding-right:0;overflow:hidden}
+  .drawer{width:100%;border-left:0;box-shadow:none}
+  .matrix{--first:132px;--colmin:128px;width:max-content;min-width:100%}
+}
+"""
+
 # Contributors registry (id -> display name, blurb, licence, source links), from
 # data/contributors.toml. `who`/`what` keep the internal names the renderers expect.
 CREDITS = [
@@ -967,7 +1059,7 @@ def write_shared_assets():
     inlining: styles.css (the site CSS + Teams-page CSS) and analytics.js (GA4 + the
     delegated action listener). Keeping them external de-duplicates ~25 KB of CSS and the
     analytics block from every HTML page."""
-    _write("styles.css", CSS)
+    _write("styles.css", CSS + TEAMS_CSS)
     _write("analytics.js", _ANALYTICS_JS)
 
 
@@ -1289,6 +1381,127 @@ def build_reference_page(page, manifest):
   {cred_html}"""
     body = "\n".join(secs)
     scripts = f"{_photo_lightbox_html()}\n{_photo_lightbox_script(shots)}"
+    _write(page["file"], _document(page["slug"], page["title"], header_inner, body, scripts))
+
+
+def _lum(hexv):
+    h = hexv.lstrip("#")
+    r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
+    return (0.299 * r + 0.587 * g + 0.114 * b) / 255
+
+
+_TEAMS_SCRIPT = r"""<script>
+const REC = __REC_JSON__;
+const drawer = document.getElementById("drawer");
+const dInner = document.getElementById("drawerInner");
+const toast = document.getElementById("toast");
+let toastT;
+function showToast(m){ toast.innerHTML=m; toast.classList.add("show"); clearTimeout(toastT); toastT=setTimeout(function(){toast.classList.remove("show");},1400); }
+function esc(s){ return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function swatchHTML(x){ return '<div class="sw" data-hex="'+x.hex+'"><span class="chip" style="background:'+x.hex+'"></span><span class="swmeta"><span class="swname">'+esc(x.name)+'</span><span class="swhex">'+x.hex+'</span></span><span class="copy">Copy</span></div>'; }
+function openCell(id){
+  const c = REC[id]; if(!c) return;
+  const head='<div class="dhead" style="background:'+c.bar+';color:'+c.txt+'"><button class="dclose" onclick="closeDrawer()" aria-label="Close">×</button><div class="kicker">'+esc(c.series)+' · '+c.yr+(c.league?' · '+esc(c.league):'')+'</div><h2>'+esc(c.team)+'</h2><div class="series">'+esc(c.sub)+'</div></div>';
+  let logoBlock="", body="";
+  if(c.state==="gap"){
+    logoBlock='<div class="dlogo"><div style="color:#b6bcc3;font-size:13px;text-align:center"><div style="font-size:34px;line-height:1">◍</div>no logo yet</div></div>';
+    body='<span class="status gap">◍ Logo needed</span><div class="needbox"><b>This one’s a gap.</b> '+esc(c.team)+' raced in '+esc(c.series)+', but we don’t have the era logo yet. Drop <code>marks/teams/'+c.sser+'/'+c.steam+'.svg</code> and it fills in automatically.</div>';
+  } else {
+    logoBlock='<div class="dlogo"><img src="'+c.png+'" alt="'+esc(c.team)+' — '+esc(c.series)+'"></div>';
+    const dl='<div class="tdl"><a href="'+c.svg+'" download>SVG</a><a href="'+c.png+'" download>PNG</a></div>';
+    let colours;
+    if(c.state==="official"){ colours='<h3>Colours</h3>'+c.colors.map(swatchHTML).join('')+'<p class="csource"><b>Official.</b> Taken from brand documentation.</p>'+(c.notes?'<p class="notes">'+esc(c.notes)+'</p>':''); }
+    else if(c.state==="sampled"){ colours='<h3>Colours</h3>'+c.colors.map(swatchHTML).join('')+'<p class="csource"><b>Sampled.</b> Measured from the logo art — approximate, and may differ from the official values.</p>'+(c.notes?'<p class="notes">'+esc(c.notes)+'</p>':''); }
+    else { colours='<span class="status unknown">? Colours unknown</span><div class="needbox">We have the <b>'+esc(c.series)+'</b> logo for '+esc(c.team)+', but its colours aren’t documented or sampled yet.</div>'; }
+    body=dl+colours;
+  }
+  dInner.innerHTML=head+logoBlock+'<div class="dbody">'+body+'</div>';
+  document.body.classList.add("drawer-open"); drawer.setAttribute("aria-hidden","false"); dInner.scrollTop=0;
+}
+function closeDrawer(){ document.body.classList.remove("drawer-open"); drawer.setAttribute("aria-hidden","true"); }
+function copy(t){ if(navigator.clipboard&&navigator.clipboard.writeText) return navigator.clipboard.writeText(t); var a=document.createElement("textarea");a.value=t;a.style.position="fixed";a.style.opacity="0";document.body.appendChild(a);a.select();try{document.execCommand("copy");}catch(e){}document.body.removeChild(a);return Promise.resolve(); }
+document.addEventListener("click", function(e){
+  var cell=e.target.closest("[data-id]"); if(cell){ openCell(cell.getAttribute("data-id")); return; }
+  var sw=e.target.closest(".sw"); if(sw){ var hex=sw.getAttribute("data-hex"); copy(hex).then(function(){ sw.classList.add("copied"); sw.querySelector(".copy").textContent="Copied"; showToast('Copied <code>'+hex+'</code>'); setTimeout(function(){ sw.classList.remove("copied"); sw.querySelector(".copy").textContent="Copy"; },1100); }); }
+});
+document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeDrawer(); });
+</script>"""
+
+
+def build_teams_page(page):
+    """The Teams page (brand guidelines): a series (columns) x teams (rows) matrix driven
+    by data/teams.toml. The grid is server-rendered here; a small script drives the
+    slide-out drawer (colours + click-to-copy hex + SVG/PNG downloads). Logos reuse the
+    marks/ vectors — shown as PNG, offered as SVG+PNG (the shared analytics.js listener
+    fires download_svg / download_png from the a[download] links)."""
+    data = _load_toml("teams.toml")
+    series = data.get("series", [])
+    teams = data.get("team", [])
+    brands = {(b["team"], b["series"]): b for b in data.get("brand", [])}
+
+    def png(rel):  # marks/<rel>.svg -> the PNG shown in the grid
+        return "marks/" + rel[:-4] + ".png" if rel.endswith(".svg") else "marks/" + rel
+
+    cells = ['<div class="cell corner"></div>']
+    for s in series:
+        cells.append(f'<div class="cell colhead"><span class="yr">{s["year"]}</span>'
+                     f'<span class="nm">{esc(s["name"])}</span></div>')
+    cells.append('<div class="slcell slhead">Series</div>')
+    for s in series:
+        t = s.get("title")
+        logo = (f'<img class="thead-logo" src="{png(t)}" alt="{esc(s["name"])}">'
+                if t else f'<span class="nm">{esc(s["name"])}</span>')
+        cells.append(f'<div class="slcell">{logo}</div>')
+    cells.append('<div class="slcell slhead lgrow">League</div>')
+    for s in series:
+        ll, lg = s.get("league_logo"), s.get("league")
+        if ll:
+            inner = f'<img class="league-logo" src="{png(ll)}" alt="{esc(lg or "")} league">'
+        elif lg:
+            inner = f'<span class="lg">{esc(lg)}</span><span class="lgneed">emblem needed</span>'
+        else:
+            inner = ""
+        cells.append(f'<div class="slcell lgrow">{inner}</div>')
+
+    rec = {}
+    for ti, t in enumerate(teams):
+        txt = "#12151a" if _lum(t["bar"]) > .6 else "#fff"
+        cells.append(f'<div class="cell rowhead"><span class="bar" style="background:{esc(t["bar"])}"></span>'
+                     f'<span class="rh-body"><span class="tname">{esc(t["name"])}</span>'
+                     f'<span class="tsub">{esc(t.get("sub",""))}</span></span></div>')
+        for si, s in enumerate(series):
+            b = brands.get((t["slug"], s["slug"]))
+            cid = f"{ti}_{si}"
+            base = {"team": t["name"], "sub": t.get("sub", ""), "bar": t["bar"], "txt": txt,
+                    "series": s["name"], "yr": s["year"], "league": s.get("league", "")}
+            if b:
+                state = b.get("state") or "unknown"
+                cells.append(f'<div class="cell"><div class="mk" data-id="{cid}">'
+                             f'<div class="logo"><img src="{png(b["logo"])}" '
+                             f'alt="{esc(t["name"])} — {esc(s["name"])}" loading="lazy"></div></div></div>')
+                rec[cid] = {**base, "state": state, "png": png(b["logo"]), "svg": "marks/" + b["logo"],
+                            "colors": b.get("colors", []), "notes": b.get("notes", "")}
+            elif t["slug"] in s.get("roster", []):
+                cells.append(f'<div class="cell"><div class="gapcell" data-id="{cid}">'
+                             f'<span><span class="plus">+</span>logo&nbsp;needed</span></div></div>')
+                rec[cid] = {**base, "state": "gap", "sser": s["slug"], "steam": t["slug"]}
+            else:
+                cells.append(f'<div class="cell na" title="{esc(t["name"])} didn’t race in {esc(s["name"])}"></div>')
+
+    ncols = len(series)
+    grid_style = f"grid-template-columns:var(--first,168px) repeat({ncols}, minmax(var(--colmin,0px),1fr))"
+    matrix = f'<div class="matrix" style="{grid_style}">\n' + "\n".join(cells) + "\n</div>"
+
+    header_inner = (f'<h1>{esc(page["title"])}</h1>\n'
+                    f'<p class="lead">{esc(page.get("intro", ""))}</p>\n'
+                    '<div class="legend">'
+                    '<span class="item"><span class="key gap"></span>Logo needed</span>'
+                    '<span class="item"><span class="key na"></span>Didn’t race this series</span>'
+                    '<span class="hint">· click any logo for its colours &amp; status →</span></div>')
+    body = (f'{matrix}\n'
+            '<aside class="drawer" id="drawer" aria-hidden="true"><div class="drawer-inner" id="drawerInner"></div></aside>\n'
+            '<div class="toast" id="toast"></div>')
+    scripts = _TEAMS_SCRIPT.replace("__REC_JSON__", json.dumps(rec))
     _write(page["file"], _document(page["slug"], page["title"], header_inner, body, scripts))
 
 
@@ -1636,6 +1849,8 @@ def build_pages(manifest, ref_manifest=None):
             continue
         if p["kind"] == "reference":
             build_reference_page(p, ref_manifest or build_reference_manifest())
+        elif p["kind"] == "teams":
+            build_teams_page(p)
         else:
             build_prose_page(p)
 
