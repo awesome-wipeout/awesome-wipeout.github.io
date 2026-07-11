@@ -55,7 +55,7 @@ year = 2005
 league = "FX300"
 title = "titles/wipeout-pure.svg"          # series wordmark (a marks/ vector)
 league_logo = "leagues/fx300.svg"
-roster = ["ag-systems", "assegai", "auricom", "feisar", "goteki-45", "harimau", "icaras", "piranha", "qirex", "triakis"]
+roster = ["ag-systems", "assegai", "auricom", "feisar", "goteki-45", "harimau", "icaras", "piranha", "qirex", "tigron", "triakis", "van-uber"]
 
 [[series]]
 slug = "pulse"
@@ -64,7 +64,7 @@ year = 2007
 league = "FX400"
 title = "titles/wipeout-pulse.svg"          # series wordmark (a marks/ vector)
 league_logo = "leagues/fx400.svg"
-roster = ["ag-systems", "assegai", "auricom", "eg-x", "feisar", "goteki-45", "harimau", "mirage", "piranha", "qirex", "triakis"]
+roster = ["ag-systems", "assegai", "auricom", "eg-x", "feisar", "goteki-45", "harimau", "mirage", "piranha", "qirex", "tigron", "triakis", "van-uber"]
 
 [[series]]
 slug = "hd"
@@ -73,7 +73,7 @@ year = 2008
 league = "FX350"
 title = "titles/wipeout-hd-fury.svg"          # series wordmark (a marks/ vector)
 league_logo = "leagues/fx350.png"        # restricted (PNG stub); the "Fury" emblem
-roster = ["ag-systems", "assegai", "auricom", "eg-x", "feisar", "goteki-45", "harimau", "icaras", "mirage", "piranha", "qirex", "triakis"]
+roster = ["ag-systems", "assegai", "auricom", "eg-x", "feisar", "goteki-45", "harimau", "icaras", "mirage", "piranha", "qirex", "tigron", "triakis", "van-uber"]
 
 [[team]]
 slug = "ag-systems"
@@ -142,10 +142,22 @@ bar = "#8c8f95"          # identity colour bar
 sub = "Russia"
 
 [[team]]
+slug = "tigron"
+name = "Tigron"
+bar = "#fbab18"          # identity colour bar
+sub = "Tigron Enterprises"
+
+[[team]]
 slug = "triakis"
 name = "Triakis"
 bar = "#c9b48a"          # identity colour bar
 sub = "Military contractor"
+
+[[team]]
+slug = "van-uber"
+name = "Van-Über"
+bar = "#ef4723"          # identity colour bar
+sub = "Germany"
 
 # --- brands: one entry per (team, series) cell that has a logo ---
 # WipEout
@@ -349,7 +361,37 @@ logo = "teams/pure/triakis.svg"
 state = "sampled"
 colors = [{ name = "Grey", hex = "#B4B4A8" }, { name = "Light Grey", hex = "#F0D8CC" }]
 
+# Tigron & Van-Über have no Pure/Pulse-era art yet — these cells reuse the HD/Fury
+# team logo (the only vector we hold) so the row is filled from Pure onwards.
+[[brand]]
+team = "tigron"
+series = "pure"
+logo = "teams/hd/tigron.svg"
+state = "sampled"
+colors = [{ name = "Tigron Amber", hex = "#FBAB18" }]
+
+[[brand]]
+team = "van-uber"
+series = "pure"
+logo = "teams/hd/van-uber.svg"
+state = "sampled"
+colors = [{ name = "Orange Red", hex = "#EF4723" }, { name = "Amber", hex = "#FBAB18" }, { name = "Orange", hex = "#F8992C" }]
+
 # WipEout Pulse
+[[brand]]
+team = "tigron"
+series = "pulse"
+logo = "teams/hd/tigron.svg"
+state = "sampled"
+colors = [{ name = "Tigron Amber", hex = "#FBAB18" }]
+
+[[brand]]
+team = "van-uber"
+series = "pulse"
+logo = "teams/hd/van-uber.svg"
+state = "sampled"
+colors = [{ name = "Orange Red", hex = "#EF4723" }, { name = "Amber", hex = "#FBAB18" }, { name = "Orange", hex = "#F8992C" }]
+
 # WipEout HD  — colour logos (recoloured HD/Fury team-select art); swatches sampled from each mark
 
 [[brand]]
@@ -435,3 +477,17 @@ series = "hd"
 logo = "teams/hd/triakis-logo-lockup-colour.svg"
 state = "sampled"
 colors = [{ name = "Green", hex = "#3A4E35" }]
+
+[[brand]]
+team = "tigron"
+series = "hd"
+logo = "teams/hd/tigron.svg"
+state = "sampled"
+colors = [{ name = "Tigron Amber", hex = "#FBAB18" }]
+
+[[brand]]
+team = "van-uber"
+series = "hd"
+logo = "teams/hd/van-uber.svg"
+state = "sampled"
+colors = [{ name = "Orange Red", hex = "#EF4723" }, { name = "Amber", hex = "#FBAB18" }, { name = "Orange", hex = "#F8992C" }]
