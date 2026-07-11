@@ -1,7 +1,7 @@
 {
   "name": "awesome-wipeout \u2014 marks",
   "generated": "2026-07-11",
-  "total": 214,
+  "total": 223,
   "sections": [
     {
       "id": "titles",
@@ -378,6 +378,14 @@
           "credit_name": "ollite20"
         },
         {
+          "slug": "assegai-logo-lockup-colour",
+          "name": "Assegai (colour lockup)",
+          "svg": "marks/teams/hd/assegai-logo-lockup-colour.svg",
+          "png": "marks/teams/hd/assegai-logo-lockup-colour.png",
+          "credit": "ollite20",
+          "credit_name": "ollite20"
+        },
+        {
           "slug": "assegai-logo",
           "name": "Assegai Logo",
           "svg": "marks/teams/hd/assegai-logo.svg",
@@ -450,6 +458,14 @@
           "credit_name": "ollite20"
         },
         {
+          "slug": "feisar-logo-lockup-colour",
+          "name": "FEISAR (colour lockup)",
+          "svg": "marks/teams/hd/feisar-logo-lockup-colour.svg",
+          "png": "marks/teams/hd/feisar-logo-lockup-colour.png",
+          "credit": "ollite20",
+          "credit_name": "ollite20"
+        },
+        {
           "slug": "feisar-logo",
           "name": "FEISAR Logo",
           "svg": "marks/teams/hd/feisar-logo.svg",
@@ -482,6 +498,14 @@
           "credit_name": "ollite20"
         },
         {
+          "slug": "goteki-logo-lockup-colour",
+          "name": "Goteki 45 (colour lockup)",
+          "svg": "marks/teams/hd/goteki-logo-lockup-colour.svg",
+          "png": "marks/teams/hd/goteki-logo-lockup-colour.png",
+          "credit": "ollite20",
+          "credit_name": "ollite20"
+        },
+        {
           "slug": "goteki-logo",
           "name": "Goteki Logo",
           "svg": "marks/teams/hd/goteki-logo.svg",
@@ -494,6 +518,14 @@
           "name": "Harimau (colour)",
           "svg": "marks/teams/hd/harimau-logo-colour.svg",
           "png": "marks/teams/hd/harimau-logo-colour.png",
+          "credit": "ollite20",
+          "credit_name": "ollite20"
+        },
+        {
+          "slug": "harimau-logo-lockup-colour",
+          "name": "Harimau (colour lockup)",
+          "svg": "marks/teams/hd/harimau-logo-lockup-colour.svg",
+          "png": "marks/teams/hd/harimau-logo-lockup-colour.png",
           "credit": "ollite20",
           "credit_name": "ollite20"
         },
@@ -522,6 +554,14 @@
           "credit_name": "djdrey909 (Andre Lackmann)"
         },
         {
+          "slug": "icaras-logo-lockup-colour",
+          "name": "Icaras (colour lockup)",
+          "svg": "marks/teams/hd/icaras-logo-lockup-colour.svg",
+          "png": "marks/teams/hd/icaras-logo-lockup-colour.png",
+          "credit": "djdrey909",
+          "credit_name": "djdrey909 (Andre Lackmann)"
+        },
+        {
           "slug": "icaras-logo",
           "name": "Icaras",
           "svg": "marks/teams/hd/icaras-logo.svg",
@@ -534,6 +574,14 @@
           "name": "Mirage (colour)",
           "svg": "marks/teams/hd/mirage-logo-colour.svg",
           "png": "marks/teams/hd/mirage-logo-colour.png",
+          "credit": "ollite20",
+          "credit_name": "ollite20"
+        },
+        {
+          "slug": "mirage-logo-lockup-colour",
+          "name": "Mirage (colour lockup)",
+          "svg": "marks/teams/hd/mirage-logo-lockup-colour.svg",
+          "png": "marks/teams/hd/mirage-logo-lockup-colour.png",
           "credit": "ollite20",
           "credit_name": "ollite20"
         },
@@ -558,6 +606,14 @@
           "name": "Piranha (colour)",
           "svg": "marks/teams/hd/piranha-logo-colour.svg",
           "png": "marks/teams/hd/piranha-logo-colour.png",
+          "credit": "ollite20",
+          "credit_name": "ollite20"
+        },
+        {
+          "slug": "piranha-logo-lockup-colour",
+          "name": "Piranha (colour lockup)",
+          "svg": "marks/teams/hd/piranha-logo-lockup-colour.svg",
+          "png": "marks/teams/hd/piranha-logo-lockup-colour.png",
           "credit": "ollite20",
           "credit_name": "ollite20"
         },
@@ -590,6 +646,14 @@
           "name": "Qirex (colour)",
           "svg": "marks/teams/hd/qirex-logo-colour.svg",
           "png": "marks/teams/hd/qirex-logo-colour.png",
+          "credit": "ollite20",
+          "credit_name": "ollite20"
+        },
+        {
+          "slug": "qirex-logo-lockup-colour",
+          "name": "Qirex (colour lockup)",
+          "svg": "marks/teams/hd/qirex-logo-lockup-colour.svg",
+          "png": "marks/teams/hd/qirex-logo-lockup-colour.png",
           "credit": "ollite20",
           "credit_name": "ollite20"
         },
@@ -630,6 +694,14 @@
           "name": "Triakis (colour)",
           "svg": "marks/teams/hd/triakis-logo-colour.svg",
           "png": "marks/teams/hd/triakis-logo-colour.png",
+          "credit": "ollite20",
+          "credit_name": "ollite20"
+        },
+        {
+          "slug": "triakis-logo-lockup-colour",
+          "name": "Triakis (colour lockup)",
+          "svg": "marks/teams/hd/triakis-logo-lockup-colour.svg",
+          "png": "marks/teams/hd/triakis-logo-lockup-colour.png",
           "credit": "ollite20",
           "credit_name": "ollite20"
         },

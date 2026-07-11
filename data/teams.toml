@@ -362,7 +362,7 @@ colors = [{ name = "Cyan", hex = "#9BD9E8" }, { name = "Light Cyan", hex = "#35B
 [[brand]]
 team = "assegai"
 series = "hd"
-logo = "teams/hd/assegai-logo-colour.svg"
+logo = "teams/hd/assegai-logo-lockup-colour.svg"
 state = "sampled"
 colors = [{ name = "Blue", hex = "#3B7FBF" }]
 
@@ -383,55 +383,55 @@ colors = [{ name = "Red", hex = "#640000" }, { name = "Blue", hex = "#030335" }]
 [[brand]]
 team = "feisar"
 series = "hd"
-logo = "teams/hd/feisar-logo-colour.svg"
+logo = "teams/hd/feisar-logo-lockup-colour.svg"
 state = "sampled"
 colors = [{ name = "Cyan", hex = "#A7CCD5" }, { name = "Light Cyan", hex = "#2080A1" }, { name = "Yellow", hex = "#FCCD14" }]
 
 [[brand]]
 team = "goteki-45"
 series = "hd"
-logo = "teams/hd/goteki-logo-colour.svg"
+logo = "teams/hd/goteki-logo-lockup-colour.svg"
 state = "sampled"
 colors = [{ name = "Orange", hex = "#FFC10E" }, { name = "Magenta", hex = "#ED3D7E" }]
 
 [[brand]]
 team = "harimau"
 series = "hd"
-logo = "teams/hd/harimau-logo-colour.svg"
+logo = "teams/hd/harimau-logo-lockup-colour.svg"
 state = "sampled"
 colors = [{ name = "Yellow", hex = "#F8F71A" }, { name = "Orange", hex = "#F98412" }]
 
 [[brand]]
 team = "icaras"
 series = "hd"
-logo = "teams/hd/icaras-logo-colour.svg"
+logo = "teams/hd/icaras-logo-lockup-colour.svg"
 state = "sampled"
 colors = [{ name = "Magenta", hex = "#A82058" }, { name = "Light Magenta", hex = "#D388A9" }]
 
 [[brand]]
 team = "mirage"
 series = "hd"
-logo = "teams/hd/mirage-logo-colour.svg"
+logo = "teams/hd/mirage-logo-lockup-colour.svg"
 state = "sampled"
 colors = [{ name = "Green", hex = "#02A200" }, { name = "Dark Green", hex = "#004900" }]
 
 [[brand]]
 team = "piranha"
 series = "hd"
-logo = "teams/hd/piranha-logo-colour.svg"
+logo = "teams/hd/piranha-logo-lockup-colour.svg"
 state = "sampled"
 colors = [{ name = "Red", hex = "#CB0001" }, { name = "Yellow", hex = "#FCCE08" }]
 
 [[brand]]
 team = "qirex"
 series = "hd"
-logo = "teams/hd/qirex-logo-colour.svg"
+logo = "teams/hd/qirex-logo-lockup-colour.svg"
 state = "sampled"
 colors = [{ name = "Magenta", hex = "#642869" }, { name = "Light Magenta", hex = "#BB2E83" }]
 
 [[brand]]
 team = "triakis"
 series = "hd"
-logo = "teams/hd/triakis-logo-colour.svg"
+logo = "teams/hd/triakis-logo-lockup-colour.svg"
 state = "sampled"
 colors = [{ name = "Green", hex = "#3A4E35" }]
