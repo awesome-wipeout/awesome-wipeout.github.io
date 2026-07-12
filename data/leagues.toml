@@ -149,6 +149,7 @@ marks = [
 ]
 fonts = [
   { slug = "fusion", note = "Fusion — a fan recreation of the WipEout Fusion wordmark lettering." },
+  { slug = "04b-19", note = "04b_19 — used on the WipEout Fusion back cover." },
 ]
 
 [[league]]
