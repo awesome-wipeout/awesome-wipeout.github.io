@@ -720,7 +720,7 @@ border-radius:6px;padding:3px 9px;font-size:13px}
 .llb-lore{font-size:15px;line-height:1.65;margin:0}
 .llb-right{display:flex;flex-direction:column;gap:36px;min-width:0}
 .llb h2{font-size:14px;margin:0 0 16px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
-.llb-mgrid,.llb-fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+.llb-mgrid,.llb-fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));gap:18px}
 .llb-mcard,.llb-fcard{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
 .llb-mthumb{height:190px;display:flex;align-items:center;justify-content:center;padding:24px;background:
  linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 0 0/22px 22px,
