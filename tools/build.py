@@ -444,6 +444,13 @@ padding:4px 10px;border-radius:6px}
 color:#fff;border:0;width:52px;height:64px;font-size:30px;cursor:pointer;border-radius:8px}
 .lb-nav:hover{background:rgba(20,24,30,.85)}
 .lb-prev{left:14px}.lb-next{right:14px}
+/* "Featured in" back-links — Teams/Leagues that use this mark or font (lightbox only) */
+.lb-used{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;flex-wrap:wrap;align-items:center;
+gap:8px;padding:12px 20px;background:rgba(20,24,30,.82);color:#fff;backdrop-filter:blur(6px);font-size:12.5px}
+.lb-used:empty{display:none}
+.lb-used .use-k{color:#c5ccd6;font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:11px}
+.lb-used a{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:3px 11px}
+.lb-used a:hover{background:#fff;color:#12151a;border-color:#fff}
 @media(max-width:640px){.lb-stage{padding:70px 16px}.lb-dl{display:none}}
 /* thin sticky top nav (shared across every page) */
 .topnav{position:sticky;top:0;z-index:900;background:rgba(247,248,250,.86);
@@ -1508,7 +1515,7 @@ let toastT;
 function showToast(m){ toast.innerHTML=m; toast.classList.add("show"); clearTimeout(toastT); toastT=setTimeout(function(){toast.classList.remove("show");},1400); }
 function esc(s){ return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
 function swatchHTML(x){ return '<div class="sw" data-hex="'+x.hex+'"><span class="chip" style="background:'+x.hex+'"></span><span class="swmeta"><span class="swname">'+esc(x.name)+'</span><span class="swhex">'+x.hex+'</span></span><span class="copy">Copy</span></div>'; }
-function openCell(id){
+function showCell(id){
   const c = REC[id]; if(!c) return;
   const head='<div class="dhead" style="background:'+c.bar+';color:'+c.txt+'"><button class="dclose" onclick="closeDrawer()" aria-label="Close">×</button><div class="kicker">'+esc(c.series)+' · '+c.yr+(c.league?' · '+esc(c.league):'')+'</div><h2>'+esc(c.team)+'</h2><div class="series">'+esc(c.sub)+'</div></div>';
   let logoBlock="", body="";
@@ -1527,13 +1534,21 @@ function openCell(id){
   dInner.innerHTML=head+logoBlock+'<div class="dbody">'+body+'</div>';
   document.body.classList.add("drawer-open"); drawer.setAttribute("aria-hidden","false"); dInner.scrollTop=0;
 }
-function closeDrawer(){ document.body.classList.remove("drawer-open"); drawer.setAttribute("aria-hidden","true"); }
+function hideDrawer(){ document.body.classList.remove("drawer-open"); drawer.setAttribute("aria-hidden","true"); }
+function closeDrawer(){ if(location.hash){ history.replaceState(null,"",location.pathname+location.search); } hideDrawer(); }
+// deep-linkable: teams.html#<team>--<series> opens that cell's drawer (used by marks-lightbox back-links)
+var SLUGMAP={};
+Object.keys(REC).forEach(function(id){ var c=REC[id]; if(c.tslug) SLUGMAP[c.tslug+"--"+c.sslug]=id; });
+function openCell(id){ var c=REC[id]; if(c&&c.tslug){ location.hash=c.tslug+"--"+c.sslug; } else { showCell(id); } }
+function handleHash(){ var id=SLUGMAP[(location.hash||"").replace(/^#/,"")]; if(id){ showCell(id); } else { hideDrawer(); } }
+window.addEventListener("hashchange", handleHash);
 function copy(t){ if(navigator.clipboard&&navigator.clipboard.writeText) return navigator.clipboard.writeText(t); var a=document.createElement("textarea");a.value=t;a.style.position="fixed";a.style.opacity="0";document.body.appendChild(a);a.select();try{document.execCommand("copy");}catch(e){}document.body.removeChild(a);return Promise.resolve(); }
 document.addEventListener("click", function(e){
   var cell=e.target.closest("[data-id]"); if(cell){ openCell(cell.getAttribute("data-id")); return; }
   var sw=e.target.closest(".sw"); if(sw){ var hex=sw.getAttribute("data-hex"); copy(hex).then(function(){ sw.classList.add("copied"); sw.querySelector(".copy").textContent="Copied"; showToast('Copied <code>'+hex+'</code>'); setTimeout(function(){ sw.classList.remove("copied"); sw.querySelector(".copy").textContent="Copy"; },1100); }); }
 });
 document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeDrawer(); });
+handleHash();  // open the deep-linked cell (teams.html#<team>--<series>) on load
 </script>"""
 
 
@@ -1582,7 +1597,8 @@ def build_teams_page(page):
             b = brands.get((t["slug"], s["slug"]))
             cid = f"{ti}_{si}"
             base = {"team": t["name"], "sub": t.get("sub", ""), "bar": t["bar"], "txt": txt,
-                    "series": s["name"], "yr": s["year"], "league": s.get("league", "")}
+                    "series": s["name"], "yr": s["year"], "league": s.get("league", ""),
+                    "tslug": t["slug"], "sslug": s["slug"]}
             if b:
                 state = b.get("state") or "unknown"
                 cells.append(f'<div class="cell"><div class="mk" data-id="{cid}">'
@@ -1808,6 +1824,36 @@ def build_pages(manifest, ref_manifest=None):
     """Render every registered page. Marks + fonts share the intermediate build
     below (cards, credits, lightbox); the two are written as separate documents.
     Reference pages render the screenshot gallery; anything else is a prose page."""
+    # Reverse-usage index: which Leagues / Teams reference each mark (by id = path minus ext)
+    # and each font (by slug). Surfaced as "featured in" back-links inside the marks/fonts
+    # lightboxes (leagues.html#<slug> and teams.html#<team>--<series> deep-links).
+    def _mid(f):
+        return f.rsplit(".", 1)[0]
+    mark_use, font_use = {}, {}
+    try:
+        _lg = _load_toml("leagues.toml").get("league", [])
+    except Exception:
+        _lg = []
+    for lg in _lg:
+        ref = {"kind": "league", "slug": lg["slug"], "label": lg["name"]}
+        seen = set()
+        for f in [lg["logo"]] + [m["file"] for m in lg.get("marks", [])]:
+            mid = _mid(f)
+            if mid not in seen:
+                seen.add(mid)
+                mark_use.setdefault(mid, []).append(ref)
+        for fo in lg.get("fonts", []):
+            font_use.setdefault(fo["slug"], []).append(ref)
+    try:
+        _tm = _load_toml("teams.toml")
+    except Exception:
+        _tm = {}
+    _tn = {t["slug"]: t.get("name", t["slug"]) for t in _tm.get("team", [])}
+    _sn = {s["slug"]: s.get("name", s["slug"]) for s in _tm.get("series", [])}
+    for b in _tm.get("brand", []):
+        mark_use.setdefault(_mid(b["logo"]), []).append(
+            {"kind": "team", "slug": b["team"] + "--" + b["series"],
+             "label": _tn.get(b["team"], b["team"]) + " · " + _sn.get(b["series"], b["series"])})
     toc = "".join(
         f'<a href="#{s["id"]}">{esc(s["title"])} ({len(s["assets"])})</a>'
         for s in manifest["sections"])
@@ -1824,8 +1870,9 @@ def build_pages(manifest, ref_manifest=None):
             # link out to the source for the vector.
             is_ref = a.get("svg") is None
             thumb = a["png"] if is_ref else a["svg"]
-            lb_entry = {"name": a["name"], "svg": a["svg"], "png": a["png"],
-                        "id": (a["svg"] or a["png"])[len("marks/"):].rsplit(".", 1)[0]}
+            _aid = (a["svg"] or a["png"])[len("marks/"):].rsplit(".", 1)[0]
+            lb_entry = {"name": a["name"], "svg": a["svg"], "png": a["png"], "id": _aid,
+                        "use": mark_use.get(_aid, [])}
             if is_ref:
                 lb_entry["source"] = a.get("source")
                 lb_entry["who"] = a.get("credit_name")
@@ -1933,7 +1980,8 @@ def build_pages(manifest, ref_manifest=None):
                          if dl else esc(designer))) if designer else ""
         font_lb.append({"name": family, "slug": slug,
                         "meta": era + ((" · by " + designer) if designer else ""),
-                        "link": link, "getlabel": link_label, "shot": src})
+                        "link": link, "getlabel": link_label, "shot": src,
+                        "use": font_use.get(slug, [])})
         linkh = (f'<a class="font-get" data-font="{esc(family)}" href="{esc(link)}" '
                  f'target="_blank" rel="noopener">{esc(link_label)} ↗</a>' if link else "")
         if src:
@@ -1996,13 +2044,19 @@ def build_pages(manifest, ref_manifest=None):
   <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous">&#8249;</button>
   <button class="lb-nav lb-next" id="lbNext" aria-label="Next">&#8250;</button>
   <div class="lb-stage bg-transparent" id="lbStage"><img id="lbImg" alt=""></div>
+  <div class="lb-used" id="lbUsed"></div>
 </div>"""
     lb_script = """<script>
 (function(){
   var ASSETS = __ASSETS__;
   var lb=document.getElementById('lightbox'), img=document.getElementById('lbImg'),
       stage=document.getElementById('lbStage'), nameEl=document.getElementById('lbName'),
-      dl=document.getElementById('lbDl'); var i=0, bg='transparent';
+      dl=document.getElementById('lbDl'), used=document.getElementById('lbUsed'); var i=0, bg='transparent';
+  function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function useHTML(u){ if(!u||!u.length) return '';
+    return '<span class="use-k">Featured in</span>'+u.map(function(x){
+      var href=(x.kind==='league'?'leagues.html#':'teams.html#')+x.slug;
+      return '<a href="'+href+'">'+esc(x.label)+'</a>'; }).join(''); }
   try{ bg = localStorage.getItem('wo-lb-bg') || 'transparent'; }catch(e){}
   function applyBg(){ stage.className='lb-stage bg-'+bg;
     lb.querySelectorAll('.lb-toggle button').forEach(function(b){
@@ -2010,6 +2064,7 @@ def build_pages(manifest, ref_manifest=None):
   var BYID={}; ASSETS.forEach(function(a,idx){ BYID[a.id]=idx; });
   function render(n){ i=(n+ASSETS.length)%ASSETS.length; var a=ASSETS[i];
     img.setAttribute('src', a.svg || a.png); img.setAttribute('alt', a.name); nameEl.textContent=a.name;
+    used.innerHTML = useHTML(a.use);
     dl.innerHTML = a.svg
       ? '<a href="'+a.svg+'" download>SVG</a><a href="'+a.png+'" download>PNG</a>'
       : '<a class="locked" role="button" href="#" data-locked-src="'+(a.source||'')+'" data-locked-who="'+(a.who||'')+'">SVG</a><a href="'+a.png+'" download>PNG</a>'; }
@@ -2086,18 +2141,25 @@ def build_pages(manifest, ref_manifest=None):
   <button class="fbox-nav fbox-prev" id="fbPrev" aria-label="Previous">&#8249;</button>
   <button class="fbox-nav fbox-next" id="fbNext" aria-label="Next">&#8250;</button>
   <div class="fbox-body"><img id="fbImg" alt=""><div class="fbox-note" id="fbNote"></div></div>
+  <div class="lb-used fbox-used" id="fbUsed"></div>
 </div>"""
     fonts_script = """<script>
 (function(){
   var FONTS = __FONTS__;
   var fb=document.getElementById('fbox'), img=document.getElementById('fbImg'),
       nm=document.getElementById('fbName'), era=document.getElementById('fbEra'),
-      note=document.getElementById('fbNote'), get=document.getElementById('fbGet');
+      note=document.getElementById('fbNote'), get=document.getElementById('fbGet'),
+      used=document.getElementById('fbUsed');
   var i=0;
   var BYSLUG={}; FONTS.forEach(function(f,idx){ BYSLUG[f.slug]=idx; });
+  function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function useHTML(u){ if(!u||!u.length) return '';
+    return '<span class="use-k">Featured in</span>'+u.map(function(x){
+      var href=(x.kind==='league'?'leagues.html#':'teams.html#')+x.slug;
+      return '<a href="'+href+'">'+esc(x.label)+'</a>'; }).join(''); }
   function render(n){
     i=(n+FONTS.length)%FONTS.length; var f=FONTS[i];
-    nm.textContent=f.name; era.textContent=f.meta;
+    nm.textContent=f.name; era.textContent=f.meta; used.innerHTML=useHTML(f.use);
     if(f.shot){ img.src=f.shot; img.style.display=''; note.textContent=''; }
     else { img.removeAttribute('src'); img.style.display='none';
       note.textContent=f.name+' was not installed on the build machine, so no specimen was generated. Install the font and rebuild to create one.'; }

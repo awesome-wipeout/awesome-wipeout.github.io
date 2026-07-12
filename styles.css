@@ -153,6 +153,13 @@ padding:4px 10px;border-radius:6px}
 color:#fff;border:0;width:52px;height:64px;font-size:30px;cursor:pointer;border-radius:8px}
 .lb-nav:hover{background:rgba(20,24,30,.85)}
 .lb-prev{left:14px}.lb-next{right:14px}
+/* "Featured in" back-links — Teams/Leagues that use this mark or font (lightbox only) */
+.lb-used{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;flex-wrap:wrap;align-items:center;
+gap:8px;padding:12px 20px;background:rgba(20,24,30,.82);color:#fff;backdrop-filter:blur(6px);font-size:12.5px}
+.lb-used:empty{display:none}
+.lb-used .use-k{color:#c5ccd6;font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:11px}
+.lb-used a{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:3px 11px}
+.lb-used a:hover{background:#fff;color:#12151a;border-color:#fff}
 @media(max-width:640px){.lb-stage{padding:70px 16px}.lb-dl{display:none}}
 /* thin sticky top nav (shared across every page) */
 .topnav{position:sticky;top:0;z-index:900;background:rgba(247,248,250,.86);
