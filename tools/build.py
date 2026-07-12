@@ -651,8 +651,8 @@ text-transform:uppercase;letter-spacing:.04em;color:var(--muted);border-bottom:2
 .ltable tbody tr{cursor:pointer}
 .ltable tbody tr:hover{background:rgba(11,127,212,.055)}
 .ltable tbody tr:last-child td{border-bottom:0}
-.l-logo{width:96px}
-.l-logo img{width:76px;height:44px;object-fit:contain;display:block}
+.l-logo{width:124px}
+.l-logo img{width:99px;height:57px;object-fit:contain;display:block}
 .l-name{font-weight:700;font-size:16px;letter-spacing:-.01em;white-space:nowrap}
 .l-game{white-space:nowrap}
 .l-yr{white-space:nowrap;font-variant-numeric:tabular-nums}
@@ -676,6 +676,13 @@ background:rgba(20,24,30,.9);color:#fff;backdrop-filter:blur(6px)}
 .llb-sub{color:#c5ccd6;font-size:13px}
 .llb-spacer{flex:1}
 .llb-x{background:transparent;border:0;color:#fff;font-size:28px;line-height:1;cursor:pointer;padding:0 4px}
+.llb-arrow{position:fixed;top:50%;transform:translateY(-50%);z-index:3;width:46px;height:66px;
+background:rgba(20,24,30,.5);color:#fff;border:0;border-radius:10px;font-size:30px;line-height:1;cursor:pointer;
+display:flex;align-items:center;justify-content:center}
+.llb-arrow:hover{background:rgba(20,24,30,.82)}
+.llb-arrow:disabled{opacity:.28;cursor:default}
+.llb-prev{left:16px}.llb-next{right:16px}
+@media(max-width:900px){.llb-arrow{width:40px;height:54px;font-size:26px}.llb-prev{left:8px}.llb-next{right:8px}}
 /* full-window two-column layout: left = full-height details card, right = marks row / fonts row */
 .llb-body{padding:32px 40px 88px;display:grid;grid-template-columns:minmax(300px,32%) 1fr;
 gap:44px;align-items:start}
@@ -684,7 +691,7 @@ gap:44px;align-items:start}
 display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);
 border-radius:16px;box-shadow:0 10px 34px rgba(12,15,20,.08);padding:20px 24px 24px;overflow-y:auto}
 .llb-card-title{flex:none;font-size:26px;font-weight:800;letter-spacing:-.02em;margin:2px 0 14px;line-height:1.05}
-.llb-left .herobox{flex:1 1 auto;min-height:220px;background:#fff;border:1px solid var(--line);
+.llb-left .herobox{flex:none;height:300px;background:#fff;border:1px solid var(--line);
 border-radius:12px;padding:28px;display:flex;align-items:center;justify-content:center}
 .llb-left .herobox img{max-width:100%;max-height:100%;object-fit:contain}
 .llb-facts{flex:none;list-style:none;margin:18px 0 0;padding:0;font-size:14px}
@@ -695,7 +702,7 @@ border-radius:12px;padding:28px;display:flex;align-items:center;justify-content:
 border-radius:6px;padding:3px 9px;font-size:13px}
 .llb-metac:hover{filter:brightness(1.08)}
 .llb-metac .mc-out{font-size:10px;opacity:.85}
-.llb-bg{flex:none;margin-top:26px}
+.llb-bg{flex:1 0 auto;margin-top:26px}
 .llb-bg h2{margin-bottom:12px}
 .llb-lore{font-size:15px;line-height:1.65;margin:0}
 .llb-right{display:flex;flex-direction:column;gap:36px;min-width:0}
@@ -1630,8 +1637,11 @@ function metacRow(c){
     +'" href="'+esc(c.metacritic)+'" target="_blank" rel="noopener" title="Metascore on Metacritic">'
     +s+'<span class="mc-out" style="color:'+fg+'">↗</span></a></span></li>';
 }
-function openLeague(id){
+var currentId=null;
+function orderedSlugs(){ return [].slice.call(document.querySelectorAll("#lbody .lrow")).map(function(r){return r.getAttribute("data-id");}); }
+function showLeague(id){
   var c = LREC[id]; if(!c) return;
+  currentId=id;
   var facts='<ul class="llb-facts">'
     +'<li><span class="k">Game</span><span class="v">'+esc(c.game)+'</span></li>'
     +'<li><span class="k">Released</span><span class="v">'+c.released+'</span></li>'
@@ -1642,18 +1652,39 @@ function openLeague(id){
   var marks = c.marks.length ? '<section><h2>Marks</h2><div class="llb-mgrid">'+c.marks.map(markCard).join('')+'</div></section>' : '';
   var fonts = c.fonts.length ? '<section><h2>Fonts</h2><div class="llb-fgrid">'+c.fonts.map(fontCard).join('')+'</div></section>' : '';
   var right='<div class="llb-right">'+marks+fonts+'</div>';
-  var top='<div class="llb-top"><img class="llb-emblem" src="'+esc(c.logo)+'" alt=""><div><div class="llb-title">'+esc(c.name)+'</div><div class="llb-sub">'+esc(c.game)+' · '+esc(c.game_year)+'</div></div><div class="llb-spacer"></div><button class="llb-x" onclick="closeLeague()" aria-label="Close">×</button></div>';
+  var top='<div class="llb-top"><img class="llb-emblem" src="'+esc(c.logo)+'" alt=""><div><div class="llb-title">'+esc(c.name)+'</div><div class="llb-sub">'+esc(c.game)+' · '+esc(c.game_year)+'</div></div><div class="llb-spacer"></div><button class="llb-x" aria-label="Close">×</button></div>';
   llbPanel.innerHTML=top+'<div class="llb-body">'+left+right+'</div>';
   llb.classList.add("open"); llb.setAttribute("aria-hidden","false");
   document.body.style.overflow="hidden"; llbPanel.scrollTop=0;
+  var o=orderedSlugs(), i=o.indexOf(id);
+  document.getElementById("llbPrev").disabled=(i<=0);
+  document.getElementById("llbNext").disabled=(i<0||i>=o.length-1);
 }
-function closeLeague(){ llb.classList.remove("open"); llb.setAttribute("aria-hidden","true"); document.body.style.overflow=""; }
+function navLeague(dir){
+  if(!currentId) return;
+  var o=orderedSlugs(), i=o.indexOf(currentId); if(i<0) return;
+  var j=i+dir; if(j<0||j>=o.length) return;
+  location.hash=o[j];
+}
+function hideLeague(){ currentId=null; llb.classList.remove("open"); llb.setAttribute("aria-hidden","true"); document.body.style.overflow=""; }
+function openLeague(id){ if(LREC[id]) location.hash=id; }
+function closeLeague(){ if(location.hash){ history.replaceState(null,"",location.pathname+location.search); } hideLeague(); }
+function handleHash(){ var id=(location.hash||"").slice(1); if(id&&LREC[id]){ showLeague(id); } else { hideLeague(); } }
+window.addEventListener("hashchange", handleHash);
 document.addEventListener("click", function(e){
-  if(e.target.closest(".llb-dl a")||e.target.closest(".llb-fget")||e.target.closest(".llb-x")) return;
+  if(e.target.closest(".llb-dl a")||e.target.closest(".llb-fget")) return;
+  if(e.target.closest(".llb-x")){ closeLeague(); return; }
+  if(e.target.closest(".llb-prev")){ navLeague(-1); return; }
+  if(e.target.closest(".llb-next")){ navLeague(1); return; }
   var row=e.target.closest(".lrow"); if(row){ openLeague(row.getAttribute("data-id")); return; }
   if(e.target===llb){ closeLeague(); return; }
 });
-document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeLeague(); });
+document.addEventListener("keydown", function(e){
+  if(!llb.classList.contains("open")) return;
+  if(e.key==="Escape") closeLeague();
+  else if(e.key==="ArrowLeft") navLeague(-1);
+  else if(e.key==="ArrowRight") navLeague(1);
+});
 function sortBy(key, d){
   var tbody=document.getElementById("lbody");
   var rows=[].slice.call(tbody.querySelectorAll(".lrow"));
@@ -1672,6 +1703,7 @@ document.querySelectorAll(".ltable th.sortable").forEach(function(th){
     sortBy(k, _dir[k]);
   });
 });
+handleHash();  // open the deep-linked league (leagues.html#<slug>) on load
 </script>"""
 
 
@@ -1762,7 +1794,10 @@ def build_leagues_page(page):
     header_inner = (f'<h1>{esc(page["title"])}</h1>\n'
                     f'<p class="lead">{esc(page.get("intro", ""))}</p>')
     body = (table + '\n'
-            '<div class="llb" id="llb" aria-hidden="true"><div class="llb-panel" id="llbPanel"></div></div>')
+            '<div class="llb" id="llb" aria-hidden="true">'
+            '<button class="llb-arrow llb-prev" id="llbPrev" aria-label="Previous league">‹</button>'
+            '<button class="llb-arrow llb-next" id="llbNext" aria-label="Next league">›</button>'
+            '<div class="llb-panel" id="llbPanel"></div></div>')
     scripts = _LEAGUES_SCRIPT.replace("__LREC_JSON__", json.dumps(rec))
     _write(page["file"], _document(page["slug"], page["title"], header_inner, body, scripts))
 
