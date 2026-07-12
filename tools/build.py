@@ -708,6 +708,8 @@ border-radius:12px;padding:28px;display:flex;align-items:center;justify-content:
 .llb-plats{display:inline-flex;flex-wrap:wrap;gap:5px;justify-content:flex-end}
 .llb-plat{font-size:11px;font-weight:600;color:var(--muted);background:var(--bg);
 border:1px solid var(--line);border-radius:5px;padding:2px 7px}
+.llb-extlink{color:var(--accent);text-decoration:none;font-size:13px}
+.llb-extlink:hover{text-decoration:underline}
 .llb-metac{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-weight:700;color:#fff;
 border-radius:6px;padding:3px 9px;font-size:13px}
 .llb-metac:hover{filter:brightness(1.08)}
@@ -1664,6 +1666,7 @@ function showLeague(id){
     +(c.platforms&&c.platforms.length?'<li><span class="k">Platforms</span><span class="v"><span class="llb-plats">'
       +c.platforms.map(function(p){return '<span class="llb-plat">'+esc(p)+'</span>';}).join('')+'</span></span></li>':'')
     +metacRow(c)
+    +(c.launchbox?'<li><span class="k">LaunchBox DB</span><span class="v"><a class="llb-extlink" href="'+esc(c.launchbox)+'" target="_blank" rel="noopener">images ↗</a></span></li>':'')
     +'</ul>';
   var left='<div class="llb-left"><div class="llb-card-title">'+esc(c.name)+'</div><div class="herobox"><img src="'+esc(c.logo)+'" alt="'+esc(c.name)+' emblem"></div>'+facts+'<div class="llb-bg"><h2>Background</h2><p class="llb-lore">'+esc(c.blurb)+'</p></div></div>';
   var marks = c.marks.length ? '<section><h2>Marks</h2><div class="llb-mgrid">'+c.marks.map(markCard).join('')+'</div></section>' : '';
@@ -1778,7 +1781,7 @@ def build_leagues_page(page):
             "game_year": lg["game_year"], "blurb": " ".join(lg["blurb"].split()),
             "logo": png(lg["logo"]), "marks": marks_out, "fonts": fonts_out,
             "metascore": lg.get("metascore"), "metacritic": lg.get("metacritic"),
-            "platforms": lg.get("platforms", []),
+            "platforms": lg.get("platforms", []), "launchbox": lg.get("launchbox"),
         }
         mchips = "".join(
             f'<span class="mchip"><img src="{esc(png(m["file"]))}" alt="" '
