@@ -663,14 +663,15 @@ text-transform:uppercase;letter-spacing:.04em;color:var(--muted);border-bottom:2
 .l-name{font-weight:700;font-size:16px;letter-spacing:-.01em;white-space:nowrap}
 .l-game{white-space:nowrap}
 .l-yr{white-space:nowrap;font-variant-numeric:tabular-nums}
-.l-marks{white-space:nowrap}
-.l-marks .mchip{display:inline-flex;align-items:center;justify-content:center;width:38px;height:30px;
-padding:3px;margin:0 4px 0 0;border:1px solid var(--line);border-radius:6px;background:#fff;vertical-align:middle}
+.l-marks,.l-fonts{white-space:nowrap;padding-top:10px;padding-bottom:10px}
+.l-marks .mchip{display:inline-flex;align-items:center;justify-content:center;width:62px;height:50px;
+padding:5px;margin:0 6px 0 0;border:1px solid var(--line);border-radius:7px;background:#fff;vertical-align:middle}
 .l-marks .mchip img{max-width:100%;max-height:100%;object-fit:contain;display:block}
-.l-fonts{min-width:120px}
-.l-fonts .fpill{display:inline-block;font-size:11.5px;color:var(--muted);border:1px solid var(--line);
-border-radius:999px;padding:2px 9px;margin:2px 4px 2px 0;white-space:nowrap}
-.l-desc{color:var(--muted);font-size:12.5px;min-width:280px;max-width:420px;line-height:1.5}
+.l-fonts .fchip{display:inline-flex;align-items:center;justify-content:center;width:118px;height:50px;
+padding:6px 8px;margin:0 6px 0 0;border:1px solid var(--line);border-radius:7px;background:#fff;vertical-align:middle}
+.l-fonts .fchip img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+.l-fonts .fpill{display:inline-flex;align-items:center;height:50px;font-size:11.5px;color:var(--muted);
+border:1px solid var(--line);border-radius:7px;padding:0 12px;margin:0 6px 0 0;white-space:nowrap;vertical-align:middle}
 .l-open{color:var(--accent);font-size:11px;font-weight:600;white-space:nowrap}
 /* full-screen league lightbox */
 .llb{position:fixed;inset:0;z-index:1000;display:none;background:rgba(12,15,20,.72)}
@@ -1787,9 +1788,15 @@ def build_leagues_page(page):
             f'<span class="mchip"><img src="{esc(png(m["file"]))}" alt="" '
             f'title="{esc(m.get("note",""))}" loading="lazy"></span>'
             for m in lg.get("marks", []))
-        fpills = "".join(
-            f'<span class="fpill" title="{esc(fo.get("note",""))}">{esc(font_name(fo["slug"]))}</span>'
-            for fo in lg.get("fonts", []))
+        fchips = ""
+        for fo in lg.get("fonts", []):
+            spec = (FT.get(fo["slug"]) or {}).get("specimen")
+            nm, fnote = font_name(fo["slug"]), fo.get("note", "")
+            if spec:
+                fchips += (f'<span class="fchip"><img src="{esc(spec)}" alt="{esc(nm)}" '
+                           f'title="{esc(fnote)}" loading="lazy"></span>')
+            else:  # commercial faces with no committed specimen — show the name pill
+                fchips += f'<span class="fpill" title="{esc(fnote)}">{esc(nm)}</span>'
         rows.append(
             f'<tr class="lrow" data-id="{esc(slug)}" data-released="{lg["released"]}" '
             f'data-ingame="{lg["game_year_sort"]}">'
@@ -1799,15 +1806,14 @@ def build_leagues_page(page):
             f'<td class="l-yr">{lg["released"]}</td>'
             f'<td class="l-yr">{esc(lg["game_year"])}</td>'
             f'<td class="l-marks">{mchips}</td>'
-            f'<td class="l-fonts">{fpills}</td>'
-            f'<td class="l-desc">{esc(" ".join(lg["blurb"].split()))}</td>'
+            f'<td class="l-fonts">{fchips}</td>'
             f'</tr>')
 
     thead = ('<thead><tr>'
              '<th></th><th>League</th><th>Game</th>'
              '<th class="sortable" data-sort="released">Released<span class="arw">▲▼</span></th>'
              '<th class="sortable sorted-asc" data-sort="ingame">In-game year<span class="arw">▲▼</span></th>'
-             '<th>Marks</th><th>Fonts</th><th>Background</th>'
+             '<th>Marks</th><th>Fonts</th>'
              '</tr></thead>')
     table = ('<div class="ltable-wrap"><table class="ltable" id="ltable">' + thead +
              '<tbody id="lbody">' + "".join(rows) + '</tbody></table></div>')
