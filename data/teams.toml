@@ -60,6 +60,7 @@ roster = ["ag-systems", "assegai", "auricom", "feisar", "goteki-45", "harimau", 
 [[series]]
 slug = "pulse"
 name = "WipEout Pulse"
+cobrand = "hd-era"    # Pulse + HD share one set of team-select emblems — merge those cells
 year = 2007
 league = "FX400"
 title = "titles/wipeout-pulse.svg"          # series wordmark (a marks/ vector)
@@ -69,11 +70,23 @@ roster = ["ag-systems", "assegai", "auricom", "eg-x", "feisar", "goteki-45", "ha
 [[series]]
 slug = "hd"
 name = "WipEout HD"
+cobrand = "hd-era"    # shares Pulse's team emblems (see pulse above)
 year = 2008
 league = "FX350"
 title = "titles/wipeout-hd-fury.svg"          # series wordmark (a marks/ vector)
 league_logo = "leagues/fx350.png"        # restricted (PNG stub); the "Fury" emblem
 roster = ["ag-systems", "assegai", "auricom", "eg-x", "feisar", "goteki-45", "harimau", "icaras", "mirage", "piranha", "qirex", "tigron", "triakis", "van-uber"]
+
+[[series]]
+slug = "2048"
+name = "WipEout 2048"
+year = 2012
+league = "AGRC"
+title = "titles/wipeout-2048.svg"          # series wordmark (a marks/ vector)
+league_logo = "leagues/2048.svg"
+# The prequel (set 2048) — only the five founding teams raced. Its liveries are unique
+# (not the HD emblems) and we don't hold the vectors yet, so these cells are gaps for now.
+roster = ["ag-systems", "auricom", "feisar", "piranha", "qirex"]
 
 [[team]]
 slug = "ag-systems"
@@ -377,7 +390,84 @@ logo = "teams/hd/van-uber.svg"
 state = "sampled"
 colors = [{ name = "Orange Red", hex = "#EF4723" }, { name = "Amber", hex = "#FBAB18" }, { name = "Orange", hex = "#F8992C" }]
 
-# WipEout Pulse
+# WipEout Pulse — shares the HD-era team branding (same emblems as WipEout HD)
+[[brand]]
+team = "ag-systems"
+series = "pulse"
+logo = "teams/hd/ag-systems-colour.svg"
+state = "sampled"
+colors = [{ name = "Cyan", hex = "#9BD9E8" }, { name = "Light Cyan", hex = "#35B4D0" }, { name = "Black", hex = "#000000" }]
+
+[[brand]]
+team = "assegai"
+series = "pulse"
+logo = "teams/hd/assegai-logo-lockup-colour.svg"
+state = "sampled"
+colors = [{ name = "Blue", hex = "#3B7FBF" }]
+
+[[brand]]
+team = "auricom"
+series = "pulse"
+logo = "teams/hd/auricom-colour.svg"
+state = "sampled"
+colors = [{ name = "Blue", hex = "#24336A" }, { name = "Red", hex = "#D9212C" }]
+
+[[brand]]
+team = "eg-x"
+series = "pulse"
+logo = "teams/hd/eg-x-colour.svg"
+state = "sampled"
+colors = [{ name = "Red", hex = "#640000" }, { name = "Blue", hex = "#030335" }]
+
+[[brand]]
+team = "feisar"
+series = "pulse"
+logo = "teams/hd/feisar-logo-lockup-colour.svg"
+state = "sampled"
+colors = [{ name = "Cyan", hex = "#A7CCD5" }, { name = "Light Cyan", hex = "#2080A1" }, { name = "Yellow", hex = "#FCCD14" }]
+
+[[brand]]
+team = "goteki-45"
+series = "pulse"
+logo = "teams/hd/goteki-logo-lockup-colour.svg"
+state = "sampled"
+colors = [{ name = "Orange", hex = "#FFC10E" }, { name = "Magenta", hex = "#ED3D7E" }]
+
+[[brand]]
+team = "harimau"
+series = "pulse"
+logo = "teams/hd/harimau-logo-lockup-colour.svg"
+state = "sampled"
+colors = [{ name = "Yellow", hex = "#F8F71A" }, { name = "Orange", hex = "#F98412" }]
+
+[[brand]]
+team = "mirage"
+series = "pulse"
+logo = "teams/hd/mirage-logo-lockup-colour.svg"
+state = "sampled"
+colors = [{ name = "Green", hex = "#02A200" }, { name = "Dark Green", hex = "#004900" }]
+
+[[brand]]
+team = "piranha"
+series = "pulse"
+logo = "teams/hd/piranha-logo-lockup-colour.svg"
+state = "sampled"
+colors = [{ name = "Red", hex = "#CB0001" }, { name = "Yellow", hex = "#FCCE08" }]
+
+[[brand]]
+team = "qirex"
+series = "pulse"
+logo = "teams/hd/qirex-logo-lockup-colour.svg"
+state = "sampled"
+colors = [{ name = "Magenta", hex = "#642869" }, { name = "Light Magenta", hex = "#BB2E83" }]
+
+[[brand]]
+team = "triakis"
+series = "pulse"
+logo = "teams/hd/triakis-logo-lockup-colour.svg"
+state = "sampled"
+colors = [{ name = "Green", hex = "#3A4E35" }]
+
 [[brand]]
 team = "tigron"
 series = "pulse"
@@ -491,3 +581,6 @@ series = "hd"
 logo = "teams/hd/van-uber.svg"
 state = "sampled"
 colors = [{ name = "Orange Red", hex = "#EF4723" }, { name = "Amber", hex = "#FBAB18" }, { name = "Orange", hex = "#F8992C" }]
+
+# WipEout 2048 — the prequel had its own unique team liveries (NOT the HD emblems).
+# We don't hold those vectors yet, so its five founding teams are left as gaps below.
