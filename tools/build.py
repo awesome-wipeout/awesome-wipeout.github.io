@@ -676,27 +676,32 @@ background:rgba(20,24,30,.9);color:#fff;backdrop-filter:blur(6px)}
 .llb-sub{color:#c5ccd6;font-size:13px}
 .llb-spacer{flex:1}
 .llb-x{background:transparent;border:0;color:#fff;font-size:28px;line-height:1;cursor:pointer;padding:0 4px}
-/* full-window two-column layout: left = emblem + facts + background, right = marks row / fonts row */
+/* full-window two-column layout: left = full-height details card, right = marks row / fonts row */
 .llb-body{padding:32px 40px 88px;display:grid;grid-template-columns:minmax(300px,32%) 1fr;
 gap:44px;align-items:start}
-/* left column is a white "details" card (distinct from the checkerboard asset thumbs) */
-.llb-left{min-width:0;align-self:start;background:var(--card);border:1px solid var(--line);
-border-radius:16px;box-shadow:0 10px 34px rgba(12,15,20,.08);padding:24px 24px 28px;position:relative;overflow:hidden}
-.llb-left::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent)}
-.llb-card-title{font-size:26px;font-weight:800;letter-spacing:-.02em;margin:6px 0 1px;line-height:1.05}
-.llb-card-sub{color:var(--muted);font-size:13px;font-weight:600;margin:0 0 18px}
-.llb-left .herobox{background:#fff;border:1px solid var(--line);border-radius:12px;padding:32px;
-display:flex;align-items:center;justify-content:center;height:260px}
+/* left column is a full-height white "details" card (distinct from the checkerboard asset thumbs) */
+.llb-left{min-width:0;position:sticky;top:96px;height:calc(100vh - 128px);
+display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);
+border-radius:16px;box-shadow:0 10px 34px rgba(12,15,20,.08);padding:20px 24px 24px;overflow-y:auto}
+.llb-card-title{flex:none;font-size:26px;font-weight:800;letter-spacing:-.02em;margin:2px 0 14px;line-height:1.05}
+.llb-left .herobox{flex:1 1 auto;min-height:220px;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:28px;display:flex;align-items:center;justify-content:center}
 .llb-left .herobox img{max-width:100%;max-height:100%;object-fit:contain}
-.llb-facts{list-style:none;margin:18px 0 0;padding:0;font-size:14px}
-.llb-facts li{display:flex;justify-content:space-between;gap:16px;padding:10px 2px;border-bottom:1px solid var(--line)}
+.llb-facts{flex:none;list-style:none;margin:18px 0 0;padding:0;font-size:14px}
+.llb-facts li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:10px 2px;border-bottom:1px solid var(--line)}
 .llb-facts .k{color:var(--muted)}
 .llb-facts .v{font-weight:600;text-align:right}
+.llb-metac{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-weight:700;color:#fff;
+border-radius:6px;padding:3px 9px;font-size:13px}
+.llb-metac:hover{filter:brightness(1.08)}
+.llb-metac .mc-out{font-size:10px;opacity:.85}
+.llb-bg{flex:none;margin-top:26px}
+.llb-bg h2{margin-bottom:12px}
+.llb-lore{font-size:15px;line-height:1.65;margin:0}
 .llb-right{display:flex;flex-direction:column;gap:36px;min-width:0}
 .llb h2{font-size:14px;margin:0 0 16px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
-.llb-lore{font-size:15.5px;line-height:1.65;margin:14px 0 0}
-.llb-mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
-.llb-mcard{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.llb-mgrid,.llb-fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+.llb-mcard,.llb-fcard{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
 .llb-mthumb{height:190px;display:flex;align-items:center;justify-content:center;padding:24px;background:
  linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 0 0/22px 22px,
  linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 11px 11px/22px 22px,#fff}
@@ -707,22 +712,19 @@ display:flex;align-items:center;justify-content:center;height:260px}
 .llb-dl a{font-size:11px;text-decoration:none;color:var(--muted);border:1px solid var(--line);padding:2px 8px;border-radius:6px}
 .llb-dl a:hover{color:var(--accent);border-color:var(--accent)}
 .llb-dl a.held{cursor:default;font-style:italic}
-.llb-fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
-.llb-fcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
-display:flex;gap:16px;align-items:center}
-.llb-fshot{flex:none;width:180px;height:74px;background:#fff;border:1px solid var(--line);border-radius:8px;
-display:flex;align-items:center;justify-content:center;overflow:hidden;padding:8px}
+/* font cards mirror the mark cards: same column width, just taller (specimen on top, note below) */
+.llb-fshot{height:150px;display:flex;align-items:center;justify-content:center;padding:20px;background:#fff;border-bottom:1px solid var(--line)}
 .llb-fshot img{max-width:100%;max-height:100%;object-fit:contain}
-.llb-finfo{min-width:0;flex:1}
+.llb-fshot-none{color:#aab2bd;font-weight:700;font-size:17px;font-style:italic;border-bottom:1px dashed var(--line)}
+.llb-fmeta{padding:12px 14px;display:flex;flex-direction:column;gap:8px;flex:1}
 .llb-fname{font-weight:600;font-size:14px}
-.llb-fnote{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.45}
-.llb-fget{flex:none;color:var(--accent);text-decoration:none;border:1px solid var(--line);padding:4px 11px;border-radius:6px;font-size:12px;white-space:nowrap}
+.llb-fnote{font-size:12px;color:var(--muted);line-height:1.45;flex:1}
+.llb-fget{align-self:flex-start;color:var(--accent);text-decoration:none;border:1px solid var(--line);padding:4px 11px;border-radius:6px;font-size:12px;white-space:nowrap}
 .llb-fget:hover{border-color:var(--accent)}
-/* mobile: right column (marks + fonts) wraps under the left column */
+/* mobile: the card is natural-height and the right column (marks + fonts) wraps under it */
 @media(max-width:900px){.llb-body{grid-template-columns:1fr;gap:28px;padding:24px 18px 64px}
-  .llb-left{position:static}.llb-left .herobox{height:240px}.llb-right{gap:28px}}
-@media(max-width:520px){.llb-fcard{flex-wrap:wrap}.llb-fshot{width:100%}
-  .llb-mgrid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
+  .llb-left{position:static;height:auto;overflow:visible}.llb-left .herobox{flex:none;height:240px}.llb-right{gap:28px}}
+@media(max-width:520px){.llb-mgrid,.llb-fgrid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
 """
 
 # Contributors registry (id -> display name, blurb, licence, source links), from
@@ -1616,9 +1618,17 @@ function markCard(m){
   return '<div class="llb-mcard"><div class="llb-mthumb"><img src="'+esc(m.png)+'" alt="'+esc(m.name)+'" loading="lazy"></div><div class="llb-mmeta"><div class="llb-mnote">'+esc(m.note)+'</div>'+dl+'</div></div>';
 }
 function fontCard(f){
-  var shot = f.specimen ? '<div class="llb-fshot"><img src="'+esc(f.specimen)+'" alt="'+esc(f.name)+' specimen"></div>' : '';
+  var shot = f.specimen ? '<div class="llb-fshot"><img src="'+esc(f.specimen)+'" alt="'+esc(f.name)+' specimen"></div>' : '<div class="llb-fshot llb-fshot-none">'+esc(f.name)+'</div>';
   var get = f.source ? '<a class="llb-fget font-get" data-font="'+esc(f.name)+'" href="'+esc(f.source)+'" target="_blank" rel="noopener">get ↗</a>' : '';
-  return '<div class="llb-fcard">'+shot+'<div class="llb-finfo"><div class="llb-fname">'+esc(f.name)+'</div><div class="llb-fnote">'+esc(f.note)+'</div></div>'+get+'</div>';
+  return '<div class="llb-fcard">'+shot+'<div class="llb-fmeta"><div class="llb-fname">'+esc(f.name)+'</div><div class="llb-fnote">'+esc(f.note)+'</div>'+get+'</div></div>';
+}
+function metacRow(c){
+  if(!c.metascore) return '';
+  var s=c.metascore, bg='#54a72a', fg='#fff';
+  if(s<50){ bg='#d14b3d'; } else if(s<75){ bg='#e6b800'; fg='#1a1a1a'; }
+  return '<li><span class="k">Metacritic</span><span class="v"><a class="llb-metac" style="background:'+bg+';color:'+fg
+    +'" href="'+esc(c.metacritic)+'" target="_blank" rel="noopener" title="Metascore on Metacritic">'
+    +s+'<span class="mc-out" style="color:'+fg+'">↗</span></a></span></li>';
 }
 function openLeague(id){
   var c = LREC[id]; if(!c) return;
@@ -1626,8 +1636,9 @@ function openLeague(id){
     +'<li><span class="k">Game</span><span class="v">'+esc(c.game)+'</span></li>'
     +'<li><span class="k">Released</span><span class="v">'+c.released+'</span></li>'
     +'<li><span class="k">In-game year</span><span class="v">'+esc(c.game_year)+'</span></li>'
+    +metacRow(c)
     +'</ul>';
-  var left='<div class="llb-left"><div class="llb-card-title">'+esc(c.name)+'</div><div class="llb-card-sub">'+esc(c.game)+' · '+esc(c.game_year)+'</div><div class="herobox"><img src="'+esc(c.logo)+'" alt="'+esc(c.name)+' emblem"></div>'+facts+'<h2>Background</h2><p class="llb-lore">'+esc(c.blurb)+'</p></div>';
+  var left='<div class="llb-left"><div class="llb-card-title">'+esc(c.name)+'</div><div class="herobox"><img src="'+esc(c.logo)+'" alt="'+esc(c.name)+' emblem"></div>'+facts+'<div class="llb-bg"><h2>Background</h2><p class="llb-lore">'+esc(c.blurb)+'</p></div></div>';
   var marks = c.marks.length ? '<section><h2>Marks</h2><div class="llb-mgrid">'+c.marks.map(markCard).join('')+'</div></section>' : '';
   var fonts = c.fonts.length ? '<section><h2>Fonts</h2><div class="llb-fgrid">'+c.fonts.map(fontCard).join('')+'</div></section>' : '';
   var right='<div class="llb-right">'+marks+fonts+'</div>';
@@ -1717,6 +1728,7 @@ def build_leagues_page(page):
             "name": lg["name"], "game": lg["game"], "released": lg["released"],
             "game_year": lg["game_year"], "blurb": " ".join(lg["blurb"].split()),
             "logo": png(lg["logo"]), "marks": marks_out, "fonts": fonts_out,
+            "metascore": lg.get("metascore"), "metacritic": lg.get("metacritic"),
         }
         mchips = "".join(
             f'<span class="mchip"><img src="{esc(png(m["file"]))}" alt="" '

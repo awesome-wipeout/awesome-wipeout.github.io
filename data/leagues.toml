@@ -13,6 +13,9 @@
 #   released     real-world release year (integer, for the "Released" sort)
 #   game_year    in-universe year or range shown to the reader (string)
 #   game_year_sort  numeric key for the "In-game year" sort (integer)
+#   metascore    optional Metacritic critic score (integer) for the game — omit if the game
+#   metacritic   optional canonical Metacritic URL for that platform release
+#                has no Metascore (e.g. the 1995 original). Both omitted → no score shown.
 #   blurb        1-3 sentences of lore/background for the row + lightbox
 #   marks        1+ related marks, each { file = "<cat>/<slug>.svg", note = "…" }
 #   fonts        1+ related fonts, each { slug = "<font-slug>", note = "…" } (slug from data/fonts.toml)
@@ -30,6 +33,8 @@ game = "WipEout 2048"
 released = 2012
 game_year = "2048–2050"
 game_year_sort = 2048
+metascore = 79
+metacritic = "https://www.metacritic.com/game/playstation-vita/wipeout-2048/"
 blurb = """The Anti-Gravity Racing Championship — the founding era of the sport. Across the
 2048–2050 seasons races were run on public streets (chiefly Nova State City), as no dedicated
 AG circuits yet existed. Its loose regulation is what drove Pierre Belmondo to call for the
@@ -71,6 +76,8 @@ game = "WipEout 2097 / XL"
 released = 1996
 game_year = "2097"
 game_year_sort = 2097
+metascore = 93
+metacritic = "https://www.metacritic.com/game/wipeout-xl/"
 blurb = """A faster, far more dangerous league: for the first time, weapons capable of
 destroying craft were permitted. The blistering Phantom speed class debuted for the 2097
 season, and arms-and-racing outfit Piranha Advancements arrived late in the league with their
@@ -92,6 +99,8 @@ game = "Wip3out"
 released = 1999
 game_year = "2116"
 game_year_sort = 2116
+metascore = 89
+metacritic = "https://www.metacritic.com/game/playstation/wipeout-3/"
 blurb = """The Wip3out era, whose inaugural 2116 season was held entirely in a single location,
 Mega City. A Classic League of fan-voted F3600 and F5000 tracks was later added, before the
 commission upgraded the sport to the combat-heavy F9000."""
@@ -111,6 +120,8 @@ game = "WipEout Fusion"
 released = 2002
 game_year = "2160"
 game_year_sort = 2160
+metascore = 83
+metacritic = "https://www.metacritic.com/game/wipeout-fusion/"
 blurb = """The most violent and extravagant era, built around vehicular combat. It is
 remembered for the Temtesh Bay disaster — a collapsing mine section that killed six pilots —
 and for its downfall: the 2170 'Fall of the F9000', when corruption between the Federation,
@@ -133,6 +144,8 @@ game = "WipEout Pure"
 released = 2005
 game_year = "2197"
 game_year_sort = 2197
+metascore = 88
+metacritic = "https://www.metacritic.com/game/wipeout-pure/"
 blurb = """The revival of professional AG racing — roughly 25 years after the Fall of the
 F9000, and the first pro league in almost three decades. It ran entirely on the man-made
 Hawaiian island of Makana and introduced two new teams: the humanitarian Harimau and the
@@ -155,6 +168,8 @@ game = "WipEout HD / Fury"
 released = 2008
 game_year = "2206"
 game_year_sort = 2206
+metascore = 87
+metacritic = "https://www.metacritic.com/game/wipeout-hd/"
 blurb = """A short bridge league run in 2206 to develop the coming FX400, easing pilots from
 Makana's traditional circuits toward its new MagLock-technology tracks. Though WipEout HD
 released a year after Pulse, FX350 sits one year earlier in the fiction."""
@@ -175,6 +190,8 @@ game = "WipEout Pulse"
 released = 2007
 game_year = "2207"
 game_year_sort = 2207
+metascore = 82
+metacritic = "https://www.metacritic.com/game/wipeout-pulse/"
 blurb = """By 2200 the island of Makana could no longer sustain the sport's traffic, so from
 2205 tracks were again built around the world, ending the single-location era. FX400
 introduced two new teams: EG-X (a merger of the F9000-era EG-R and Xios) and Mirage, the
