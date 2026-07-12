@@ -200,6 +200,7 @@ marks = [
 fonts = [
   { slug = "wipeout-hd-fury", note = "WipEout HD Fury — a recreation of the HD / Fury title lettering." },
   { slug = "neo-sans", note = "Neo Sans — the sans face associated with the WipEout HD interface." },
+  { slug = "df-so-gei-w-9", note = "DF So Gei W 9 — used on the WipEout HD rear cover." },
 ]
 
 [[league]]
