@@ -410,6 +410,10 @@ border:1px solid var(--line);color:var(--ink);width:48px;height:60px;font-size:2
 footer{max-width:1600px;margin:0 auto;padding:24px 32px 60px;color:var(--muted);font-size:12.5px;
 border-top:1px solid var(--line)}
 footer a{color:var(--accent)}
+.gh-link{display:inline-flex;align-items:center;gap:7px;margin-top:14px;color:var(--muted);
+text-decoration:none;font-weight:600}
+.gh-link:hover{color:var(--accent)}
+.gh-link svg{flex:none}
 .thumb::after{content:"⤢";position:absolute;top:8px;right:10px;font-size:14px;color:var(--muted);
 opacity:0;transition:opacity .15s}
 .thumb:hover::after{opacity:.7}
@@ -629,6 +633,87 @@ body.drawer-open .drawer{transform:translateX(0)}
   .drawer{width:100%;border-left:0;box-shadow:none}
   .matrix{--first:132px;--colmin:128px;width:max-content;min-width:100%}
 }
+"""
+
+# Leagues page (sortable table of racing leagues + full-screen lightbox). Appended to the
+# shared styles.css. Classes are prefixed `l`/`llb` so they don't collide with the marks,
+# fonts, teams or reference pages.
+LEAGUES_CSS = """
+.ltable-wrap{overflow-x:auto;margin-top:18px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.ltable{border-collapse:collapse;width:100%;min-width:920px;font-size:13.5px}
+.ltable th,.ltable td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:middle}
+.ltable thead th{position:sticky;top:52px;z-index:1;background:var(--card);font-size:12px;
+text-transform:uppercase;letter-spacing:.04em;color:var(--muted);border-bottom:2px solid var(--line);white-space:nowrap}
+.ltable th.sortable{cursor:pointer;user-select:none}
+.ltable th.sortable:hover{color:var(--ink)}
+.ltable th.sortable .arw{opacity:.35;font-size:10px;margin-left:5px}
+.ltable th.sorted-asc .arw,.ltable th.sorted-desc .arw{opacity:1;color:var(--accent)}
+.ltable tbody tr{cursor:pointer}
+.ltable tbody tr:hover{background:rgba(11,127,212,.055)}
+.ltable tbody tr:last-child td{border-bottom:0}
+.l-logo{width:96px}
+.l-logo img{width:76px;height:44px;object-fit:contain;display:block}
+.l-name{font-weight:700;font-size:16px;letter-spacing:-.01em;white-space:nowrap}
+.l-game{white-space:nowrap}
+.l-yr{white-space:nowrap;font-variant-numeric:tabular-nums}
+.l-marks{white-space:nowrap}
+.l-marks .mchip{display:inline-flex;align-items:center;justify-content:center;width:38px;height:30px;
+padding:3px;margin:0 4px 0 0;border:1px solid var(--line);border-radius:6px;background:#fff;vertical-align:middle}
+.l-marks .mchip img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+.l-fonts{min-width:120px}
+.l-fonts .fpill{display:inline-block;font-size:11.5px;color:var(--muted);border:1px solid var(--line);
+border-radius:999px;padding:2px 9px;margin:2px 4px 2px 0;white-space:nowrap}
+.l-desc{color:var(--muted);font-size:12.5px;min-width:280px;max-width:420px;line-height:1.5}
+.l-open{color:var(--accent);font-size:11px;font-weight:600;white-space:nowrap}
+@media(max-width:640px){.ltable thead th{top:0}}
+/* full-screen league lightbox */
+.llb{position:fixed;inset:0;z-index:1000;display:none;background:rgba(12,15,20,.72)}
+.llb.open{display:block}
+.llb-panel{position:absolute;inset:0;overflow-y:auto;background:var(--bg)}
+.llb-top{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:16px;padding:0 24px;height:64px;
+background:rgba(20,24,30,.9);color:#fff;backdrop-filter:blur(6px)}
+.llb-top .llb-emblem{height:38px;width:auto;max-width:120px;object-fit:contain}
+.llb-title{font-weight:700;font-size:19px;letter-spacing:-.01em}
+.llb-sub{color:#c5ccd6;font-size:13px}
+.llb-spacer{flex:1}
+.llb-x{background:transparent;border:0;color:#fff;font-size:28px;line-height:1;cursor:pointer;padding:0 4px}
+.llb-body{max-width:1100px;margin:0 auto;padding:28px 24px 72px;display:grid;
+grid-template-columns:minmax(240px,340px) 1fr;gap:32px;align-items:start}
+.llb-hero{position:sticky;top:88px}
+.llb-hero .herobox{background:
+ linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 0 0/22px 22px,
+ linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 11px 11px/22px 22px,#fff;
+border:1px solid var(--line);border-radius:12px;padding:32px;display:flex;align-items:center;justify-content:center;height:220px}
+.llb-hero .herobox img{max-width:100%;max-height:100%;object-fit:contain}
+.llb-facts{list-style:none;margin:16px 0 0;padding:0;font-size:13px}
+.llb-facts li{display:flex;justify-content:space-between;gap:16px;padding:8px 2px;border-bottom:1px solid var(--line)}
+.llb-facts .k{color:var(--muted)}
+.llb-facts .v{font-weight:600;text-align:right}
+.llb-main h2{font-size:15px;margin:0 0 12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.llb-lore{font-size:15px;line-height:1.6;margin:0 0 30px;max-width:66ch}
+.llb-mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin:0 0 30px}
+.llb-mcard{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.llb-mthumb{height:120px;display:flex;align-items:center;justify-content:center;padding:18px;background:
+ linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 0 0/18px 18px,
+ linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 9px 9px/18px 18px,#fff}
+.llb-mthumb img{max-width:100%;max-height:84px;object-fit:contain}
+.llb-mmeta{padding:10px 12px;border-top:1px solid var(--line)}
+.llb-mnote{font-size:12px;color:var(--muted);line-height:1.45;margin:0 0 8px}
+.llb-dl{display:flex;gap:6px}
+.llb-dl a{font-size:11px;text-decoration:none;color:var(--muted);border:1px solid var(--line);padding:2px 8px;border-radius:6px}
+.llb-dl a:hover{color:var(--accent);border-color:var(--accent)}
+.llb-dl a.held{cursor:default;font-style:italic}
+.llb-fcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;
+display:flex;gap:14px;align-items:center;margin:0 0 12px}
+.llb-fshot{flex:none;width:150px;height:60px;background:#fff;border:1px solid var(--line);border-radius:8px;
+display:flex;align-items:center;justify-content:center;overflow:hidden;padding:6px}
+.llb-fshot img{max-width:100%;max-height:100%;object-fit:contain}
+.llb-finfo{min-width:0;flex:1}
+.llb-fname{font-weight:600;font-size:13.5px}
+.llb-fnote{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.45}
+.llb-fget{flex:none;color:var(--accent);text-decoration:none;border:1px solid var(--line);padding:4px 11px;border-radius:6px;font-size:12px;white-space:nowrap}
+.llb-fget:hover{border-color:var(--accent)}
+@media(max-width:820px){.llb-body{grid-template-columns:1fr;gap:22px}.llb-hero{position:static}}
 """
 
 # Contributors registry (id -> display name, blurb, licence, source links), from
@@ -1059,7 +1144,7 @@ def write_shared_assets():
     inlining: styles.css (the site CSS + Teams-page CSS) and analytics.js (GA4 + the
     delegated action listener). Keeping them external de-duplicates ~25 KB of CSS and the
     analytics block from every HTML page."""
-    _write("styles.css", CSS + TEAMS_CSS)
+    _write("styles.css", CSS + TEAMS_CSS + LEAGUES_CSS)
     _write("analytics.js", _ANALYTICS_JS)
 
 
@@ -1069,6 +1154,11 @@ FOOTER = """<footer>
   Assets compiled from the work of the original creators &mdash; see
   <a href="credits.html">CREDITS</a>. Contributions welcome via
   <a href="contributing.html">pull request</a>.</p>
+  <a class="gh-link" href="https://github.com/awesome-wipeout/awesome-wipeout.github.io"
+     target="_blank" rel="noopener" aria-label="Source on GitHub">
+    <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+    <span>Source on GitHub</span>
+  </a>
 </footer>"""
 
 
@@ -1505,6 +1595,157 @@ def build_teams_page(page):
     _write(page["file"], _document(page["slug"], page["title"], header_inner, body, scripts))
 
 
+_LEAGUES_SCRIPT = r"""<script>
+const LREC = __LREC_JSON__;
+const llb = document.getElementById("llb");
+const llbPanel = document.getElementById("llbPanel");
+function esc(s){ return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function markCard(m){
+  var dl;
+  if(m.svg){ dl='<div class="llb-dl"><a href="'+esc(m.svg)+'" download>SVG</a><a href="'+esc(m.png)+'" download>PNG</a></div>'; }
+  else { dl='<div class="llb-dl"><a href="'+esc(m.png)+'" download>PNG</a>'+(m.source?'<a class="held" href="'+esc(m.source)+'" target="_blank" rel="noopener" title="The artist hosts the vector">SVG held ↗</a>':'<span class="held">vector held</span>')+'</div>'; }
+  return '<div class="llb-mcard"><div class="llb-mthumb"><img src="'+esc(m.png)+'" alt="'+esc(m.name)+'" loading="lazy"></div><div class="llb-mmeta"><div class="llb-mnote">'+esc(m.note)+'</div>'+dl+'</div></div>';
+}
+function fontCard(f){
+  var shot = f.specimen ? '<div class="llb-fshot"><img src="'+esc(f.specimen)+'" alt="'+esc(f.name)+' specimen"></div>' : '';
+  var get = f.source ? '<a class="llb-fget font-get" data-font="'+esc(f.name)+'" href="'+esc(f.source)+'" target="_blank" rel="noopener">get ↗</a>' : '';
+  return '<div class="llb-fcard">'+shot+'<div class="llb-finfo"><div class="llb-fname">'+esc(f.name)+'</div><div class="llb-fnote">'+esc(f.note)+'</div></div>'+get+'</div>';
+}
+function openLeague(id){
+  var c = LREC[id]; if(!c) return;
+  var facts='<ul class="llb-facts">'
+    +'<li><span class="k">Game</span><span class="v">'+esc(c.game)+'</span></li>'
+    +'<li><span class="k">Released</span><span class="v">'+c.released+'</span></li>'
+    +'<li><span class="k">In-game year</span><span class="v">'+esc(c.game_year)+'</span></li>'
+    +'</ul>';
+  var hero='<div class="llb-hero"><div class="herobox"><img src="'+esc(c.logo)+'" alt="'+esc(c.name)+' emblem"></div>'+facts+'</div>';
+  var marks = c.marks.length ? '<h2>Marks</h2><div class="llb-mgrid">'+c.marks.map(markCard).join('')+'</div>' : '';
+  var fonts = c.fonts.length ? '<h2>Fonts</h2>'+c.fonts.map(fontCard).join('') : '';
+  var main='<div class="llb-main"><h2>Background</h2><p class="llb-lore">'+esc(c.blurb)+'</p>'+marks+fonts+'</div>';
+  var top='<div class="llb-top"><img class="llb-emblem" src="'+esc(c.logo)+'" alt=""><div><div class="llb-title">'+esc(c.name)+'</div><div class="llb-sub">'+esc(c.game)+' · '+esc(c.game_year)+'</div></div><div class="llb-spacer"></div><button class="llb-x" onclick="closeLeague()" aria-label="Close">×</button></div>';
+  llbPanel.innerHTML=top+'<div class="llb-body">'+hero+main+'</div>';
+  llb.classList.add("open"); llb.setAttribute("aria-hidden","false");
+  document.body.style.overflow="hidden"; llbPanel.scrollTop=0;
+}
+function closeLeague(){ llb.classList.remove("open"); llb.setAttribute("aria-hidden","true"); document.body.style.overflow=""; }
+document.addEventListener("click", function(e){
+  if(e.target.closest(".llb-dl a")||e.target.closest(".llb-fget")||e.target.closest(".llb-x")) return;
+  var row=e.target.closest(".lrow"); if(row){ openLeague(row.getAttribute("data-id")); return; }
+  if(e.target===llb){ closeLeague(); return; }
+});
+document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeLeague(); });
+function sortBy(key, d){
+  var tbody=document.getElementById("lbody");
+  var rows=[].slice.call(tbody.querySelectorAll(".lrow"));
+  rows.sort(function(a,b){ return (parseInt(a.getAttribute("data-"+key),10)-parseInt(b.getAttribute("data-"+key),10))*d; });
+  rows.forEach(function(r){ tbody.appendChild(r); });
+  document.querySelectorAll(".ltable th.sortable").forEach(function(th){
+    th.classList.remove("sorted-asc","sorted-desc");
+    if(th.getAttribute("data-sort")===key) th.classList.add(d>0?"sorted-asc":"sorted-desc");
+  });
+}
+var _dir={ingame:1};
+document.querySelectorAll(".ltable th.sortable").forEach(function(th){
+  th.addEventListener("click", function(){
+    var k=th.getAttribute("data-sort");
+    _dir[k] = _dir[k]===1 ? -1 : 1;
+    sortBy(k, _dir[k]);
+  });
+});
+</script>"""
+
+
+def build_leagues_page(page):
+    """The Leagues page: a sortable table of every anti-gravity racing league (rows) from
+    data/leagues.toml, each row opening a full-screen lightbox with the league's marks, fonts
+    and lore. Marks and fonts are resolved from the generated manifests so their names,
+    downloads and specimens stay 1:1 with the collections (reference-only marks — a .png with
+    no sibling vector — link out to where the artist hosts the SVG instead of downloading)."""
+    data = _load_toml("leagues.toml")
+    leagues = data.get("league", [])
+
+    with open(os.path.join(ROOT, "marks", "manifest.json")) as f:
+        mman = json.load(f)
+    MK = {}
+    for s in mman["sections"]:
+        for a in s["assets"]:
+            MK[(a["svg"] or a["png"])[len("marks/"):]] = a
+
+    with open(os.path.join(ROOT, "fonts", "manifest.json")) as f:
+        fman = json.load(f)
+    FT = {}
+    for s in fman["sections"]:
+        for it in (s.get("items") or s.get("fonts") or []):
+            FT[it["slug"]] = it
+
+    def png(rel):
+        return "marks/" + (rel[:-4] + ".png" if rel.endswith(".svg") else rel)
+
+    def font_name(slug):
+        return (FT.get(slug) or {}).get("name", slug)
+
+    rows, rec = [], {}
+    for lg in leagues:
+        slug = lg["slug"]
+        marks_out = []
+        for m in lg.get("marks", []):
+            a = MK.get(m["file"])
+            is_ref = not m["file"].endswith(".svg") or (a is not None and not a.get("svg"))
+            marks_out.append({
+                "name": a["name"] if a else m["file"],
+                "note": m.get("note", ""),
+                "png": png(m["file"]),
+                "svg": None if is_ref else "marks/" + m["file"],
+                "source": (a or {}).get("source"),
+            })
+        fonts_out = [{
+            "name": font_name(fo["slug"]),
+            "note": fo.get("note", ""),
+            "specimen": (FT.get(fo["slug"]) or {}).get("specimen"),
+            "source": (FT.get(fo["slug"]) or {}).get("source"),
+        } for fo in lg.get("fonts", [])]
+        rec[slug] = {
+            "name": lg["name"], "game": lg["game"], "released": lg["released"],
+            "game_year": lg["game_year"], "blurb": " ".join(lg["blurb"].split()),
+            "logo": png(lg["logo"]), "marks": marks_out, "fonts": fonts_out,
+        }
+        mchips = "".join(
+            f'<span class="mchip"><img src="{esc(png(m["file"]))}" alt="" '
+            f'title="{esc(m.get("note",""))}" loading="lazy"></span>'
+            for m in lg.get("marks", []))
+        fpills = "".join(
+            f'<span class="fpill" title="{esc(fo.get("note",""))}">{esc(font_name(fo["slug"]))}</span>'
+            for fo in lg.get("fonts", []))
+        rows.append(
+            f'<tr class="lrow" data-id="{esc(slug)}" data-released="{lg["released"]}" '
+            f'data-ingame="{lg["game_year_sort"]}">'
+            f'<td class="l-logo"><img src="{esc(png(lg["logo"]))}" alt="{esc(lg["name"])} emblem" loading="lazy"></td>'
+            f'<td class="l-name">{esc(lg["name"])}</td>'
+            f'<td class="l-game">{esc(lg["game"])}</td>'
+            f'<td class="l-yr">{lg["released"]}</td>'
+            f'<td class="l-yr">{esc(lg["game_year"])}</td>'
+            f'<td class="l-marks">{mchips}</td>'
+            f'<td class="l-fonts">{fpills}</td>'
+            f'<td class="l-desc">{esc(" ".join(lg["blurb"].split()))}</td>'
+            f'</tr>')
+
+    thead = ('<thead><tr>'
+             '<th></th><th>League</th><th>Game</th>'
+             '<th class="sortable" data-sort="released">Released<span class="arw">▲▼</span></th>'
+             '<th class="sortable sorted-asc" data-sort="ingame">In-game year<span class="arw">▲▼</span></th>'
+             '<th>Marks</th><th>Fonts</th><th>Background</th>'
+             '</tr></thead>')
+    table = ('<div class="ltable-wrap"><table class="ltable" id="ltable">' + thead +
+             '<tbody id="lbody">' + "".join(rows) + '</tbody></table></div>')
+
+    header_inner = (f'<h1>{esc(page["title"])}</h1>\n'
+                    f'<p class="lead">{esc(page.get("intro", ""))}</p>')
+    body = (table + '\n'
+            '<div class="llb" id="llb" aria-hidden="true"><div class="llb-panel" id="llbPanel"></div></div>')
+    scripts = _LEAGUES_SCRIPT.replace("__LREC_JSON__", json.dumps(rec))
+    _write(page["file"], _document(page["slug"], page["title"], header_inner, body, scripts))
+
+
 def build_pages(manifest, ref_manifest=None):
     """Render every registered page. Marks + fonts share the intermediate build
     below (cards, credits, lightbox); the two are written as separate documents.
@@ -1851,6 +2092,8 @@ def build_pages(manifest, ref_manifest=None):
             build_reference_page(p, ref_manifest or build_reference_manifest())
         elif p["kind"] == "teams":
             build_teams_page(p)
+        elif p["kind"] == "leagues":
+            build_leagues_page(p)
         else:
             build_prose_page(p)
 

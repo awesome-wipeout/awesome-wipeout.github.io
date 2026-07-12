@@ -1,0 +1,188 @@
+# Leagues — the anti-gravity racing leagues across the WipEout series (build = code, data = data).
+#
+# Drives the Leagues page (leagues.html): one [[league]] = one row in a sortable table,
+# each opening a full-screen lightbox. Authored in in-game chronological order (that is the
+# page's default sort); the table can also be re-sorted by real-world release year.
+#
+# Per league:
+#   name         designation, e.g. "F9000"
+#   slug         id (kebab-case)
+#   logo         the ONE representative mark shown in the row (a path under marks/; a .png
+#                with no sibling .svg is a reference-only/held vector)
+#   game         the game the league headlines
+#   released     real-world release year (integer, for the "Released" sort)
+#   game_year    in-universe year or range shown to the reader (string)
+#   game_year_sort  numeric key for the "In-game year" sort (integer)
+#   blurb        1-3 sentences of lore/background for the row + lightbox
+#   marks        1+ related marks, each { file = "<cat>/<slug>.svg", note = "…" }
+#   fonts        1+ related fonts, each { slug = "<font-slug>", note = "…" } (slug from data/fonts.toml)
+#
+# Lore is sourced from the WipEout Fandom wiki (Timeline + per-game pages) cross-checked
+# against Wikipedia. Typography in WipEout is documented at the series/logo level, not per
+# league, so the linked fonts are era-appropriate recreations we host — described as such,
+# not claimed as the exact in-game originals.
+
+[[league]]
+name = "AGRC"
+slug = "agrc"
+logo = "leagues/2048.svg"
+game = "WipEout 2048"
+released = 2012
+game_year = "2048–2050"
+game_year_sort = 2048
+blurb = """The Anti-Gravity Racing Championship — the founding era of the sport. Across the
+2048–2050 seasons races were run on public streets (chiefly Nova State City), as no dedicated
+AG circuits yet existed. Its loose regulation is what drove Pierre Belmondo to call for the
+standardisation that became the F3600 League."""
+marks = [
+  { file = "leagues/2048.svg", note = "The 2048 / AGRC league emblem." },
+  { file = "titles/wipeout-2048.svg", note = "The WipEout 2048 game wordmark." },
+]
+fonts = [
+  { slug = "wipeout-hd", note = "The modern WipEout house lettering — 2048 shares the HD-era identity and was remastered into the Omega Collection." },
+]
+
+[[league]]
+name = "F3600"
+slug = "f3600"
+logo = "leagues/f3600.svg"
+game = "WipEout"
+released = 1995
+game_year = "2052"
+game_year_sort = 2052
+blurb = """The first regulated anti-gravity league, formed after Pierre Belmondo's call to
+standardise the sport; the rules were set in 2051, a year before the inaugural 2052 season.
+F3600 weaponry was deliberately too weak to destroy craft — the in-lore reason you cannot be
+eliminated in the original WipEout. The 2056 season was suspended after AG racing's first
+fatality, AG Systems' Daniel Chang."""
+marks = [
+  { file = "leagues/f3600.svg", note = "The F3600 league emblem." },
+  { file = "titles/wipeout.svg", note = "The original WipEout (1995) wordmark." },
+]
+fonts = [
+  { slug = "silverstream", note = "SilverStream — a close match to the chopped-Eurostile lettering of the original WipEout logo." },
+]
+
+[[league]]
+name = "F5000"
+slug = "f5000"
+logo = "leagues/f5000.svg"
+game = "WipEout 2097 / XL"
+released = 1996
+game_year = "2097"
+game_year_sort = 2097
+blurb = """A faster, far more dangerous league: for the first time, weapons capable of
+destroying craft were permitted. The blistering Phantom speed class debuted for the 2097
+season, and arms-and-racing outfit Piranha Advancements arrived late in the league with their
+experimental prototype craft."""
+marks = [
+  { file = "leagues/f5000.svg", note = "The F5000 league emblem." },
+  { file = "titles/wipeout-2097.svg", note = "The WipEout 2097 / XL wordmark." },
+]
+fonts = [
+  { slug = "f5000", note = "F5000 — a fan recreation of the league's numeric wordmark." },
+  { slug = "2097", note = "2097 — a recreation of the WipEout 2097 title lettering." },
+]
+
+[[league]]
+name = "F7200"
+slug = "f7200"
+logo = "leagues/f7200.svg"
+game = "Wip3out"
+released = 1999
+game_year = "2116"
+game_year_sort = 2116
+blurb = """The Wip3out era, whose inaugural 2116 season was held entirely in a single location,
+Mega City. A Classic League of fan-voted F3600 and F5000 tracks was later added, before the
+commission upgraded the sport to the combat-heavy F9000."""
+marks = [
+  { file = "leagues/f7200.svg", note = "The F7200 league emblem." },
+  { file = "titles/wip3out.svg", note = "The Wip3out wordmark." },
+]
+fonts = [
+  { slug = "wo3", note = "WO3 — a fan recreation of the Wip3out title/era lettering." },
+]
+
+[[league]]
+name = "F9000"
+slug = "f9000"
+logo = "leagues/f9000.svg"
+game = "WipEout Fusion"
+released = 2002
+game_year = "2160"
+game_year_sort = 2160
+blurb = """The most violent and extravagant era, built around vehicular combat. It is
+remembered for the Temtesh Bay disaster — a collapsing mine section that killed six pilots —
+and for its downfall: the 2170 'Fall of the F9000', when corruption between the Federation,
+sponsor Overtel and crime syndicates was exposed and the league was suspended indefinitely."""
+marks = [
+  { file = "leagues/f9000.svg", note = "The F9000 league lockup (emblem + wordmark)." },
+  { file = "leagues/f9000-emblem.svg", note = "The F9000 emblem on its own." },
+  { file = "leagues/f9000-wordmark.svg", note = "The F9000 wordmark on its own." },
+  { file = "titles/wipeout-fusion.svg", note = "The WipEout Fusion wordmark." },
+]
+fonts = [
+  { slug = "fusion", note = "Fusion — a fan recreation of the WipEout Fusion wordmark lettering." },
+]
+
+[[league]]
+name = "FX300"
+slug = "fx300"
+logo = "leagues/fx300.svg"
+game = "WipEout Pure"
+released = 2005
+game_year = "2197"
+game_year_sort = 2197
+blurb = """The revival of professional AG racing — roughly 25 years after the Fall of the
+F9000, and the first pro league in almost three decades. It ran entirely on the man-made
+Hawaiian island of Makana and introduced two new teams: the humanitarian Harimau and the
+arms-maker Triakis."""
+marks = [
+  { file = "leagues/fx300.svg", note = "The FX300 league emblem." },
+  { file = "titles/wipeout-pure.svg", note = "The WipEout Pure wordmark." },
+]
+fonts = [
+  { slug = "fx300", note = "FX300 — a recreation of the league's numeric wordmark." },
+  { slug = "fx300-angular", note = "FX300 Angular — the angular cut of the FX300 lettering." },
+  { slug = "2197-heavy", note = "2197 Heavy — a display face named for Pure's in-game year (2197)." },
+]
+
+[[league]]
+name = "FX350"
+slug = "fx350"
+logo = "leagues/fx350.png"
+game = "WipEout HD / Fury"
+released = 2008
+game_year = "2206"
+game_year_sort = 2206
+blurb = """A short bridge league run in 2206 to develop the coming FX400, easing pilots from
+Makana's traditional circuits toward its new MagLock-technology tracks. Though WipEout HD
+released a year after Pulse, FX350 sits one year earlier in the fiction."""
+marks = [
+  { file = "leagues/fx350.png", note = "The FX350 league emblem — a reference-only PNG; the artist hosts the vector." },
+  { file = "titles/wipeout-hd-fury.svg", note = "The WipEout HD Fury wordmark." },
+]
+fonts = [
+  { slug = "wipeout-hd-fury", note = "WipEout HD Fury — a recreation of the HD / Fury title lettering." },
+  { slug = "neo-sans", note = "Neo Sans — the sans face associated with the WipEout HD interface." },
+]
+
+[[league]]
+name = "FX400"
+slug = "fx400"
+logo = "leagues/fx400.svg"
+game = "WipEout Pulse"
+released = 2007
+game_year = "2207"
+game_year_sort = 2207
+blurb = """By 2200 the island of Makana could no longer sustain the sport's traffic, so from
+2205 tracks were again built around the world, ending the single-location era. FX400
+introduced two new teams: EG-X (a merger of the F9000-era EG-R and Xios) and Mirage, the
+Mirage Anti-Gravity Excellence Centre (MAGEC)."""
+marks = [
+  { file = "leagues/fx400.svg", note = "The FX400 league emblem." },
+  { file = "titles/wipeout-pulse.svg", note = "The WipEout Pulse wordmark." },
+]
+fonts = [
+  { slug = "neo-sans", note = "Neo Sans — the modern WipEout house sans, shared across the Pure / Pulse / HD identity." },
+]
