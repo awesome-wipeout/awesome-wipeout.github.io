@@ -718,10 +718,10 @@ border-radius:6px;padding:3px 9px;font-size:13px}
 .llb-mthumb img{max-width:100%;max-height:150px;object-fit:contain}
 .llb-mmeta{padding:10px 12px;border-top:1px solid var(--line)}
 .llb-mnote{font-size:12px;color:var(--muted);line-height:1.45;margin:0 0 8px}
-.llb-dl{display:flex;gap:6px}
-.llb-dl a{font-size:11px;text-decoration:none;color:var(--muted);border:1px solid var(--line);padding:2px 8px;border-radius:6px}
-.llb-dl a:hover{color:var(--accent);border-color:var(--accent)}
-.llb-dl a.held{cursor:default;font-style:italic}
+/* link back to the full-screen view on the Marks / Fonts page (no downloads here) */
+.llb-view{align-self:flex-start;display:inline-block;color:var(--accent);text-decoration:none;
+border:1px solid var(--line);padding:4px 11px;border-radius:6px;font-size:12px;white-space:nowrap}
+.llb-view:hover{border-color:var(--accent)}
 /* font cards mirror the mark cards: same column width, just taller (specimen on top, note below) */
 .llb-fshot{height:150px;display:flex;align-items:center;justify-content:center;padding:20px;background:#fff;border-bottom:1px solid var(--line)}
 .llb-fshot img{max-width:100%;max-height:100%;object-fit:contain}
@@ -729,8 +729,6 @@ border-radius:6px;padding:3px 9px;font-size:13px}
 .llb-fmeta{padding:12px 14px;display:flex;flex-direction:column;gap:8px;flex:1}
 .llb-fname{font-weight:600;font-size:14px}
 .llb-fnote{font-size:12px;color:var(--muted);line-height:1.45;flex:1}
-.llb-fget{align-self:flex-start;color:var(--accent);text-decoration:none;border:1px solid var(--line);padding:4px 11px;border-radius:6px;font-size:12px;white-space:nowrap}
-.llb-fget:hover{border-color:var(--accent)}
 /* mobile: the card is natural-height and the right column (marks + fonts) wraps under it */
 @media(max-width:900px){.llb-body{grid-template-columns:1fr;gap:28px;padding:24px 18px 64px}
   .llb-left{position:static;height:auto;overflow:visible}.llb-left .herobox{flex:none;height:240px}.llb-right{gap:28px}}
@@ -1622,15 +1620,13 @@ const llb = document.getElementById("llb");
 const llbPanel = document.getElementById("llbPanel");
 function esc(s){ return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
 function markCard(m){
-  var dl;
-  if(m.svg){ dl='<div class="llb-dl"><a href="'+esc(m.svg)+'" download>SVG</a><a href="'+esc(m.png)+'" download>PNG</a></div>'; }
-  else { dl='<div class="llb-dl"><a href="'+esc(m.png)+'" download>PNG</a>'+(m.source?'<a class="held" href="'+esc(m.source)+'" target="_blank" rel="noopener" title="The artist hosts the vector">SVG held ↗</a>':'<span class="held">vector held</span>')+'</div>'; }
-  return '<div class="llb-mcard"><div class="llb-mthumb"><img src="'+esc(m.png)+'" alt="'+esc(m.name)+'" loading="lazy"></div><div class="llb-mmeta"><div class="llb-mnote">'+esc(m.note)+'</div>'+dl+'</div></div>';
+  var view='<a class="llb-view" href="index.html#m/'+esc(m.id)+'">View on Marks page ↗</a>';
+  return '<div class="llb-mcard"><div class="llb-mthumb"><img src="'+esc(m.png)+'" alt="'+esc(m.name)+'" loading="lazy"></div><div class="llb-mmeta"><div class="llb-mnote">'+esc(m.note)+'</div>'+view+'</div></div>';
 }
 function fontCard(f){
   var shot = f.specimen ? '<div class="llb-fshot"><img src="'+esc(f.specimen)+'" alt="'+esc(f.name)+' specimen"></div>' : '<div class="llb-fshot llb-fshot-none">'+esc(f.name)+'</div>';
-  var get = f.source ? '<a class="llb-fget font-get" data-font="'+esc(f.name)+'" href="'+esc(f.source)+'" target="_blank" rel="noopener">get ↗</a>' : '';
-  return '<div class="llb-fcard">'+shot+'<div class="llb-fmeta"><div class="llb-fname">'+esc(f.name)+'</div><div class="llb-fnote">'+esc(f.note)+'</div>'+get+'</div></div>';
+  var view='<a class="llb-view" href="fonts.html#f/'+esc(f.slug)+'">View on Fonts page ↗</a>';
+  return '<div class="llb-fcard">'+shot+'<div class="llb-fmeta"><div class="llb-fname">'+esc(f.name)+'</div><div class="llb-fnote">'+esc(f.note)+'</div>'+view+'</div></div>';
 }
 function metacRow(c){
   if(!c.metascore) return '';
@@ -1677,7 +1673,7 @@ function closeLeague(){ if(location.hash){ history.replaceState(null,"",location
 function handleHash(){ var id=(location.hash||"").slice(1); if(id&&LREC[id]){ showLeague(id); } else { hideLeague(); } }
 window.addEventListener("hashchange", handleHash);
 document.addEventListener("click", function(e){
-  if(e.target.closest(".llb-dl a")||e.target.closest(".llb-fget")) return;
+  if(e.target.closest(".llb-view")) return;  // let the "View on Marks/Fonts page" links navigate
   if(e.target.closest(".llb-x")){ closeLeague(); return; }
   if(e.target.closest(".llb-prev")){ navLeague(-1); return; }
   if(e.target.closest(".llb-next")){ navLeague(1); return; }
@@ -1747,19 +1743,19 @@ def build_leagues_page(page):
         marks_out = []
         for m in lg.get("marks", []):
             a = MK.get(m["file"])
-            is_ref = not m["file"].endswith(".svg") or (a is not None and not a.get("svg"))
             marks_out.append({
                 "name": a["name"] if a else m["file"],
                 "note": m.get("note", ""),
                 "png": png(m["file"]),
-                "svg": None if is_ref else "marks/" + m["file"],
-                "source": (a or {}).get("source"),
+                # deep-link to the mark's full-screen view on the Marks page (index.html#m/<id>)
+                "id": m["file"].rsplit(".", 1)[0],
             })
         fonts_out = [{
             "name": font_name(fo["slug"]),
             "note": fo.get("note", ""),
             "specimen": (FT.get(fo["slug"]) or {}).get("specimen"),
-            "source": (FT.get(fo["slug"]) or {}).get("source"),
+            # deep-link to the font's full-screen view on the Fonts page (fonts.html#f/<slug>)
+            "slug": fo["slug"],
         } for fo in lg.get("fonts", [])]
         rec[slug] = {
             "name": lg["name"], "game": lg["game"], "released": lg["released"],

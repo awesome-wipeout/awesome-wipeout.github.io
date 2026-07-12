@@ -417,10 +417,10 @@ border-radius:6px;padding:3px 9px;font-size:13px}
 .llb-mthumb img{max-width:100%;max-height:150px;object-fit:contain}
 .llb-mmeta{padding:10px 12px;border-top:1px solid var(--line)}
 .llb-mnote{font-size:12px;color:var(--muted);line-height:1.45;margin:0 0 8px}
-.llb-dl{display:flex;gap:6px}
-.llb-dl a{font-size:11px;text-decoration:none;color:var(--muted);border:1px solid var(--line);padding:2px 8px;border-radius:6px}
-.llb-dl a:hover{color:var(--accent);border-color:var(--accent)}
-.llb-dl a.held{cursor:default;font-style:italic}
+/* link back to the full-screen view on the Marks / Fonts page (no downloads here) */
+.llb-view{align-self:flex-start;display:inline-block;color:var(--accent);text-decoration:none;
+border:1px solid var(--line);padding:4px 11px;border-radius:6px;font-size:12px;white-space:nowrap}
+.llb-view:hover{border-color:var(--accent)}
 /* font cards mirror the mark cards: same column width, just taller (specimen on top, note below) */
 .llb-fshot{height:150px;display:flex;align-items:center;justify-content:center;padding:20px;background:#fff;border-bottom:1px solid var(--line)}
 .llb-fshot img{max-width:100%;max-height:100%;object-fit:contain}
@@ -428,8 +428,6 @@ border-radius:6px;padding:3px 9px;font-size:13px}
 .llb-fmeta{padding:12px 14px;display:flex;flex-direction:column;gap:8px;flex:1}
 .llb-fname{font-weight:600;font-size:14px}
 .llb-fnote{font-size:12px;color:var(--muted);line-height:1.45;flex:1}
-.llb-fget{align-self:flex-start;color:var(--accent);text-decoration:none;border:1px solid var(--line);padding:4px 11px;border-radius:6px;font-size:12px;white-space:nowrap}
-.llb-fget:hover{border-color:var(--accent)}
 /* mobile: the card is natural-height and the right column (marks + fonts) wraps under it */
 @media(max-width:900px){.llb-body{grid-template-columns:1fr;gap:28px;padding:24px 18px 64px}
   .llb-left{position:static;height:auto;overflow:visible}.llb-left .herobox{flex:none;height:240px}.llb-right{gap:28px}}
