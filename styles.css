@@ -119,6 +119,10 @@ border:1px solid var(--line);color:var(--ink);width:48px;height:60px;font-size:2
 footer{max-width:1600px;margin:0 auto;padding:24px 32px 60px;color:var(--muted);font-size:12.5px;
 border-top:1px solid var(--line)}
 footer a{color:var(--accent)}
+.gh-link{display:inline-flex;align-items:center;gap:7px;margin-top:14px;color:var(--muted);
+text-decoration:none;font-weight:600}
+.gh-link:hover{color:var(--accent)}
+.gh-link svg{flex:none}
 .thumb::after{content:"⤢";position:absolute;top:8px;right:10px;font-size:14px;color:var(--muted);
 opacity:0;transition:opacity .15s}
 .thumb:hover::after{opacity:.7}
@@ -149,6 +153,13 @@ padding:4px 10px;border-radius:6px}
 color:#fff;border:0;width:52px;height:64px;font-size:30px;cursor:pointer;border-radius:8px}
 .lb-nav:hover{background:rgba(20,24,30,.85)}
 .lb-prev{left:14px}.lb-next{right:14px}
+/* "Featured in" back-links — Teams/Leagues that use this mark or font (lightbox only) */
+.lb-used{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;flex-wrap:wrap;align-items:center;
+gap:8px;padding:12px 20px;background:rgba(20,24,30,.82);color:#fff;backdrop-filter:blur(6px);font-size:12.5px}
+.lb-used:empty{display:none}
+.lb-used .use-k{color:#c5ccd6;font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:11px}
+.lb-used a{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:3px 11px}
+.lb-used a:hover{background:#fff;color:#12151a;border-color:#fff}
 @media(max-width:640px){.lb-stage{padding:70px 16px}.lb-dl{display:none}}
 /* thin sticky top nav (shared across every page) */
 .topnav{position:sticky;top:0;z-index:900;background:rgba(247,248,250,.86);
@@ -333,3 +344,101 @@ body.drawer-open .drawer{transform:translateX(0)}
   .drawer{width:100%;border-left:0;box-shadow:none}
   .matrix{--first:132px;--colmin:128px;width:max-content;min-width:100%}
 }
+
+.ltable-wrap{overflow-x:auto;margin-top:18px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.ltable{border-collapse:collapse;width:100%;min-width:920px;font-size:13.5px}
+.ltable th,.ltable td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:middle}
+.ltable thead th{position:sticky;top:0;z-index:1;background:#eef1f6;font-size:12px;
+text-transform:uppercase;letter-spacing:.04em;color:var(--muted);border-bottom:2px solid var(--ink);white-space:nowrap}
+.ltable th.sortable{cursor:pointer;user-select:none}
+.ltable th.sortable:hover{color:var(--ink)}
+.ltable th.sortable .arw{opacity:.35;font-size:10px;margin-left:5px}
+.ltable th.sorted-asc .arw,.ltable th.sorted-desc .arw{opacity:1;color:var(--accent)}
+.ltable tbody tr{cursor:pointer}
+.ltable tbody tr:hover{background:rgba(11,127,212,.055)}
+.ltable tbody tr:last-child td{border-bottom:0}
+.l-logo{width:124px}
+.l-logo img{width:99px;height:57px;object-fit:contain;display:block}
+.l-name{font-weight:700;font-size:16px;letter-spacing:-.01em;white-space:nowrap}
+.l-game{white-space:nowrap}
+.l-yr{white-space:nowrap;font-variant-numeric:tabular-nums}
+.l-marks,.l-fonts{white-space:nowrap;padding-top:10px;padding-bottom:10px}
+.l-marks .mchip{display:inline-flex;align-items:center;justify-content:center;width:62px;height:50px;
+padding:5px;margin:0 6px 0 0;border:1px solid var(--line);border-radius:7px;background:#fff;vertical-align:middle}
+.l-marks .mchip img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+.l-fonts .fchip{display:inline-flex;align-items:center;justify-content:center;width:118px;height:50px;
+padding:6px 8px;margin:0 6px 0 0;border:1px solid var(--line);border-radius:7px;background:#fff;vertical-align:middle}
+.l-fonts .fchip img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+.l-fonts .fpill{display:inline-flex;align-items:center;height:50px;font-size:11.5px;color:var(--muted);
+border:1px solid var(--line);border-radius:7px;padding:0 12px;margin:0 6px 0 0;white-space:nowrap;vertical-align:middle}
+.l-open{color:var(--accent);font-size:11px;font-weight:600;white-space:nowrap}
+/* full-screen league lightbox */
+.llb{position:fixed;inset:0;z-index:1000;display:none;background:rgba(12,15,20,.72)}
+.llb.open{display:block}
+.llb-panel{position:absolute;inset:0;overflow-y:auto;background:var(--bg)}
+.llb-top{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:16px;padding:0 24px;height:64px;
+background:rgba(20,24,30,.9);color:#fff;backdrop-filter:blur(6px)}
+.llb-top .llb-emblem{height:38px;width:auto;max-width:120px;object-fit:contain}
+.llb-title{font-weight:700;font-size:19px;letter-spacing:-.01em}
+.llb-sub{color:#c5ccd6;font-size:13px}
+.llb-spacer{flex:1}
+.llb-x{background:transparent;border:0;color:#fff;font-size:28px;line-height:1;cursor:pointer;padding:0 4px}
+.llb-arrow{position:fixed;top:50%;transform:translateY(-50%);z-index:3;width:46px;height:66px;
+background:rgba(20,24,30,.5);color:#fff;border:0;border-radius:10px;font-size:30px;line-height:1;cursor:pointer;
+display:flex;align-items:center;justify-content:center}
+.llb-arrow:hover{background:rgba(20,24,30,.82)}
+.llb-arrow:disabled{opacity:.28;cursor:default}
+.llb-prev{left:16px}.llb-next{right:16px}
+@media(max-width:900px){.llb-arrow{width:40px;height:54px;font-size:26px}.llb-prev{left:8px}.llb-next{right:8px}}
+/* full-window two-column layout: left = full-height details card, right = marks row / fonts row */
+.llb-body{padding:32px 40px 88px;display:grid;grid-template-columns:minmax(300px,32%) 1fr;
+gap:44px;align-items:start}
+/* left column is a full-height white "details" card (distinct from the checkerboard asset thumbs) */
+.llb-left{min-width:0;position:sticky;top:96px;height:calc(100vh - 128px);
+display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);
+border-radius:16px;box-shadow:0 10px 34px rgba(12,15,20,.08);padding:20px 24px 24px;overflow-y:auto}
+.llb-card-title{flex:none;font-size:26px;font-weight:800;letter-spacing:-.02em;margin:2px 0 14px;line-height:1.05}
+.llb-left .herobox{flex:none;height:300px;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:28px;display:flex;align-items:center;justify-content:center}
+.llb-left .herobox img{max-width:100%;max-height:100%;object-fit:contain}
+.llb-facts{flex:none;list-style:none;margin:18px 0 0;padding:0;font-size:14px}
+.llb-facts li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:10px 2px;border-bottom:1px solid var(--line)}
+.llb-facts .k{color:var(--muted)}
+.llb-facts .v{font-weight:600;text-align:right}
+.llb-plats{display:inline-flex;flex-wrap:wrap;gap:5px;justify-content:flex-end}
+.llb-plat{font-size:11px;font-weight:600;color:var(--muted);background:var(--bg);
+border:1px solid var(--line);border-radius:5px;padding:2px 7px}
+.llb-extlink{color:var(--accent);text-decoration:none;font-size:13px}
+.llb-extlink:hover{text-decoration:underline}
+.llb-metac{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-weight:700;color:#fff;
+border-radius:6px;padding:3px 9px;font-size:13px}
+.llb-metac:hover{filter:brightness(1.08)}
+.llb-metac .mc-out{font-size:10px;opacity:.85}
+.llb-bg{flex:1 0 auto;margin-top:26px}
+.llb-bg h2{margin-bottom:12px}
+.llb-lore{font-size:15px;line-height:1.65;margin:0}
+.llb-right{display:flex;flex-direction:column;gap:36px;min-width:0}
+.llb h2{font-size:14px;margin:0 0 16px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.llb-mgrid,.llb-fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));gap:18px}
+.llb-mcard,.llb-fcard{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.llb-mthumb{height:190px;display:flex;align-items:center;justify-content:center;padding:24px;background:
+ linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 0 0/22px 22px,
+ linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 11px 11px/22px 22px,#fff}
+.llb-mthumb img{max-width:100%;max-height:150px;object-fit:contain}
+.llb-mmeta{padding:10px 12px;border-top:1px solid var(--line)}
+.llb-mnote{font-size:12px;color:var(--muted);line-height:1.45;margin:0 0 8px}
+/* link back to the full-screen view on the Marks / Fonts page (no downloads here) */
+.llb-view{align-self:flex-start;display:inline-block;color:var(--accent);text-decoration:none;
+border:1px solid var(--line);padding:4px 11px;border-radius:6px;font-size:12px;white-space:nowrap}
+.llb-view:hover{border-color:var(--accent)}
+/* font cards mirror the mark cards: same column width, just taller (specimen on top, note below) */
+.llb-fshot{height:150px;display:flex;align-items:center;justify-content:center;padding:20px;background:#fff;border-bottom:1px solid var(--line)}
+.llb-fshot img{max-width:100%;max-height:100%;object-fit:contain}
+.llb-fshot-none{color:#aab2bd;font-weight:700;font-size:17px;font-style:italic;border-bottom:1px dashed var(--line)}
+.llb-fmeta{padding:12px 14px;display:flex;flex-direction:column;gap:8px;flex:1}
+.llb-fname{font-weight:600;font-size:14px}
+.llb-fnote{font-size:12px;color:var(--muted);line-height:1.45;flex:1}
+/* mobile: the card is natural-height and the right column (marks + fonts) wraps under it */
+@media(max-width:900px){.llb-body{grid-template-columns:1fr;gap:28px;padding:24px 18px 64px}
+  .llb-left{position:static;height:auto;overflow:visible}.llb-left .herobox{flex:none;height:240px}.llb-right{gap:28px}}
+@media(max-width:520px){.llb-mgrid,.llb-fgrid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}

@@ -39,6 +39,13 @@ kind = "teams"
 intro = "Every WipEout racing team, traced across every series — the logo as it evolves, its league emblem, and the official (or sampled) brand colours. Click any logo for its colour guideline, copy-ready hex, and SVG/PNG downloads. Authored in data/teams.toml."
 
 [[page]]
+slug = "leagues"
+nav = "Leagues"
+title = "Leagues"
+kind = "leagues"
+intro = "Every anti-gravity racing league in the WipEout universe, in order — the speed class that defines each game, when it raced (in the real world and in the fiction), its emblem, and the marks and fonts that carry its identity. Sort by release or in-game year; click any league for the full story. Authored in data/leagues.toml."
+
+[[page]]
 slug = "links"
 nav = "Links"
 title = "Awesome WipEout"
