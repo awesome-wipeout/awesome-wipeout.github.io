@@ -677,43 +677,50 @@ background:rgba(20,24,30,.9);color:#fff;backdrop-filter:blur(6px)}
 .llb-sub{color:#c5ccd6;font-size:13px}
 .llb-spacer{flex:1}
 .llb-x{background:transparent;border:0;color:#fff;font-size:28px;line-height:1;cursor:pointer;padding:0 4px}
-.llb-body{max-width:1100px;margin:0 auto;padding:28px 24px 72px;display:grid;
-grid-template-columns:minmax(240px,340px) 1fr;gap:32px;align-items:start}
-.llb-hero{position:sticky;top:88px}
-.llb-hero .herobox{background:
- linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 0 0/22px 22px,
- linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 11px 11px/22px 22px,#fff;
-border:1px solid var(--line);border-radius:12px;padding:32px;display:flex;align-items:center;justify-content:center;height:220px}
-.llb-hero .herobox img{max-width:100%;max-height:100%;object-fit:contain}
-.llb-facts{list-style:none;margin:16px 0 0;padding:0;font-size:13px}
-.llb-facts li{display:flex;justify-content:space-between;gap:16px;padding:8px 2px;border-bottom:1px solid var(--line)}
+/* full-window two-column layout: left = emblem + facts + background, right = marks row / fonts row */
+.llb-body{padding:32px 40px 88px;display:grid;grid-template-columns:minmax(300px,32%) 1fr;
+gap:44px;align-items:start}
+.llb-left{min-width:0}
+.llb-left .herobox{background:
+ linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 0 0/26px 26px,
+ linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 13px 13px/26px 26px,#fff;
+border:1px solid var(--line);border-radius:14px;padding:40px;display:flex;align-items:center;justify-content:center;height:300px}
+.llb-left .herobox img{max-width:100%;max-height:100%;object-fit:contain}
+.llb-facts{list-style:none;margin:18px 0 0;padding:0;font-size:14px}
+.llb-facts li{display:flex;justify-content:space-between;gap:16px;padding:10px 2px;border-bottom:1px solid var(--line)}
 .llb-facts .k{color:var(--muted)}
 .llb-facts .v{font-weight:600;text-align:right}
-.llb-main h2{font-size:15px;margin:0 0 12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
-.llb-lore{font-size:15px;line-height:1.6;margin:0 0 30px;max-width:66ch}
-.llb-mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin:0 0 30px}
+.llb-right{display:flex;flex-direction:column;gap:36px;min-width:0}
+.llb h2{font-size:14px;margin:0 0 16px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.llb-lore{font-size:15.5px;line-height:1.65;margin:14px 0 0}
+.llb-mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
 .llb-mcard{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
-.llb-mthumb{height:120px;display:flex;align-items:center;justify-content:center;padding:18px;background:
- linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 0 0/18px 18px,
- linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 9px 9px/18px 18px,#fff}
-.llb-mthumb img{max-width:100%;max-height:84px;object-fit:contain}
+.llb-mthumb{height:190px;display:flex;align-items:center;justify-content:center;padding:24px;background:
+ linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 0 0/22px 22px,
+ linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 11px 11px/22px 22px,#fff}
+.llb-mthumb img{max-width:100%;max-height:150px;object-fit:contain}
 .llb-mmeta{padding:10px 12px;border-top:1px solid var(--line)}
 .llb-mnote{font-size:12px;color:var(--muted);line-height:1.45;margin:0 0 8px}
 .llb-dl{display:flex;gap:6px}
 .llb-dl a{font-size:11px;text-decoration:none;color:var(--muted);border:1px solid var(--line);padding:2px 8px;border-radius:6px}
 .llb-dl a:hover{color:var(--accent);border-color:var(--accent)}
 .llb-dl a.held{cursor:default;font-style:italic}
-.llb-fcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;
-display:flex;gap:14px;align-items:center;margin:0 0 12px}
-.llb-fshot{flex:none;width:150px;height:60px;background:#fff;border:1px solid var(--line);border-radius:8px;
-display:flex;align-items:center;justify-content:center;overflow:hidden;padding:6px}
+.llb-fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
+.llb-fcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+display:flex;gap:16px;align-items:center}
+.llb-fshot{flex:none;width:180px;height:74px;background:#fff;border:1px solid var(--line);border-radius:8px;
+display:flex;align-items:center;justify-content:center;overflow:hidden;padding:8px}
 .llb-fshot img{max-width:100%;max-height:100%;object-fit:contain}
 .llb-finfo{min-width:0;flex:1}
-.llb-fname{font-weight:600;font-size:13.5px}
-.llb-fnote{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.45}
+.llb-fname{font-weight:600;font-size:14px}
+.llb-fnote{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.45}
 .llb-fget{flex:none;color:var(--accent);text-decoration:none;border:1px solid var(--line);padding:4px 11px;border-radius:6px;font-size:12px;white-space:nowrap}
 .llb-fget:hover{border-color:var(--accent)}
-@media(max-width:820px){.llb-body{grid-template-columns:1fr;gap:22px}.llb-hero{position:static}}
+/* mobile: right column (marks + fonts) wraps under the left column */
+@media(max-width:900px){.llb-body{grid-template-columns:1fr;gap:28px;padding:24px 18px 64px}
+  .llb-left{position:static}.llb-left .herobox{height:240px}.llb-right{gap:28px}}
+@media(max-width:520px){.llb-fcard{flex-wrap:wrap}.llb-fshot{width:100%}
+  .llb-mgrid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
 """
 
 # Contributors registry (id -> display name, blurb, licence, source links), from
@@ -1618,12 +1625,12 @@ function openLeague(id){
     +'<li><span class="k">Released</span><span class="v">'+c.released+'</span></li>'
     +'<li><span class="k">In-game year</span><span class="v">'+esc(c.game_year)+'</span></li>'
     +'</ul>';
-  var hero='<div class="llb-hero"><div class="herobox"><img src="'+esc(c.logo)+'" alt="'+esc(c.name)+' emblem"></div>'+facts+'</div>';
-  var marks = c.marks.length ? '<h2>Marks</h2><div class="llb-mgrid">'+c.marks.map(markCard).join('')+'</div>' : '';
-  var fonts = c.fonts.length ? '<h2>Fonts</h2>'+c.fonts.map(fontCard).join('') : '';
-  var main='<div class="llb-main"><h2>Background</h2><p class="llb-lore">'+esc(c.blurb)+'</p>'+marks+fonts+'</div>';
+  var left='<div class="llb-left"><div class="herobox"><img src="'+esc(c.logo)+'" alt="'+esc(c.name)+' emblem"></div>'+facts+'<h2>Background</h2><p class="llb-lore">'+esc(c.blurb)+'</p></div>';
+  var marks = c.marks.length ? '<section><h2>Marks</h2><div class="llb-mgrid">'+c.marks.map(markCard).join('')+'</div></section>' : '';
+  var fonts = c.fonts.length ? '<section><h2>Fonts</h2><div class="llb-fgrid">'+c.fonts.map(fontCard).join('')+'</div></section>' : '';
+  var right='<div class="llb-right">'+marks+fonts+'</div>';
   var top='<div class="llb-top"><img class="llb-emblem" src="'+esc(c.logo)+'" alt=""><div><div class="llb-title">'+esc(c.name)+'</div><div class="llb-sub">'+esc(c.game)+' · '+esc(c.game_year)+'</div></div><div class="llb-spacer"></div><button class="llb-x" onclick="closeLeague()" aria-label="Close">×</button></div>';
-  llbPanel.innerHTML=top+'<div class="llb-body">'+hero+main+'</div>';
+  llbPanel.innerHTML=top+'<div class="llb-body">'+left+right+'</div>';
   llb.classList.add("open"); llb.setAttribute("aria-hidden","false");
   document.body.style.overflow="hidden"; llbPanel.scrollTop=0;
 }

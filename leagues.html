@@ -49,12 +49,12 @@ function openLeague(id){
     +'<li><span class="k">Released</span><span class="v">'+c.released+'</span></li>'
     +'<li><span class="k">In-game year</span><span class="v">'+esc(c.game_year)+'</span></li>'
     +'</ul>';
-  var hero='<div class="llb-hero"><div class="herobox"><img src="'+esc(c.logo)+'" alt="'+esc(c.name)+' emblem"></div>'+facts+'</div>';
-  var marks = c.marks.length ? '<h2>Marks</h2><div class="llb-mgrid">'+c.marks.map(markCard).join('')+'</div>' : '';
-  var fonts = c.fonts.length ? '<h2>Fonts</h2>'+c.fonts.map(fontCard).join('') : '';
-  var main='<div class="llb-main"><h2>Background</h2><p class="llb-lore">'+esc(c.blurb)+'</p>'+marks+fonts+'</div>';
+  var left='<div class="llb-left"><div class="herobox"><img src="'+esc(c.logo)+'" alt="'+esc(c.name)+' emblem"></div>'+facts+'<h2>Background</h2><p class="llb-lore">'+esc(c.blurb)+'</p></div>';
+  var marks = c.marks.length ? '<section><h2>Marks</h2><div class="llb-mgrid">'+c.marks.map(markCard).join('')+'</div></section>' : '';
+  var fonts = c.fonts.length ? '<section><h2>Fonts</h2><div class="llb-fgrid">'+c.fonts.map(fontCard).join('')+'</div></section>' : '';
+  var right='<div class="llb-right">'+marks+fonts+'</div>';
   var top='<div class="llb-top"><img class="llb-emblem" src="'+esc(c.logo)+'" alt=""><div><div class="llb-title">'+esc(c.name)+'</div><div class="llb-sub">'+esc(c.game)+' · '+esc(c.game_year)+'</div></div><div class="llb-spacer"></div><button class="llb-x" onclick="closeLeague()" aria-label="Close">×</button></div>';
-  llbPanel.innerHTML=top+'<div class="llb-body">'+hero+main+'</div>';
+  llbPanel.innerHTML=top+'<div class="llb-body">'+left+right+'</div>';
   llb.classList.add("open"); llb.setAttribute("aria-hidden","false");
   document.body.style.overflow="hidden"; llbPanel.scrollTop=0;
 }
