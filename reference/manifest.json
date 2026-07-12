@@ -1,11 +1,11 @@
 {
   "name": "awesome-wipeout \u2014 in-game reference",
-  "generated": "2026-07-11",
+  "generated": "2026-07-12",
   "credit": {
     "holder": "Sony Interactive Entertainment / Studio Liverpool",
     "note": "Screenshots shown for reference only; \u00a9 their rights-holders, not redistributed."
   },
-  "total": 109,
+  "total": 158,
   "games": [
     {
       "id": "omega",
@@ -728,6 +728,316 @@
               "name": "Rear Quarter Right",
               "jpg": "reference/omega/harimau/harimau-rear-quarter-right.jpg",
               "thumb": "reference/omega/harimau/harimau-rear-quarter-right.thumb.jpg"
+            }
+          ]
+        },
+        {
+          "id": "omega-tigron",
+          "slug": "tigron",
+          "name": "Tigron",
+          "logo": "marks/teams/hd/tigron.svg",
+          "images": [
+            {
+              "slug": "tigron-closeup-cockpit-front",
+              "name": "Closeup Cockpit Front",
+              "jpg": "reference/omega/tigron/tigron-closeup-cockpit-front.jpg",
+              "thumb": "reference/omega/tigron/tigron-closeup-cockpit-front.thumb.jpg"
+            },
+            {
+              "slug": "tigron-closeup-cockpit-left",
+              "name": "Closeup Cockpit Left",
+              "jpg": "reference/omega/tigron/tigron-closeup-cockpit-left.jpg",
+              "thumb": "reference/omega/tigron/tigron-closeup-cockpit-left.thumb.jpg"
+            },
+            {
+              "slug": "tigron-closeup-cockpit-right",
+              "name": "Closeup Cockpit Right",
+              "jpg": "reference/omega/tigron/tigron-closeup-cockpit-right.jpg",
+              "thumb": "reference/omega/tigron/tigron-closeup-cockpit-right.thumb.jpg"
+            },
+            {
+              "slug": "tigron-closeup-cockpit-side",
+              "name": "Closeup Cockpit Side",
+              "jpg": "reference/omega/tigron/tigron-closeup-cockpit-side.jpg",
+              "thumb": "reference/omega/tigron/tigron-closeup-cockpit-side.thumb.jpg"
+            },
+            {
+              "slug": "tigron-closeup-rear-danger",
+              "name": "Closeup Rear Danger",
+              "jpg": "reference/omega/tigron/tigron-closeup-rear-danger.jpg",
+              "thumb": "reference/omega/tigron/tigron-closeup-rear-danger.thumb.jpg"
+            },
+            {
+              "slug": "tigron-closeup-tail-claw",
+              "name": "Closeup Tail Claw",
+              "jpg": "reference/omega/tigron/tigron-closeup-tail-claw.jpg",
+              "thumb": "reference/omega/tigron/tigron-closeup-tail-claw.thumb.jpg"
+            },
+            {
+              "slug": "tigron-front-quarter-left",
+              "name": "Front Quarter Left",
+              "jpg": "reference/omega/tigron/tigron-front-quarter-left.jpg",
+              "thumb": "reference/omega/tigron/tigron-front-quarter-left.thumb.jpg"
+            },
+            {
+              "slug": "tigron-front-quarter-sunset",
+              "name": "Front Quarter Sunset",
+              "jpg": "reference/omega/tigron/tigron-front-quarter-sunset.jpg",
+              "thumb": "reference/omega/tigron/tigron-front-quarter-sunset.thumb.jpg"
+            },
+            {
+              "slug": "tigron-overhead",
+              "name": "Overhead",
+              "jpg": "reference/omega/tigron/tigron-overhead.jpg",
+              "thumb": "reference/omega/tigron/tigron-overhead.thumb.jpg"
+            },
+            {
+              "slug": "tigron-profile-left",
+              "name": "Profile Left",
+              "jpg": "reference/omega/tigron/tigron-profile-left.jpg",
+              "thumb": "reference/omega/tigron/tigron-profile-left.thumb.jpg"
+            },
+            {
+              "slug": "tigron-profile-right-boost",
+              "name": "Profile Right Boost",
+              "jpg": "reference/omega/tigron/tigron-profile-right-boost.jpg",
+              "thumb": "reference/omega/tigron/tigron-profile-right-boost.thumb.jpg"
+            },
+            {
+              "slug": "tigron-profile-right",
+              "name": "Profile Right",
+              "jpg": "reference/omega/tigron/tigron-profile-right.jpg",
+              "thumb": "reference/omega/tigron/tigron-profile-right.thumb.jpg"
+            },
+            {
+              "slug": "tigron-rear-bank",
+              "name": "Rear Bank",
+              "jpg": "reference/omega/tigron/tigron-rear-bank.jpg",
+              "thumb": "reference/omega/tigron/tigron-rear-bank.thumb.jpg"
+            },
+            {
+              "slug": "tigron-rear-chase-straight",
+              "name": "Rear Chase Straight",
+              "jpg": "reference/omega/tigron/tigron-rear-chase-straight.jpg",
+              "thumb": "reference/omega/tigron/tigron-rear-chase-straight.thumb.jpg"
+            },
+            {
+              "slug": "tigron-rear-chase",
+              "name": "Rear Chase",
+              "jpg": "reference/omega/tigron/tigron-rear-chase.jpg",
+              "thumb": "reference/omega/tigron/tigron-rear-chase.thumb.jpg"
+            },
+            {
+              "slug": "tigron-rear-overhead",
+              "name": "Rear Overhead",
+              "jpg": "reference/omega/tigron/tigron-rear-overhead.jpg",
+              "thumb": "reference/omega/tigron/tigron-rear-overhead.thumb.jpg"
+            },
+            {
+              "slug": "tigron-rear-quarter-climb",
+              "name": "Rear Quarter Climb",
+              "jpg": "reference/omega/tigron/tigron-rear-quarter-climb.jpg",
+              "thumb": "reference/omega/tigron/tigron-rear-quarter-climb.thumb.jpg"
+            },
+            {
+              "slug": "tigron-rear-quarter-left-low",
+              "name": "Rear Quarter Left Low",
+              "jpg": "reference/omega/tigron/tigron-rear-quarter-left-low.jpg",
+              "thumb": "reference/omega/tigron/tigron-rear-quarter-left-low.thumb.jpg"
+            },
+            {
+              "slug": "tigron-rear-quarter-left",
+              "name": "Rear Quarter Left",
+              "jpg": "reference/omega/tigron/tigron-rear-quarter-left.jpg",
+              "thumb": "reference/omega/tigron/tigron-rear-quarter-left.thumb.jpg"
+            },
+            {
+              "slug": "tigron-rear-quarter-right-boost",
+              "name": "Rear Quarter Right Boost",
+              "jpg": "reference/omega/tigron/tigron-rear-quarter-right-boost.jpg",
+              "thumb": "reference/omega/tigron/tigron-rear-quarter-right-boost.thumb.jpg"
+            },
+            {
+              "slug": "tigron-rear-quarter-right-tunnel",
+              "name": "Rear Quarter Right Tunnel",
+              "jpg": "reference/omega/tigron/tigron-rear-quarter-right-tunnel.jpg",
+              "thumb": "reference/omega/tigron/tigron-rear-quarter-right-tunnel.thumb.jpg"
+            },
+            {
+              "slug": "tigron-rear-quarter-right",
+              "name": "Rear Quarter Right",
+              "jpg": "reference/omega/tigron/tigron-rear-quarter-right.jpg",
+              "thumb": "reference/omega/tigron/tigron-rear-quarter-right.thumb.jpg"
+            },
+            {
+              "slug": "tigron-rear",
+              "name": "Rear",
+              "jpg": "reference/omega/tigron/tigron-rear.jpg",
+              "thumb": "reference/omega/tigron/tigron-rear.thumb.jpg"
+            }
+          ]
+        },
+        {
+          "id": "omega-vanuber",
+          "slug": "vanuber",
+          "name": "Van-\u00dcber",
+          "logo": "marks/teams/hd/van-uber.svg",
+          "images": [
+            {
+              "slug": "vanuber-closeup-cockpit",
+              "name": "Closeup Cockpit",
+              "jpg": "reference/omega/vanuber/vanuber-closeup-cockpit.jpg",
+              "thumb": "reference/omega/vanuber/vanuber-closeup-cockpit.thumb.jpg"
+            },
+            {
+              "slug": "vanuber-closeup-livery-topdeck",
+              "name": "Closeup Livery Topdeck",
+              "jpg": "reference/omega/vanuber/vanuber-closeup-livery-topdeck.jpg",
+              "thumb": "reference/omega/vanuber/vanuber-closeup-livery-topdeck.thumb.jpg"
+            },
+            {
+              "slug": "vanuber-closeup-nose-front",
+              "name": "Closeup Nose Front",
+              "jpg": "reference/omega/vanuber/vanuber-closeup-nose-front.jpg",
+              "thumb": "reference/omega/vanuber/vanuber-closeup-nose-front.thumb.jpg"
+            },
+            {
+              "slug": "vanuber-closeup-nose-left",
+              "name": "Closeup Nose Left",
+              "jpg": "reference/omega/vanuber/vanuber-closeup-nose-left.jpg",
+              "thumb": "reference/omega/vanuber/vanuber-closeup-nose-left.thumb.jpg"
+            },
+            {
+              "slug": "vanuber-closeup-rear-right",
+              "name": "Closeup Rear Right",
+              "jpg": "reference/omega/vanuber/vanuber-closeup-rear-right.jpg",
+              "thumb": "reference/omega/vanuber/vanuber-closeup-rear-right.thumb.jpg"
+            },
+            {
+              "slug": "vanuber-closeup-tail-left",
+              "name": "Closeup Tail Left",
+              "jpg": "reference/omega/vanuber/vanuber-closeup-tail-left.jpg",
+              "thumb": "reference/omega/vanuber/vanuber-closeup-tail-left.thumb.jpg"
+            },
+            {
+              "slug": "vanuber-front-boost-flare",
+              "name": "Front Boost Flare",
+              "jpg": "reference/omega/vanuber/vanuber-front-boost-flare.jpg",
+              "thumb": "reference/omega/vanuber/vanuber-front-boost-flare.thumb.jpg"
+            },
+            {
+              "slug": "vanuber-front-quarter-below",
+              "name": "Front Quarter Below",
+              "jpg": "reference/omega/vanuber/vanuber-front-quarter-below.jpg",
+              "thumb": "reference/omega/vanuber/vanuber-front-quarter-below.thumb.jpg"
+            },
+            {
+              "slug": "vanuber-front-quarter-left",
+              "name": "Front Quarter Left",
+              "jpg": "reference/omega/vanuber/vanuber-front-quarter-left.jpg",
+              "thumb": "reference/omega/vanuber/vanuber-front-quarter-left.thumb.jpg"
+            },
+            {
+              "slug": "vanuber-front-quarter-right",
+              "name": "Front Quarter Right",
+              "jpg": "reference/omega/vanuber/vanuber-front-quarter-right.jpg",
+              "thumb": "reference/omega/vanuber/vanuber-front-quarter-right.thumb.jpg"
+            },
+            {
+              "slug": "vanuber-overhead",
+              "name": "Overhead",
+              "jpg": "reference/omega/vanuber/vanuber-overhead.jpg",
+              "thumb": "reference/omega/vanuber/vanuber-overhead.thumb.jpg"
+            },
+            {
+              "slug": "vanuber-profile-right-pack",
+              "name": "Profile Right Pack",
+              "jpg": "reference/omega/vanuber/vanuber-profile-right-pack.jpg",
+              "thumb": "reference/omega/vanuber/vanuber-profile-right-pack.thumb.jpg"
+            },
+            {
+              "slug": "vanuber-profile-right-sky",
+              "name": "Profile Right Sky",
+              "jpg": "reference/omega/vanuber/vanuber-profile-right-sky.jpg",
+              "thumb": "reference/omega/vanuber/vanuber-profile-right-sky.thumb.jpg"
+            },
+            {
+              "slug": "vanuber-profile-right-speed",
+              "name": "Profile Right Speed",
+              "jpg": "reference/omega/vanuber/vanuber-profile-right-speed.jpg",
+              "thumb": "reference/omega/vanuber/vanuber-profile-right-speed.thumb.jpg"
+            },
+            {
+              "slug": "vanuber-profile-right",
+              "name": "Profile Right",
+              "jpg": "reference/omega/vanuber/vanuber-profile-right.jpg",
+              "thumb": "reference/omega/vanuber/vanuber-profile-right.thumb.jpg"
+            },
+            {
+              "slug": "vanuber-rear-chase-loop",
+              "name": "Rear Chase Loop",
+              "jpg": "reference/omega/vanuber/vanuber-rear-chase-loop.jpg",
+              "thumb": "reference/omega/vanuber/vanuber-rear-chase-loop.thumb.jpg"
+            },
+            {
+              "slug": "vanuber-rear-chase",
+              "name": "Rear Chase",
+              "jpg": "reference/omega/vanuber/vanuber-rear-chase.jpg",
+              "thumb": "reference/omega/vanuber/vanuber-rear-chase.thumb.jpg"
+            },
+            {
+              "slug": "vanuber-rear-quarter-left-boost",
+              "name": "Rear Quarter Left Boost",
+              "jpg": "reference/omega/vanuber/vanuber-rear-quarter-left-boost.jpg",
+              "thumb": "reference/omega/vanuber/vanuber-rear-quarter-left-boost.thumb.jpg"
+            },
+            {
+              "slug": "vanuber-rear-quarter-left-dark",
+              "name": "Rear Quarter Left Dark",
+              "jpg": "reference/omega/vanuber/vanuber-rear-quarter-left-dark.jpg",
+              "thumb": "reference/omega/vanuber/vanuber-rear-quarter-left-dark.thumb.jpg"
+            },
+            {
+              "slug": "vanuber-rear-quarter-left-high",
+              "name": "Rear Quarter Left High",
+              "jpg": "reference/omega/vanuber/vanuber-rear-quarter-left-high.jpg",
+              "thumb": "reference/omega/vanuber/vanuber-rear-quarter-left-high.thumb.jpg"
+            },
+            {
+              "slug": "vanuber-rear-quarter-left-speed",
+              "name": "Rear Quarter Left Speed",
+              "jpg": "reference/omega/vanuber/vanuber-rear-quarter-left-speed.jpg",
+              "thumb": "reference/omega/vanuber/vanuber-rear-quarter-left-speed.thumb.jpg"
+            },
+            {
+              "slug": "vanuber-rear-quarter-left",
+              "name": "Rear Quarter Left",
+              "jpg": "reference/omega/vanuber/vanuber-rear-quarter-left.jpg",
+              "thumb": "reference/omega/vanuber/vanuber-rear-quarter-left.thumb.jpg"
+            },
+            {
+              "slug": "vanuber-rear-quarter-right-closeup",
+              "name": "Rear Quarter Right Closeup",
+              "jpg": "reference/omega/vanuber/vanuber-rear-quarter-right-closeup.jpg",
+              "thumb": "reference/omega/vanuber/vanuber-rear-quarter-right-closeup.thumb.jpg"
+            },
+            {
+              "slug": "vanuber-rear-quarter-right-far",
+              "name": "Rear Quarter Right Far",
+              "jpg": "reference/omega/vanuber/vanuber-rear-quarter-right-far.jpg",
+              "thumb": "reference/omega/vanuber/vanuber-rear-quarter-right-far.thumb.jpg"
+            },
+            {
+              "slug": "vanuber-rear-quarter-right-high",
+              "name": "Rear Quarter Right High",
+              "jpg": "reference/omega/vanuber/vanuber-rear-quarter-right-high.jpg",
+              "thumb": "reference/omega/vanuber/vanuber-rear-quarter-right-high.thumb.jpg"
+            },
+            {
+              "slug": "vanuber-rear-quarter-right",
+              "name": "Rear Quarter Right",
+              "jpg": "reference/omega/vanuber/vanuber-rear-quarter-right.jpg",
+              "thumb": "reference/omega/vanuber/vanuber-rear-quarter-right.thumb.jpg"
             }
           ]
         }

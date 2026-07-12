@@ -19,7 +19,7 @@ note = "Screenshots shown for reference only; © their rights-holders, not redis
 slug = "omega"
 name = "WipEout Omega Collection"
 blurb = "The PS4 remaster — HD, Fury and 2048 combined. Ship liveries and cockpits at high resolution."
-teams = ["feisar", "ag-systems", "auricom", "qirex", "pirhana", "triakis", "goteki45", "assegai", "harimau"]
+teams = ["feisar", "ag-systems", "auricom", "qirex", "pirhana", "triakis", "goteki45", "assegai", "harimau", "tigron", "vanuber"]
 
 # Per-team display data. `slug` matches the reference/<game>/<slug> folder; `name` is the
 # shown name (omit → title-cased slug); `logo` reuses a mark SVG from the marks collection as
@@ -70,3 +70,13 @@ logo = "marks/teams/hd/assegai-logo.svg"
 slug = "harimau"
 name = "Harimau"
 logo = "marks/teams/hd/harimau-logo.svg"
+
+[[team]]
+slug = "tigron"
+name = "Tigron"
+logo = "marks/teams/hd/tigron.svg"
+
+[[team]]
+slug = "vanuber"
+name = "Van-Über"
+logo = "marks/teams/hd/van-uber.svg"
