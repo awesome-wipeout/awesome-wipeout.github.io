@@ -642,8 +642,8 @@ LEAGUES_CSS = """
 .ltable-wrap{overflow-x:auto;margin-top:18px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
 .ltable{border-collapse:collapse;width:100%;min-width:920px;font-size:13.5px}
 .ltable th,.ltable td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:middle}
-.ltable thead th{position:sticky;top:52px;z-index:1;background:var(--card);font-size:12px;
-text-transform:uppercase;letter-spacing:.04em;color:var(--muted);border-bottom:2px solid var(--line);white-space:nowrap}
+.ltable thead th{position:sticky;top:0;z-index:1;background:#eef1f6;font-size:12px;
+text-transform:uppercase;letter-spacing:.04em;color:var(--muted);border-bottom:2px solid var(--ink);white-space:nowrap}
 .ltable th.sortable{cursor:pointer;user-select:none}
 .ltable th.sortable:hover{color:var(--ink)}
 .ltable th.sortable .arw{opacity:.35;font-size:10px;margin-left:5px}
@@ -665,7 +665,6 @@ padding:3px;margin:0 4px 0 0;border:1px solid var(--line);border-radius:6px;back
 border-radius:999px;padding:2px 9px;margin:2px 4px 2px 0;white-space:nowrap}
 .l-desc{color:var(--muted);font-size:12.5px;min-width:280px;max-width:420px;line-height:1.5}
 .l-open{color:var(--accent);font-size:11px;font-weight:600;white-space:nowrap}
-@media(max-width:640px){.ltable thead th{top:0}}
 /* full-screen league lightbox */
 .llb{position:fixed;inset:0;z-index:1000;display:none;background:rgba(12,15,20,.72)}
 .llb.open{display:block}
@@ -680,11 +679,14 @@ background:rgba(20,24,30,.9);color:#fff;backdrop-filter:blur(6px)}
 /* full-window two-column layout: left = emblem + facts + background, right = marks row / fonts row */
 .llb-body{padding:32px 40px 88px;display:grid;grid-template-columns:minmax(300px,32%) 1fr;
 gap:44px;align-items:start}
-.llb-left{min-width:0}
-.llb-left .herobox{background:
- linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 0 0/26px 26px,
- linear-gradient(45deg,var(--check) 25%,transparent 25%,transparent 75%,var(--check) 75%) 13px 13px/26px 26px,#fff;
-border:1px solid var(--line);border-radius:14px;padding:40px;display:flex;align-items:center;justify-content:center;height:300px}
+/* left column is a white "details" card (distinct from the checkerboard asset thumbs) */
+.llb-left{min-width:0;align-self:start;background:var(--card);border:1px solid var(--line);
+border-radius:16px;box-shadow:0 10px 34px rgba(12,15,20,.08);padding:24px 24px 28px;position:relative;overflow:hidden}
+.llb-left::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent)}
+.llb-card-title{font-size:26px;font-weight:800;letter-spacing:-.02em;margin:6px 0 1px;line-height:1.05}
+.llb-card-sub{color:var(--muted);font-size:13px;font-weight:600;margin:0 0 18px}
+.llb-left .herobox{background:#fff;border:1px solid var(--line);border-radius:12px;padding:32px;
+display:flex;align-items:center;justify-content:center;height:260px}
 .llb-left .herobox img{max-width:100%;max-height:100%;object-fit:contain}
 .llb-facts{list-style:none;margin:18px 0 0;padding:0;font-size:14px}
 .llb-facts li{display:flex;justify-content:space-between;gap:16px;padding:10px 2px;border-bottom:1px solid var(--line)}
@@ -1625,7 +1627,7 @@ function openLeague(id){
     +'<li><span class="k">Released</span><span class="v">'+c.released+'</span></li>'
     +'<li><span class="k">In-game year</span><span class="v">'+esc(c.game_year)+'</span></li>'
     +'</ul>';
-  var left='<div class="llb-left"><div class="herobox"><img src="'+esc(c.logo)+'" alt="'+esc(c.name)+' emblem"></div>'+facts+'<h2>Background</h2><p class="llb-lore">'+esc(c.blurb)+'</p></div>';
+  var left='<div class="llb-left"><div class="llb-card-title">'+esc(c.name)+'</div><div class="llb-card-sub">'+esc(c.game)+' · '+esc(c.game_year)+'</div><div class="herobox"><img src="'+esc(c.logo)+'" alt="'+esc(c.name)+' emblem"></div>'+facts+'<h2>Background</h2><p class="llb-lore">'+esc(c.blurb)+'</p></div>';
   var marks = c.marks.length ? '<section><h2>Marks</h2><div class="llb-mgrid">'+c.marks.map(markCard).join('')+'</div></section>' : '';
   var fonts = c.fonts.length ? '<section><h2>Fonts</h2><div class="llb-fgrid">'+c.fonts.map(fontCard).join('')+'</div></section>' : '';
   var right='<div class="llb-right">'+marks+fonts+'</div>';

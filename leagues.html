@@ -49,7 +49,7 @@ function openLeague(id){
     +'<li><span class="k">Released</span><span class="v">'+c.released+'</span></li>'
     +'<li><span class="k">In-game year</span><span class="v">'+esc(c.game_year)+'</span></li>'
     +'</ul>';
-  var left='<div class="llb-left"><div class="herobox"><img src="'+esc(c.logo)+'" alt="'+esc(c.name)+' emblem"></div>'+facts+'<h2>Background</h2><p class="llb-lore">'+esc(c.blurb)+'</p></div>';
+  var left='<div class="llb-left"><div class="llb-card-title">'+esc(c.name)+'</div><div class="llb-card-sub">'+esc(c.game)+' · '+esc(c.game_year)+'</div><div class="herobox"><img src="'+esc(c.logo)+'" alt="'+esc(c.name)+' emblem"></div>'+facts+'<h2>Background</h2><p class="llb-lore">'+esc(c.blurb)+'</p></div>';
   var marks = c.marks.length ? '<section><h2>Marks</h2><div class="llb-mgrid">'+c.marks.map(markCard).join('')+'</div></section>' : '';
   var fonts = c.fonts.length ? '<section><h2>Fonts</h2><div class="llb-fgrid">'+c.fonts.map(fontCard).join('')+'</div></section>' : '';
   var right='<div class="llb-right">'+marks+fonts+'</div>';
