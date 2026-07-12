@@ -69,6 +69,8 @@ marks = [
 ]
 fonts = [
   { slug = "silverstream", note = "SilverStream — a close match to the chopped-Eurostile lettering of the original WipEout logo." },
+  { slug = "ocr-b", note = "OCR-B — used in the original WipEout (1995) cover art." },
+  { slug = "orbit-b", note = "Orbit-B — used alongside OCR-B in the original WipEout cover art." },
 ]
 
 [[league]]
