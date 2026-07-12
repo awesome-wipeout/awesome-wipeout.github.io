@@ -1590,31 +1590,86 @@ def build_teams_page(page):
             inner = ""
         cells.append(f'<div class="slcell lgrow">{inner}</div>')
 
+    def _sig(b):  # two adjacent cells merge only if the mark is identical in every shown respect
+        return (b["logo"], json.dumps(b.get("colors", []), sort_keys=True),
+                b.get("state") or "unknown", b.get("notes", ""))
+
+    def _span_meta(run_series):  # label / year / league for a run of series sharing one mark
+        names = [s["name"] for s in run_series]
+        shorts = [n[8:] if n.startswith("WipEout ") else n for n in names]
+        if len(names) == 1:
+            label = names[0]
+        elif len(names) == 2:
+            label = f"{names[0]} & {shorts[1]}"
+        else:
+            label = names[0] + ", " + ", ".join(shorts[1:-1]) + " & " + shorts[-1]
+        years = [s["year"] for s in run_series]
+        yr = years[0] if min(years) == max(years) else f"{min(years)}–{max(years)}"
+        lgs = []
+        for s in run_series:
+            lg = s.get("league", "")
+            if lg and lg not in lgs:
+                lgs.append(lg)
+        return label, yr, "/".join(lgs)
+
     rec = {}
     for ti, t in enumerate(teams):
         txt = "#12151a" if _lum(t["bar"]) > .6 else "#fff"
         cells.append(f'<div class="cell rowhead"><span class="bar" style="background:{esc(t["bar"])}"></span>'
                      f'<span class="rh-body"><span class="tname">{esc(t["name"])}</span>'
                      f'<span class="tsub">{esc(t.get("sub",""))}</span></span></div>')
-        for si, s in enumerate(series):
+        si = 0
+        while si < len(series):
+            s = series[si]
             b = brands.get((t["slug"], s["slug"]))
             cid = f"{ti}_{si}"
+            if b:
+                state = b.get("state") or "unknown"
+                # Series that share one set of emblems (same `cobrand` group) and show the
+                # identical mark get merged: render it once, spanning + centred over those
+                # columns, instead of replicating the logo cell-by-cell. Only co-branded
+                # series merge — a coincidental file reuse in an unrelated era does not.
+                sig = _sig(b)
+                cob = s.get("cobrand")
+                run = [si]
+                sj = si + 1
+                while cob and sj < len(series):
+                    s2 = series[sj]
+                    b2 = brands.get((t["slug"], s2["slug"]))
+                    if s2.get("cobrand") == cob and b2 and _sig(b2) == sig:
+                        run.append(sj)
+                        sj += 1
+                    else:
+                        break
+                run_series = [series[k] for k in run]
+                label, yr, league = _span_meta(run_series)
+                span = len(run)
+                # span the columns (drops the internal dividers → one merged cell) but keep the
+                # mark itself no wider than a single column so wide logos don't balloon.
+                style = (f' style="grid-column:span {span}"') if span > 1 else ''
+                imgstyle = f' style="max-width:calc(100%/{span})"' if span > 1 else ''
+                cells.append(f'<div class="cell"{style}><div class="mk" data-id="{cid}">'
+                             f'<div class="logo"><img src="{png(b["logo"])}"{imgstyle} '
+                             f'alt="{esc(t["name"])} — {esc(label)}" loading="lazy"></div></div></div>')
+                merged = {"team": t["name"], "sub": t.get("sub", ""), "bar": t["bar"], "txt": txt,
+                          "series": label, "yr": yr, "league": league, "tslug": t["slug"],
+                          "state": state, "png": png(b["logo"]), "svg": "marks/" + b["logo"],
+                          "colors": b.get("colors", []), "notes": b.get("notes", "")}
+                # one record per covered series so deep-links (teams.html#<team>--<series>) still resolve
+                for k in run:
+                    rec[f"{ti}_{k}"] = {**merged, "sslug": series[k]["slug"]}
+                si = sj
+                continue
             base = {"team": t["name"], "sub": t.get("sub", ""), "bar": t["bar"], "txt": txt,
                     "series": s["name"], "yr": s["year"], "league": s.get("league", ""),
                     "tslug": t["slug"], "sslug": s["slug"]}
-            if b:
-                state = b.get("state") or "unknown"
-                cells.append(f'<div class="cell"><div class="mk" data-id="{cid}">'
-                             f'<div class="logo"><img src="{png(b["logo"])}" '
-                             f'alt="{esc(t["name"])} — {esc(s["name"])}" loading="lazy"></div></div></div>')
-                rec[cid] = {**base, "state": state, "png": png(b["logo"]), "svg": "marks/" + b["logo"],
-                            "colors": b.get("colors", []), "notes": b.get("notes", "")}
-            elif t["slug"] in s.get("roster", []):
+            if t["slug"] in s.get("roster", []):
                 cells.append(f'<div class="cell"><div class="gapcell" data-id="{cid}">'
                              f'<span><span class="plus">+</span>logo&nbsp;needed</span></div></div>')
                 rec[cid] = {**base, "state": "gap", "sser": s["slug"], "steam": t["slug"]}
             else:
                 cells.append(f'<div class="cell na" title="{esc(t["name"])} didn’t race in {esc(s["name"])}"></div>')
+            si += 1
 
     ncols = len(series)
     grid_style = f"grid-template-columns:var(--first,168px) repeat({ncols}, minmax(var(--colmin,0px),1fr))"
