@@ -68,6 +68,7 @@ marks = [
   { file = "titles/wipeout.svg", note = "The original WipEout (1995) wordmark." },
 ]
 fonts = [
+  { slug = "amalgama", note = "Amalgama — the lettering wrapping the F3600 league emblem in the original WipEout." },
   { slug = "silverstream", note = "SilverStream — a close match to the chopped-Eurostile lettering of the original WipEout logo." },
   { slug = "ocr-b", note = "OCR-B — used in the original WipEout (1995) cover art." },
   { slug = "orbit-b", note = "Orbit-B — used alongside OCR-B in the original WipEout cover art." },
