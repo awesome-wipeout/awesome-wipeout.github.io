@@ -13,6 +13,7 @@
 #   released     real-world release year (integer, for the "Released" sort)
 #   game_year    in-universe year or range shown to the reader (string)
 #   game_year_sort  numeric key for the "In-game year" sort (integer)
+#   platforms    array of platforms the game shipped / is available on (e.g. ["PS Vita", "PS4"])
 #   metascore    optional Metacritic critic score (integer) for the game — omit if the game
 #   metacritic   optional canonical Metacritic URL for that platform release
 #                has no Metascore (e.g. the 1995 original). Both omitted → no score shown.
@@ -31,6 +32,7 @@ slug = "agrc"
 logo = "leagues/2048.svg"
 game = "WipEout 2048"
 released = 2012
+platforms = ["PS Vita", "PS4"]
 game_year = "2048–2050"
 game_year_sort = 2048
 metascore = 79
@@ -53,6 +55,7 @@ slug = "f3600"
 logo = "leagues/f3600.svg"
 game = "WipEout"
 released = 1995
+platforms = ["PS1", "Saturn", "PC"]
 game_year = "2052"
 game_year_sort = 2052
 blurb = """The first regulated anti-gravity league, formed after Pierre Belmondo's call to
@@ -74,6 +77,7 @@ slug = "f5000"
 logo = "leagues/f5000.svg"
 game = "WipEout 2097 / XL"
 released = 1996
+platforms = ["PS1", "Saturn", "PC"]
 game_year = "2097"
 game_year_sort = 2097
 metascore = 93
@@ -97,6 +101,7 @@ slug = "f7200"
 logo = "leagues/f7200.svg"
 game = "Wip3out"
 released = 1999
+platforms = ["PS1"]
 game_year = "2116"
 game_year_sort = 2116
 metascore = 89
@@ -118,6 +123,7 @@ slug = "f9000"
 logo = "leagues/f9000.svg"
 game = "WipEout Fusion"
 released = 2002
+platforms = ["PS2"]
 game_year = "2160"
 game_year_sort = 2160
 metascore = 83
@@ -142,6 +148,7 @@ slug = "fx300"
 logo = "leagues/fx300.svg"
 game = "WipEout Pure"
 released = 2005
+platforms = ["PSP"]
 game_year = "2197"
 game_year_sort = 2197
 metascore = 88
@@ -166,6 +173,7 @@ slug = "fx350"
 logo = "leagues/fx350.png"
 game = "WipEout HD / Fury"
 released = 2008
+platforms = ["PS3", "PS4"]
 game_year = "2206"
 game_year_sort = 2206
 metascore = 87
@@ -188,6 +196,7 @@ slug = "fx400"
 logo = "leagues/fx400.svg"
 game = "WipEout Pulse"
 released = 2007
+platforms = ["PSP", "PS2"]
 game_year = "2207"
 game_year_sort = 2207
 metascore = 82

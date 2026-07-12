@@ -698,6 +698,9 @@ border-radius:12px;padding:28px;display:flex;align-items:center;justify-content:
 .llb-facts li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:10px 2px;border-bottom:1px solid var(--line)}
 .llb-facts .k{color:var(--muted)}
 .llb-facts .v{font-weight:600;text-align:right}
+.llb-plats{display:inline-flex;flex-wrap:wrap;gap:5px;justify-content:flex-end}
+.llb-plat{font-size:11px;font-weight:600;color:var(--muted);background:var(--bg);
+border:1px solid var(--line);border-radius:5px;padding:2px 7px}
 .llb-metac{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-weight:700;color:#fff;
 border-radius:6px;padding:3px 9px;font-size:13px}
 .llb-metac:hover{filter:brightness(1.08)}
@@ -1646,6 +1649,8 @@ function showLeague(id){
     +'<li><span class="k">Game</span><span class="v">'+esc(c.game)+'</span></li>'
     +'<li><span class="k">Released</span><span class="v">'+c.released+'</span></li>'
     +'<li><span class="k">In-game year</span><span class="v">'+esc(c.game_year)+'</span></li>'
+    +(c.platforms&&c.platforms.length?'<li><span class="k">Platforms</span><span class="v"><span class="llb-plats">'
+      +c.platforms.map(function(p){return '<span class="llb-plat">'+esc(p)+'</span>';}).join('')+'</span></span></li>':'')
     +metacRow(c)
     +'</ul>';
   var left='<div class="llb-left"><div class="llb-card-title">'+esc(c.name)+'</div><div class="herobox"><img src="'+esc(c.logo)+'" alt="'+esc(c.name)+' emblem"></div>'+facts+'<div class="llb-bg"><h2>Background</h2><p class="llb-lore">'+esc(c.blurb)+'</p></div></div>';
@@ -1761,6 +1766,7 @@ def build_leagues_page(page):
             "game_year": lg["game_year"], "blurb": " ".join(lg["blurb"].split()),
             "logo": png(lg["logo"]), "marks": marks_out, "fonts": fonts_out,
             "metascore": lg.get("metascore"), "metacritic": lg.get("metacritic"),
+            "platforms": lg.get("platforms", []),
         }
         mchips = "".join(
             f'<span class="mchip"><img src="{esc(png(m["file"]))}" alt="" '
@@ -1822,7 +1828,8 @@ def build_pages(manifest, ref_manifest=None):
             # link out to the source for the vector.
             is_ref = a.get("svg") is None
             thumb = a["png"] if is_ref else a["svg"]
-            lb_entry = {"name": a["name"], "svg": a["svg"], "png": a["png"]}
+            lb_entry = {"name": a["name"], "svg": a["svg"], "png": a["png"],
+                        "id": (a["svg"] or a["png"])[len("marks/"):].rsplit(".", 1)[0]}
             if is_ref:
                 lb_entry["source"] = a.get("source")
                 lb_entry["who"] = a.get("credit_name")
@@ -1928,7 +1935,7 @@ def build_pages(manifest, ref_manifest=None):
         cred = ("by " + (f'<a class="contrib-link" data-contrib="{esc(designer)}" '
                          f'href="{esc(dl)}" target="_blank" rel="noopener">{esc(designer)}</a>'
                          if dl else esc(designer))) if designer else ""
-        font_lb.append({"name": family,
+        font_lb.append({"name": family, "slug": slug,
                         "meta": era + ((" · by " + designer) if designer else ""),
                         "link": link, "getlabel": link_label, "shot": src})
         linkh = (f'<a class="font-get" data-font="{esc(family)}" href="{esc(link)}" '
@@ -2004,21 +2011,32 @@ def build_pages(manifest, ref_manifest=None):
   function applyBg(){ stage.className='lb-stage bg-'+bg;
     lb.querySelectorAll('.lb-toggle button').forEach(function(b){
       b.classList.toggle('on', b.getAttribute('data-bg')===bg); }); }
-  function show(n){ i=(n+ASSETS.length)%ASSETS.length; var a=ASSETS[i];
+  var BYID={}; ASSETS.forEach(function(a,idx){ BYID[a.id]=idx; });
+  function render(n){ i=(n+ASSETS.length)%ASSETS.length; var a=ASSETS[i];
     img.setAttribute('src', a.svg || a.png); img.setAttribute('alt', a.name); nameEl.textContent=a.name;
     dl.innerHTML = a.svg
       ? '<a href="'+a.svg+'" download>SVG</a><a href="'+a.png+'" download>PNG</a>'
       : '<a class="locked" role="button" href="#" data-locked-src="'+(a.source||'')+'" data-locked-who="'+(a.who||'')+'">SVG</a><a href="'+a.png+'" download>PNG</a>'; }
-  function openLb(n){ show(n); applyBg(); lb.classList.add('open');
-    lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
-    var a=ASSETS[i]; try{ gtag('event','view_mark',{mark:a.name, file:(a.svg||a.png||'')}); }catch(e){} }
-  function closeLb(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true');
+  // deep-linkable: index.html#m/<cat>/<slug> opens that mark; navigation updates the hash
+  function goHash(n){ location.hash = 'm/' + ASSETS[(n+ASSETS.length)%ASSETS.length].id; }
+  function hideLb(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true');
     img.removeAttribute('src'); document.body.style.overflow=''; }
+  function closeLb(){ if(/^#m\\//.test(location.hash)){ history.replaceState(null,'',location.pathname+location.search); } hideLb(); }
+  function handleHash(){
+    var h=(location.hash||'').replace(/^#/,'');
+    if(h.indexOf('m/')===0 && BYID[h.slice(2)]!=null){
+      var wasOpen=lb.classList.contains('open'); render(BYID[h.slice(2)]);
+      if(!wasOpen){ applyBg(); lb.classList.add('open'); lb.setAttribute('aria-hidden','false');
+        document.body.style.overflow='hidden';
+        var a=ASSETS[i]; try{ gtag('event','view_mark',{mark:a.name, file:(a.svg||a.png||'')}); }catch(e){} }
+    } else if(lb.classList.contains('open')){ hideLb(); }
+  }
+  window.addEventListener('hashchange', handleHash);
   document.querySelectorAll('.thumb').forEach(function(t){
-    t.addEventListener('click', function(){ openLb(parseInt(t.getAttribute('data-idx'),10)); }); });
+    t.addEventListener('click', function(){ goHash(parseInt(t.getAttribute('data-idx'),10)); }); });
   document.getElementById('lbClose').addEventListener('click', closeLb);
-  document.getElementById('lbPrev').addEventListener('click', function(){ show(i-1); });
-  document.getElementById('lbNext').addEventListener('click', function(){ show(i+1); });
+  document.getElementById('lbPrev').addEventListener('click', function(){ goHash(i-1); });
+  document.getElementById('lbNext').addEventListener('click', function(){ goHash(i+1); });
   lb.querySelectorAll('.lb-toggle button').forEach(function(b){
     b.addEventListener('click', function(){ bg=b.getAttribute('data-bg');
       try{localStorage.setItem('wo-lb-bg',bg);}catch(e){} applyBg(); }); });
@@ -2026,8 +2044,9 @@ def build_pages(manifest, ref_manifest=None):
   document.addEventListener('keydown', function(e){
     if(!lb.classList.contains('open')) return;
     if(e.key==='Escape') closeLb();
-    else if(e.key==='ArrowLeft') show(i-1);
-    else if(e.key==='ArrowRight') show(i+1); });
+    else if(e.key==='ArrowLeft') goHash(i-1);
+    else if(e.key==='ArrowRight') goHash(i+1); });
+  handleHash();
 })();
 </script>""".replace("__ASSETS__", lb_json)
 
@@ -2079,7 +2098,8 @@ def build_pages(manifest, ref_manifest=None):
       nm=document.getElementById('fbName'), era=document.getElementById('fbEra'),
       note=document.getElementById('fbNote'), get=document.getElementById('fbGet');
   var i=0;
-  function show(n){
+  var BYSLUG={}; FONTS.forEach(function(f,idx){ BYSLUG[f.slug]=idx; });
+  function render(n){
     i=(n+FONTS.length)%FONTS.length; var f=FONTS[i];
     nm.textContent=f.name; era.textContent=f.meta;
     if(f.shot){ img.src=f.shot; img.style.display=''; note.textContent=''; }
@@ -2088,21 +2108,32 @@ def build_pages(manifest, ref_manifest=None):
     if(f.link){ get.href=f.link; get.setAttribute('data-font', f.name); get.textContent=(f.getlabel||'get')+' \\u2197'; get.style.display=''; }
     else get.style.display='none';
   }
-  function openFb(n){ show(n); fb.classList.add('open'); fb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
-    var f=FONTS[i]; try{ gtag('event','view_font',{font:f.name}); }catch(e){} }
-  function closeFb(){ fb.classList.remove('open'); fb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  // deep-linkable: fonts.html#f/<slug> opens that font; navigation updates the hash
+  function goHash(n){ location.hash='f/'+FONTS[(n+FONTS.length)%FONTS.length].slug; }
+  function hideFb(){ fb.classList.remove('open'); fb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  function closeFb(){ if(/^#f\\//.test(location.hash)){ history.replaceState(null,'',location.pathname+location.search); } hideFb(); }
+  function handleHash(){
+    var h=(location.hash||'').replace(/^#/,'');
+    if(h.indexOf('f/')===0 && BYSLUG[h.slice(2)]!=null){
+      var wasOpen=fb.classList.contains('open'); render(BYSLUG[h.slice(2)]);
+      if(!wasOpen){ fb.classList.add('open'); fb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+        var f=FONTS[i]; try{ gtag('event','view_font',{font:f.name}); }catch(e){} }
+    } else if(fb.classList.contains('open')){ hideFb(); }
+  }
+  window.addEventListener('hashchange', handleHash);
   document.querySelectorAll('.font-card').forEach(function(card){
     card.addEventListener('click', function(e){ if(e.target.closest('.font-get')) return;
-      openFb(parseInt(card.getAttribute('data-idx'),10)); }); });
+      goHash(parseInt(card.getAttribute('data-idx'),10)); }); });
   document.getElementById('fbClose').addEventListener('click', closeFb);
-  document.getElementById('fbPrev').addEventListener('click', function(){ show(i-1); });
-  document.getElementById('fbNext').addEventListener('click', function(){ show(i+1); });
+  document.getElementById('fbPrev').addEventListener('click', function(){ goHash(i-1); });
+  document.getElementById('fbNext').addEventListener('click', function(){ goHash(i+1); });
   fb.addEventListener('click', function(e){ if(e.target===fb) closeFb(); });
   document.addEventListener('keydown', function(e){
     if(!fb.classList.contains('open')) return;
     if(e.key==='Escape') closeFb();
-    else if(e.key==='ArrowLeft') show(i-1);
-    else if(e.key==='ArrowRight') show(i+1); });
+    else if(e.key==='ArrowLeft') goHash(i-1);
+    else if(e.key==='ArrowRight') goHash(i+1); });
+  handleHash();
 })();
 </script>""".replace("__FONTS__", json.dumps(font_lb))
 

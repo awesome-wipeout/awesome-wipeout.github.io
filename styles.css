@@ -397,6 +397,9 @@ border-radius:12px;padding:28px;display:flex;align-items:center;justify-content:
 .llb-facts li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:10px 2px;border-bottom:1px solid var(--line)}
 .llb-facts .k{color:var(--muted)}
 .llb-facts .v{font-weight:600;text-align:right}
+.llb-plats{display:inline-flex;flex-wrap:wrap;gap:5px;justify-content:flex-end}
+.llb-plat{font-size:11px;font-weight:600;color:var(--muted);background:var(--bg);
+border:1px solid var(--line);border-radius:5px;padding:2px 7px}
 .llb-metac{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-weight:700;color:#fff;
 border-radius:6px;padding:3px 9px;font-size:13px}
 .llb-metac:hover{filter:brightness(1.08)}
