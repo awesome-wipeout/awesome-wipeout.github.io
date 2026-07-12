@@ -46,7 +46,7 @@ marks = [
   { file = "titles/wipeout-2048.svg", note = "The WipEout 2048 game wordmark." },
 ]
 fonts = [
-  { slug = "wipeout-hd", note = "The modern WipEout house lettering — 2048 shares the HD-era identity and was remastered into the Omega Collection." },
+  { slug = "bitsumishi", note = "Bitsumishi — used in the WipEout 2048 logo, wrapping around the ship." },
 ]
 
 [[league]]
