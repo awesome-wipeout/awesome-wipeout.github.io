@@ -342,6 +342,11 @@ body.drawer-open .drawer{transform:translateX(0)}
 @media (max-width:820px){
   body.drawer-open{padding-right:0;overflow:hidden}
   .drawer{width:100%;border-left:0;box-shadow:none}
+  /* Contain the wide matrix's horizontal scroll inside its own wrapper so the PAGE
+     never overflows horizontally. A horizontally-overflowing document pins position:fixed
+     to the layout viewport on iOS/Android — which would fling the colours drawer off-screen
+     and make tapping a logo look broken. Keeping the page non-overflowing fixes that. */
+  .matrixwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
   .matrix{--first:132px;--colmin:128px;width:max-content;min-width:100%}
 }
 

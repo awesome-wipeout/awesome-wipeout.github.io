@@ -638,6 +638,11 @@ body.drawer-open .drawer{transform:translateX(0)}
 @media (max-width:820px){
   body.drawer-open{padding-right:0;overflow:hidden}
   .drawer{width:100%;border-left:0;box-shadow:none}
+  /* Contain the wide matrix's horizontal scroll inside its own wrapper so the PAGE
+     never overflows horizontally. A horizontally-overflowing document pins position:fixed
+     to the layout viewport on iOS/Android — which would fling the colours drawer off-screen
+     and make tapping a logo look broken. Keeping the page non-overflowing fixes that. */
+  .matrixwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
   .matrix{--first:132px;--colmin:128px;width:max-content;min-width:100%}
 }
 """
@@ -1673,7 +1678,8 @@ def build_teams_page(page):
 
     ncols = len(series)
     grid_style = f"grid-template-columns:var(--first,168px) repeat({ncols}, minmax(var(--colmin,0px),1fr))"
-    matrix = f'<div class="matrix" style="{grid_style}">\n' + "\n".join(cells) + "\n</div>"
+    matrix = (f'<div class="matrixwrap"><div class="matrix" style="{grid_style}">\n'
+              + "\n".join(cells) + "\n</div></div>")
 
     header_inner = (f'<h1>{esc(page["title"])}</h1>\n'
                     f'<p class="lead">{esc(page.get("intro", ""))}</p>\n'
