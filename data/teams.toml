@@ -46,7 +46,7 @@ year = 2002
 league = "F9000"
 title = "titles/wipeout-fusion.svg"          # series wordmark (a marks/ vector)
 league_logo = "leagues/f9000.svg"
-roster = ["ag-systems", "assegai", "auricom", "eg-x", "feisar", "goteki-45", "icaras", "piranha", "qirex", "triakis"]
+roster = ["ag-systems", "assegai", "auricom", "eg-x", "feisar", "g-tech", "goteki-45", "icaras", "piranha", "qirex", "tigron", "triakis"]
 
 [[series]]
 slug = "pure"
@@ -117,6 +117,12 @@ slug = "feisar"
 name = "FEISAR"
 bar = "#2f8f9d"          # identity colour bar
 sub = "European consortium"
+
+[[team]]
+slug = "g-tech"
+name = "G-Tech"
+bar = "#8c2f71"          # identity colour bar
+sub = "Fusion-era team"
 
 [[team]]
 slug = "goteki-45"
@@ -303,6 +309,34 @@ colors = [{ name = "Qirex Red", hex = "#C8102E" }, { name = "Violet", hex = "#5B
 notes = "Shifts red→violet across eras; heavy graphite industrial base."
 
 # WipEout Fusion
+[[brand]]
+team = "auricom"
+series = "fusion"
+logo = "teams/fusion/auricom.svg"
+state = "sampled"
+colors = [{ name = "Navy", hex = "#081F5B" }, { name = "Red", hex = "#C1131E" }, { name = "Grey", hex = "#999999" }]
+
+[[brand]]
+team = "feisar"
+series = "fusion"
+logo = "teams/fusion/feisar.svg"
+state = "sampled"
+colors = [{ name = "Blue", hex = "#00659B" }, { name = "Light Blue", hex = "#6498CE" }, { name = "Yellow", hex = "#FEDC00" }]
+
+[[brand]]
+team = "g-tech"
+series = "fusion"
+logo = "teams/fusion/g-tech.svg"
+state = "sampled"
+colors = [{ name = "Purple", hex = "#8C2F71" }, { name = "Red", hex = "#F70818" }, { name = "Pale Green", hex = "#CEDEA5" }]
+
+[[brand]]
+team = "tigron"
+series = "fusion"
+logo = "teams/fusion/tigron.svg"
+state = "sampled"
+colors = [{ name = "Dark Red", hex = "#8C0000" }, { name = "Gold", hex = "#FFC631" }]
+
 # WipEout Pure
 [[brand]]
 team = "ag-systems"
@@ -374,8 +408,9 @@ logo = "teams/pure/triakis.svg"
 state = "sampled"
 colors = [{ name = "Grey", hex = "#B4B4A8" }, { name = "Light Grey", hex = "#F0D8CC" }]
 
-# Tigron & Van-Über have no Pure/Pulse-era art yet — these cells reuse the HD/Fury
-# team logo (the only vector we hold) so the row is filled from Pure onwards.
+# Tigron has no Pure/Pulse-era art yet — that cell reuses the HD/Fury team logo (the
+# only vector we hold) so the row is filled from Pure onwards. Van-Über now has a
+# dedicated Pure-era mark.
 [[brand]]
 team = "tigron"
 series = "pure"
@@ -386,9 +421,9 @@ colors = [{ name = "Tigron Amber", hex = "#FBAB18" }]
 [[brand]]
 team = "van-uber"
 series = "pure"
-logo = "teams/hd/van-uber.svg"
+logo = "teams/pure/van-uber.svg"
 state = "sampled"
-colors = [{ name = "Orange Red", hex = "#EF4723" }, { name = "Amber", hex = "#FBAB18" }, { name = "Orange", hex = "#F8992C" }]
+colors = [{ name = "Orange Red", hex = "#FF3118" }, { name = "Orange", hex = "#FF420A" }, { name = "Amber", hex = "#FF9909" }]
 
 # WipEout Pulse — shares the HD-era team branding (same emblems as WipEout HD)
 [[brand]]
@@ -583,4 +618,18 @@ state = "sampled"
 colors = [{ name = "Orange Red", hex = "#EF4723" }, { name = "Amber", hex = "#FBAB18" }, { name = "Orange", hex = "#F8992C" }]
 
 # WipEout 2048 — the prequel had its own unique team liveries (NOT the HD emblems).
-# We don't hold those vectors yet, so its five founding teams are left as gaps below.
+# AG Systems and Auricom now have dedicated 2048-era marks; Feisar, Piranha and Qirex
+# remain gaps until their vectors are added.
+[[brand]]
+team = "ag-systems"
+series = "2048"
+logo = "teams/2048/ag-systems.svg"
+state = "sampled"
+colors = [{ name = "Red", hex = "#D61426" }, { name = "White", hex = "#FEFEFE" }]
+
+[[brand]]
+team = "auricom"
+series = "2048"
+logo = "teams/2048/auricom.svg"
+state = "sampled"
+colors = [{ name = "Navy", hex = "#102344" }, { name = "Red", hex = "#C1131E" }]
