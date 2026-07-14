@@ -82,5 +82,5 @@ Describe the asset, link its source, and confirm the licence. That's it — than
 site (PNGs, HTML pages and the tear sheet) is rebuilt from your source before it goes
 live.
 
-*(Want to preview locally first? `pip install cairosvg pymupdf fonttools lxml pillow` then
+*(Want to preview locally first? `pip install cairosvg pymupdf fonttools lxml pillow certifi` then
 `python3 tools/build.py` — but it's entirely optional.)*

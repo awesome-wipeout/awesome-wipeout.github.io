@@ -37,6 +37,16 @@ pages (about / links / in-game reference) author all their copy in `data/pages.t
 (`intro` / `paragraphs` / `links`). Add a page = add a `[[page]]` block (+ a generator only
 if you need a new `kind`) — no bespoke HTML surgery. The site brand is **awesome-wipeout**.
 
+**The Changelog page is the one network-dependent build step.** `changelog.html` (`kind =
+"versions"`) is generated from the repo's **GitHub Releases** — the authored release notes,
+not commit/tag messages — fetched from the public Releases API at build time (`_versions_data`,
+stdlib `urllib`; uses `certifi`'s CA bundle if installed, which the python.org macOS build
+needs). Each release's notes render as Markdown; the list is capped at the 20 newest with a
+link out to GitHub for older ones. This is the **only** part of the build that reaches the
+network: if the API is unreachable (offline, rate-limited), `build_versions_page` **keeps the
+committed `changelog.html`** instead of blanking it, so the rest of the build stays
+self-contained. Cut a GitHub Release to add an entry, then rebuild + commit the page.
+
 **No per-asset PDFs.** The site offers only SVG (the vector download) and PNG (raster) per
 asset — a per-logo PDF was just the SVG re-wrapped (same RGB paths, no CMYK/fonts) and cairo
 stamped a live date into each one, churning git. The designer/print case is served by the
@@ -59,7 +69,7 @@ history is the backup.)
 After adding, editing or removing any SVG under `marks/`, run:
 
 ```bash
-pip install cairosvg pymupdf fonttools lxml pillow   # first time only
+pip install cairosvg pymupdf fonttools lxml pillow certifi   # first time only
 
 # THE rebuild command on this machine (arm64 macOS): libcairo is at /opt/homebrew/lib
 # but not on the default loader path, so it must be prefixed. On Linux, drop the prefix.
