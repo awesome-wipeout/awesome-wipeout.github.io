@@ -55,11 +55,25 @@ url = "https://www.dafontfree.io/eurostile-font-free/"
 credit = "aldo-novarese"
 
 [[thirdparty]]
+family = "Handel Gothic"
+usage = "WipEout (1995) menus"
+license = "free"
+url = "https://fontsgeek.com/fonts/Handel-Gothic-Regular"
+credit = "don-handel"
+
+[[thirdparty]]
 family = "Neo Sans"
 usage = "WipEout 2048"
 license = "commercial"
 url = "https://www.myfonts.com/collections/neo-sans-font-monotype-imaging"
 credit = "sebastian-lester"
+
+[[thirdparty]]
+family = "Saturn Extended Bold Italic"
+usage = "WipEout 2048 title (the W & T, Eurostile between)"
+license = "commercial"
+url = "https://www.youworkforthem.com/font/T4869/saturn?aff=470"
+credit = "fonthaus"
 
 [[thirdparty]]
 family = "OCR A"
@@ -195,6 +209,8 @@ note = "Windows / macOS system font"
 "04b_19" = "Fusion pilots race beneath a pixel-lit sky"
 "Bitsumishi" = "WipEout 2048 revives anti-gravity racing"
 "Eurostile" = "Eurostile squares off the original WipEout wordmark"
+"Handel Gothic" = "Handel Gothic frames the original WipEout menu screens"
+"Wipeout Typeface" = "A fan tribute to thirty years of anti-gravity racing"
 "Neo Sans" = "Neo teams chase the 2048 championship crown"
 "OCR A" = "Pure ships scan the FX350 grid for a lock"
 "OCR B" = "Barcode telemetry streams from the pit wall"
