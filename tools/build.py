@@ -590,9 +590,13 @@ VERSIONS_CSS = """
 .version-entry h2{font-size:18px;font-weight:600;margin:0 0 4px}
 .version-date{font-weight:400;font-size:13px;color:var(--muted);margin-left:8px}
 .version-title{font-size:15px;color:var(--ink);margin:0 0 8px}
-.version-entry>p{font-size:14px;color:var(--muted);line-height:1.6;margin:4px 0}
-.version-commit{display:inline-block;font-size:13px;color:var(--accent);text-decoration:none;margin-top:8px}
-.version-commit:hover{text-decoration:underline}
+.version-entry p{font-size:14px;color:var(--muted);line-height:1.6;margin:4px 0}
+.version-entry ul,.version-entry ol{font-size:14px;color:var(--muted);line-height:1.6;margin:6px 0;padding-left:22px}
+.version-entry li{margin:2px 0}
+.version-entry code{font-size:12.5px;background:var(--card,#f4f5f7);padding:1px 5px;border-radius:4px}
+.versions-more{margin-top:22px;font-size:14px;color:var(--muted)}
+.versions-more a{color:var(--accent);text-decoration:none}
+.versions-more a:hover{text-decoration:underline}
 """
 
 # Teams page (brand-guidelines matrix + slide-out drawer). Appended to the shared
@@ -1229,7 +1233,7 @@ def write_shared_assets():
 
 
 FOOTER = """<footer>
-  <p><a href="versions.html">Versions</a> &middot; WipEout and all related logos, names and marks are trademarks of Sony Interactive Entertainment /
+  <p><a href="changelog.html">Changelog</a> &middot; WipEout and all related logos, names and marks are trademarks of Sony Interactive Entertainment /
   Studio Liverpool (formerly Psygnosis). This is a non-commercial, fan-made archive for the community.
   Assets compiled from the work of the original creators &mdash; see
   <a href="credits.html">CREDITS</a>. Contributions welcome via
@@ -1506,39 +1510,49 @@ def _versions_data():
         return []
 
 
+VERSIONS_MAX_SHOWN = 20   # most-recent entries rendered; older ones link out to GitHub
+
+
+def _clean_tag_body(body):
+    """Strip git commit trailer lines we don't surface in the public changelog
+    (the Co-authored-by: attribution) and tidy surrounding blank lines. The rest of
+    the tag body is left as Markdown for md_to_html to render."""
+    kept = [ln for ln in body.splitlines()
+            if not re.match(r"\s*co-authored-by:", ln, re.I)]
+    return re.sub(r"\n{3,}", "\n\n", "\n".join(kept)).strip()
+
+
 def build_versions_page(page):
-    """Build a versions/changelog page from git tags."""
+    """Build the Changelog page from the repo's annotated git tags (newest first).
+    Each tag body is rendered as Markdown so bullet lists format properly, and the
+    Co-authored-by trailer is dropped. Capped at VERSIONS_MAX_SHOWN entries, with a
+    link to the full tag history on GitHub for anything older."""
     versions = _versions_data()
     parts = []
     if page.get("intro"):
-        parts.append(f'<p class="lead">{esc(page["intro"])}</p>')
+        parts.append(f'<p class="lead">{_md_inline(page["intro"])}</p>')
     if not versions:
         parts.append("<p>No version tags found in the repository.</p>")
     else:
         parts.append('<div class="versions-list">')
-        for v in versions:
-            body_html = ""
-            if v.get("body"):
-                # Render tag body as paragraphs
-                body_parts = []
-                for para in v["body"].split("\n\n"):
-                    stripped = para.strip()
-                    if stripped:
-                        body_parts.append(f"<p>{esc(stripped)}</p>")
-                body_html = "\n".join(body_parts)
-            commit_url = f"https://github.com/awesome-wipeout/awesome-wipeout.github.io/commit/{v['hash']}"
+        for v in versions[:VERSIONS_MAX_SHOWN]:
+            body = _clean_tag_body(v.get("body", ""))
+            body_html = md_to_html(body) if body else ""
             date_span = f' <span class="version-date">{esc(v["date"])}</span>' if v.get("date") else ""
             parts.append(
                 f'<div class="version-entry">'
-                f'<h2>Version {esc(v["version"])}{date_span}'
-                f'</h2>'
+                f'<h2>Version {esc(v["version"])}{date_span}</h2>'
                 f'<p class="version-title">{esc(v["title"])}</p>'
                 f'{body_html}'
-                f'<a class="version-commit" href="{commit_url}" target="_blank" rel="noopener">'
-                f'View commit {v["hash"][:7]} &rarr;</a>'
                 f'</div>'
             )
         parts.append('</div>')
+        if len(versions) > VERSIONS_MAX_SHOWN:
+            parts.append(
+                f'<p class="versions-more">Showing the {VERSIONS_MAX_SHOWN} most recent '
+                f'versions. <a href="{GITHUB}/tags" target="_blank" rel="noopener">'
+                f'See the full history on GitHub &rarr;</a></p>'
+            )
     body = (f'<div class="prose"><h1>{esc(page["title"])}</h1>\n'
             + "\n".join(parts) + "\n</div>")
     _write(page["file"], _document(page["slug"], page["title"], "", body))

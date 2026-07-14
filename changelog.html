@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Changelog · awesome-wipeout</title>
+<link rel="stylesheet" href="styles.css">
+<script defer src="analytics.js"></script></head>
+<body>
+<nav class="topnav"><div class="topnav-inner"><a class="brand" href="index.html">awesome&#8209;<b>wipeout</b></a><div class="navlinks"><a href="index.html">Marks</a><a href="fonts.html">Fonts</a><a href="reference.html">In-game reference</a><a href="teams.html">Teams</a><a href="leagues.html">Leagues</a><a href="links.html">Links</a><div class="navitem"><a href="about.html">About ▾</a><div class="submenu"><a href="contributing.html">Contributing</a><a href="licensing.html">Licensing</a><a href="credits.html">Credits</a></div></div></div></div></nav>
+<div class="wrap">
+<div class="prose"><h1>Changelog</h1>
+<p class="lead">A history of changes to the awesome-wipeout library. For full details, visit the <a href="https://github.com/awesome-wipeout/awesome-wipeout.github.io">GitHub repository</a>.</p>
+<div class="versions-list">
+<div class="version-entry"><h2>Version 5 <span class="version-date">2026-07-12</span></h2><p class="version-title">Teams: add WipEout 2048 column + merge shared Pulse/HD emblems (#11)</p><ul><li>Add a WipEout 2048 series column (its five founding teams — AG Systems, Auricom, FEISAR, Piranha, Qirex — shown as gaps, since 2048 used its own distinct liveries which we don&#x27;t hold yet).</li><li>Fill WipEout Pulse&#x27;s roster: it shares HD&#x27;s team-select emblems, so its cells now mirror HD instead of sitting empty.</li><li>Where co-branded series (new <code>cobrand</code> group on Pulse + HD) show the identical mark, render it once in a single column-spanning cell, centred, instead of replicating the logo per column. The mark is capped to one column&#x27;s width so wide logos (e.g. EG.X) don&#x27;t balloon.</li></ul></div>
+<div class="version-entry"><h2>Version 4 <span class="version-date">2026-07-12</span></h2><p class="version-title">Merge pull request #10 from awesome-wipeout/pr/reference-tigron-vanuber</p><p>Reference: add Tigron &amp; Van-Über in-game screenshots</p></div>
+<div class="version-entry"><h2>Version 3 <span class="version-date">2026-07-12</span></h2><p class="version-title">Merge pull request #9 from awesome-wipeout/pr/leagues-page</p><p>Leagues page + footer GitHub link</p></div>
+<div class="version-entry"><h2>Version 2 <span class="version-date">2026-07-11</span></h2><p class="version-title">Merge pull request #7 from awesome-wipeout/pr/teams-tigron-vanuber</p><p>Teams: add Tigron &amp; Van-Über (Pure onwards)</p></div>
+<div class="version-entry"><h2>Version 1 <span class="version-date">2026-07-10</span></h2><p class="version-title">Add custom GA4 events for downloads, fonts, contributor links &amp; views</p><p>Instrument user actions on top of the existing GA4 setup (gtag.js, G-KX3WW4Q3NG). A single delegated capture-phase click listener in the shared ANALYTICS block (every page&#x27;s &lt;head&gt;) fires:</p>
+<p>download_svg / download_png  — asset SVG/PNG buttons (grid + lightbox) download_pdf                 — aggregate tear-sheet PDF link get_font                     — font &quot;get&quot; links (cards + fonts lightbox) contributor_link             — outbound links to a contributor&#x27;s own site (credit cards, font byline, restricted overlay)</p>
+<p>Lightbox opens are &lt;div&gt;/card clicks, not anchors, so view_mark and view_font are fired directly from openLb/openFb (on open only).</p>
+<p>Triggers hang off existing/added hooks (download attr + extension, and .pdflink / .font-get[data-font] / .contrib-link[data-contrib]) so new UI stays tracked without touching the listener. Document the whole scheme in a new &quot;Analytics (GA4)&quot; section of CLAUDE.md. Regenerated HTML + manifests</p>
+<ul><li>tearsheet.pdf from tools/build.py.</li></ul></div>
+</div>
+</div>
+</div>
+<footer>
+  <p><a href="changelog.html">Changelog</a> &middot; WipEout and all related logos, names and marks are trademarks of Sony Interactive Entertainment /
+  Studio Liverpool (formerly Psygnosis). This is a non-commercial, fan-made archive for the community.
+  Assets compiled from the work of the original creators &mdash; see
+  <a href="credits.html">CREDITS</a>. Contributions welcome via
+  <a href="contributing.html">pull request</a>.</p>
+  <a class="gh-link" href="https://github.com/awesome-wipeout/awesome-wipeout.github.io"
+     target="_blank" rel="noopener" aria-label="Source on GitHub">
+    <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+    <span>Source on GitHub</span>
+  </a>
+</footer>
+
+</body></html>

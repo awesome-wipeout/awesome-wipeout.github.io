@@ -264,9 +264,13 @@ color:#fff;border:0;width:52px;height:64px;font-size:30px;cursor:pointer;border-
 .version-entry h2{font-size:18px;font-weight:600;margin:0 0 4px}
 .version-date{font-weight:400;font-size:13px;color:var(--muted);margin-left:8px}
 .version-title{font-size:15px;color:var(--ink);margin:0 0 8px}
-.version-entry>p{font-size:14px;color:var(--muted);line-height:1.6;margin:4px 0}
-.version-commit{display:inline-block;font-size:13px;color:var(--accent);text-decoration:none;margin-top:8px}
-.version-commit:hover{text-decoration:underline}
+.version-entry p{font-size:14px;color:var(--muted);line-height:1.6;margin:4px 0}
+.version-entry ul,.version-entry ol{font-size:14px;color:var(--muted);line-height:1.6;margin:6px 0;padding-left:22px}
+.version-entry li{margin:2px 0}
+.version-entry code{font-size:12.5px;background:var(--card,#f4f5f7);padding:1px 5px;border-radius:4px}
+.versions-more{margin-top:22px;font-size:14px;color:var(--muted)}
+.versions-more a{color:var(--accent);text-decoration:none}
+.versions-more a:hover{text-decoration:underline}
 
 /* ================= Teams (brand guidelines) ================= */
 :root{--gap:#f0a800;--warn:#c2570b;--ok:#1a9d63;--drawer:400px}
