@@ -4,10 +4,13 @@ build.py  --  Build awesome-wipeout (the WipEout Vector Asset Library).
 
 For every SVG under marks/ this:
   1. renders a transparent high-res PNG (longest edge = PNG_SIZE) next to it,
-  2. writes marks/manifest.json describing every asset,
-  3. regenerates index.html (the tear sheet) from that manifest,
+  2. builds an in-memory index of every asset (marks, fonts, reference),
+  3. regenerates index.html (the tear sheet) from that index,
   4. regenerates tearsheet.pdf — a multi-page, fully-vector tear sheet a designer
      can open and copy/paste logos straight into their artwork.
+
+The indexes are held in memory and handed to the page generators; they are not
+written to disk.
 
 SVG is the source of truth. Contributors only add/replace .svg files; running
 this script (or the GitHub Action) regenerates every derivative and the tear
@@ -166,9 +169,9 @@ def _with_home_link(links):
 
 
 def build_manifest():
-    """Build the asset index by scanning marks/ and looking each file up in
+    """Build the in-memory asset index by scanning marks/ and looking each file up in
     data/marks.toml (1:1). Warns on drift — a file with no entry, or an entry with
-    no file — but keeps building."""
+    no file — but keeps building. Returned to the page generators; not written to disk."""
     sections = []
     total = 0
     seen = set()
@@ -211,14 +214,11 @@ def build_manifest():
             total += len(assets)
     for key in sorted(set(ASSETS_META) - seen):
         print(f"  !! no file for entry: {key} — remove it from data/marks.toml or add the file")
-    manifest = {
+    return {
         "name": "awesome-wipeout — marks",
         "generated": datetime.date.today().isoformat(),
         "total": total, "sections": sections,
     }
-    with open(os.path.join(MARKS, "manifest.json"), "w") as f:
-        json.dump(manifest, f, indent=2)
-    return manifest
 
 
 def render_reference_thumbs(force=False):
@@ -255,11 +255,12 @@ def render_reference_thumbs(force=False):
 
 
 def build_reference_manifest():
-    """Scan reference/<game>/<team>/*.jpg into reference/manifest.json. Games and
+    """Scan reference/<game>/<team>/*.jpg into an in-memory reference index. Games and
     teams are ordered + named from data/reference.toml (unknown folders fall to the
     end, title-cased); each team carries its emblem (a mark reused as the header) and
     a per-shot {name, jpg, thumb}. Empty team folders are skipped. Screenshots are
-    reference-only — never offered as downloads, excluded from the tear sheet."""
+    reference-only — never offered as downloads, excluded from the tear sheet.
+    Returned to build_reference_page; not written to disk."""
     def team_meta(slug):
         return REF_TEAMS.get(slug, {})
 
@@ -313,15 +314,11 @@ def build_reference_manifest():
             games_out.append({"id": gslug, "slug": gslug,
                               "name": g.get("name") or title_case(gslug),
                               "blurb": g.get("blurb", ""), "teams": teams_out})
-    manifest = {
+    return {
         "name": "awesome-wipeout — in-game reference",
         "generated": datetime.date.today().isoformat(),
         "credit": REF_CREDIT, "total": total, "games": games_out,
     }
-    os.makedirs(REFERENCE, exist_ok=True)
-    with open(os.path.join(REFERENCE, "manifest.json"), "w") as f:
-        json.dump(manifest, f, indent=2)
-    return manifest
 
 
 CSS = """
@@ -1061,13 +1058,13 @@ def generate_font_samples():
 
 
 def build_font_manifest():
-    """Emit fonts/manifest.json — the font analogue of marks/manifest.json.
+    """Build the in-memory font index — the font analogue of the marks manifest.
 
     Same shape as the vector manifest (name / generated / total / sections[] with
-    per-item slug + name + credit), so both indexes can be consumed the same way.
-    Font metadata is authored in the FONTS_* / FONT_CREDIT tables above; this file
-    is GENERATED from them (never hand-edit). Fonts are referenced, not hosted:
-    'specimen' is the committed outlined sample sheet, or null if none exists yet."""
+    per-item slug + name + credit). Font metadata is authored in the FONTS_* /
+    FONT_CREDIT tables above; this index is derived from them. Fonts are referenced,
+    not hosted: 'specimen' is the committed outlined sample sheet, or null if none
+    exists yet. Returned to the page generators; not written to disk."""
     def simple_lic(lic):
         return "commercial" if "commercial" in lic else "free"
 
@@ -1105,19 +1102,15 @@ def build_font_manifest():
         {"id": "foundry-commercial", "title": "Type foundries — commercial", "fonts": comm},
         {"id": "system", "title": "System fonts (referenced only)", "fonts": system},
     ]
-    manifest = {
+    return {
         "name": "awesome-wipeout — fonts",
         "generated": datetime.date.today().isoformat(),
         "note": ("Fonts are referenced, never hosted. Specimen SVGs are outlined from "
                  "locally-installed fonts at build time; specimen=null means no committed "
-                 "sample yet. Generated from tools/build.py — do not hand-edit."),
+                 "sample yet."),
         "total": sum(len(s["fonts"]) for s in sections),
         "sections": sections,
     }
-    os.makedirs(os.path.join(ROOT, "fonts"), exist_ok=True)
-    with open(os.path.join(ROOT, "fonts", "manifest.json"), "w") as f:
-        json.dump(manifest, f, indent=2)
-    return manifest
 
 
 def esc(s):
@@ -1937,24 +1930,20 @@ handleHash();  // open the deep-linked league (leagues.html#<slug>) on load
 </script>"""
 
 
-def build_leagues_page(page):
+def build_leagues_page(page, mman, fman):
     """The Leagues page: a sortable table of every anti-gravity racing league (rows) from
     data/leagues.toml, each row opening a full-screen lightbox with the league's marks, fonts
-    and lore. Marks and fonts are resolved from the generated manifests so their names,
-    downloads and specimens stay 1:1 with the collections (reference-only marks — a .png with
-    no sibling vector — link out to where the artist hosts the SVG instead of downloading)."""
+    and lore. Marks and fonts are resolved from the in-memory manifests (passed in) so their
+    names, downloads and specimens stay 1:1 with the collections (reference-only marks — a .png
+    with no sibling vector — link out to where the artist hosts the SVG instead of downloading)."""
     data = _load_toml("leagues.toml")
     leagues = data.get("league", [])
 
-    with open(os.path.join(ROOT, "marks", "manifest.json")) as f:
-        mman = json.load(f)
     MK = {}
     for s in mman["sections"]:
         for a in s["assets"]:
             MK[(a["svg"] or a["png"])[len("marks/"):]] = a
 
-    with open(os.path.join(ROOT, "fonts", "manifest.json")) as f:
-        fman = json.load(f)
     FT = {}
     for s in fman["sections"]:
         for it in (s.get("items") or s.get("fonts") or []):
@@ -2038,10 +2027,12 @@ def build_leagues_page(page):
     _write(page["file"], _document(page["slug"], page["title"], header_inner, body, scripts))
 
 
-def build_pages(manifest, ref_manifest=None):
+def build_pages(manifest, font_manifest, ref_manifest=None):
     """Render every registered page. Marks + fonts share the intermediate build
     below (cards, credits, lightbox); the two are written as separate documents.
-    Reference pages render the screenshot gallery; anything else is a prose page."""
+    Reference pages render the screenshot gallery; anything else is a prose page.
+    manifest / font_manifest / ref_manifest are the in-memory indexes (not read from
+    disk) — the Leagues page resolves its marks + fonts from the first two."""
     # Reverse-usage index: which Leagues / Teams reference each mark (by id = path minus ext)
     # and each font (by slug). Surfaced as "featured in" back-links inside the marks/fonts
     # lightboxes (leagues.html#<slug> and teams.html#<team>--<series> deep-links).
@@ -2459,7 +2450,7 @@ def build_pages(manifest, ref_manifest=None):
         elif p["kind"] == "teams":
             build_teams_page(p)
         elif p["kind"] == "leagues":
-            build_leagues_page(p)
+            build_leagues_page(p, manifest, font_manifest)
         elif p["kind"] == "versions":
             build_versions_page(p)
         else:
@@ -2620,6 +2611,7 @@ def build_pdf_tearsheet(manifest):
     """
     import fitz
     import cairosvg
+    import hashlib
 
     INK, MUTED, LINE, CARD = "#12151a", "#6b7280", "#e5e7eb", "#f7f8fa"
     col_w = (PAGE_W - 2 * MARGIN - (PDF_COLS - 1) * GUTTER) / PDF_COLS
@@ -2683,17 +2675,25 @@ def build_pdf_tearsheet(manifest):
             st["y"] += row_h
 
     master = fitz.open()
+    page_svgs = []
     for p in pages:
         page_svg = (f'<svg xmlns="http://www.w3.org/2000/svg" '
                     f'xmlns:xlink="http://www.w3.org/1999/xlink" '
                     f'width="{PAGE_W}" height="{PAGE_H}" viewBox="0 0 {PAGE_W} {PAGE_H}">'
                     f'<rect width="{PAGE_W}" height="{PAGE_H}" fill="#ffffff"/>'
                     f'{"".join(p["back"])}{"".join(p["front"])}</svg>')
+        page_svgs.append(page_svg)
         sub = fitz.open("pdf", cairosvg.svg2pdf(bytestring=page_svg.encode()))
         master.insert_pdf(sub)
         sub.close()
     n = master.page_count
-    pdf_bytes = master.tobytes(garbage=4, deflate=True)
+    # Deterministic document identity. MuPDF otherwise stamps a fresh random /ID into the
+    # trailer on every save, so an unchanged tear sheet would still show as modified in git
+    # each build. Derive the /ID from the page content and suppress the auto-generated one,
+    # so identical content ⇒ byte-identical PDF (and a real content change ⇒ a new /ID).
+    doc_id = hashlib.md5("".join(page_svgs).encode()).hexdigest().upper()
+    master.xref_set_key(-1, "ID", f"[ <{doc_id}> <{doc_id}> ]")
+    pdf_bytes = master.tobytes(garbage=4, deflate=True, no_new_id=True)
     master.close()
     with open(os.path.join(ROOT, "tearsheet.pdf"), "wb") as f:
         f.write(pdf_bytes)
@@ -2709,7 +2709,7 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"  !! skipped (cairosvg unavailable): {e}")
         print("     Keeping existing PNG/PDF derivatives. Font specimens + HTML still build.")
-    print("Writing manifest.json…")
+    print("Indexing marks…")
     m = build_manifest()
     print(f"  {m['total']} assets across {len(m['sections'])} sections")
     print("Generating font sample sheets…")
@@ -2721,7 +2721,7 @@ if __name__ == "__main__":
                 print(f"      · '{fam}' — closest installed: {', '.join(hints[fam])}")
     else:
         print("  all fonts found")
-    print("Writing fonts/manifest.json…")
+    print("Indexing fonts…")
     fm = build_font_manifest()
     print(f"  {fm['total']} fonts across {len(fm['sections'])} groups")
     print("Rendering reference thumbnails…")
@@ -2731,13 +2731,13 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"  !! skipped (Pillow unavailable): {e}")
         print("     Keeping existing thumbnails; grid falls back to full images where absent.")
-    print("Writing reference/manifest.json…")
+    print("Indexing in-game reference…")
     rm = build_reference_manifest()
     print(f"  {rm['total']} screenshots across {len(rm['games'])} game(s)")
     print("Writing shared styles.css + analytics.js…")
     write_shared_assets()
     print("Writing pages…")
-    build_pages(m, rm)
+    build_pages(m, fm, rm)
     print(f"  {len(NAV_PAGES)} pages: " + ", ".join(p["file"] for p in NAV_PAGES))
     print("Rendering doc pages from Markdown…")
     docs = build_doc_pages()

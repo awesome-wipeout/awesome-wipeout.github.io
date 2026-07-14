@@ -19,3 +19,10 @@ venv/
 
 # Local planning / issue notes — not part of the published repo.
 /docs/
+
+# The asset indexes are built in memory and handed straight to the page
+# generators — they are no longer written to disk. Ignore any stray *.json a
+# stale build.py might drop so it can't be re-committed.
+/marks/manifest.json
+/fonts/manifest.json
+/reference/manifest.json
