@@ -48,6 +48,13 @@ url = "https://www.dafont.com/bitsumishi.font"
 credit = "roger-s-nelsson"
 
 [[thirdparty]]
+family = "Eurostile"
+usage = "WipEout logo (basis); 2048 team logos"
+license = "free"
+url = "https://www.dafontfree.io/eurostile-font-free/"
+credit = "aldo-novarese"
+
+[[thirdparty]]
 family = "Neo Sans"
 usage = "WipEout 2048"
 license = "commercial"
@@ -187,6 +194,7 @@ note = "Windows / macOS system font"
 "WO3" = "Icaras rockets down Sol 2's floodlit straight"
 "04b_19" = "Fusion pilots race beneath a pixel-lit sky"
 "Bitsumishi" = "WipEout 2048 revives anti-gravity racing"
+"Eurostile" = "Eurostile squares off the original WipEout wordmark"
 "Neo Sans" = "Neo teams chase the 2048 championship crown"
 "OCR A" = "Pure ships scan the FX350 grid for a lock"
 "OCR B" = "Barcode telemetry streams from the pit wall"
