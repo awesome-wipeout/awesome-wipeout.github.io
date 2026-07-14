@@ -62,6 +62,13 @@ url = "https://www.myfonts.com/collections/neo-sans-font-monotype-imaging"
 credit = "sebastian-lester"
 
 [[thirdparty]]
+family = "Saturn Extended Bold Italic"
+usage = "WipEout 2048 title (the W & T, Eurostile between)"
+license = "commercial"
+url = "https://www.youworkforthem.com/font/T4869/saturn?aff=470"
+credit = "fonthaus"
+
+[[thirdparty]]
 family = "OCR A"
 usage = "WipEout Pure"
 license = "free"
