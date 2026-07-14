@@ -587,13 +587,14 @@ VERSIONS_CSS = """
 .versions-list{margin-top:24px}
 .version-entry{padding:18px 0;border-bottom:1px solid var(--line)}
 .version-entry:first-child{border-top:1px solid var(--line)}
-.version-entry h2{font-size:18px;font-weight:600;margin:0 0 4px}
+.version-head{font-size:18px;font-weight:600;margin:0 0 6px}
 .version-date{font-weight:400;font-size:13px;color:var(--muted);margin-left:8px}
-.version-title{font-size:15px;color:var(--ink);margin:0 0 8px}
-.version-entry p{font-size:14px;color:var(--muted);line-height:1.6;margin:4px 0}
-.version-entry ul,.version-entry ol{font-size:14px;color:var(--muted);line-height:1.6;margin:6px 0;padding-left:22px}
-.version-entry li{margin:2px 0}
-.version-entry code{font-size:12.5px;background:var(--card,#f4f5f7);padding:1px 5px;border-radius:4px}
+.version-body{font-size:14px;color:var(--muted);line-height:1.6}
+.version-body h1,.version-body h2,.version-body h3,.version-body h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--ink);margin:14px 0 2px}
+.version-body p{margin:4px 0}
+.version-body ul,.version-body ol{margin:4px 0;padding-left:22px}
+.version-body li{margin:2px 0}
+.version-body code{font-size:12.5px;background:var(--card,#f4f5f7);padding:1px 5px;border-radius:4px}
 .versions-more{margin-top:22px;font-size:14px;color:var(--muted)}
 .versions-more a{color:var(--accent);text-decoration:none}
 .versions-more a:hover{text-decoration:underline}
@@ -1466,92 +1467,83 @@ def build_prose_page(page):
     _write(page["file"], _document(page["slug"], page["title"], "", body))
 
 
-def _versions_data():
-    """Read version history from annotated git tags. Returns a list of dicts with
-    version, date, title, and body (sorted newest-first). Falls back to an empty
-    list if git isn't available or the repo has no tags."""
-    try:
-        import subprocess
-        tags = {}
-        # Get tag-to-commit mapping with dates
-        lines = subprocess.check_output(
-            ["git", "tag", "-l", "--format=%(refname:short)|%(objectname)|%(subject)",
-             "--sort=-version:refname"],
-            cwd=ROOT, text=True, stderr=subprocess.DEVNULL
-        ).strip().split("\n")
-        for line in lines:
-            if not line:
-                continue
-            parts = line.split("|", 2)
-            if len(parts) < 3:
-                continue
-            ver, obj, subject = parts
-            # Get commit date for this tag
-            try:
-                date = subprocess.check_output(
-                    ["git", "log", "-1", "--format=%ad", "--date=short", obj],
-                    cwd=ROOT, text=True, stderr=subprocess.DEVNULL
-                ).strip()
-            except Exception:
-                date = ""
-            tags[ver] = {"version": ver, "date": date, "title": subject, "hash": obj}
-        # Get tag message bodies
-        for ver, info in tags.items():
-            try:
-                body = subprocess.check_output(
-                    ["git", "tag", "-l", "--format=%(contents:body)", ver],
-                    cwd=ROOT, text=True, stderr=subprocess.DEVNULL
-                ).strip()
-                info["body"] = body
-            except Exception:
-                info["body"] = ""
-        return list(tags.values())
-    except Exception:
-        return []
-
-
 VERSIONS_MAX_SHOWN = 20   # most-recent entries rendered; older ones link out to GitHub
+RELEASES_API = "https://api.github.com/repos/awesome-wipeout/awesome-wipeout.github.io/releases?per_page=100"
 
 
-def _clean_tag_body(body):
-    """Strip git commit trailer lines we don't surface in the public changelog
-    (the Co-authored-by: attribution) and tidy surrounding blank lines. The rest of
-    the tag body is left as Markdown for md_to_html to render."""
-    kept = [ln for ln in body.splitlines()
-            if not re.match(r"\s*co-authored-by:", ln, re.I)]
-    return re.sub(r"\n{3,}", "\n\n", "\n".join(kept)).strip()
+def _versions_data():
+    """Fetch the changelog from the repository's GitHub Releases — the *authored* release
+    notes, not raw commit/tag messages (so no "Merge pull request …" subjects leak in).
+    Returns a list of dicts (newest first) with version, date, title, body and url.
+
+    Network-dependent: returns None when the Releases API can't be reached (offline build,
+    rate limit) so the caller keeps the committed changelog.html rather than blanking it;
+    returns [] only when the repo genuinely has no published releases."""
+    import urllib.request, ssl
+    # Prefer certifi's CA bundle when present — the python.org macOS build ships without
+    # system roots, so the default context otherwise fails CERTIFICATE_VERIFY_FAILED.
+    ctx = ssl.create_default_context()
+    try:
+        import certifi
+        ctx = ssl.create_default_context(cafile=certifi.where())
+    except Exception:
+        pass
+    try:
+        req = urllib.request.Request(RELEASES_API, headers={
+            "Accept": "application/vnd.github+json",
+            "User-Agent": "awesome-wipeout-build",
+        })
+        with urllib.request.urlopen(req, timeout=10, context=ctx) as r:
+            releases = json.load(r)
+    except Exception as e:
+        print(f"  !! changelog: GitHub Releases unreachable ({e}); keeping committed changelog.html")
+        return None
+    out = []
+    for rel in releases:
+        if rel.get("draft"):
+            continue                                   # unpublished drafts aren't public history
+        tag = rel.get("tag_name") or ""
+        out.append({
+            "version": tag,
+            "title": (rel.get("name") or "").strip() or (f"Version {tag}" if tag else "Release"),
+            "date": (rel.get("published_at") or rel.get("created_at") or "")[:10],
+            "body": (rel.get("body") or "").strip(),
+            "url": rel.get("html_url") or "",
+        })
+    out.sort(key=lambda v: v["date"], reverse=True)    # newest first (API order, made explicit)
+    return out
 
 
 def build_versions_page(page):
-    """Build the Changelog page from the repo's annotated git tags (newest first).
-    Each tag body is rendered as Markdown so bullet lists format properly, and the
-    Co-authored-by trailer is dropped. Capped at VERSIONS_MAX_SHOWN entries, with a
-    link to the full tag history on GitHub for anything older."""
-    versions = _versions_data()
+    """Build the Changelog page from the repo's GitHub Releases (newest first). Each
+    release's notes are rendered as Markdown so bullet lists format properly. Capped at
+    VERSIONS_MAX_SHOWN entries, with a link to the full release history on GitHub for
+    anything older. If the Releases API is offline the committed page is left untouched."""
+    releases = _versions_data()
+    if releases is None:
+        return  # API unreachable — keep the committed changelog.html rather than blank it
     parts = []
     if page.get("intro"):
         parts.append(f'<p class="lead">{_md_inline(page["intro"])}</p>')
-    if not versions:
-        parts.append("<p>No version tags found in the repository.</p>")
+    if not releases:
+        parts.append("<p>No releases published yet.</p>")
     else:
         parts.append('<div class="versions-list">')
-        for v in versions[:VERSIONS_MAX_SHOWN]:
-            body = _clean_tag_body(v.get("body", ""))
-            body_html = md_to_html(body) if body else ""
+        for v in releases[:VERSIONS_MAX_SHOWN]:
+            body_html = md_to_html(v["body"]) if v["body"] else ""
             date_span = f' <span class="version-date">{esc(v["date"])}</span>' if v.get("date") else ""
             parts.append(
                 f'<div class="version-entry">'
-                f'<h2>Version {esc(v["version"])}{date_span}</h2>'
-                f'<p class="version-title">{esc(v["title"])}</p>'
-                f'{body_html}'
+                f'<h2 class="version-head">{esc(v["title"])}{date_span}</h2>'
+                f'<div class="version-body">{body_html}</div>'
                 f'</div>'
             )
         parts.append('</div>')
-        if len(versions) > VERSIONS_MAX_SHOWN:
+        if len(releases) > VERSIONS_MAX_SHOWN:
             parts.append(
                 f'<p class="versions-more">Showing the {VERSIONS_MAX_SHOWN} most recent '
-                f'versions. <a href="{GITHUB}/tags" target="_blank" rel="noopener">'
-                f'See the full history on GitHub &rarr;</a></p>'
+                f'releases. <a href="{GITHUB}/releases" target="_blank" rel="noopener">'
+                f'See the full release history on GitHub &rarr;</a></p>'
             )
     body = (f'<div class="prose"><h1>{esc(page["title"])}</h1>\n'
             + "\n".join(parts) + "\n</div>")
