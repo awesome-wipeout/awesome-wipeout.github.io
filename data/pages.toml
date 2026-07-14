@@ -117,6 +117,13 @@ links = [
 ]
 
 [[page]]
+slug = "versions"
+nav = "Versions"
+title = "Versions"
+kind = "versions"
+intro = "A history of changes to the awesome-wipeout library, sourced from the repository's annotated version tags. Each entry links to its commit for full details."
+
+[[page]]
 slug = "about"
 nav = "About"
 title = "About"

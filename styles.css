@@ -258,6 +258,16 @@ color:#fff;border:0;width:52px;height:64px;font-size:30px;cursor:pointer;border-
 .pl-prev{left:14px}.pl-next{right:14px}
 @media(max-width:640px){.pl-stage{padding:64px 12px}.pl-nav{width:40px;height:52px;font-size:24px}}
 
+.versions-list{margin-top:24px}
+.version-entry{padding:18px 0;border-bottom:1px solid var(--line)}
+.version-entry:first-child{border-top:1px solid var(--line)}
+.version-entry h2{font-size:18px;font-weight:600;margin:0 0 4px}
+.version-date{font-weight:400;font-size:13px;color:var(--muted);margin-left:8px}
+.version-title{font-size:15px;color:var(--ink);margin:0 0 8px}
+.version-entry>p{font-size:14px;color:var(--muted);line-height:1.6;margin:4px 0}
+.version-commit{display:inline-block;font-size:13px;color:var(--accent);text-decoration:none;margin-top:8px}
+.version-commit:hover{text-decoration:underline}
+
 /* ================= Teams (brand guidelines) ================= */
 :root{--gap:#f0a800;--warn:#c2570b;--ok:#1a9d63;--drawer:400px}
 body{transition:padding-right .3s ease}

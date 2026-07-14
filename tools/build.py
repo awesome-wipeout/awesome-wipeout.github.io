@@ -550,6 +550,19 @@ color:#fff;border:0;width:52px;height:64px;font-size:30px;cursor:pointer;border-
 @media(max-width:640px){.pl-stage{padding:64px 12px}.pl-nav{width:40px;height:52px;font-size:24px}}
 """
 
+# Versions page (changelog from git tags)
+VERSIONS_CSS = """
+.versions-list{margin-top:24px}
+.version-entry{padding:18px 0;border-bottom:1px solid var(--line)}
+.version-entry:first-child{border-top:1px solid var(--line)}
+.version-entry h2{font-size:18px;font-weight:600;margin:0 0 4px}
+.version-date{font-weight:400;font-size:13px;color:var(--muted);margin-left:8px}
+.version-title{font-size:15px;color:var(--ink);margin:0 0 8px}
+.version-entry>p{font-size:14px;color:var(--muted);line-height:1.6;margin:4px 0}
+.version-commit{display:inline-block;font-size:13px;color:var(--accent);text-decoration:none;margin-top:8px}
+.version-commit:hover{text-decoration:underline}
+"""
+
 # Teams page (brand-guidelines matrix + slide-out drawer). Appended to the shared
 # styles.css. Class names are chosen not to collide with the marks/fonts/reference
 # pages (the one overlap, the marks-page `.dl`, is renamed here to `.tdl`).
@@ -1110,6 +1123,8 @@ def _nav_html(active):
         return f'<a href="{href}"{cls}>{esc(label)}</a>'
     items = []
     for p in NAV_PAGES:
+        if p.get("kind") == "versions":
+            continue  # footer-only, not shown in main nav
         sub = NAV_SUBMENUS.get(p["slug"])
         if sub:
             sub_slugs = {f[:-5] for f, _ in sub}
@@ -1178,12 +1193,12 @@ def write_shared_assets():
     inlining: styles.css (the site CSS + Teams-page CSS) and analytics.js (GA4 + the
     delegated action listener). Keeping them external de-duplicates ~25 KB of CSS and the
     analytics block from every HTML page."""
-    _write("styles.css", CSS + TEAMS_CSS + LEAGUES_CSS)
+    _write("styles.css", CSS + VERSIONS_CSS + TEAMS_CSS + LEAGUES_CSS)
     _write("analytics.js", _ANALYTICS_JS)
 
 
 FOOTER = """<footer>
-  <p>WipEout and all related logos, names and marks are trademarks of Sony Interactive Entertainment /
+  <p><a href="versions.html">Versions</a> &middot; WipEout and all related logos, names and marks are trademarks of Sony Interactive Entertainment /
   Studio Liverpool (formerly Psygnosis). This is a non-commercial, fan-made archive for the community.
   Assets compiled from the work of the original creators &mdash; see
   <a href="credits.html">CREDITS</a>. Contributions welcome via
@@ -1411,6 +1426,88 @@ def build_prose_page(page):
         if sec.get("blurb"):
             parts.append(f'<p class="linkcat-blurb">{esc(sec["blurb"])}</p>')
         parts.append(_linklist(sec.get("links", [])))
+    body = (f'<div class="prose"><h1>{esc(page["title"])}</h1>\n'
+            + "\n".join(parts) + "\n</div>")
+    _write(page["file"], _document(page["slug"], page["title"], "", body))
+
+
+def _versions_data():
+    """Read version history from annotated git tags. Returns a list of dicts with
+    version, date, title, and body (sorted newest-first). Falls back to an empty
+    list if git isn't available or the repo has no tags."""
+    try:
+        import subprocess
+        tags = {}
+        # Get tag-to-commit mapping with dates
+        lines = subprocess.check_output(
+            ["git", "tag", "-l", "--format=%(refname:short)|%(objectname)|%(subject)",
+             "--sort=-version:refname"],
+            cwd=ROOT, text=True, stderr=subprocess.DEVNULL
+        ).strip().split("\n")
+        for line in lines:
+            if not line:
+                continue
+            parts = line.split("|", 2)
+            if len(parts) < 3:
+                continue
+            ver, obj, subject = parts
+            # Get commit date for this tag
+            try:
+                date = subprocess.check_output(
+                    ["git", "log", "-1", "--format=%ad", "--date=short", obj],
+                    cwd=ROOT, text=True, stderr=subprocess.DEVNULL
+                ).strip()
+            except Exception:
+                date = ""
+            tags[ver] = {"version": ver, "date": date, "title": subject, "hash": obj}
+        # Get tag message bodies
+        for ver, info in tags.items():
+            try:
+                body = subprocess.check_output(
+                    ["git", "tag", "-l", "--format=%(contents:body)", ver],
+                    cwd=ROOT, text=True, stderr=subprocess.DEVNULL
+                ).strip()
+                info["body"] = body
+            except Exception:
+                info["body"] = ""
+        return list(tags.values())
+    except Exception:
+        return []
+
+
+def build_versions_page(page):
+    """Build a versions/changelog page from git tags."""
+    versions = _versions_data()
+    parts = []
+    if page.get("intro"):
+        parts.append(f'<p class="lead">{esc(page["intro"])}</p>')
+    if not versions:
+        parts.append("<p>No version tags found in the repository.</p>")
+    else:
+        parts.append('<div class="versions-list">')
+        for v in versions:
+            body_html = ""
+            if v.get("body"):
+                # Render tag body as paragraphs
+                body_parts = []
+                for para in v["body"].split("\n\n"):
+                    stripped = para.strip()
+                    if stripped:
+                        body_parts.append(f"<p>{esc(stripped)}</p>")
+                body_html = "\n".join(body_parts)
+            commit_url = f"https://github.com/awesome-wipeout/awesome-wipeout.github.io/commit/{v['hash']}"
+            date_span = f' <span class="version-date">{esc(v["date"])}</span>' if v.get("date") else ""
+            parts.append(
+                f'<div class="version-entry">'
+                f'<h2>Version {esc(v["version"])}{date_span}'
+                f'</h2>'
+                f'<p class="version-title">{esc(v["title"])}</p>'
+                f'{body_html}'
+                f'<a class="version-commit" href="{commit_url}" target="_blank" rel="noopener">'
+                f'View commit {v["hash"][:7]} &rarr;</a>'
+                f'</div>'
+            )
+        parts.append('</div>')
     body = (f'<div class="prose"><h1>{esc(page["title"])}</h1>\n'
             + "\n".join(parts) + "\n</div>")
     _write(page["file"], _document(page["slug"], page["title"], "", body))
@@ -2309,6 +2406,8 @@ def build_pages(manifest, ref_manifest=None):
             build_teams_page(p)
         elif p["kind"] == "leagues":
             build_leagues_page(p)
+        elif p["kind"] == "versions":
+            build_versions_page(p)
         else:
             build_prose_page(p)
 
