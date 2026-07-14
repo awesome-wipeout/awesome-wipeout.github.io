@@ -26,12 +26,28 @@ memory and handed straight to the page generators — no `manifest.json` is writ
 **Shared CSS/JS, not inlined per page.** `styles.css` (the whole site stylesheet, incl. the
 Teams-page rules) and `analytics.js` (GA4 + the one delegated action listener) are written
 once by `write_shared_assets()` and linked by every page in `_document` — pages no longer
-carry a `<style>` block or an inline analytics script. Edit the `CSS`/`TEAMS_CSS`/`_ANALYTICS_JS`
-constants in `tools/build.py`, never the generated `styles.css`/`analytics.js`.
+carry a `<style>` block or an inline analytics script. Edit the `CSS`/`TEAMS_CSS`/`LEAGUES_CSS`
+constants in `awbuild/styles.py` and `_ANALYTICS_JS` in `awbuild/core.py`, never the generated
+`styles.css`/`analytics.js`.
+
+**The build is a package — `tools/awbuild/`.** `tools/build.py` is now a thin orchestrator; the
+logic lives in the `awbuild` package so a change to one page can't conflict with another:
+- `awbuild/core.py` — the foundation: constants, `data/*.toml` loading, PNG/reference/font
+  rendering, the three in-memory index builders (`build_manifest` / `build_font_manifest` /
+  `build_reference_manifest`), and shared helpers (`esc`, `md_to_html`, `_document`,
+  `_nav_html`, `_write`, `write_shared_assets`, `_ANALYTICS_JS`). Every other module does
+  `from awbuild.core import *` (core sets `__all__` to re-export its `_underscore` helpers too).
+- `awbuild/styles.py` — the CSS string constants.
+- `awbuild/pages/` — one module per page generator: `marks.py` (the marks + fonts tear sheet;
+  also the dispatch loop that calls the others), `teams.py`, `leagues.py`, `reference.py`,
+  `prose.py` (about / links / doc pages).
+- `awbuild/pdf.py` — the vector `tearsheet.pdf`.
+Add/rename a page = touch its `awbuild/pages/*.py` + `data/pages.toml`; add shared CSS in
+`awbuild/styles.py`. Run it exactly as before: `python3 tools/build.py`.
 
 **The site is multi-page.** `data/pages.toml` is the page registry (nav order + which
 generator renders each page via `kind`: `marks` | `fonts` | `prose`). A thin sticky header
-shared by every page (built by `_nav_html`/`_document` in `tools/build.py`) links them.
+shared by every page (built by `_nav_html`/`_document` in `awbuild/core.py`) links them.
 `index.html` = the marks page (site entry point); `fonts.html` = the fonts page; `prose`
 pages (about / links / in-game reference) author all their copy in `data/pages.toml`
 (`intro` / `paragraphs` / `links`). Add a page = add a `[[page]]` block (+ a generator only
@@ -126,7 +142,9 @@ teams.html                    generated Teams page (brand-guidelines matrix, fro
 about.html links.html         generated prose pages (from data/pages.toml)
 styles.css analytics.js       generated SHARED assets, linked by every page (not inlined)
 tearsheet.pdf                 generated multi-page vector tear sheet (marks only)
-tools/                        build + extraction + cleanup scripts
+tools/build.py                thin orchestrator (runs the awbuild pipeline)
+tools/awbuild/                the build package: core.py, styles.py, pages/*.py, pdf.py
+tools/                        + extraction + cleanup scripts
 tools/fonts/                  BUNDLED DejaVu Sans (tear-sheet labels; Bitstream Vera licence)
 downloads/                    ORIGINAL source packs — gitignored, may be ABSENT
 downloads/fonts/              optional font drop-in for specimens — gitignored
@@ -163,8 +181,9 @@ re-deriving an asset or ingesting a brand-new source pack.
 
 ## Authored metadata lives in `data/*.toml` (build = code, data = data)
 
-`tools/build.py` holds **no authored metadata** — it reads these TOML files (via stdlib
-`tomllib`) and generates everything else. The asset/font indexes it derives stay in memory
+The build (`tools/build.py` + the `awbuild` package) holds **no authored metadata** — it reads
+these TOML files (via stdlib `tomllib`, in `awbuild/core.py`) and generates everything else. The
+asset/font indexes it derives stay in memory
 (never written, nothing to hand-edit). A **collection** = a folder + a matching
 `data/<name>.toml` (this repeats: `marks/` +
 `data/marks.toml`, `fonts/` + `data/fonts.toml`, and any future set). Editing metadata means
@@ -244,7 +263,7 @@ Key rules:
 ## Analytics (Google Analytics 4)
 
 The site loads **gtag.js** (GA4 measurement ID `G-KX3WW4Q3NG`) plus a small custom-event
-tracker. Both live in the `_ANALYTICS_JS` constant in `tools/build.py`, written once to the
+tracker. Both live in the `_ANALYTICS_JS` constant in `awbuild/core.py`, written once to the
 shared **`analytics.js`** (by `write_shared_assets()`) and referenced by **every page's
 `<head>`** via `<script defer src="analytics.js">` in `_document()` — analytics.js injects the
 async gtag library itself, so one script tag is all a page needs. **Never paste GA snippets
