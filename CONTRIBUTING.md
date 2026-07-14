@@ -25,7 +25,7 @@ concern, or ask for your own work to be removed** — it'll be actioned promptly
 
 If you're comfortable with git and GitHub, you can add the asset yourself. Everything is
 data-driven: the authored metadata lives in **`data/*.toml`**, and `tools/build.py` regenerates
-all the rest — the PNGs, the manifests, the HTML pages and the tear sheet. **Never hand-edit the
+all the rest — the PNGs, the HTML pages and the tear sheet. **Never hand-edit the
 generated files.**
 
 The shape is always the same: **register the contributor → add the asset → open a PR.**
@@ -79,7 +79,7 @@ Add an entry to `data/fonts.toml` in the right group, with a "get" `url`. If the
 Describe the asset, link its source, and confirm the licence. That's it — thank you! 🏁
 
 **No need to build anything.** Just commit your file(s) and your `data/*.toml` edit — the generated
-site (PNGs, manifests, HTML pages and the tear sheet) is rebuilt from your source before it goes
+site (PNGs, HTML pages and the tear sheet) is rebuilt from your source before it goes
 live.
 
 *(Want to preview locally first? `pip install cairosvg pymupdf fonttools lxml pillow` then
