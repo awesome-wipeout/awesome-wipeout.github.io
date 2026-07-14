@@ -29,6 +29,11 @@ title = "Teams — Wip3out"
 blurb = "Racing team logos in their Wip3out styling."
 
 [[section]]
+folder = "teams/fusion"
+title = "Teams — WipEout Fusion"
+blurb = "Racing team logos in their WipEout Fusion styling."
+
+[[section]]
 folder = "teams/pure"
 title = "Teams — WipEout Pure"
 blurb = "Racing team logos in their WipEout Pure styling."
@@ -42,6 +47,11 @@ blurb = "Racing team logos & symbol marks from the WipEout HD / 2048 era."
 folder = "teams/hd-text"
 title = "WipEout HD — Wordmarks & Taglines"
 blurb = "Team name wordmarks and slogan / tagline marks from WipEout HD."
+
+[[section]]
+folder = "teams/2048"
+title = "Teams — WipEout 2048"
+blurb = "Racing team logos in their WipEout 2048 styling (the 2048 prequel liveries)."
 
 [[section]]
 folder = "pilots"
@@ -227,6 +237,27 @@ file = "teams/wip3out/qirex.svg"
 name = "Qirex"
 credit = "toolboxio"
 
+# --- teams/fusion ---
+[[asset]]
+file = "teams/fusion/auricom.svg"
+name = "Auricom"
+credit = "djdrey909"
+
+[[asset]]
+file = "teams/fusion/feisar.svg"
+name = "FEISAR"
+credit = "djdrey909"
+
+[[asset]]
+file = "teams/fusion/g-tech.svg"
+name = "G-Tech"
+credit = "djdrey909"
+
+[[asset]]
+file = "teams/fusion/tigron.svg"
+name = "Tigron"
+credit = "djdrey909"
+
 # --- teams/pure ---
 [[asset]]
 file = "teams/pure/ag-systems.svg"
@@ -277,6 +308,11 @@ credit = "x-0rm"
 file = "teams/pure/triakis.svg"
 name = "Triakis"
 credit = "x-0rm"
+
+[[asset]]
+file = "teams/pure/van-uber.svg"
+name = "Van-Über"
+credit = "djdrey909"
 
 # --- teams/hd ---
 [[asset]]
@@ -1177,4 +1213,15 @@ credit = "toolboxio"
 [[asset]]
 file = "misc/tigron-glyph.svg"
 name = "Tigron (glyph)"
+credit = "djdrey909"
+
+# --- teams/2048 ---
+[[asset]]
+file = "teams/2048/ag-systems.svg"
+name = "AG Systems"
+credit = "djdrey909"
+
+[[asset]]
+file = "teams/2048/auricom.svg"
+name = "Auricom"
 credit = "djdrey909"
