@@ -464,3 +464,21 @@ border:1px solid var(--line);padding:4px 11px;border-radius:6px;font-size:12px;w
 @media(max-width:520px){.llb-mgrid,.llb-fgrid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
 """
 
+
+# Versions page (changelog from git tags)
+VERSIONS_CSS = """
+.versions-list{margin-top:24px}
+.version-entry{padding:18px 0;border-bottom:1px solid var(--line)}
+.version-entry:first-child{border-top:1px solid var(--line)}
+.version-head{font-size:18px;font-weight:600;margin:0 0 6px}
+.version-date{font-weight:400;font-size:13px;color:var(--muted);margin-left:8px}
+.version-body{font-size:14px;color:var(--muted);line-height:1.6}
+.version-body h1,.version-body h2,.version-body h3,.version-body h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--ink);margin:14px 0 2px}
+.version-body p{margin:4px 0}
+.version-body ul,.version-body ol{margin:4px 0;padding-left:22px}
+.version-body li{margin:2px 0}
+.version-body code{font-size:12.5px;background:var(--card,#f4f5f7);padding:1px 5px;border-radius:4px}
+.versions-more{margin-top:22px;font-size:14px;color:var(--muted)}
+.versions-more a{color:var(--accent);text-decoration:none}
+.versions-more a:hover{text-decoration:underline}
+"""

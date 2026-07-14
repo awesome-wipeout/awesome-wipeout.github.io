@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Changelog · awesome-wipeout</title>
+<meta name="description" content="A community-maintained, normalised library of WipEout-universe logos, emblems and marks — teams, sponsors, tracks, speed classes, game modes and series titles — every asset available as SVG and PNG.">
+<meta property="og:title" content="Changelog · awesome-wipeout">
+<meta property="og:description" content="A community-maintained, normalised library of WipEout-universe logos, emblems and marks — teams, sponsors, tracks, speed classes, game modes and series titles — every asset available as SVG and PNG.">
+<meta property="og:image" content="https://awesome-wipeout.github.io/social-card.png">
+<meta property="og:url" content="https://awesome-wipeout.github.io/changelog.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="awesome-wipeout">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Changelog · awesome-wipeout">
+<meta name="twitter:description" content="A community-maintained, normalised library of WipEout-universe logos, emblems and marks — teams, sponsors, tracks, speed classes, game modes and series titles — every asset available as SVG and PNG.">
+<meta name="twitter:image" content="https://awesome-wipeout.github.io/social-card.png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="styles.css">
+<script defer src="analytics.js"></script></head>
+<body>
+<nav class="topnav"><div class="topnav-inner"><a class="brand" href="index.html">awesome&#8209;<b>wipeout</b></a><div class="navlinks"><a href="index.html">Marks</a><a href="fonts.html">Fonts</a><a href="reference.html">In-game reference</a><a href="teams.html">Teams</a><a href="leagues.html">Leagues</a><a href="links.html">Links</a><div class="navitem"><a href="about.html">About ▾</a><div class="submenu"><a href="contributing.html">Contributing</a><a href="licensing.html">Licensing</a><a href="credits.html">Credits</a></div></div></div></div></nav>
+<div class="wrap">
+<div class="prose"><h1>Changelog</h1>
+<p class="lead">A history of changes to the awesome-wipeout library. For full details, visit the <a href="https://github.com/awesome-wipeout/awesome-wipeout.github.io">GitHub repository</a>.</p>
+<div class="versions-list">
+<div class="version-entry"><h2 class="version-head">Release 5 <span class="version-date">2026-07-12</span></h2><div class="version-body"><p>This release completes the Teams brand-guidelines matrix with the 2048 era and tidies how shared team emblems are shown.</p>
+<h2>New content</h2>
+<ul><li><strong>WipEout 2048 column</strong> — the matrix now runs through the 2012 prequel. Its five founding teams (AG Systems, Auricom, FEISAR, Piranha, Qirex) are marked as gaps: 2048 used its own distinct liveries, which aren&#x27;t in the collection yet.</li><li><strong>WipEout Pulse emblems</strong> — Pulse shares HD&#x27;s team-select emblems, so its previously-empty cells are now filled in across the roster.</li></ul>
+<h2>Improvement</h2>
+<ul><li><strong>Shared emblems shown once</strong> — where Pulse and HD carry the identical mark, it&#x27;s rendered a single time in a centred, column-spanning cell instead of being repeated in both columns, with the logo sized so wide marks (e.g. EG.X) no longer balloon. Detail drawers and deep-links are preserved, with a combined &quot;Pulse &amp; HD&quot; label.</li></ul></div></div>
+<div class="version-entry"><h2 class="version-head">Release 4 <span class="version-date">2026-07-12</span></h2><div class="version-body"><p>This release expands the in-game reference gallery with two more teams.</p>
+<h2>New content</h2>
+<ul><li><strong>49 new in-game reference screenshots</strong> — Tigron (23) and Van-Über (26), from the WipEout Omega Collection. Both teams now have their own sections in the gallery (headed by their HD-era emblems), bringing the in-game reference collection to 158 screenshots.</li></ul></div></div>
+<div class="version-entry"><h2 class="version-head">Release 3 <span class="version-date">2026-07-12</span></h2><div class="version-body"><p>This release adds the Leagues page and makes the detail views across the site deep-linkable and cross-linked.</p>
+<h2>Features</h2>
+<ul><li><strong>Leagues page</strong> — a new sortable reference of every anti-gravity racing league: AGRC, F3600, F5000, F7200, F9000, FX300, FX350 and FX400. Each row shows the league&#x27;s emblem, its game, real-world release year and in-game year, plus the marks and fonts that carry its identity; the table sorts by release or in-game year (which genuinely differ — WipEout HD is set before Pulse but shipped after it). Clicking a league opens a full-window lightbox with a details card, its marks and fonts, and the lore. Driven by the new <code>data/leagues.toml</code>.</li><li><strong>Deep-linkable, navigable lightboxes</strong> — the Leagues, Marks, Fonts and Teams detail views now have shareable URLs (<code>leagues.html#f9000</code>, <code>index.html#m/&lt;cat&gt;/&lt;slug&gt;</code>, <code>fonts.html#f/&lt;slug&gt;</code>, <code>teams.html#&lt;team&gt;--&lt;series&gt;</code>), with working browser back/forward and, on the Leagues lightbox, left/right arrow navigation between leagues.</li><li><strong>Cross-linking between pages</strong> — the Leagues lightbox links out to the full-screen Marks and Fonts pages for each asset (rather than duplicating downloads), and the Marks and Fonts lightboxes show &quot;Featured in&quot; back-links to every Team and League that uses that mark or font.</li></ul>
+<h2>New content</h2>
+<ul><li><strong>Per-game metadata on each league</strong> — a Metacritic score and link, the platform list (e.g. PS Vita / PS4), and a link to the game&#x27;s LaunchBox Games Database page.</li><li><strong>Fonts identified per league</strong> — the typefaces behind each era&#x27;s logos and cover art, including Amalgama, Bitsumishi, OCR-B, Orbit-B, 04b_19, DF So Gei W 9, SilverStream, Neo Sans and the fan recreations.</li></ul>
+<h2>Improvement</h2>
+<ul><li><strong>&quot;Source on GitHub&quot; link</strong> added to the shared footer on every page.</li><li><strong>Teams page</strong> brand cells are now deep-linkable — a URL per team × series that opens the drawer on load.</li></ul></div></div>
+<div class="version-entry"><h2 class="version-head">Release 2 <span class="version-date">2026-07-12</span></h2><div class="version-body"><p>This release adds the Teams page, a large batch of WipEout HD team logos, and a set of site-wide improvements and fixes. Asset count grows from 200 to 223 marks.</p>
+<h2>Features</h2>
+<ul><li><strong>Teams page</strong> — a new brand-guidelines matrix (in the top navigation) laying out every racing team across the series eras, from WipEout through WipEout HD. Each cell shows the team&#x27;s era logo, its identity colours (with <code>official</code> / <code>sampled</code> swatches), and SVG + PNG downloads. Driven by the new <code>data/teams.toml</code>.</li></ul>
+<h2>New content</h2>
+<ul><li><strong>12 colour WipEout HD team logos</strong> — recoloured HD / Fury team-select art: AG Systems, Assegai, Auricom, EG.X, FEISAR, Goteki 45, Harimau, Icaras, Mirage, Piranha, Qirex, Triakis.</li><li><strong>9 HD colour &quot;lockups&quot;</strong> — each team&#x27;s colour device combined with its wordmark into a single mark: Assegai, FEISAR, Goteki 45, Harimau, Icaras, Mirage, Piranha, Qirex, Triakis.</li><li><strong>New Icaras HD logo</strong>, plus a corrected <strong>FX300 league emblem</strong> and the FX350 &quot;Fury&quot; emblem as a reference-only stub.</li><li><strong>Tigron</strong> and <strong>Van-Über</strong> added to the Teams matrix (Pure onwards).</li><li><strong>Links</strong> — added the WipEout team history and lore video.</li></ul>
+<h2>Improvement</h2>
+<ul><li><strong>Shared <code>styles.css</code> and <code>analytics.js</code></strong> — CSS and analytics lifted out of per-page inline blocks into two shared files linked by every page, shrinking the generated HTML and keeping styling consistent.</li><li><strong>Standardised title underline</strong> across pages.</li></ul>
+<h2>Fixes</h2>
+<ul><li><strong>Title-logo transparency</strong> — series and game wordmarks now use SVG masks and no longer carry the opaque WipEout frame background, so they sit cleanly on any background.</li><li><strong>Restored Auricom&#x27;s missing red star elements</strong> in the Wip3out mark.</li><li><strong>Re-exported the Piranha colour logo</strong> vector.</li></ul></div></div>
+<div class="version-entry"><h2 class="version-head">Release 1 <span class="version-date">2026-07-11</span></h2><div class="version-body"><p>The initial public release of <strong>awesome-wipeout</strong> — the WipEout Vector Asset Library: a normalised, community-maintained collection of WipEout-universe logos, emblems, marks, fonts and reference imagery, published as a static site via GitHub Pages.</p>
+<h2>What&#x27;s included</h2>
+<p><strong>Marks</strong> — 200 vector assets (SVG + PNG) across 16 sections:</p>
+<ul><li><strong>Game Titles</strong> — series/game wordmarks, WipEout (1995) → Omega Collection</li><li><strong>Teams</strong> — per era: WipEout · WipEout 2097 · Wip3out · WipEout Pure · WipEout HD / 2048</li><li><strong>WipEout HD — Wordmarks &amp; Taglines</strong></li><li><strong>Pilots</strong> · <strong>Speed Classes</strong> · <strong>Game Modes</strong> · <strong>Weapons</strong></li><li><strong>Sponsors</strong> · <strong>Tracks &amp; Venues</strong> · <strong>Leagues</strong></li><li><strong>Miscellaneous</strong> · <strong>Found — for review</strong></li></ul>
+<p><strong>Fonts</strong> — 34 referenced typefaces across 4 groups (Fan-made · Type foundries — free · Type foundries — commercial · System fonts). No font files are hosted — outlined specimen sheets only.</p>
+<p><strong>In-game reference</strong> — 109 screenshots (WipEout Omega Collection), grouped by team.</p>
+<p><strong>Links</strong> — a curated &quot;awesome list&quot; of WipEout art, builds, tools and communities.</p>
+<p><strong>About / Contributing / Licensing / Credits</strong> — project info and per-asset attribution.</p>
+<p>Plus an aggregate <strong><code>tearsheet.pdf</code></strong> (multi-page, fully-vector tear sheet).</p>
+<hr>
+<p>A non-commercial, fan-made archive. WipEout and all related names, logos and marks are trademarks of Sony Interactive Entertainment / Studio Liverpool (formerly Psygnosis); every asset credits its original creator.</p></div></div>
+</div>
+</div>
+</div>
+<footer>
+  <p><a href="changelog.html">Changelog</a> &middot; WipEout and all related logos, names and marks are trademarks of Sony Interactive Entertainment /
+  Studio Liverpool (formerly Psygnosis). This is a non-commercial, fan-made archive for the community.
+  Assets compiled from the work of the original creators &mdash; see
+  <a href="credits.html">CREDITS</a>. Contributions welcome via
+  <a href="contributing.html">pull request</a>.</p>
+  <a class="gh-link" href="https://github.com/awesome-wipeout/awesome-wipeout.github.io"
+     target="_blank" rel="noopener" aria-label="Source on GitHub">
+    <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+    <span>Source on GitHub</span>
+  </a>
+</footer>
+
+</body></html>

@@ -258,6 +258,21 @@ color:#fff;border:0;width:52px;height:64px;font-size:30px;cursor:pointer;border-
 .pl-prev{left:14px}.pl-next{right:14px}
 @media(max-width:640px){.pl-stage{padding:64px 12px}.pl-nav{width:40px;height:52px;font-size:24px}}
 
+.versions-list{margin-top:24px}
+.version-entry{padding:18px 0;border-bottom:1px solid var(--line)}
+.version-entry:first-child{border-top:1px solid var(--line)}
+.version-head{font-size:18px;font-weight:600;margin:0 0 6px}
+.version-date{font-weight:400;font-size:13px;color:var(--muted);margin-left:8px}
+.version-body{font-size:14px;color:var(--muted);line-height:1.6}
+.version-body h1,.version-body h2,.version-body h3,.version-body h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--ink);margin:14px 0 2px}
+.version-body p{margin:4px 0}
+.version-body ul,.version-body ol{margin:4px 0;padding-left:22px}
+.version-body li{margin:2px 0}
+.version-body code{font-size:12.5px;background:var(--card,#f4f5f7);padding:1px 5px;border-radius:4px}
+.versions-more{margin-top:22px;font-size:14px;color:var(--muted)}
+.versions-more a{color:var(--accent);text-decoration:none}
+.versions-more a:hover{text-decoration:underline}
+
 /* ================= Teams (brand guidelines) ================= */
 :root{--gap:#f0a800;--warn:#c2570b;--ok:#1a9d63;--drawer:400px}
 body{transition:padding-right .3s ease}

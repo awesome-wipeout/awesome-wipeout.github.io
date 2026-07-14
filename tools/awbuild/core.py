@@ -321,7 +321,7 @@ def build_reference_manifest():
     }
 
 
-from awbuild.styles import CSS, TEAMS_CSS, LEAGUES_CSS
+from awbuild.styles import CSS, TEAMS_CSS, LEAGUES_CSS, VERSIONS_CSS
 # Contributors registry (id -> display name, blurb, licence, source links), from
 # data/contributors.toml. `who`/`what` keep the internal names the renderers expect.
 CREDITS = [
@@ -679,6 +679,8 @@ def _nav_html(active):
         return f'<a href="{href}"{cls}>{esc(label)}</a>'
     items = []
     for p in NAV_PAGES:
+        if p.get("kind") == "versions":
+            continue  # footer-only, not shown in main nav
         sub = NAV_SUBMENUS.get(p["slug"])
         if sub:
             sub_slugs = {f[:-5] for f, _ in sub}
@@ -747,7 +749,7 @@ def write_shared_assets():
     inlining: styles.css (the site CSS + Teams-page CSS) and analytics.js (GA4 + the
     delegated action listener). Keeping them external de-duplicates ~25 KB of CSS and the
     analytics block from every HTML page."""
-    _write("styles.css", CSS + TEAMS_CSS + LEAGUES_CSS)
+    _write("styles.css", CSS + VERSIONS_CSS + TEAMS_CSS + LEAGUES_CSS)
     _write("analytics.js", _ANALYTICS_JS)
 
 
@@ -759,7 +761,7 @@ SITE_DESCRIPTION = (
 
 
 FOOTER = """<footer>
-  <p>WipEout and all related logos, names and marks are trademarks of Sony Interactive Entertainment /
+  <p><a href="changelog.html">Changelog</a> &middot; WipEout and all related logos, names and marks are trademarks of Sony Interactive Entertainment /
   Studio Liverpool (formerly Psygnosis). This is a non-commercial, fan-made archive for the community.
   Assets compiled from the work of the original creators &mdash; see
   <a href="credits.html">CREDITS</a>. Contributions welcome via

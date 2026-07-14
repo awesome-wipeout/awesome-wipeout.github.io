@@ -117,6 +117,13 @@ links = [
 ]
 
 [[page]]
+slug = "changelog"
+nav = "Changelog"
+title = "Changelog"
+kind = "versions"
+intro = "A history of changes to the awesome-wipeout library. For full details, visit the [GitHub repository](https://github.com/awesome-wipeout/awesome-wipeout.github.io)."
+
+[[page]]
 slug = "about"
 nav = "About"
 title = "About"

@@ -5,6 +5,7 @@ from awbuild.pages.reference import build_reference_page
 from awbuild.pages.teams import build_teams_page
 from awbuild.pages.leagues import build_leagues_page
 from awbuild.pages.prose import build_prose_page
+from awbuild.pages.changelog import build_versions_page
 
 
 def build_pages(manifest, font_manifest, ref_manifest=None):
@@ -431,6 +432,8 @@ def build_pages(manifest, font_manifest, ref_manifest=None):
             build_teams_page(p)
         elif p["kind"] == "leagues":
             build_leagues_page(p, manifest, font_manifest)
+        elif p["kind"] == "versions":
+            build_versions_page(p)
         else:
             build_prose_page(p)
 
