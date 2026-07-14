@@ -64,7 +64,7 @@ cobrand = "hd-era"    # Pulse + HD share one set of team-select emblems — merg
 year = 2007
 league = "FX400"
 title = "titles/wipeout-pulse.svg"          # series wordmark (a marks/ vector)
-league_logo = "leagues/fx400.svg"
+league_logo = "leagues/fx400-colour.svg"
 roster = ["ag-systems", "assegai", "auricom", "eg-x", "feisar", "goteki-45", "harimau", "mirage", "piranha", "qirex", "tigron", "triakis", "van-uber"]
 
 [[series]]

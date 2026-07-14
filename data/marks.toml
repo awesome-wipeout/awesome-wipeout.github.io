@@ -1199,6 +1199,21 @@ file = "leagues/fx400.svg"
 name = "FX400 League"
 credit = "djdrey909"
 
+[[asset]]
+file = "leagues/fx400-colour.svg"
+name = "FX400 (colour)"
+credit = "djdrey909"
+
+[[asset]]
+file = "leagues/fx400-text-blue.svg"
+name = "FX400 (blue wordmark)"
+credit = "djdrey909"
+
+[[asset]]
+file = "leagues/fx400-text-white.svg"
+name = "FX400 (white wordmark)"
+credit = "djdrey909"
+
 # --- misc ---
 [[asset]]
 file = "misc/glyph.svg"
