@@ -91,6 +91,16 @@ name = "Aldo Novarese"
 links = [ { label = "Wikipedia", url = "https://en.wikipedia.org/wiki/Aldo_Novarese" } ]
 
 [[contributor]]
+id = "don-handel"
+name = "Don Handel"
+links = [ { label = "Handel Gothic (Wikipedia)", url = "https://en.wikipedia.org/wiki/Handel_Gothic" } ]
+
+[[contributor]]
+id = "fonthaus"
+name = "FontHaus"
+links = [ { label = "fonthaus.com", url = "https://www.fonthaus.com/" } ]
+
+[[contributor]]
 id = "apostrophic-labs"
 name = "Apostrophic Labs"
 links = []

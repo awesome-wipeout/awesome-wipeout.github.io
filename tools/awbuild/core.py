@@ -506,12 +506,41 @@ def _ttf_line(path, text, x, baseline, size, fill):
     return f'<path d="{spen.getCommands()}" fill="{fill}"/>', penx - x
 
 
+def _inked_chars(spec, chars):
+    """The subset of `chars` the font renders with a non-empty (inked) glyph."""
+    from fontTools.pens.boundsPen import BoundsPen
+    gs, cmap, _, _ = _load_ttf(spec)
+    out = []
+    for ch in chars:
+        g = cmap.get(ord(ch))
+        if not g:
+            continue
+        pen = BoundsPen(gs)
+        try:
+            gs[g].draw(pen)
+        except Exception:
+            continue
+        if pen.bounds is not None:
+            out.append(ch)
+    return "".join(out)
+
+
 def _sample_sheet(path, name, phrase):
-    """Outlined vector sample sheet (name + lore phrase + specimen) — no font hosted."""
+    """Outlined vector sample sheet (name + lore phrase + specimen) — no font hosted.
+    A lowercase-only display face (missing most capitals — e.g. the Wipeout tribute font,
+    whose W/T come from Saturn in the real logo) renders its whole sample in lowercase so
+    the name and specimen don't show gaps."""
     PAD = 30
-    lines = [(name, 46, "#12151a", 28), (phrase, 23, "#3a3f47", 22),
-             ("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 16, "#6b7280", 13),
-             ("abcdefghijklmnopqrstuvwxyz  0123456789  &.,!?", 16, "#6b7280", 4)]
+    if len(_inked_chars(path, "ABCDEFGHIJKLMNOPQRSTUVWXYZ")) < 13:
+        name, phrase = name.lower(), phrase.lower()
+        digits, punct = _inked_chars(path, "0123456789"), _inked_chars(path, "&.,!?")
+        charset = "abcdefghijklmnopqrstuvwxyz"
+        charset += (f"  {digits}" if digits else "") + (f"  {punct}" if punct else "")
+        alpha = [(charset, 16, "#6b7280", 4)]
+    else:
+        alpha = [("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 16, "#6b7280", 13),
+                 ("abcdefghijklmnopqrstuvwxyz  0123456789  &.,!?", 16, "#6b7280", 4)]
+    lines = [(name, 46, "#12151a", 28), (phrase, 23, "#3a3f47", 22)] + alpha
     y, paths, maxw = PAD, [], 0
     for txt, size, fill, gap in lines:
         y += size
@@ -532,10 +561,16 @@ def font_slug(family):
     return re.sub(r"[^a-z0-9]+", "-", family.lower()).strip("-")
 
 
+# Display name -> the installed font's actual family, when they differ, so the specimen
+# lookup still finds the file. e.g. Paul Willocks' "Wipeout Typeface" ships as "Wipeout".
+_FONT_FILE_ALIAS = {"Wipeout Typeface": "Wipeout"}
+
+
 def _locate_font(family):
     """Return the font spec of an installed font matching `family`, else None.
-    Matching is on the normalised family name, so 'OCR B' also matches 'OCRB'."""
-    return _font_index().get(_norm_family(family))
+    Matching is on the normalised family name, so 'OCR B' also matches 'OCRB';
+    `_FONT_FILE_ALIAS` maps a display name to the font's real family when they differ."""
+    return _font_index().get(_norm_family(_FONT_FILE_ALIAS.get(family, family)))
 
 
 def generate_font_samples():
