@@ -375,7 +375,31 @@ Rebuild, then eyeball a contact sheet (render each PNG onto a checker background
 per-category counts against the build's `Indexing marks…` summary line. For colour/hole-fidelity
 checks, compare a render against any reference image before trusting the output.
 
+## Branch & PR workflow (do this for every task)
+
+**Start every new piece of work from an up-to-date `main`.** Before touching anything:
+
+```bash
+git checkout main && git pull --ff-only
+```
+
+Then cut a fresh branch for the task and do the work there — **never commit directly to
+`main`**, and don't resume work on some pre-existing branch unless there's a specific reason to
+(e.g. the user names it, or you're explicitly continuing that exact PR). A stale feature branch
+can be behind `main`; starting from freshly-pulled `main` avoids building on old state.
+
+```bash
+git checkout -b <short-kebab-branch-name>
+# ...make the change, rebuild, commit the SVG/data + generated files...
+git push -u origin <short-kebab-branch-name>
+gh pr create   # every task ends with a PR, not a direct push to main
+```
+
+So the shape of any task is: **main (pulled) → branch → commit → PR**. Only skip the branch/PR
+for throwaway inspection that changes nothing.
+
 ## Contributing flow
 
-See `CONTRIBUTING.md`. In short: add an SVG in the right folder, run `python3 tools/build.py`,
-commit the SVG + generated files, and open a PR crediting the original creator.
+See `CONTRIBUTING.md`. In short: from an up-to-date `main`, cut a branch, add an SVG in the
+right folder, run `python3 tools/build.py`, commit the SVG + generated files, and open a PR
+crediting the original creator.
