@@ -1213,6 +1213,13 @@ def write_shared_assets():
     _write("analytics.js", _ANALYTICS_JS)
 
 
+SITE_DESCRIPTION = (
+    "A community-maintained, normalised library of WipEout-universe logos, emblems and "
+    "marks — teams, sponsors, tracks, speed classes, game modes and series titles — "
+    "every asset available as SVG and PNG."
+)
+
+
 FOOTER = """<footer>
   <p>WipEout and all related logos, names and marks are trademarks of Sony Interactive Entertainment /
   Studio Liverpool (formerly Psygnosis). This is a non-commercial, fan-made archive for the community.
@@ -1227,14 +1234,33 @@ FOOTER = """<footer>
 </footer>"""
 
 
-def _document(slug, title, header_inner, body, scripts=""):
+def _document(slug, title, header_inner, body, scripts="", description=None):
     """Wrap a page's body in the shared shell: <head>, sticky nav, optional hero
     <header>, content <div class="wrap">, footer, then any page scripts."""
     hero = f"<header>\n{header_inner}\n</header>\n" if header_inner else ""
+    desc = esc(description or SITE_DESCRIPTION)
+    page_title = esc(title)
+    page_url = f"https://awesome-wipeout.github.io/{slug + '.html' if slug != 'index' else ''}"
+    social_image = "https://awesome-wipeout.github.io/social-card.png"
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{esc(title)} · awesome-wipeout</title>
+<title>{page_title} · awesome-wipeout</title>
+<meta name="description" content="{desc}">
+<meta property="og:title" content="{page_title} · awesome-wipeout">
+<meta property="og:description" content="{desc}">
+<meta property="og:image" content="{social_image}">
+<meta property="og:url" content="{page_url}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="awesome-wipeout">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{page_title} · awesome-wipeout">
+<meta name="twitter:description" content="{desc}">
+<meta name="twitter:image" content="{social_image}">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="stylesheet" href="styles.css">
 <script defer src="analytics.js"></script></head>
 <body>
