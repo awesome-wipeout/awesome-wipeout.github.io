@@ -86,6 +86,11 @@ name = "Adrian Frutiger"
 links = []
 
 [[contributor]]
+id = "aldo-novarese"
+name = "Aldo Novarese"
+links = [ { label = "Wikipedia", url = "https://en.wikipedia.org/wiki/Aldo_Novarese" } ]
+
+[[contributor]]
 id = "apostrophic-labs"
 name = "Apostrophic Labs"
 links = []
