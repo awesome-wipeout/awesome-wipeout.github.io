@@ -130,6 +130,41 @@ def _source_for(meta, cid):
     return ""
 
 
+def _home_url(url):
+    """The 'main page' behind a deep link: a DeviantArt artwork → the artist's
+    profile; a GitHub blob/tree deep link → the repo root; otherwise the site root.
+    Used so credit cards link to the source's main page, not just the specific work."""
+    if not url:
+        return ""
+    m = re.match(r"(https?://[^/]+)(/.*)?$", url)
+    if not m:
+        return url
+    root, path = m.group(1), m.group(2) or ""
+    host = re.sub(r"^www\.", "", root.split("//", 1)[1])
+    segs = [s for s in path.split("/") if s]
+    if host == "deviantart.com" and segs:
+        return f"{root}/{segs[0]}"                    # artist profile
+    if host == "github.com" and len(segs) >= 2:
+        return f"{root}/{segs[0]}/{segs[1]}"          # repo main page
+    return root
+
+
+def _home_label(url):
+    """Compact label for a main-page link (scheme + www stripped)."""
+    return re.sub(r"^www\.", "", re.sub(r"^https?://", "", url)).rstrip("/")
+
+
+def _with_home_link(links):
+    """Prepend a link to the source's main page (profile / repo root) when the
+    existing links only deep-link to specific works. No-op if already present or empty."""
+    if not links:
+        return links
+    home = _home_url(links[0][1])
+    if not home or any(u == home for _, u in links):
+        return links
+    return [(_home_label(home), home)] + list(links)
+
+
 def build_manifest():
     """Build the asset index by scanning marks/ and looking each file up in
     data/marks.toml (1:1). Warns on drift — a file with no entry, or an entry with
@@ -643,6 +678,8 @@ body.drawer-open .drawer{transform:translateX(0)}
 .sw:hover .copy{color:var(--accent);border-color:var(--accent)}
 .sw.copied .copy{color:#fff;background:var(--ok);border-color:var(--ok)}
 .notes{font-size:13px;color:#374151;line-height:1.55;margin:16px 0 0}
+.dcredit{margin-top:22px;padding-top:16px;border-top:1px solid var(--line)}
+.dcredit .src{margin-top:0}
 .needbox{border:1px dashed var(--gap);background:#fffdf6;border-radius:10px;padding:14px 15px;font-size:13px;color:#6b4a12;line-height:1.5}
 .needbox b{color:var(--warn)}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#14171c;color:#fff;font-size:13px;padding:9px 16px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:1100}
@@ -1049,7 +1086,8 @@ def build_font_manifest():
             "credits": credits, "sample_phrase": FONT_LORE.get(family, ""),
         }
 
-    fan = ([entry(f, era, "free", FONT_BLOB + ttf.replace(" ", "%20"), "recreation")
+    # Link to the repo's main page, not a deep-link to the individual .ttf file.
+    fan = ([entry(f, era, "free", FONTS_REPO, "recreation")
             for era, lst in FONTS_RECREATED for f, ttf in lst]
            + [entry(f, used, simple_lic(lic), url, "fan-made")
               for f, used, lic, url in FONTS_DAFONT])
@@ -1636,7 +1674,16 @@ function showCell(id){
     else { colours='<span class="status unknown">? Colours unknown</span><div class="needbox">We have the <b>'+esc(c.series)+'</b> logo for '+esc(c.team)+', but its colours aren’t documented or sampled yet.</div>'; }
     body=dl+colours;
   }
-  dInner.innerHTML=head+logoBlock+'<div class="dbody">'+body+'</div>';
+  // Mark credit, underneath everything else — links to the marks-page credits like the
+  // marks grid's "source:" link (index.html#credit-<id>). Only shown once there's a mark.
+  let credit="";
+  if(c.state!=="gap"){
+    credit = c.credit
+      ? '<a class="src" href="index.html#credit-'+encodeURIComponent(c.credit)+'" title="Source — jump to credits">source: '+esc(c.credit_name)+'</a>'
+      : '<span class="src src-none">source: needed</span>';
+    credit='<div class="dcredit">'+credit+'</div>';
+  }
+  dInner.innerHTML=head+logoBlock+'<div class="dbody">'+body+credit+'</div>';
   document.body.classList.add("drawer-open"); drawer.setAttribute("aria-hidden","false"); dInner.scrollTop=0;
 }
 function hideDrawer(){ document.body.classList.remove("drawer-open"); drawer.setAttribute("aria-hidden","true"); }
@@ -1753,10 +1800,14 @@ def build_teams_page(page):
                 cells.append(f'<div class="cell"{style}><div class="mk" data-id="{cid}">'
                              f'<div class="logo"><img src="{png(b["logo"])}"{imgstyle} '
                              f'alt="{esc(t["name"])} — {esc(label)}" loading="lazy"></div></div></div>')
+                # credit for the underlying mark (from data/marks.toml) — shown in the drawer,
+                # linked to the marks-page credits like the marks grid's "source:" link.
+                lcid = ASSETS_META.get(b["logo"], {}).get("credit", "")
                 merged = {"team": t["name"], "sub": t.get("sub", ""), "bar": t["bar"], "txt": txt,
                           "series": label, "yr": yr, "league": league, "tslug": t["slug"],
                           "state": state, "png": png(b["logo"]), "svg": "marks/" + b["logo"],
-                          "colors": b.get("colors", []), "notes": b.get("notes", "")}
+                          "colors": b.get("colors", []), "notes": b.get("notes", ""),
+                          "credit": lcid, "credit_name": CREDIT_NAME.get(lcid, lcid) if lcid else ""}
                 # one record per covered series so deep-links (teams.html#<team>--<series>) still resolve
                 for k in run:
                     rec[f"{ti}_{k}"] = {**merged, "sslug": series[k]["slug"]}
@@ -2078,10 +2129,12 @@ def build_pages(manifest, ref_manifest=None):
     for c in CREDITS:
         if c["id"] not in used:
             continue
+        # Include a link to the contributor's main page (profile / repo root), not just
+        # the specific asset packs they contributed.
         link_html = "".join(
             f'<a class="contrib-link" data-contrib="{esc(c["id"])}" '
             f'href="{esc(u)}" target="_blank" rel="noopener">{esc(t)}</a>'
-            for t, u in c["links"])
+            for t, u in _with_home_link(c["links"]))
         lic = c.get("license")
         lic_html = ""
         if lic:
@@ -2104,7 +2157,7 @@ def build_pages(manifest, ref_manifest=None):
         by_designer.setdefault((_des, _url), []).append(_fam)
     fc_cards = []
     for (des, url), fams in sorted(by_designer.items(), key=lambda kv: kv[0][0].lower()):
-        links = ([(_host(url), url)] if url else []) + FONT_CREDIT_EXTRA.get(des, [])
+        links = _with_home_link(([(_host(url), url)] if url else []) + FONT_CREDIT_EXTRA.get(des, []))
         link_html = "".join(
             f'<a class="contrib-link" data-contrib="{esc(des)}" '
             f'href="{esc(u)}" target="_blank" rel="noopener">{esc(lbl)}</a>'
@@ -2166,7 +2219,8 @@ def build_pages(manifest, ref_manifest=None):
         return "commercial" if "commercial" in lic else "free"
 
     # Grouped by TYPE, not author. Fan-made = NR74W recreations + fan team/game faces.
-    fan_cards = ([fcard(fam, era, FONT_BLOB + ttf.replace(" ", "%20"),
+    # The "get" link points at the repo's main page, not the individual .ttf file.
+    fan_cards = ([fcard(fam, era, FONTS_REPO,
                         "get", preview_png=ttf[:-4] + ".png")
                   for era, fonts in FONTS_RECREATED for fam, ttf in fonts]
                  + [fcard(fam, used, url, "get") for fam, used, lic, url in FONTS_DAFONT])
