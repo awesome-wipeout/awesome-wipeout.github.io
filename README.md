@@ -62,11 +62,10 @@ marks/
 ├── sponsors/        In-universe sponsor / brand logos
 ├── tracks/          Circuit & venue logos
 ├── leagues/         League / series marks (F3600 … FX400)
-├── misc/            Ship silhouettes, custom marks & other glyphs
-└── manifest.json    Auto-generated index of every asset (do not edit by hand)
+└── misc/            Ship silhouettes, custom marks & other glyphs
 
-fonts/               Font specimen sheets + manifest.json (the Fonts section)
-reference/           In-game screenshot reference (raster) + manifest.json
+fonts/               Font specimen sheets (the Fonts section)
+reference/           In-game screenshot reference (raster)
 data/*.toml          Authored metadata (marks, fonts, pages, reference)
 ```
 
@@ -77,7 +76,7 @@ subfolder so the same team can appear in each of its game generations
 (e.g. `teams/2097/feisar.svg` vs `teams/pure/feisar.svg`).
 
 Build = code, data = data: `tools/build.py` holds no authored metadata — it reads `data/*.toml`
-and generates every manifest, HTML page and the tear sheet. Never hand-edit generated files.
+and generates every HTML page and the tear sheet. Never hand-edit generated files.
 
 ## Using an asset
 
@@ -90,7 +89,7 @@ contributor's stated licence — check [LICENSING.md](LICENSING.md) first.
 
 New or improved artwork, fonts, reference or links are all welcome — see
 [CONTRIBUTING.md](CONTRIBUTING.md). In short: add or replace an **SVG** in the right folder, run
-`python3 tools/build.py`, and the PNG derivative, manifests and tear sheet regenerate. Or open an
+`python3 tools/build.py`, and the PNG derivative, HTML pages and tear sheet regenerate. Or open an
 [issue](https://github.com/awesome-wipeout/awesome-wipeout.github.io/issues) if you'd rather just flag something.
 
 ## Provenance & credits
@@ -107,7 +106,7 @@ for two awkward source formats:
 * `ai_to_svg.py` — recovers artwork from CorelDRAW-exported `.ai` files whose PDF layer is empty
   and whose paths live in the native Illustrator private-data stream.
 * `csh_to_svg.py` — decodes Adobe Photoshop Custom Shape (`.csh`) binaries into SVG.
-* `build.py` — renders PNG derivatives and regenerates the manifests, every HTML page and the tear sheet.
+* `build.py` — renders PNG derivatives and regenerates every HTML page and the tear sheet.
 
 ## Legal
 
