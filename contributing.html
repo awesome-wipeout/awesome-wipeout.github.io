@@ -30,7 +30,7 @@
 <ul><li><strong>What it is</strong> — e.g. &quot;AG-Systems team logo, WipEout HD era&quot;.</li><li><strong>A link to the source</strong> — where it comes from (a DeviantArt page, the creator&#x27;s site, a forum post, wherever you found it).</li><li><strong>Who made it</strong> — the original creator&#x27;s name or handle, so they get credited.</li><li><strong>The licence</strong>, if you know it — or just link the page where the terms are stated.</li><li><strong>The file itself</strong> — you can drag an SVG or PNG straight into the issue.</li></ul>
 <p>A maintainer takes it from there. This is also the way to <strong>flag a wrong credit, a licensing concern, or ask for your own work to be removed</strong> — it&#x27;ll be actioned promptly.</p>
 <h2>The hands-on way — open a pull request</h2>
-<p>If you&#x27;re comfortable with git and GitHub, you can add the asset yourself. Everything is data-driven: the authored metadata lives in **<code>data/*.toml</code><strong>, and <code>tools/build.py</code> regenerates all the rest — the PNGs, the manifests, the HTML pages and the tear sheet. </strong>Never hand-edit the generated files.**</p>
+<p>If you&#x27;re comfortable with git and GitHub, you can add the asset yourself. Everything is data-driven: the authored metadata lives in **<code>data/*.toml</code><strong>, and <code>tools/build.py</code> regenerates all the rest — the PNGs, the HTML pages and the tear sheet. </strong>Never hand-edit the generated files.**</p>
 <p>The shape is always the same: <strong>register the contributor → add the asset → open a PR.</strong></p>
 <h3>1. Register the contributor (if new)</h3>
 <p>Every asset is credited to a <strong>contributor</strong> — the person who created it. That might be you, or the original artist whose work you&#x27;re adding. If they&#x27;re not already in <code>data/contributors.toml</code>, add a block:</p>
@@ -53,7 +53,7 @@ links = [ { label = &quot;their source page&quot;, url = &quot;https://…&quot;
 <p><em>The exact fields are documented in comments at the top of each <code>data/</em>.toml</code> file.*</p>
 <h3>3. Open the pull request</h3>
 <p>Describe the asset, link its source, and confirm the licence. That&#x27;s it — thank you! 🏁</p>
-<p><strong>No need to build anything.</strong> Just commit your file(s) and your <code>data/*.toml</code> edit — the generated site (PNGs, manifests, HTML pages and the tear sheet) is rebuilt from your source before it goes live.</p>
+<p><strong>No need to build anything.</strong> Just commit your file(s) and your <code>data/*.toml</code> edit — the generated site (PNGs, HTML pages and the tear sheet) is rebuilt from your source before it goes live.</p>
 <p><em>(Want to preview locally first? <code>pip install cairosvg pymupdf fonttools lxml pillow</code> then <code>python3 tools/build.py</code> — but it&#x27;s entirely optional.)</em></p>
 </div>
 </div>

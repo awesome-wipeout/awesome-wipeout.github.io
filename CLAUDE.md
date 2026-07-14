@@ -16,11 +16,12 @@ assets* below; that public behaviour is the full extent of what this repo knows 
 
 **SVG is the single source of truth. Everything else is generated.**
 
-For every logo the canonical file is `marks/<cat>/<slug>.svg`. The matching `.png`, plus
-`marks/manifest.json`, `fonts/manifest.json`, every generated HTML page (`index.html`,
-`fonts.html`, `teams.html`, `about.html`, `links.html`, `reference.html`, …), the shared
-`styles.css` + `analytics.js`, and `tearsheet.pdf`, are all **derived** and overwritten on
-every build. Edit the SVG (or the `data/*.toml`), never the PNG/manifests/HTML/CSS/JS.
+For every logo the canonical file is `marks/<cat>/<slug>.svg`. The matching `.png`, every
+generated HTML page (`index.html`, `fonts.html`, `teams.html`, `about.html`, `links.html`,
+`reference.html`, …), the shared `styles.css` + `analytics.js`, and `tearsheet.pdf`, are all
+**derived** and overwritten on every build. Edit the SVG (or the `data/*.toml`), never the
+PNG/HTML/CSS/JS. (The marks/fonts/reference **indexes** are also derived, but they're built in
+memory and handed straight to the page generators — no `manifest.json` is written to disk.)
 
 **Shared CSS/JS, not inlined per page.** `styles.css` (the whole site stylesheet, incl. the
 Teams-page rules) and `analytics.js` (GA4 + the one delegated action listener) are written
@@ -66,12 +67,12 @@ DYLD_FALLBACK_LIBRARY_PATH=/opt/homebrew/lib python3 tools/build.py
 ```
 
 Run `DYLD_FALLBACK_LIBRARY_PATH=/opt/homebrew/lib python3 tools/build.py` verbatim — with
-the prefix, the **entire** build succeeds (PNG, manifests, HTML, reference thumbnails and
+the prefix, the **entire** build succeeds (PNG, HTML, reference thumbnails and
 `tearsheet.pdf`). Without it, cairosvg can't load libcairo and PNG + tearsheet are skipped.
 (The `DYLD_*` value is read at process start, so it must be a command prefix — exporting it
 mid-shell won't help an already-running process.)
 
-**There is no CI — the full build must run locally**, and it does: PNG, manifests, HTML,
+**There is no CI — the full build must run locally**, and it does: PNG, HTML,
 reference thumbnails **and `tearsheet.pdf`** are all produced by `python3 tools/build.py` on
 macOS/Windows/Linux. The tear-sheet font is **bundled in the repo** (`tools/fonts/DejaVuSans*.ttf`,
 Bitstream Vera licence — see `tools/fonts/LICENSE.txt`) and outlined to curves, so the PDF is
@@ -89,8 +90,8 @@ still runs but **skips PNG + tearsheet** (tolerant by design); with it, everythi
 
 `tools/build.py` regenerates, for every `marks/**/*.svg`:
 - a transparent PNG (1024 px) next to it (rebuilt only when the SVG is newer; `--force` rebuilds all),
-- `marks/manifest.json` (the asset index),
-- `fonts/manifest.json` (the font index — see Fonts below),
+- the in-memory asset + font indexes (`build_manifest` / `build_font_manifest` — the marks and
+  fonts data the pages are rendered from; see Fonts below), passed to the generators, not written to disk,
 - `index.html` (the HTML tear sheet), and
 - `tearsheet.pdf` (a multi-page, fully-vector tear sheet a designer can open and
   copy/paste logos from). It is composed as one flat SVG per page (cairosvg → PDF,
@@ -101,7 +102,7 @@ still runs but **skips PNG + tearsheet** (tolerant by design); with it, everythi
   the fitted artwork — that tight viewport clips off any neighbouring geometry the
   source SVG may still carry, and reads back as one directly-selectable group.
 
-**Never hand-edit `manifest.json`, any generated `*.html` or `tearsheet.pdf`** — they are
+**Never hand-edit any generated `*.html` or `tearsheet.pdf`** — they are
 overwritten on every build. **There is no CI**: run `python3 tools/build.py` yourself and
 commit the regenerated artifacts alongside your SVG/data change. (A
 `.github/workflows/build.yml` exists for if/when the repo is pushed, but nothing runs it today.)
@@ -116,11 +117,8 @@ data/pages.toml               AUTHORED — site page registry (nav order + prose
 data/reference.toml           AUTHORED — in-game reference: game/team names, emblems, credit
 data/teams.toml               AUTHORED — Teams page: series×teams brand matrix + colours
 marks/<category>/<slug>.svg   + matching .png   (.png generated; PNG-only slug = reference-only)
-marks/manifest.json           generated asset index
 fonts/<slug>.svg              generated font specimen sheets (committed)
-fonts/manifest.json           generated font index
 reference/<game>/<team>/<slug>.jpg   + generated <slug>.thumb.jpg   (SCREENSHOTS — raster)
-reference/manifest.json       generated reference index
 index.html                    generated marks page (GitHub Pages entry point)
 fonts.html                    generated fonts page
 reference.html                generated in-game reference gallery
@@ -166,8 +164,9 @@ re-deriving an asset or ingesting a brand-new source pack.
 ## Authored metadata lives in `data/*.toml` (build = code, data = data)
 
 `tools/build.py` holds **no authored metadata** — it reads these TOML files (via stdlib
-`tomllib`) and generates everything else. The manifests stay generated output; never hand-edit
-them. A **collection** = a folder + a matching `data/<name>.toml` (this repeats: `marks/` +
+`tomllib`) and generates everything else. The asset/font indexes it derives stay in memory
+(never written, nothing to hand-edit). A **collection** = a folder + a matching
+`data/<name>.toml` (this repeats: `marks/` +
 `data/marks.toml`, `fonts/` + `data/fonts.toml`, and any future set). Editing metadata means
 editing `data/`, not Python:
 - `data/contributors.toml` — every creator (shared by all collections): `id`, `name`, `blurb`,
@@ -216,8 +215,8 @@ PNGs) and point their `[[asset]]` entries at the `.png`.
 
 ## Fonts (referenced, not hosted)
 
-The tear sheet has a **Fonts** section, and `fonts/manifest.json` is its index —
-the font analogue of `marks/manifest.json`, same shape (`name` / `generated` / `total`
+The tear sheet has a **Fonts** section backed by an in-memory font index (`build_font_manifest`)
+— the font analogue of the marks index, same shape (`name` / `generated` / `total`
 / `sections[]`, each item carrying `slug` + `name` + `credit`). **Where is font
 metadata stored?** Authored in `data/fonts.toml` — grouped arrays `[[recreated]]` (NR74W
 OpenType recreations, by era), `[[thirdparty]]`, `[[dafont]]`, `[[refer]]` (referenced-only
@@ -225,8 +224,8 @@ system faces, no specimen), plus `[lore]` (specimen phrase per family) and a `[s
 of repo/blob/preview URLs. Each font carries **`credit = "<contributor-id>"`** referencing the
 **shared** `data/contributors.toml` (same registry as marks — font designers are contributors
 there; a designer's `links[0]` is their primary link, further links show as extra credit links).
-Fonts keep a per-font `license`. `build.py` reconstructs the internal tables from it;
-`fonts/manifest.json` is **generated** — do not hand-edit it.
+Fonts keep a per-font `license`. `build.py` reconstructs the internal tables from it; the
+font index is **generated** in memory each build (nothing to hand-edit).
 
 Key rules:
 - **No font files are ever hosted.** We only *reference* fonts (a "get ↗" link per tile).
@@ -239,7 +238,7 @@ Key rules:
   where its font is absent (CI, or `downloads/fonts` wiped); a font is only reported
   "missing" when there's no committed specimen; one bad font never breaks the build.
 - Drop-in fonts: put `.ttf/.otf/.ttc` in `downloads/fonts/` (gitignored) and rebuild to
-  generate a specimen without a system install. `manifest.json`'s `specimen` is `null`
+  generate a specimen without a system install. A font's `specimen` is `null`
   when no sample is committed yet (e.g. a placeholder like *Wipeout Typeface*).
 
 ## Analytics (Google Analytics 4)
@@ -305,7 +304,7 @@ python3 tools/clean_svgs.py --all                      # every marks/**/*.svg
 python3 tools/clean_svgs.py --vacuum-only <files>       # cruft strip, skip the cull
 ```
 
-It writes SVGs only; run `tools/build.py` afterwards to refresh the PNG + manifests. If a
+It writes SVGs only; run `tools/build.py` afterwards to refresh the PNG + regenerate the site. If a
 clean goes wrong, recover the previous SVG from git (`git checkout -- <file>`) rather than
 re-running it.
 
@@ -373,8 +372,8 @@ re-running it.
 ## Verifying changes
 
 Rebuild, then eyeball a contact sheet (render each PNG onto a checker background) and confirm
-per-category counts against `manifest.json`. For colour/hole-fidelity checks, compare a render
-against any reference image before trusting the output.
+per-category counts against the build's `Indexing marks…` summary line. For colour/hole-fidelity
+checks, compare a render against any reference image before trusting the output.
 
 ## Branch & PR workflow (do this for every task)
 
