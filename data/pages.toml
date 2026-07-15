@@ -67,6 +67,7 @@ blurb = "Original artwork, brand identity breakdowns and high-res scans — the 
 links = [
   { label = "The Designers Republic — WipEout", url = "https://www.thedesignersrepublic.com/project/wipeout", note = "The studio that defined the WipEout look — straight from the source" },
   { label = "WipEout Futurism: The Graphic Archives", url = "https://draw-down.com/products/wipeout-futurism-the-graphic-archives", note = "The official graphic-archive book — concept art, promo & in-game design" },
+  { label = "Darren Douglas — WipEout Concept Archive 1999–2008", url = "https://darrendouglasart.wordpress.com/2023/12/05/wipeout-concept-archive-1999-2008/", note = "Original environment concept art by a Studio Liverpool / Psygnosis concept artist — tracks, interiors and structures" },
   { label = "WipEout HD branding for PlayStation — Behance", url = "https://www.behance.net/gallery/7162711/Wipeout-HD-for-PlayStation3", note = "The official HD brand-identity showcase" },
   { label = "AG Systems (WipEout HD) — nocomplys", url = "https://www.deviantart.com/nocomplys/art/AGSystems-WipEout-HD-PS3-154483368", note = "High-res AG-Systems livery art" },
   { label = "Dean Ashley — WipEout HD ship art", url = "https://deanashley.co.uk/projects/2bgGB", note = "The ship artist's in-game models & liveries — AG-Systems, Feisar, Goteki, Qirex and Icaras" },
